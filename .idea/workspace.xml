@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/engineering/altri/Connect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/ClientDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/ClientDAOMySQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/connection.properties" afterDir="false" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Inizio settaggio database">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/prova.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/provaLogin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +53,26 @@
       <option name="presentableId" value="Default" />
       <updated>1728657885128</updated>
       <workItem from="1728657886213" duration="2000" />
-      <workItem from="1730031757462" duration="376000" />
+      <workItem from="1730031757462" duration="424000" />
+      <workItem from="1730055384804" duration="595000" />
+      <workItem from="1730114720831" duration="614000" />
     </task>
+    <task id="LOCAL-00001" summary="Inizio settaggio database">
+      <option name="closed" value="true" />
+      <created>1730032171397</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730032171397</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Inizio settaggio database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inizio settaggio database" />
   </component>
 </project>
