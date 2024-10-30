@@ -1,5 +1,7 @@
 package engineering.bean;
 
+//Bean del Login
+
 public class LoginBean extends GenericoBean{
 
     private String password;
