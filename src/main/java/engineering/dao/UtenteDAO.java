@@ -1,9 +1,11 @@
 package engineering.dao;
 
+import engineering.eccezioni.EccezzioneGenerica;
 import modelli.Login;
 import modelli.Utente;
 
-public interface UtenteDAO {
+public interface UtenteDAO
+{
 
     public void insertClient(Utente utente);//throws EmailAlreadyInUseException, UsernameAlreadyInUseException;
     public Utente loadClient(Utente utente);//throws UserDoesNotExistException;
@@ -13,6 +15,6 @@ public interface UtenteDAO {
     //public boolean checkIfUserExistsByEmail(String email);
 
 
-    public Utente recuperaUtenteDaLoginBean(Login login);/* throws UserDoesNotExistException;*/
-    public void handleDAOException(Exception e);
+    public void recuperaUtenteDaLoginBean(Login login) throws EccezzioneGenerica; /* throws UserDoesNotExistException;*/
+    public void handleDAOException(EccezzioneGenerica e);
 }

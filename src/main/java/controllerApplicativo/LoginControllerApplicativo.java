@@ -12,15 +12,17 @@ public class LoginControllerApplicativo {
     }
 
     public void verificaCredenziali(LoginBean loginBean) {
+
         //controllo delle credenziali
         try {
             UtenteDAO dao= new UtenteDAOJSON();             //INIZIO PER SEMPLICITà DICENDO CHE SCRIVO SU JSON
             Login login= new Login(loginBean.getEmail(), loginBean.getPassword());
             dao.recuperaUtenteDaLoginBean(login);
 
+        }
 
-
-        } catch (Exception e) {
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
 
