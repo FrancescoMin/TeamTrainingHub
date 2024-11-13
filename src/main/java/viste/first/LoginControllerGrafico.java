@@ -1,18 +1,23 @@
-package inizio;
+package viste.first;
 
+import engineering.bean.LoginBean;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+import controllerApplicativo.LoginControllerApplicativo;
 
-public class ProvaController {
+public class LoginControllerGrafico {
     @FXML
     private Button login;
+
+    @FXML
+    private RadioButton demo;
+
+    @FXML
+    private RadioButton full;
 
     @FXML
     private TextField username;
@@ -27,20 +32,44 @@ public class ProvaController {
     private Label erroreInserimento;
 
     @FXML
+    private void initialize() {
+        ToggleGroup group = new ToggleGroup();
+        demo.setToggleGroup(group);
+        full.setToggleGroup(group);
+        full.setSelected(true);
+    }
+
+
+
+    @FXML
     protected void userLogin(ActionEvent event) throws IOException {
-        String email = username.getText().trim();
+        String email = username.getText().trim();           //accesso con email
         String pass = password.getText().trim();
+
         if (email.isEmpty() || pass.isEmpty()) {
             erroreInserimento.setText("There are empty fields!");
             erroreInserimento.setVisible(true);
+        }
+
+        else if(demo.isSelected())
+        {
+            System.out.println("Demo");
         }
 
         else
         {
             try{
                 //passaggio del login e password al bean per il settaggio del controller applicativo
+                LoginBean loginBean = new LoginBean(email,pass);
+
                 //passaggio del bean al controller applicativo per il controllo delle credenziali
-                //passaggio del bean al controller applicativo per il caricamento dell'istanza di userBean
+                LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();
+                loginControllerApplicativo.verificaCredenziali(loginBean);
+
+                //passaggio del bean al controller applicativo per l'istanziazione dei modelli e dei bean
+                loginControllerApplicativo.creazioneUtente(loginBean);
+
+
                 //passaggio dell'istanza di userBean alla home page
             } catch (Exception e){
                 erroreInserimento.setText(e.getMessage());
