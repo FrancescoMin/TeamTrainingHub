@@ -20,7 +20,7 @@ public class LoginControllerGrafico {
     private RadioButton full;
 
     @FXML
-    private TextField username;
+    private TextField email;
 
     @FXML
     private PasswordField password;
@@ -43,10 +43,10 @@ public class LoginControllerGrafico {
 
     @FXML
     protected void userLogin(ActionEvent event) throws IOException {
-        String email = username.getText().trim();           //accesso con email
+        String em = email.getText().trim();           //accesso con email
         String pass = password.getText().trim();
 
-        if (email.isEmpty() || pass.isEmpty()) {
+        if (em.isEmpty() || pass.isEmpty()) {
             erroreInserimento.setText("There are empty fields!");
             erroreInserimento.setVisible(true);
         }
@@ -60,7 +60,7 @@ public class LoginControllerGrafico {
         {
             try{
                 //passaggio del login e password al bean per il settaggio del controller applicativo
-                LoginBean loginBean = new LoginBean(email,pass);
+                LoginBean loginBean = new LoginBean(em,pass);
 
                 //passaggio del bean al controller applicativo per il controllo delle credenziali
                 LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();
@@ -71,9 +71,11 @@ public class LoginControllerGrafico {
 
 
                 //passaggio dell'istanza di userBean alla home page
+
             } catch (Exception e){
                 erroreInserimento.setText(e.getMessage());
                 erroreInserimento.setVisible(true);
+
             }
         }
     }

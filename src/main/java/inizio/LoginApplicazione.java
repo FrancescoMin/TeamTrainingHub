@@ -13,7 +13,7 @@ public class LoginApplicazione extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(LoginApplicazione.class.getResource(PAGINA_PRINCIPALE));
         Scene scene = new Scene(fxmlLoader.load(),1024 , 640);
-        stage.setTitle("Pagina di prova");
+        stage.setTitle("Pagine Principale");
         stage.setScene(scene);
         stage.show();
 

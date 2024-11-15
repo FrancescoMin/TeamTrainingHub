@@ -1,8 +1,7 @@
 package engineering.dao;
 
 
-import engineering.eccezioni.EccezzioneGenerica;
-import modelli.Allenatore;
+import engineering.eccezioni.UtenteNonEsistenteEccezione;
 import modelli.Login;
 import modelli.Utente;
 
@@ -15,8 +14,10 @@ public class UtenteDAOMySQL implements UtenteDAO {
     {return null;}//throws UserDoesNotExistException;
 
 
-    public void recuperaUtenteDaLoginBean(Login login) {}/* throws UserDoesNotExistException;*/
+    public Utente recuperaUtenteDaLoginBean(Login login) throws  UtenteNonEsistenteEccezione{
+        return null;
+    }/* throws UserDoesNotExistException;*/
 
 
-    public void handleDAOException(EccezzioneGenerica e) {}
+    public void handleDAOException(Exception e) {}
 }
