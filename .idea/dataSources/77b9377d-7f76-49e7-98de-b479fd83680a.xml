@@ -996,25 +996,33 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </collation>
     <schema id="288" parent="1" name="database">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-11-08.14:13:06</LastIntrospectionLocalTimestamp>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+      <LastIntrospectionLocalTimestamp>2024-11-19.10:24:15</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="information_schema">
+      <LastIntrospectionLocalTimestamp>2024-11-18.16:44:28</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <schema id="290" parent="1" name="mysql">
+      <Grants>user|||mysql.session|localhost|SELECT|G</Grants>
+      <LastIntrospectionLocalTimestamp>2024-11-18.16:14:21</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="291" parent="1" name="performance_schema">
+      <LastIntrospectionLocalTimestamp>2024-11-18.16:44:31</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="sakila">
+      <LastIntrospectionLocalTimestamp>2024-11-18.16:14:24</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="sys">
+      <Grants>sys_config|||mysql.sys|localhost|SELECT|G</Grants>
+      <LastIntrospectionLocalTimestamp>2024-11-18.16:44:32</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="294" parent="1" name="world">
+      <LastIntrospectionLocalTimestamp>2024-11-18.16:14:31</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="295" parent="1" name="mysql.infoschema">
@@ -1036,19 +1044,19 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="299" parent="288" name="allenamenti">
+    <table id="299" parent="288" name="allenamento">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
-    <table id="300" parent="288" name="relazione">
+    <table id="300" parent="288" name="squadra">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
     <table id="301" parent="288" name="utenti">
       <Engine>InnoDB</Engine>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+      <CollationName>utf8mb3_general_ci</CollationName>
     </table>
-    <column id="302" parent="299" name="data">
+    <column id="302" parent="299" name="nome">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
@@ -1063,7 +1071,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <StoredType>varchar(200)|0s</StoredType>
     </column>
     <index id="305" parent="299" name="PRIMARY">
-      <ColNames>data</ColNames>
+      <ColNames>nome</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1072,61 +1080,74 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="307" parent="300" name="data">
+    <column id="307" parent="300" name="codice">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="308" parent="300" name="user">
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-      <StoredType>varchar(50)|0s</StoredType>
-    </column>
-    <foreign-key id="309" parent="300" name="relazione_ibfk_2">
-      <ColNames>data</ColNames>
-      <RefColNames>data</RefColNames>
-      <RefTableName>allenamenti</RefTableName>
-    </foreign-key>
-    <foreign-key id="310" parent="300" name="relazione_ibfk_1">
-      <ColNames>user</ColNames>
-      <RefColNames>user</RefColNames>
-      <RefTableName>utenti</RefTableName>
-    </foreign-key>
-    <index id="311" parent="300" name="PRIMARY">
-      <ColNames>user</ColNames>
+    <index id="308" parent="300" name="PRIMARY">
+      <ColNames>codice</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="312" parent="300" name="data">
-      <ColNames>data</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="313" parent="300" name="PRIMARY">
+    <key id="309" parent="300" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="314" parent="301" name="user">
+    <column id="310" parent="301" name="user">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="315" parent="301" name="email">
+    <column id="311" parent="301" name="email">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="316" parent="301" name="password">
+    <column id="312" parent="301" name="password">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <index id="317" parent="301" name="PRIMARY">
-      <ColNames>user</ColNames>
+    <column id="313" parent="301" name="squadre">
+      <Position>4</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="314" parent="301" name="allenamenti">
+      <Position>5</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="315" parent="301" name="allenatore">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>tinyint|0s</StoredType>
+    </column>
+    <foreign-key id="316" parent="301" name="squadre">
+      <ColNames>squadre</ColNames>
+      <RefColNames>codice</RefColNames>
+      <RefTableName>squadra</RefTableName>
+    </foreign-key>
+    <foreign-key id="317" parent="301" name="allenamenti">
+      <ColNames>allenamenti</ColNames>
+      <RefColNames>nome</RefColNames>
+      <RefTableName>allenamento</RefTableName>
+    </foreign-key>
+    <index id="318" parent="301" name="PRIMARY">
+      <ColNames>password
+email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="318" parent="301" name="PRIMARY">
+    <index id="319" parent="301" name="squadre_idx">
+      <ColNames>squadre</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="320" parent="301" name="allenamenti_idx">
+      <ColNames>allenamenti</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="321" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

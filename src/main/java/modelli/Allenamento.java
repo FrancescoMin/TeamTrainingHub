@@ -2,15 +2,13 @@ package modelli;
 
 public class Allenamento{
     private String data;
-    private String durata;
+    private int durata;
     private String descrizione;
 
 
-    //dettagli implementativi dell'allenamento
-
     public Allenamento() {}
 
-    public Allenamento(String data, String durata) {
+    public Allenamento(String data, int durata) {
         setData(data);
         setDurata(durata);
         descrizione="";
@@ -25,10 +23,10 @@ public class Allenamento{
     }
 
 
-    public void setDurata(String durata) {
+    public void setDurata(int durata) {
         this.durata = durata;
     }
-    public String getDurata() {
+    public int getDurata() {
         return durata;
     }
 

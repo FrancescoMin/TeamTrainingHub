@@ -5,16 +5,30 @@ import java.util.List;
 public abstract class Utente {
     private String username;
     private String email;
-    private List<Allenamento> iscrizioni;
+    private List<Allenamento> allenamenti;
+    private List<Squadra> squadre;
+
     private boolean allenatore;
 
     public Utente() {}
 
-    public Utente(String username, String email) {
+    public Utente (String username, String email) {
         setUsername(username);
         setEmail(email);
-        this.iscrizioni = null;
+        setAllenamenti(null);
+        setSquadre(null);
     }
+
+
+    public Utente(String username, String email, List<Allenamento> allenamenti, List<Squadra> squadre) {
+        setUsername(username);
+        setEmail(email);
+        setAllenamenti(allenamenti);
+        setSquadre(squadre);
+    }
+
+    public void setSquadre(List<Squadra> squadre) {this.squadre = squadre;}
+    public List<Squadra> getSquadre() {return squadre;}
 
 
     public void setEmail(String email) {
@@ -33,12 +47,10 @@ public abstract class Utente {
     }
 
 
-    public void setIscrizioni(List<Allenamento> iscrizioni) {
-        this.iscrizioni = iscrizioni;
+    public void setAllenamenti(List<Allenamento> allenamenti) {
+        this.allenamenti = allenamenti;
     }
-    public List<Allenamento> getIscrizioni() {
-        return iscrizioni;
-    }
+    public List<Allenamento> getAllenamenti() {return allenamenti;}
 
 
     public boolean getAllenatore() {

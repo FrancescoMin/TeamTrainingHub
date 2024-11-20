@@ -4,17 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="inseriento BD,&#10;modifiche DAO,&#10;modalità demo introdotta">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77b9377d-7f76-49e7-98de-b479fd83680a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/77b9377d-7f76-49e7-98de-b479fd83680a.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydb.mwb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mydb.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/mydb.mwb.bak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/LoginBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/GenericoBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/GenericoBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/provaLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/provaLogin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Allenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Allenamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Allenatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Allenatore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Giocatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Giocatore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/connection.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/connection.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +33,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -39,12 +47,12 @@
     &quot;assignee&quot;: &quot;Simone2oo2&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/FrancescoMin/TeamTrainingHub.git",
-    "accountId": "64b32a3e-6402-44ac-8316-64089203d618"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub.git&quot;,
+    &quot;accountId&quot;: &quot;64b32a3e-6402-44ac-8316-64089203d618&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -63,28 +71,30 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LoginApplicazione.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/PC/Desktop/TeamTrainingHub",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.43908045",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/Desktop/materie/Base di dati/esempi/jdbc/libs/mysql-connector-j-8.0.31.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -116,7 +126,18 @@
       <workItem from="1731679800544" duration="8602000" />
       <workItem from="1731690085548" duration="3598000" />
       <workItem from="1731708870520" duration="1064000" />
-      <workItem from="1731713507914" duration="23000" />
+      <workItem from="1731713507914" duration="491000" />
+      <workItem from="1731920970801" duration="7271000" />
+      <workItem from="1731936574658" duration="1994000" />
+      <workItem from="1731939308213" duration="278000" />
+      <workItem from="1731939630965" duration="3282000" />
+      <workItem from="1731944980100" duration="559000" />
+      <workItem from="1731945576897" duration="3952000" />
+      <workItem from="1731951613505" duration="822000" />
+      <workItem from="1731952472557" duration="419000" />
+      <workItem from="1732011804518" duration="2776000" />
+      <workItem from="1732015320204" duration="1679000" />
+      <workItem from="1732021817997" duration="12193000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -142,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731496548238</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="creazione metodo recuperoUtente per DAOJSON&#10;creazione di json di esempio">
+      <option name="closed" value="true" />
+      <created>1731713873114</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731713873114</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,7 +182,9 @@
     <MESSAGE value="commit e push di recupero" />
     <MESSAGE value="file workspace" />
     <MESSAGE value="inseriento BD,&#10;modifiche DAO,&#10;modalità demo introdotta" />
-    <option name="LAST_COMMIT_MESSAGE" value="inseriento BD,&#10;modifiche DAO,&#10;modalità demo introdotta" />
+    <MESSAGE value="creazione metodo recuperoUtente per DAOJSON&#10;creazione di json di esempio" />
+    <MESSAGE value="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB" />
+    <option name="LAST_COMMIT_MESSAGE" value="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -168,5 +199,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

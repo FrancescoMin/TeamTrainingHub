@@ -1,5 +1,8 @@
 package engineering.bean;
 
+import modelli.Allenamento;
+import modelli.Squadra;
+
 import java.util.List;
 
 
@@ -7,16 +10,17 @@ public abstract class GenericoBean {
 
         private String username;
         private String email;
-        private List<String> prenotazioni;
+        private List<Allenamento> allenamenti;
         protected boolean allenatore ;
+        private List<Squadra> squadre;
 
         protected GenericoBean() {}
 
-        protected GenericoBean(String username, String email) {
+        protected GenericoBean(String username, String email, List<Allenamento> allenamenti, List<Squadra> squadre) {
             setUsername(username);
             setEmail(email);
-            this.allenatore = false;
-            this.prenotazioni = null;
+            setAllenamenti(allenamenti);
+            setSquadre(squadre);
         }
 
 
@@ -28,6 +32,10 @@ public abstract class GenericoBean {
             return email;
         }
 
+
+        public List<Squadra> getSquadre() {return squadre;}
+        public void setSquadre(List<Squadra> squadre) {this.squadre = squadre;}
+
         public void setUsername(String nome) {
             this.username = nome;
         }
@@ -36,11 +44,11 @@ public abstract class GenericoBean {
         }
 
 
-        public void setPrenotazioni(List<String> prenotazioni) {
-            this.prenotazioni = prenotazioni;
+        public void setAllenamenti(List<Allenamento> allenamenti) {
+            this.allenamenti = allenamenti;
         }
-        public List<String> getPrenotazioni() {
-            return prenotazioni;
+        public List<Allenamento> getAllenamenti() {
+            return allenamenti;
         }
 
         public boolean getAllenatore() {

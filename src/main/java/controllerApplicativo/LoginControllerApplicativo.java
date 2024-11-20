@@ -1,12 +1,19 @@
 package controllerApplicativo;
 
+import engineering.bean.AllenatoreBean;
+import engineering.bean.GenericoBean;
+import engineering.bean.GiocatoreBean;
 import engineering.bean.LoginBean;
 import engineering.dao.UtenteDAO;
 import engineering.dao.UtenteDAOJSON;
+import engineering.dao.UtenteDAOMySQL;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
 import modelli.Allenamento;
 import modelli.Login;
+import modelli.Squadra;
 import modelli.Utente;
+
+import java.util.List;
 
 public class LoginControllerApplicativo {
 
@@ -17,13 +24,34 @@ public class LoginControllerApplicativo {
 
         //controllo delle credenziali
         try {
-            UtenteDAO dao= new UtenteDAOJSON();             //INIZIO PER SEMPLICITà DICENDO CHE SCRIVO SU JSON
-            Login login= new Login(loginBean.getEmail(), loginBean.getPassword());
-            Utente utente = dao.recuperaUtenteDaLoginBean(login);
 
-            System.out.println("Utente trovato");
-            System.out.println("username: "+utente.getUsername());
-            System.out.println("email: "+utente.getEmail());
+            //richiedo dalla persistenza i dati relativi all'email e password inseriri
+            UtenteDAO dao = new UtenteDAOMySQL();             //INIZIO PER SEMPLICITà DICENDO CHE SCRIVO SU JSON
+
+            //creo un utente da passare all'interno del sistema
+            Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
+
+            //richiedo i dati dell'utente, se esiste
+            Utente utente = dao.recuperaUtenteDaLogin(login);
+
+            System.out.println("Recupero Utente completato");
+            System.out.println("Email: " + utente.getEmail() + "Password: " );
+
+            //se l'utente è diverso da null ho trovato l'utente: creo un bean utente
+            if (utente == null) {
+                //gestisco il caso in cui in cui ho un utente void
+            }
+
+            //creazione del bean da passare al prossimo controllore grafico con tutti i dati dell'utente
+            GenericoBean genericoBean;
+            if (utente.getAllenatore()) {
+                genericoBean = new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadre());
+            } else
+            {
+                genericoBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadre());
+            }
+
+            //cambio di scena passando il bean appena creato
 
         }
 
@@ -31,14 +59,6 @@ public class LoginControllerApplicativo {
         {
             throw new UtenteNonEsistenteEccezione(e.getMessage());
         }
-
-
-        //se le credenziali sono corrette si passa alla schermata successiva
-
-
-        //altrimenti si rimane sulla stessa schermata
-        //la stampa a scherma è gia gestita dal controller grafico
-
     }
 
     public void creazioneUtente(LoginBean loginBean) {
@@ -55,10 +75,6 @@ public class LoginControllerApplicativo {
 
 
         //aggiunta dell'allenamento selezionato all'utente per ogni allenamento nel DB per quell'utente
-
-
-
-
 
     }
 
