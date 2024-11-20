@@ -12,15 +12,15 @@ public abstract class GenericoBean {
         private String email;
         private List<Allenamento> allenamenti;
         protected boolean allenatore ;
-        private List<Squadra> squadre;
+        private Squadra squadra;
 
         protected GenericoBean() {}
 
-        protected GenericoBean(String username, String email, List<Allenamento> allenamenti, List<Squadra> squadre) {
+        protected GenericoBean(String username, String email, List<Allenamento> allenamenti, Squadra squadra) {
             setUsername(username);
             setEmail(email);
             setAllenamenti(allenamenti);
-            setSquadre(squadre);
+            setSquadra(squadra);
         }
 
 
@@ -33,8 +33,8 @@ public abstract class GenericoBean {
         }
 
 
-        public List<Squadra> getSquadre() {return squadre;}
-        public void setSquadre(List<Squadra> squadre) {this.squadre = squadre;}
+        public Squadra getSquadra() {return this.squadra;}
+        public void setSquadra(Squadra squadra) {this.squadra = squadra;}
 
         public void setUsername(String nome) {
             this.username = nome;

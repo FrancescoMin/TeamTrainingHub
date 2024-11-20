@@ -6,9 +6,9 @@ public abstract class Utente {
     private String username;
     private String email;
     private List<Allenamento> allenamenti;
-    private List<Squadra> squadre;
+    private Squadra squadra;
 
-    private boolean allenatore;
+    protected boolean allenatore;
 
     public Utente() {}
 
@@ -20,40 +20,38 @@ public abstract class Utente {
     }
 
 
-    public Utente(String username, String email, List<Allenamento> allenamenti, List<Squadra> squadre) {
+    public Utente(String username, String email, List<Allenamento> allenamenti, Squadra squadra) {
         setUsername(username);
         setEmail(email);
         setAllenamenti(allenamenti);
-        setSquadre(squadre);
+        setSquadre(squadra);
     }
 
-    public void setSquadre(List<Squadra> squadre) {this.squadre = squadre;}
-    public List<Squadra> getSquadre() {return squadre;}
+    public void setSquadre(Squadra squadra) {this.squadra = squadra;}
+    public Squadra getSquadra() {return this.squadra;}
 
 
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() {return this.email;}
 
 
     public void setUsername(String nome) {
         this.username = nome;
     }
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
 
     public void setAllenamenti(List<Allenamento> allenamenti) {
         this.allenamenti = allenamenti;
     }
-    public List<Allenamento> getAllenamenti() {return allenamenti;}
+    public List<Allenamento> getAllenamenti() {return this.allenamenti;}
 
 
     public boolean getAllenatore() {
-        return allenatore;
+        return this.allenatore;
     }
 }

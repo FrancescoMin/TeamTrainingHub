@@ -8,7 +8,7 @@ public class Squadra {
 
     public Squadra(String nome)
     {
-        this.nome = nome;
+        setNome(nome);
     }
 
 

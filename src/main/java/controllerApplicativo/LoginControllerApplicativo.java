@@ -5,15 +5,10 @@ import engineering.bean.GenericoBean;
 import engineering.bean.GiocatoreBean;
 import engineering.bean.LoginBean;
 import engineering.dao.UtenteDAO;
-import engineering.dao.UtenteDAOJSON;
 import engineering.dao.UtenteDAOMySQL;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
-import modelli.Allenamento;
 import modelli.Login;
-import modelli.Squadra;
 import modelli.Utente;
-
-import java.util.List;
 
 public class LoginControllerApplicativo {
 
@@ -29,13 +24,12 @@ public class LoginControllerApplicativo {
             UtenteDAO dao = new UtenteDAOMySQL();             //INIZIO PER SEMPLICITà DICENDO CHE SCRIVO SU JSON
 
             //creo un utente da passare all'interno del sistema
-            Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
+            Login login = new Login(loginBean.getUsername(), loginBean.getPassword());
 
             //richiedo i dati dell'utente, se esiste
             Utente utente = dao.recuperaUtenteDaLogin(login);
 
             System.out.println("Recupero Utente completato");
-            System.out.println("Email: " + utente.getEmail() + "Password: " );
 
             //se l'utente è diverso da null ho trovato l'utente: creo un bean utente
             if (utente == null) {
@@ -45,10 +39,10 @@ public class LoginControllerApplicativo {
             //creazione del bean da passare al prossimo controllore grafico con tutti i dati dell'utente
             GenericoBean genericoBean;
             if (utente.getAllenatore()) {
-                genericoBean = new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadre());
+                genericoBean = new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadra());
             } else
             {
-                genericoBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadre());
+                genericoBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadra());
             }
 
             //cambio di scena passando il bean appena creato

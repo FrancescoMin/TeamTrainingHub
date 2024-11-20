@@ -2,24 +2,24 @@ package modelli;
 
 public class Login {
 
-    private String email;
+    private String username;
     private String password;
 
     public Login(){}
 
-    public Login(String email, String password)
+    public Login(String username, String password)
     {
-        this.email = email;
+        this.username = username;
         this.password = password;
     }
 
-    public void setEmail(String email)
+    public void setUsername(String username)
     {
-        this.email = email;
+        this.username = username;
     }
-    public String getEmail()
+    public String getUsername()
     {
-        return this.email;
+        return this.username;
     }
 
 

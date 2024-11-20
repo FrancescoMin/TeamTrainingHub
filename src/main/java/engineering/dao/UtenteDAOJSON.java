@@ -31,14 +31,14 @@ public class UtenteDAOJSON implements UtenteDAO
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             //creazione del path
-            String filePath = "src/main/resources/persistenza/utenti/"+login.getEmail()+".json";
+            String filePath = "src/main/resources/persistenza/utenti/"+login.getUsername()+".json";
 
             //dato il path del file, leggo il file JSON
             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
             JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
 
             //inizializzo un oggetto di tipo Login per il controllo delle credenziali
-            Login deserializedLogin = new Login(jsonObject.get("email").getAsString(), jsonObject.get("password").getAsString());
+            Login deserializedLogin = new Login(jsonObject.get("username").getAsString(), jsonObject.get("password").getAsString());
 
             //controllo della password
             if (deserializedLogin.getPassword().equals(login.getPassword()))
@@ -46,7 +46,7 @@ public class UtenteDAOJSON implements UtenteDAO
                 System.out.println("Login effettuato con successo");
 
                 //mi faccio recuperare dal metodo addetto l'utente che è acceduto
-                Utente utente = caricaUtente(login.getEmail());
+                Utente utente = caricaUtente(login.getUsername());
                 return utente;
             }
 

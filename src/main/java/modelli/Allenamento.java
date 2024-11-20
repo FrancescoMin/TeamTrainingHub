@@ -8,12 +8,19 @@ public class Allenamento{
 
     public Allenamento() {}
 
+
     public Allenamento(String data, int durata) {
         setData(data);
         setDurata(durata);
-        descrizione="";
+        setDescrizione("");
     }
 
+
+    public Allenamento(String data, int durata, String descrizione) {
+        setData(data);
+        setDurata(durata);
+        setDescrizione(descrizione);
+    }
 
     public void setData(String data) {
         this.data = data;

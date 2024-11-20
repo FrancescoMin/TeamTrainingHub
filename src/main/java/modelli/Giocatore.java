@@ -3,11 +3,6 @@ package modelli;
 import java.util.List;
 
 public class Giocatore extends Utente{
-    private String username;
-    private String email;
-    private List<Allenamento> allenamenti;
-    private List<Squadra> squadre;
-    private boolean allenatore;
 
     public Giocatore() {}
 
@@ -17,8 +12,8 @@ public class Giocatore extends Utente{
         this.allenatore=false;
     }
 
-    public Giocatore(String username, String email, List<Allenamento> allenamenti, List<Squadra> squadre) {
-        super(username, email, allenamenti, squadre);
+    public Giocatore(String username, String email, List<Allenamento> allenamenti, Squadra squadra) {
+        super(username, email, allenamenti, squadra);
         this.allenatore = false;
     }
 }

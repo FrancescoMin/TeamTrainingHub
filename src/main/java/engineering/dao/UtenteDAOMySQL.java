@@ -61,7 +61,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
 
 
                 while (rs.next()) {
-                    System.out.println("email: " + rs.getString("email"));
+                    System.out.println("username: " + rs.getString("username"));
                     System.out.println("password: " + rs.getInt("password"));
 
                     if(rs.getBoolean("allenatore"))
@@ -71,7 +71,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
                     }
                     else {
                         System.out.println("Utente non allenatore");
-                        utente = new Giocatore(rs.getString("email"), rs.getString("password"));
+                        utente = new Giocatore(rs.getString("username"), rs.getString("email"));
                     }
 
                     //controllo se un utente ha degli allenamenti
