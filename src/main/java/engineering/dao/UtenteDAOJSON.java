@@ -21,7 +21,34 @@ public class UtenteDAOJSON implements UtenteDAO
     }
 
     public void inserisciUtente(Utente utente)
-    {}
+    {
+        try {
+            //Creazione del path
+            String filePath = "src/main/resources/persistenza/utenti/" + utente.getUsername() + ".json";
+
+            try {
+                //controllo che il file sia già esistente
+                Files.readAllBytes(Paths.get(filePath));
+                throw new EccezzioneGenerica("utente esistente");
+
+            } catch (IOException e) {
+                //crezione del file con nome username dell'utente in formato json
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                FileWriter writer = new FileWriter(filePath);
+
+
+                //salvataggio dell'oggetto serializzato utente nel file json
+                writer.write(gson.toJson(utente));
+                writer.close();
+                throw new EccezzioneGenerica("utente inserito");
+            }
+
+
+        } catch (Exception e) {
+            throw new EccezzioneGenerica(e.getMessage());
+        }
+
+    }
 
     public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione//throws UserDoesNotExistException
     {
@@ -31,7 +58,7 @@ public class UtenteDAOJSON implements UtenteDAO
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             //creazione del path
-            String filePath = "src/main/resources/persistenza/utenti/"+login.getUsername()+".json";
+            String filePath = "src/main/resources/persistenza/utenti/"+login.getEmail()+".json";
 
             //dato il path del file, leggo il file JSON
             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -46,20 +73,20 @@ public class UtenteDAOJSON implements UtenteDAO
                 System.out.println("Login effettuato con successo");
 
                 //mi faccio recuperare dal metodo addetto l'utente che è acceduto
-                Utente utente = caricaUtente(login.getUsername());
+                Utente utente = caricaUtente(login.getEmail());
                 return utente;
             }
 
             else
             {
                 System.out.println("Password errata: lancio eccezione di password errata");
-                throw new UtenteNonEsistenteEccezione("");
+                throw new UtenteNonEsistenteEccezione("Password errata: lancio eccezione di password errata");
             }
         }
 
         catch (UtenteNonEsistenteEccezione | IOException e)
         {
-            throw new UtenteNonEsistenteEccezione("Username o password non corretti");
+            throw new UtenteNonEsistenteEccezione(e.getMessage());
         }
 
     }
@@ -98,6 +125,6 @@ public class UtenteDAOJSON implements UtenteDAO
         }
     }
 
-        //public String getPasswordByEmail(String email);
+    //public String getPasswordByEmail(String email);
     //public boolean checkIfUserExistsByEmail(String email);
 }

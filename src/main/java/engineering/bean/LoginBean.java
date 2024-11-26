@@ -2,28 +2,22 @@ package engineering.bean;
 
 public class LoginBean
 {
-   private String password;
-     private String username;
+    private String password;
+    private String email;
 
-     public LoginBean(){}
+    public LoginBean(){}
 
-     public LoginBean(String username, String password) {
-         setUsername(username);
-         setPassword(password);
-     }
+    //costruttore utilizzano nel login
+    public LoginBean(String email, String password) {
+        setEmail(email);
+        setPassword(password);
+    }
 
-     public void setUsername(String username) {
-          this.username = this.username;
-     }
-     public String getUsername() {
-     return this.username;
-     }
 
-     public void setPassword(String password) {
-         this.password = password;
-     }
-     public String getPassword() {
-         return this.password;
-     }
+    public void setEmail(String email) {this.email = email;}
+    public String getEmail() {return this.email;}
 
- }
+    public void setPassword(String password) {this.password = password;}
+    public String getPassword() {return this.password;}
+
+}

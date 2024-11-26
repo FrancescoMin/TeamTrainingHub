@@ -2,26 +2,37 @@ package modelli;
 
 public class Login {
 
-    private String username;
+    private String email;
     private String password;
+
+    //utilizziamo l'email solamente per la registrazione
+    private String username;
 
     public Login(){}
 
-    public Login(String username, String password)
+    //costruttore utilizzato nel login
+    public Login(String email, String password)
     {
-        this.username = username;
-        this.password = password;
+        setEmail(email);
+        setPassword(password);
     }
 
-    public void setUsername(String username)
+    //costruttore utilizzato nella registrazione
+    public Login (String email, String password, String username)
     {
-        this.username = username;
-    }
-    public String getUsername()
-    {
-        return this.username;
+        setEmail(email);
+        setPassword(password);
+        setUsername(username);
     }
 
+    public void setEmail(String username)
+    {
+        this.email = username;
+    }
+    public String getEmail()
+    {
+        return this.email;
+    }
 
     public void setPassword(String password)
     {
@@ -32,4 +43,6 @@ public class Login {
         return this.password;
     }
 
+    public void setUsername(String username) {this.username = username;}
+    public String getUsername() {return this.username;}
 }

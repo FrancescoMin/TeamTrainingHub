@@ -15,7 +15,7 @@ public class QueriesLogin {
 
     public static ResultSet RecuperaUtentePerLogin(Statement stmt, Login login) throws SQLException {
         try {
-            String query= "SELECT * FROM utenti where username = '" + login.getUsername() + "' and password = '" +login.getPassword()+"' ;";
+            String query= "SELECT * FROM utenti where username = '" + login.getEmail() + "' and password = '" +login.getPassword()+"' ;";
             ResultSet resultSet = stmt.executeQuery(query);
             return resultSet;
 

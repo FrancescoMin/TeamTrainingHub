@@ -10,6 +10,7 @@ import java.io.IOException;
 import controllerApplicativo.LoginControllerApplicativo;
 
 public class LoginControllerGrafico {
+
     @FXML
     private Button login;
 

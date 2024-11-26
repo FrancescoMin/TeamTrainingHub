@@ -9,7 +9,7 @@ public class AllenatoreBean extends GenericoBean{
 
     public AllenatoreBean() {}
 
-    public AllenatoreBean(String username, String email, List<Allenamento> allenamenti, Squadra squadre) {
+    public AllenatoreBean(String username, String email, List<Allenamento> allenamenti, Squadra squadra) {
         super(username, email, allenamenti, squadra);
         this.allenatore=true;
     }

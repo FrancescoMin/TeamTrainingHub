@@ -14,7 +14,9 @@ import static engineering.query.QueriesLogin.recuperaAllenamentiPerData;
 public class UtenteDAOMySQL implements UtenteDAO {
 
     public void inserisciUtente(Utente utente)
-    {}//throws EmailAlreadyInUseException, UsernameAlreadyInUseException;
+    {
+        String query="insert into utenti(user, email, password, squadre, allenatore) values ('nonLoSo', 'boh', 'bohNonSo',NULL,'false');";
+    }//throws EmailAlreadyInUseException, UsernameAlreadyInUseException;
 
     public Utente caricaUtente(String string)
     {return null;}//throws UserDoesNotExistException;

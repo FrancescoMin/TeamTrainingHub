@@ -1114,40 +1114,26 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>4</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="314" parent="301" name="allenamenti">
-      <Position>5</Position>
-      <StoredType>varchar(50)|0s</StoredType>
-    </column>
-    <column id="315" parent="301" name="allenatore">
+    <column id="314" parent="301" name="allenatore">
       <NotNull>1</NotNull>
-      <Position>6</Position>
+      <Position>5</Position>
       <StoredType>tinyint|0s</StoredType>
     </column>
-    <foreign-key id="316" parent="301" name="squadre">
+    <foreign-key id="315" parent="301" name="squadre">
       <ColNames>squadre</ColNames>
       <RefColNames>codice</RefColNames>
       <RefTableName>squadra</RefTableName>
     </foreign-key>
-    <foreign-key id="317" parent="301" name="allenamenti">
-      <ColNames>allenamenti</ColNames>
-      <RefColNames>nome</RefColNames>
-      <RefTableName>allenamento</RefTableName>
-    </foreign-key>
-    <index id="318" parent="301" name="PRIMARY">
-      <ColNames>password
-email</ColNames>
+    <index id="316" parent="301" name="PRIMARY">
+      <ColNames>user</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="319" parent="301" name="squadre_idx">
+    <index id="317" parent="301" name="squadre_idx">
       <ColNames>squadre</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="320" parent="301" name="allenamenti_idx">
-      <ColNames>allenamenti</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="321" parent="301" name="PRIMARY">
+    <key id="318" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

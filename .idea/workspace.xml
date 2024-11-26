@@ -4,22 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="correzione foreign Key DB">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="modifiche lista squadra in squadra">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77b9377d-7f76-49e7-98de-b479fd83680a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/77b9377d-7f76-49e7-98de-b479fd83680a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/database.mwb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/database.mwb.bak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/AllenatoreBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/AllenatoreBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/GenericoBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/GenericoBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/LoginBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/LoginBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Allenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Allenamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Allenatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Allenatore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Giocatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Giocatore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Squadra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Squadra.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +86,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -136,7 +134,14 @@
       <workItem from="1732015320204" duration="1679000" />
       <workItem from="1732021817997" duration="12193000" />
       <workItem from="1732095496957" duration="3707000" />
-      <workItem from="1732102752245" duration="823000" />
+      <workItem from="1732102752245" duration="2116000" />
+      <workItem from="1732264224731" duration="600000" />
+      <workItem from="1732384130453" duration="654000" />
+      <workItem from="1732551254280" duration="483000" />
+      <workItem from="1732613552949" duration="6793000" />
+      <workItem from="1732627015626" duration="753000" />
+      <workItem from="1732627821227" duration="3578000" />
+      <workItem from="1732632844638" duration="335000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -186,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732097143443</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="modifiche lista squadra in squadra">
+      <option name="closed" value="true" />
+      <created>1732109650659</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732109650659</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,7 +214,8 @@
     <MESSAGE value="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB" />
     <MESSAGE value="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB&#10;modifica DAO sql" />
     <MESSAGE value="correzione foreign Key DB" />
-    <option name="LAST_COMMIT_MESSAGE" value="correzione foreign Key DB" />
+    <MESSAGE value="modifiche lista squadra in squadra" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifiche lista squadra in squadra" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
