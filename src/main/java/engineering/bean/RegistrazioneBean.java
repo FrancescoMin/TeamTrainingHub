@@ -2,7 +2,6 @@ package engineering.bean;
 
 public class RegistrazioneBean extends LoginBean{
 
-    //utilizzato nella registrazione
     private String email;
     private boolean alleantore;
 
