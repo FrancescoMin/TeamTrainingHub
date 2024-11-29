@@ -1,4 +1,4 @@
-package controllerapplicativo;
+package controllerApplicativo;
 
 import engineering.bean.RegistrazioneBean;
 

@@ -3,10 +3,7 @@ package engineering.dao;
 import com.google.gson.*;
 import engineering.eccezioni.EccezzioneGenerica;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
-import modelli.Allenatore;
-import modelli.Giocatore;
-import modelli.Login;
-import modelli.Utente;
+import modelli.*;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -16,15 +13,15 @@ import java.nio.file.Paths;
 public class UtenteDAOJSON implements UtenteDAO
 {
 
-    public void handleDAOException(Exception e) {
-        System.out.println("Errore gestito in UtenteDAOJSON: " + e);
+    public void handleDAOException(Exception e) throws EccezzioneGenerica{
+        throw new EccezzioneGenerica(e.getMessage());
     }
 
-    public void inserisciUtente(Utente utente)
+    public void inserisciUtente(Registrazione registrazione)
     {
         try {
             //Creazione del path
-            String filePath = "src/main/resources/persistenza/utenti/" + utente.getUsername() + ".json";
+            String filePath = "src/main/resources/persistenza/utenti/" + registrazione.getUsername() + ".json";
 
             try {
                 //controllo che il file sia già esistente
@@ -38,7 +35,7 @@ public class UtenteDAOJSON implements UtenteDAO
 
 
                 //salvataggio dell'oggetto serializzato utente nel file json
-                writer.write(gson.toJson(utente));
+                writer.write(gson.toJson(registrazione));
                 writer.close();
                 throw new EccezzioneGenerica("utente inserito");
             }
@@ -73,7 +70,7 @@ public class UtenteDAOJSON implements UtenteDAO
                 System.out.println("Login effettuato con successo");
 
                 //mi faccio recuperare dal metodo addetto l'utente che è acceduto
-                Utente utente = caricaUtente(login.getEmail());
+                Utente utente = recuperaUtenteDaEmail(login.getEmail());
                 return utente;
             }
 
@@ -92,7 +89,7 @@ public class UtenteDAOJSON implements UtenteDAO
     }
 
 
-    public Utente caricaUtente(String string)  /*UserDoesNotExistException*/
+    public Utente recuperaUtenteDaEmail(String string)  /*UserDoesNotExistException*/
     {
         try {
             //Serializziamo l'oggetto in JSON
@@ -114,6 +111,8 @@ public class UtenteDAOJSON implements UtenteDAO
                 Utente utente = new Giocatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString());
                 return utente;
             }
+
+
         }
 
         catch(IOException e)

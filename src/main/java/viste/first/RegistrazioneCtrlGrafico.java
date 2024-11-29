@@ -1,6 +1,6 @@
 package viste.first;
 
-import controllerapplicativo.RegistrazioneCtrlApplicativo;
+import controllerApplicativo.RegistrazioneCtrlApplicativo;
 import engineering.bean.RegistrazioneBean;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

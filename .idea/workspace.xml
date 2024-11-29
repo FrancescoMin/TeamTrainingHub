@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="view della registrazione (senza controller)">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Inizio registrazione in SQL e JSON">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77b9377d-7f76-49e7-98de-b479fd83680a.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/database.mwb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/database.mwb.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueryRegistrazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueryRegistrazione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,12 +28,35 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Exception" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Simone2oo2&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub.git&quot;,
+    &quot;accountId&quot;: &quot;64b32a3e-6402-44ac-8316-64089203d618&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -36,36 +68,40 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/max/Desktop/ISPW/Ispw/Ispw/progettiOthers/Project-master/libs/mysql-connector-j-8.0.31.jar&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/Desktop/materie/Base di dati/esempi/jdbc/libs/mysql-connector-j-8.0.31.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="OLDteamtraininghub" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="OLDteamtraininghub" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="engineering.dao" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -79,17 +115,47 @@
       <workItem from="1730031757462" duration="424000" />
       <workItem from="1730055384804" duration="595000" />
       <workItem from="1730114720831" duration="614000" />
-      <workItem from="1730297470122" duration="795000" />
-      <workItem from="1730367712503" duration="1261000" />
-      <workItem from="1730900062191" duration="11000" />
-      <workItem from="1730900495932" duration="139000" />
-      <workItem from="1730900654982" duration="1874000" />
-      <workItem from="1731419658599" duration="1145000" />
-      <workItem from="1731510660528" duration="565000" />
-      <workItem from="1731513936734" duration="1087000" />
-      <workItem from="1732372725814" duration="1497000" />
-      <workItem from="1732618556068" duration="9617000" />
-      <workItem from="1732719715292" duration="1315000" />
+      <workItem from="1730297470122" duration="757000" />
+      <workItem from="1731494902140" duration="1762000" />
+      <workItem from="1731503704686" duration="175000" />
+      <workItem from="1731503929228" duration="8329000" />
+      <workItem from="1731660149013" duration="81000" />
+      <workItem from="1731663590971" duration="19000" />
+      <workItem from="1731669973962" duration="2033000" />
+      <workItem from="1731678912193" duration="114000" />
+      <workItem from="1731679800544" duration="8602000" />
+      <workItem from="1731690085548" duration="3598000" />
+      <workItem from="1731708870520" duration="1064000" />
+      <workItem from="1731713507914" duration="491000" />
+      <workItem from="1731920970801" duration="7271000" />
+      <workItem from="1731936574658" duration="1994000" />
+      <workItem from="1731939308213" duration="278000" />
+      <workItem from="1731939630965" duration="3282000" />
+      <workItem from="1731944980100" duration="559000" />
+      <workItem from="1731945576897" duration="3952000" />
+      <workItem from="1731951613505" duration="822000" />
+      <workItem from="1731952472557" duration="419000" />
+      <workItem from="1732011804518" duration="2776000" />
+      <workItem from="1732015320204" duration="1679000" />
+      <workItem from="1732021817997" duration="12193000" />
+      <workItem from="1732095496957" duration="3707000" />
+      <workItem from="1732102752245" duration="2116000" />
+      <workItem from="1732264224731" duration="600000" />
+      <workItem from="1732384130453" duration="654000" />
+      <workItem from="1732551254280" duration="483000" />
+      <workItem from="1732613552949" duration="6793000" />
+      <workItem from="1732627015626" duration="753000" />
+      <workItem from="1732627821227" duration="3578000" />
+      <workItem from="1732632844638" duration="908000" />
+      <workItem from="1732793668635" duration="2129000" />
+      <workItem from="1732799943619" duration="369000" />
+      <workItem from="1732800347095" duration="307000" />
+      <workItem from="1732801565657" duration="230000" />
+      <workItem from="1732802997053" duration="1278000" />
+      <workItem from="1732804685251" duration="5232000" />
+      <workItem from="1732811553954" duration="422000" />
+      <workItem from="1732812014378" duration="4680000" />
+      <workItem from="1732872209213" duration="3116000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -107,23 +173,55 @@
       <option name="project" value="LOCAL" />
       <updated>1730299192136</updated>
     </task>
-    <task id="LOCAL-00003" summary="commit e push di recupero">
+    <task id="LOCAL-00003" summary="inseriento BD,&#10;modifiche DAO,&#10;modalità demo introdotta">
       <option name="closed" value="true" />
-      <created>1730299261335</created>
+      <created>1731496548238</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1730299261335</updated>
+      <updated>1731496548238</updated>
     </task>
-    <task id="LOCAL-00004" summary="view della registrazione (senza controller)">
+    <task id="LOCAL-00004" summary="creazione metodo recuperoUtente per DAOJSON&#10;creazione di json di esempio">
       <option name="closed" value="true" />
-      <created>1730901612261</created>
+      <created>1731713873114</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1730901612261</updated>
+      <updated>1731713873114</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB&#10;modifica DAO sql">
+      <option name="closed" value="true" />
+      <created>1732095618051</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732095618051</updated>
+    </task>
+    <task id="LOCAL-00006" summary="correzione foreign Key DB">
+      <option name="closed" value="true" />
+      <created>1732097143443</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732097143443</updated>
+    </task>
+    <task id="LOCAL-00007" summary="modifiche lista squadra in squadra">
+      <option name="closed" value="true" />
+      <created>1732109650659</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732109650659</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Inizio registrazione in SQL e JSON">
+      <option name="closed" value="true" />
+      <created>1732633281402</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732633281402</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,9 +240,33 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inizio settaggio database" />
-    <MESSAGE value="file workspace" />
     <MESSAGE value="commit e push di recupero" />
-    <MESSAGE value="view della registrazione (senza controller)" />
-    <option name="LAST_COMMIT_MESSAGE" value="view della registrazione (senza controller)" />
+    <MESSAGE value="file workspace" />
+    <MESSAGE value="inseriento BD,&#10;modifiche DAO,&#10;modalità demo introdotta" />
+    <MESSAGE value="creazione metodo recuperoUtente per DAOJSON&#10;creazione di json di esempio" />
+    <MESSAGE value="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB" />
+    <MESSAGE value="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB&#10;modifica DAO sql" />
+    <MESSAGE value="correzione foreign Key DB" />
+    <MESSAGE value="modifiche lista squadra in squadra" />
+    <MESSAGE value="Inizio registrazione in SQL e JSON" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inizio registrazione in SQL e JSON" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="engineering.eccezioni.EccezzioneGenerica" package="engineering.eccezioni" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="engineering.eccezioni.UtenteNonEsistenteEccezione" package="engineering.eccezioni" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

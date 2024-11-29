@@ -1,6 +1,7 @@
 package engineering.dao;
 
-import engineering.query.QueriesLogin.*;
+
+import engineering.eccezioni.EccezzioneGenerica;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
 import modelli.*;
 
@@ -8,17 +9,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static engineering.query.QueriesLogin.RecuperaUtentePerLogin;
-import static engineering.query.QueriesLogin.recuperaAllenamentiPerData;
+
+import static engineering.query.QueriesLogin.*;
+import static engineering.query.QueryRegistrazione.InserisciUtenteQuery;
 
 public class UtenteDAOMySQL implements UtenteDAO {
 
-    public void inserisciUtente(Utente utente)
-    {
-        String query="insert into utenti(user, email, password, squadre, allenatore) values ('nonLoSo', 'boh', 'bohNonSo',NULL,'false');";
-    }//throws EmailAlreadyInUseException, UsernameAlreadyInUseException;
-
-    public Utente caricaUtente(String string)
+    public Utente recuperaUtenteDaEmail(String string)
     {return null;}//throws UserDoesNotExistException;
 
 
@@ -42,7 +39,35 @@ public class UtenteDAOMySQL implements UtenteDAO {
         }
     }
 
+    public void inserisciUtente(Registrazione registrazione)
+    {
+        Statement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        int result = 0;
 
+        conn = MySQLConnection.getConnection();
+
+        if(conn!=null)
+        {
+            try
+            {
+                result = InserisciUtenteQuery(conn, registrazione);
+                if (result > 0) {
+                    System.out.println("A new user was inserted successfully!");
+                }
+
+            } catch (EccezzioneGenerica e)
+            {
+                throw new EccezzioneGenerica(e.getMessage());
+            }
+            finally
+            {
+                try {if(conn!=null) conn.close();}
+                catch (SQLException e) {throw new EccezzioneGenerica("Errore nella chiusura della connessione con il database");}
+            }
+        }
+    }//throws EmailAlreadyInUseException, UsernameAlreadyInUseException;
 
 
     public Utente recuperaUtenteDaLogin(Login login) throws  UtenteNonEsistenteEccezione {
@@ -55,67 +80,75 @@ public class UtenteDAOMySQL implements UtenteDAO {
         conn = MySQLConnection.getConnection();
         if (conn != null) {
             try {
-                //creaiamo lo statement per il caso
-                stmt = conn.createStatement();
 
                 //invocazione del metodo per la ricerca dell'utente in funzione della variabile di ricerca
-                rs = RecuperaUtentePerLogin(stmt, login);
+                rs = RecuperaUtentePerLogin(conn, login);
+
+                if(rs == null) throw new EccezzioneGenerica("Utente non esistente, generato dal DAO");
+
+                System.out.println("email: " + rs.getString("email"));
+                System.out.println("username: " + rs.getString("username"));
+                System.out.println("password: " + rs.getString("password"));
 
 
-                while (rs.next()) {
-                    System.out.println("username: " + rs.getString("username"));
-                    System.out.println("password: " + rs.getInt("password"));
 
-                    if(rs.getBoolean("allenatore"))
-                    {
-                        System.out.println("Utente allenatore");
-                        utente= new Allenatore(rs.getString("username"),rs.getString("email"));
-                    }
-                    else {
-                        System.out.println("Utente non allenatore");
-                        utente = new Giocatore(rs.getString("username"), rs.getString("email"));
-                    }
+                System.out.println("Descrizione degli allenamenti e squadre per l'utente");
+                //controllo se un utente ha degli allenamenti
+                rsAll = RecuperaAllenamentiPerEmail(conn, login.getEmail());
 
-                    //controllo se un utente ha degli allenamenti
-                    if (rs.getString("allenamento") != null) {
-                        try
-                        {
-                            stmtAll =conn.createStatement();
-                            try
-                            {
-                                //creazione della variabile dove salviamo gli allenamenti del DB
-                                List<Allenamento> allenamenti = new ArrayList<>();
+                if(rsAll == null) throw new EccezzioneGenerica("Allenamenti non esistenti");
 
-                                //recupero gli allenamenti dal database
-                                allenamenti=recuperaAllenamentiPerData(stmtAll, rs.getString("allenamento"));
+                List<Allenamento> allenamenti = new ArrayList<>();
 
-                                //aggiungo all'utente gli allenamenti
-                                utente.setAllenamenti(allenamenti);
+                while (rsAll.next()){
+                    System.out.println("data allenamento: " + rsAll.getString("data"));
+                    System.out.println("durata: " + rsAll.getInt("durata"));
+                    System.out.println("descrizione: " + rsAll.getString("descrizione"));
 
-                            } catch (SQLException e) {throw new RuntimeException(e);}
-
-                        } catch (SQLException e) {throw new RuntimeException(e);}
-                    }
+                    //metodo per l'aggiunta di un allenamento all'utente
+                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getInt("durata"), rsAll.getString("descrizione")));
                 }
 
+                rsSquad = RecuperaSquadrePerEmail(conn, login.getEmail());
 
-            } catch (SQLException e) {
-                System.out.println("Prima eccezione rilevata");
-                e.printStackTrace();
+                if(rsSquad == null) throw new EccezzioneGenerica("Squadre non esistenti");
 
-            } finally
+                Squadra squadra = null;
+
+                while (rsSquad.next()) {
+                    System.out.println("codice squadra: " + rsSquad.getString("codice"));
+                    System.out.println("utente_email: " + rsSquad.getString("utenti_email"));
+
+                    //metodo per l'aggiunta di una squadra all'utente
+                    squadra = new Squadra(rsSquad.getString("codice"));
+                }
+
+                if (rs.getBoolean("allenatore")) {
+                    System.out.println("Utente allenatore");
+                    utente = new Allenatore(rs.getString("username"), rs.getString("email"), allenamenti, squadra);
+                    return utente;
+                } else {
+                    System.out.println("Utente non allenatore");
+                    utente = new Giocatore(rs.getString("username"), rs.getString("email"), allenamenti, squadra);
+                    return utente;
+                }
+
+            } catch (SQLException e) {throw new EccezzioneGenerica(e.getMessage());}
+
+            finally
             {
-                try {
-                    if (conn != null) conn.close();
-                } catch (SQLException e) {
-                    System.out.println("Seconda eccezione rilevata");
-                }
-                //return null;
+                try {if (conn != null) conn.close();}
+                catch (SQLException e) {System.out.println("Seconda eccezione rilevata");}
             }
-        }/* throws UserDoesNotExistException;*/
-        return null;
+
+        }
+        throw new EccezzioneGenerica("Connessione con il DB non riuscita");
     }
 
-    public void handleDAOException(Exception e) {}
 
+    public void handleDAOException(Exception e) throws EccezzioneGenerica {
+        throw new EccezzioneGenerica(e.getMessage());
+    }
 }
+
+

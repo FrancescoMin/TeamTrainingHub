@@ -4,9 +4,11 @@ import engineering.bean.LoginBean;
 import engineering.bean.RegistrazioneBean;
 import engineering.dao.UtenteDAO;
 import engineering.dao.UtenteDAOJSON;
+import engineering.dao.UtenteDAOMySQL;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
 import modelli.Giocatore;
 import modelli.Login;
+import modelli.Registrazione;
 import modelli.Utente;
 
 public class LoginControllerApplicativo {
@@ -19,19 +21,18 @@ public class LoginControllerApplicativo {
         //controllo delle credenziali
         try {
 
-            //richiedo dalla persistenza i dati relativi all'email e password inseriri
-            //UtenteDAO dao = new UtenteDAOMySQL();             //INIZIO PER SEMPLICITà DICENDO CHE SCRIVO SU JSON
+            //richiedo dalla persistenza i dati relativi all'email e password inseriti
+            //UtenteDAO dao = new UtenteDAOMySQL();
 
             //creo un utente da passare all'interno del sistema
             Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
 
 
-            RegistrazioneBean registrazioneBean= new RegistrazioneBean(loginBean.getEmail(), loginBean.getPassword(),"Username di Prova", false);
-
             //PROVA
-            Utente utente = new Giocatore(login.getEmail(), login.getPassword());
+            Registrazione registrazione = new Registrazione(login.getEmail(), login.getPassword(), "Username di Prova", false);
             UtenteDAO utenteDao = new UtenteDAOJSON();
-            utenteDao.inserisciUtente(utente);
+            Utente utente = utenteDao.recuperaUtenteDaLogin(login);
+            System.out.println("Utente recuperato "+ utente);
 
             /*
 
@@ -41,8 +42,9 @@ public class LoginControllerApplicativo {
             System.out.println("Recupero Utente completato");
 
             //se l'utente è diverso da null ho trovato l'utente: creo un bean utente
-            if (utente == null) {
+            if (utente == null){
                 //gestisco il caso in cui in cui ho un utente void
+
             }
 
             //creazione del bean da passare al prossimo controllore grafico con tutti i dati dell'utente
