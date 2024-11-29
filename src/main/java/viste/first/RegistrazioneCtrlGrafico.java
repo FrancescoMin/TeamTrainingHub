@@ -34,6 +34,11 @@ public class RegistrazioneCtrlGrafico implements Initializable {
         tornaLoginButton.setOnAction(event -> handleTornaLoginButton());
     }
 
+    public void inizializzazioneTemp()
+    {
+        System.out.println("Inizializzazione Temporanea");
+    }
+
     private void handleRegistratiButton() {
         String username = usernameTextField.getText();
         String email = emailTextField.getText();

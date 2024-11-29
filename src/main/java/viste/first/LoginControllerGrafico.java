@@ -1,6 +1,7 @@
 package viste.first;
 
 import engineering.bean.LoginBean;
+import engineering.eccezioni.EccezzioneGenerica;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 
 import controllerApplicativo.LoginControllerApplicativo;
+import javafx.stage.Stage;
 
 public class LoginControllerGrafico {
 
@@ -85,5 +87,17 @@ public class LoginControllerGrafico {
     protected void userSignUp(ActionEvent event) throws IOException {
         System.out.println("SignUp");
         //implemento di cambio di scena all pagina di registrazione
+
+
+        //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
+
+        try {
+            Stage stage = (Stage) email.getScene().getWindow();
+            LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();
+            loginControllerApplicativo.cambioScenaRegistrazione(stage);
+
+        } catch (EccezzioneGenerica eccezzioneGenerica) {
+            System.out.println(eccezzioneGenerica.getMessage());
+        }
     }
 }

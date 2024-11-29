@@ -5,11 +5,19 @@ import engineering.bean.RegistrazioneBean;
 import engineering.dao.UtenteDAO;
 import engineering.dao.UtenteDAOJSON;
 import engineering.dao.UtenteDAOMySQL;
+import engineering.eccezioni.EccezzioneGenerica;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import modelli.Giocatore;
 import modelli.Login;
 import modelli.Registrazione;
 import modelli.Utente;
+import viste.first.RegistrazioneCtrlGrafico;
+
+import static viste.first.utils.FxmlFileName.PAGINA_REGISTRAZIONE;
 
 public class LoginControllerApplicativo {
 
@@ -33,6 +41,10 @@ public class LoginControllerApplicativo {
             UtenteDAO utenteDao = new UtenteDAOJSON();
             Utente utente = utenteDao.recuperaUtenteDaLogin(login);
             System.out.println("Utente recuperato "+ utente);
+
+
+            //passaggio da controller applicativo alla registrazione
+
 
             /*
 
@@ -65,6 +77,31 @@ public class LoginControllerApplicativo {
         catch (Exception e)
         {
             throw new UtenteNonEsistenteEccezione(e.getMessage());
+        }
+    }
+
+    public void cambioScenaRegistrazione(Stage stage) throws EccezzioneGenerica {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(PAGINA_REGISTRAZIONE));
+
+            System.out.println("Cambio scena");
+
+
+            Parent root = loader.load();
+
+            System.out.println("Cambio scena");
+
+            RegistrazioneCtrlGrafico controller = loader.getController();
+
+            controller.inizializzazioneTemp();
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
