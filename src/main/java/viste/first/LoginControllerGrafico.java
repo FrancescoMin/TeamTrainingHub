@@ -29,7 +29,7 @@ public class LoginControllerGrafico {
     private PasswordField password;
 
     @FXML
-    private Button signUp;
+    private Button registr;
 
     @FXML
     private Label erroreInserimento;
@@ -84,13 +84,12 @@ public class LoginControllerGrafico {
     }
 
     @FXML
-    protected void userSignUp(ActionEvent event) throws IOException {
-        System.out.println("SignUp");
+    protected void registrazione(ActionEvent event) throws IOException {
+        System.out.println("registrazione");
         //implemento di cambio di scena all pagina di registrazione
 
 
         //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
-
         try {
             Stage stage = (Stage) email.getScene().getWindow();
             LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();

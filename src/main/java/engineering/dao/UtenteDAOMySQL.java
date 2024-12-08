@@ -1,6 +1,7 @@
 package engineering.dao;
 
 
+import engineering.altro.Connessione;
 import engineering.eccezioni.EccezzioneGenerica;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
 import modelli.*;
@@ -18,27 +19,6 @@ public class UtenteDAOMySQL implements UtenteDAO {
     public Utente recuperaUtenteDaEmail(String string)
     {return null;}//throws UserDoesNotExistException;
 
-
-    public class MySQLConnection
-    {
-        private static final String URL = "jdbc:mysql://localhost:3306/database";
-        private static final String USER = "root";
-        private static final String PASSWORD = "root";
-
-        public static Connection getConnection()
-        {
-            Connection connection = null;
-            try
-            {
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            } catch (SQLException e)
-            {
-                e.printStackTrace();
-            }
-            return connection;
-        }
-    }
-
     public void inserisciUtente(Registrazione registrazione)
     {
         Statement stmt = null;
@@ -46,7 +26,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
         ResultSet rs = null;
         int result = 0;
 
-        conn = MySQLConnection.getConnection();
+        conn = Connessione.getInstance().getDBConnection();
 
         if(conn!=null)
         {
@@ -77,7 +57,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
         Utente utente;
 
         //apriamo la connessione con il DB
-        conn = MySQLConnection.getConnection();
+        conn = Connessione.getInstance().getDBConnection();
         if (conn != null) {
             try {
 

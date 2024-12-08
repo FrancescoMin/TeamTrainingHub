@@ -112,7 +112,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="signUp" mnemonicParsing="false" onAction="#userSignUp" text="Sign Up">
+                  <Button fx:id="registr" mnemonicParsing="false" onAction="#registrazione" text="Registrazione">
                      <HBox.margin>
                         <Insets bottom="10.0" left="183.0" />
                      </HBox.margin>
