@@ -1,5 +1,6 @@
 package viste.first;
 
+import engineering.bean.UtenteBean;
 import engineering.bean.LoginBean;
 import engineering.eccezioni.EccezzioneGenerica;
 import javafx.fxml.FXML;
@@ -10,6 +11,9 @@ import java.io.IOException;
 
 import controllerApplicativo.LoginControllerApplicativo;
 import javafx.stage.Stage;
+import viste.first.utils.CambioScena;
+
+import static viste.first.utils.FxmlFileName.*;
 
 public class LoginControllerGrafico {
 
@@ -62,18 +66,23 @@ public class LoginControllerGrafico {
         else
         {
             try{
-                //passaggio del login e password al bean per il settaggio del controller applicativo
+                //istanziazione del bean per il login
                 LoginBean loginBean = new LoginBean(em,pass);
 
-                //passaggio del bean al controller applicativo per il controllo delle credenziali
+                //creazione del controler applicativo per il login
                 LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();
+
+                //passaggio del bean al controller applicativo per il controllo delle credenziali
                 loginControllerApplicativo.verificaCredenziali(loginBean);
 
-                //passaggio del bean al controller applicativo per l'istanziazione dei modelli e dei bean
-                loginControllerApplicativo.creazioneUtente(loginBean);
+                //creazione del bean utente generico in funzione dei dati del bean di login
+                UtenteBean utenteBean = loginControllerApplicativo.creazioneUtente(loginBean);
 
+                //passaggio dell'istanza di utenteBean alla home page
+                Stage stage = (Stage) email.getScene().getWindow();
+                CambioScena cambioScena = new CambioScena();
+                cambioScena.cambioScena(stage, PAGINA_HOME);
 
-                //passaggio dell'istanza di userBean alla home page
 
             } catch (Exception e){
                 erroreInserimento.setText(e.getMessage());
@@ -92,8 +101,8 @@ public class LoginControllerGrafico {
         //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
         try {
             Stage stage = (Stage) email.getScene().getWindow();
-            LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();
-            loginControllerApplicativo.cambioScenaRegistrazione(stage);
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_REGISTRAZIONE);
 
         } catch (EccezzioneGenerica eccezzioneGenerica) {
             System.out.println(eccezzioneGenerica.getMessage());

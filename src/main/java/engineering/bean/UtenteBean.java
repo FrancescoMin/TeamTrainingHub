@@ -6,7 +6,7 @@ import modelli.Squadra;
 import java.util.List;
 
 
-public abstract class GenericoBean {
+public abstract class UtenteBean {
 
         private String username;
         private String email;
@@ -14,9 +14,9 @@ public abstract class GenericoBean {
         protected boolean allenatore ;
         private Squadra squadra;
 
-        protected GenericoBean() {}
+        protected UtenteBean() {}
 
-        protected GenericoBean(String username, String email, List<Allenamento> allenamenti, Squadra squadra) {
+        protected UtenteBean(String username, String email, List<Allenamento> allenamenti, Squadra squadra) {
             setUsername(username);
             setEmail(email);
             setAllenamenti(allenamenti);

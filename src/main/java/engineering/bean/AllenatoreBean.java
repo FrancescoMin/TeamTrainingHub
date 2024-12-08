@@ -5,7 +5,7 @@ import modelli.Squadra;
 
 import java.util.List;
 
-public class AllenatoreBean extends GenericoBean{
+public class AllenatoreBean extends UtenteBean {
 
     public AllenatoreBean() {}
 

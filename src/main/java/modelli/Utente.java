@@ -6,7 +6,6 @@ public abstract class Utente {
     private String username;
     private String email;
     private List<Allenamento> allenamenti;
-    private String password;
     private Squadra squadra;
 
     protected boolean allenatore;
@@ -55,11 +54,6 @@ public abstract class Utente {
     public boolean getAllenatore() {
         return this.allenatore;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public boolean isAllenatore() {
         return allenatore;
     }

@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="creazione di metodi per il cambio scena in modo temporaneo">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2024_10_43_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2024_10_43__Changes_1.xml" beforeDir="false" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="creazione della connessione al DB dal file property">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/AllenatoreBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/AllenatoreBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/GenericoBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/provaLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/provaLogin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,7 @@
       <list>
         <option value="Interface" />
         <option value="Exception" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -152,7 +154,7 @@
       <workItem from="1732812014378" duration="4680000" />
       <workItem from="1732872209213" duration="7053000" />
       <workItem from="1733347812521" duration="1510000" />
-      <workItem from="1733675674840" duration="1884000" />
+      <workItem from="1733675674840" duration="7356000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -226,7 +228,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732875789232</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="creazione della connessione al DB dal file property">
+      <option name="closed" value="true" />
+      <created>1733677808798</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1733677808798</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,7 +265,8 @@
     <MESSAGE value="modifiche lista squadra in squadra" />
     <MESSAGE value="Inizio registrazione in SQL e JSON" />
     <MESSAGE value="ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL" />
+    <MESSAGE value="creazione della connessione al DB dal file property" />
+    <option name="LAST_COMMIT_MESSAGE" value="creazione della connessione al DB dal file property" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
