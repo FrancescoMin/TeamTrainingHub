@@ -4,7 +4,7 @@ import engineering.bean.RegistrazioneBean;
 
 public class RegistrazioneCtrlApplicativo {
 
-    public void registraUtente(RegistrazioneBean registrazioneBean) throws Exception {
+    public void inserisciUtente(RegistrazioneBean registrazioneBean) throws Exception {
         String username = registrazioneBean.getUsername();
         String email = registrazioneBean.getEmail();
         String password = registrazioneBean.getPassword();

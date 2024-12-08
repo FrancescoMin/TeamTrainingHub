@@ -50,7 +50,7 @@ public class RegistrazioneCtrlGrafico implements Initializable {
             RegistrazioneBean registrazioneBean = new RegistrazioneBean(username, email, password, isAllenatore);
             RegistrazioneCtrlApplicativo registrazioneCtrlApplicativo = new RegistrazioneCtrlApplicativo();
             try {
-                registrazioneCtrlApplicativo.registraUtente(registrazioneBean);
+                registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);
                 System.out.println("Registrazione avvenuta con successo!");
             } catch (Exception e) {
                 System.out.println("Errore nella registrazione: " + e.getMessage());

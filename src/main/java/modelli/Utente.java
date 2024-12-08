@@ -6,7 +6,7 @@ public abstract class Utente {
     private String username;
     private String email;
     private List<Allenamento> allenamenti;
-    private String password;
+    private String password; //ridondanza
     private Squadra squadra;
 
     protected boolean allenatore;
