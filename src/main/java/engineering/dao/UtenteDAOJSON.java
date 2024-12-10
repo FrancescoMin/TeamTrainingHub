@@ -19,12 +19,31 @@ public class UtenteDAOJSON implements UtenteDAO
         throw new EccezzioneGenerica(e.getMessage());
     }
 
+    public Boolean esisteUtenteDaLogin(Login login) {return esisteUtenteDaEmail(login.getEmail());}
+
+    public Boolean esisteUtenteDaEmail(String email)
+    {
+        try {
+            //creazione del path
+            String filePath = "src/main/resources/persistenza/utenti/" + email + ".json";
+
+            //controllo se il file esiste
+            Files.readAllBytes(Paths.get(filePath));
+            return true;
+        }
+
+        catch (IOException e)
+        {
+            return false;
+        }
+    }
+
     //creazione del file json con i dati dell'utente registrato
     public void inserisciUtenteDaRegistrazione(Registrazione registrazione)
     {
         try {
             //Creazione del path
-            String filePath = "src/main/resources/persistenza/utenti/" + registrazione.getUsername() + ".json";
+            String filePath = "src/main/resources/persistenza/utenti/" + registrazione.getEmail() + ".json";
 
             try {
                 //controllo che il file sia già esistente

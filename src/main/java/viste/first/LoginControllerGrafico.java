@@ -73,7 +73,7 @@ public class LoginControllerGrafico {
                 LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();
 
                 //passaggio del bean al controller applicativo per il controllo delle credenziali
-                loginControllerApplicativo.verificaCredenziali(loginBean);
+                if(loginControllerApplicativo.verificaCredenziali(loginBean));
 
                 //creazione del bean utente generico in funzione dei dati del bean di login
                 UtenteBean utenteBean = loginControllerApplicativo.creazioneUtente(loginBean);

@@ -3,24 +3,17 @@ package controllerApplicativo;
 import engineering.bean.*;
 import engineering.dao.UtenteDAO;
 import engineering.dao.UtenteDAOJSON;
-import engineering.eccezioni.EccezzioneGenerica;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import engineering.pattern.Singleton;
 import modelli.Login;
 import modelli.Utente;
-import viste.first.RegistrazioneCtrlGrafico;
-
-import static viste.first.utils.FxmlFileName.PAGINA_REGISTRAZIONE;
 
 public class LoginControllerApplicativo {
 
     public LoginControllerApplicativo() {
     }
 
-    public void verificaCredenziali(LoginBean loginBean) {
+    public Boolean verificaCredenziali(LoginBean loginBean) {
 
         //controllo delle credenziali
         try {
@@ -31,20 +24,25 @@ public class LoginControllerApplicativo {
             //decidere il metodo di scelta del DAO
             UtenteDAO utenteDao = new UtenteDAOJSON();
 
-            Utente utente = utenteDao.recuperaUtenteDaLogin(login);
+            //vedo se l'utente esiste nel singleton
+            Singleton istanza=Singleton.getInstance();
+            if(istanza.esisteUtenteDaLogin(login.getEmail(), login.getPassword()))
+            {return true;}
 
-            //Se non è stata lanciata un'eccezione, l'utente esiste e quindi è possibile accedere
+            else {
+                //recupero l'utente dal login
+                return utenteDao.esisteUtenteDaLogin(login);
+            }
         }
 
         catch (Exception e)
         {
             //se l'utente non esiste, lancio un'eccezione per comunicarlo al controller grafico
-            throw new UtenteNonEsistenteEccezione(e.getMessage());
+            return false;
         }
     }
 
     public UtenteBean creazioneUtente(LoginBean loginBean) {
-        //ci occupiamo di inizializzare tutti le entità che fanno parte del caso d'uso
 
         //decidere il metodo di scelta del DAO
         UtenteDAO utenteDao = new UtenteDAOJSON();

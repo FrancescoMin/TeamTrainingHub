@@ -14,4 +14,6 @@ public interface UtenteDAO
     public Utente recuperaUtenteDaEmail(String string);//throws UserDoesNotExistException;
     public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione; /* throws UserDoesNotExistException;*/
     public void handleDAOException(Exception e) throws  EccezzioneGenerica;
+    public Boolean esisteUtenteDaEmail(String email) throws EccezzioneGenerica;
+    public Boolean esisteUtenteDaLogin(Login login) throws EccezzioneGenerica;
 }
