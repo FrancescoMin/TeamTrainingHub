@@ -20,7 +20,7 @@ public class UtenteDAOJSON implements UtenteDAO
     }
 
     //creazione del file json con i dati dell'utente registrato
-    public void inserisciUtente(Registrazione registrazione)
+    public void inserisciUtenteDaRegistrazione(Registrazione registrazione)
     {
         try {
             //Creazione del path
@@ -34,7 +34,7 @@ public class UtenteDAOJSON implements UtenteDAO
                 throw new EccezzioneGenerica("utente esistente");
 
             } catch (IOException e) {
-                //crezione del file con nome username dell'utente in formato json
+                //creazione del file con nome username dell'utente in formato json
 
                 // Create a Gson object
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -46,11 +46,11 @@ public class UtenteDAOJSON implements UtenteDAO
                 // Step 2: Convert the JSON string to a JsonObject
                 JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
 
-                // Step 3: Create Allenamenti field array for java to the JsonObject
-                JsonArray allenamenti = new JsonArray();
-
-                // Step 4: Add Squadra field to the JsonObject
+                // Step 3: Add Squadra field to the JsonObject
                 jsonObject.addProperty("Squadra", "");
+
+                // Step 4: Create Allenamenti field array for java to the JsonObject
+                JsonArray allenamenti = new JsonArray();
 
                 // Step 5: Add Allenamenti to the JsonObject as an empty array
                 jsonObject.add("allenamenti", allenamenti);
@@ -137,10 +137,10 @@ public class UtenteDAOJSON implements UtenteDAO
             //faccio il controllo che l'utente sia un allenatore o un giocatore
             if (jsonObject.get("allenatore").getAsBoolean()) {
                 System.out.println("L'utente è un allenatore");
-                return new Allenatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString(), allenamenti ,squadra);
+                return new Allenatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString(), jsonObject.get("password").getAsString() , allenamenti ,squadra);
 
             } else {
-                return new Giocatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString());
+                return new Giocatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString(), jsonObject.get("password").getAsString() , allenamenti ,squadra);
             }
 
 

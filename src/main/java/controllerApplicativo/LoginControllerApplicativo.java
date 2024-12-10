@@ -56,11 +56,11 @@ public class LoginControllerApplicativo {
         if (utente.getAllenatore()) {
 
             //restituzione del bean dell'allenatore creato
-            return new AllenatoreBean(utente.getEmail(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadra());
+            return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
         } else
         {
             //restituzione del bean del giocatore creato
-            return new GiocatoreBean(utente.getEmail(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadra());
+            return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
         }
     }
 

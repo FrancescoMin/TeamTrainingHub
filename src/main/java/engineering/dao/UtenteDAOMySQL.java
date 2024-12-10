@@ -19,7 +19,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
     public Utente recuperaUtenteDaEmail(String string)
     {return null;}//throws UserDoesNotExistException;
 
-    public void inserisciUtente(Registrazione registrazione)
+    public void inserisciUtenteDaRegistrazione(Registrazione registrazione)
     {
         Statement stmt = null;
         Connection conn = null;
@@ -38,11 +38,9 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 }
 
             } catch (EccezzioneGenerica e)
-            {
-                throw new EccezzioneGenerica(e.getMessage());
-            }
-            finally
-            {
+            {throw new EccezzioneGenerica(e.getMessage());}
+
+            finally {
                 try {if(conn!=null) conn.close();}
                 catch (SQLException e) {throw new EccezzioneGenerica("Errore nella chiusura della connessione con il database");}
             }
@@ -62,7 +60,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
             try {
 
                 //invocazione del metodo per la ricerca dell'utente in funzione della variabile di ricerca
-                rs = RecuperaUtentePerLogin(conn, login);
+                rs = RecuperaUtenteRSPerLogin(conn, login);
 
                 if(rs == null) throw new EccezzioneGenerica("Utente non esistente, generato dal DAO");
 
@@ -74,7 +72,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
 
                 System.out.println("Descrizione degli allenamenti e squadre per l'utente");
                 //controllo se un utente ha degli allenamenti
-                rsAll = RecuperaAllenamentiPerEmail(conn, login.getEmail());
+                rsAll = RecuperaAllenamentiRSPerEmail(conn, login.getEmail());
 
                 if(rsAll == null) throw new EccezzioneGenerica("Allenamenti non esistenti");
 
@@ -89,7 +87,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
                     allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getInt("durata"), rsAll.getString("descrizione")));
                 }
 
-                rsSquad = RecuperaSquadrePerEmail(conn, login.getEmail());
+                rsSquad = RecuperaSquadreRSPerEmail(conn, login.getEmail());
 
                 if(rsSquad == null) throw new EccezzioneGenerica("Squadre non esistenti");
 
@@ -105,11 +103,11 @@ public class UtenteDAOMySQL implements UtenteDAO {
 
                 if (rs.getBoolean("allenatore")) {
                     System.out.println("Utente allenatore");
-                    utente = new Allenatore(rs.getString("username"), rs.getString("email"), allenamenti, squadra);
+                    utente = new Allenatore(rs.getString("username"), rs.getString("email"), rs.getString("password") , allenamenti, squadra );
                     return utente;
                 } else {
                     System.out.println("Utente non allenatore");
-                    utente = new Giocatore(rs.getString("username"), rs.getString("email"), allenamenti, squadra);
+                    utente = new Giocatore(rs.getString("username"), rs.getString("email"), rs.getString("password") , allenamenti , squadra );
                     return utente;
                 }
 

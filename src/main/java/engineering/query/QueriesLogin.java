@@ -25,7 +25,7 @@ public class QueriesLogin {
 
      */
 
-    public static ResultSet RecuperaUtentePerEmail(Connection connection, String email) throws EccezzioneGenerica {
+    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection, String email) throws EccezzioneGenerica {
         PreparedStatement statement = null;
 
         try {
@@ -47,10 +47,10 @@ public class QueriesLogin {
         }
     }
 
-    public static ResultSet RecuperaUtentePerLogin(Connection connection, Login login) throws SQLException {
+    public static ResultSet RecuperaUtenteRSPerLogin(Connection connection, Login login) throws SQLException {
         ResultSet rs = null;
 
-        rs= RecuperaUtentePerEmail(connection, login.getEmail());
+        rs= RecuperaUtenteRSPerEmail(connection, login.getEmail());
 
         if(rs == null) {
             System.out.println("Utente non trovato, restituisco null al DAO");
@@ -87,7 +87,7 @@ public class QueriesLogin {
 
     }
 
-    public static ResultSet RecuperaSquadrePerEmail(Connection connection, String email) throws SQLException {
+    public static ResultSet RecuperaSquadreRSPerEmail(Connection connection, String email) throws SQLException {
         PreparedStatement statement = null;
 
         try {
@@ -101,7 +101,7 @@ public class QueriesLogin {
         } catch (SQLException e) {throw new EccezzioneGenerica("Errore di recupera allenamenti per utente");}
     }
 
-    public static ResultSet RecuperaAllenamentiPerEmail(Connection connection, String email) throws SQLException {
+    public static ResultSet RecuperaAllenamentiRSPerEmail(Connection connection, String email) throws SQLException {
         PreparedStatement statement = null;
 
         try {
