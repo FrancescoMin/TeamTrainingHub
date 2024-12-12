@@ -4,32 +4,38 @@ import java.util.List;
 
 public abstract class Utente {
     private String username;
+    private String password;
     private String email;
     private List<Allenamento> allenamenti;
-    private String password; //ridondanza
     private Squadra squadra;
 
     protected boolean allenatore;
 
     public Utente() {}
 
-    public Utente (String username, String email) {
+
+    public Utente(String username, String email, String password) {
         setUsername(username);
         setEmail(email);
+        setPassword(password);
         setAllenamenti(null);
         setSquadre(null);
     }
 
-
-    public Utente(String username, String email, List<Allenamento> allenamenti, Squadra squadra) {
+    public Utente(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
         setUsername(username);
         setEmail(email);
+        setPassword(password);
         setAllenamenti(allenamenti);
         setSquadre(squadra);
     }
 
     public void setSquadre(Squadra squadra) {this.squadra = squadra;}
     public Squadra getSquadra() {return this.squadra;}
+
+
+    public void setPassword(String password) {this.password = password;}
+    public String getPassword() {return this.password;}
 
 
     public void setEmail(String email) {
@@ -54,17 +60,5 @@ public abstract class Utente {
 
     public boolean getAllenatore() {
         return this.allenatore;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isAllenatore() {
-        return allenatore;
-    }
-
-    public void setAllenatore(boolean allenatore) {
-        this.allenatore = allenatore;
     }
 }

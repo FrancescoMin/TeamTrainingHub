@@ -5,12 +5,12 @@ import modelli.Squadra;
 
 import java.util.List;
 
-public class GiocatoreBean  extends GenericoBean{
+public class GiocatoreBean  extends UtenteBean {
 
     public GiocatoreBean() {}
 
-    public GiocatoreBean(String username, String email, List<Allenamento> allenamenti, Squadra squadra) {
-        super(username, email, allenamenti, squadra);
+    public GiocatoreBean(String username, String email, String password, List<Allenamento> allenamenti, Squadra squadra) {
+        super(username, email, password , allenamenti, squadra);
         this.allenatore=false;
     }
 }

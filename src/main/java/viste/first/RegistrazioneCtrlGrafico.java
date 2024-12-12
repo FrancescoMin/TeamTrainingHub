@@ -2,14 +2,21 @@ package viste.first;
 
 import controllerApplicativo.RegistrazioneCtrlApplicativo;
 import engineering.bean.RegistrazioneBean;
+import engineering.eccezioni.EccezzioneGenerica;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import viste.first.utils.CambioScena;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static viste.first.utils.FxmlFileName.PAGINA_PRINCIPALE;
+import static viste.first.utils.FxmlFileName.PAGINA_REGISTRAZIONE;
 
 public class RegistrazioneCtrlGrafico implements Initializable {
 
@@ -28,13 +35,14 @@ public class RegistrazioneCtrlGrafico implements Initializable {
     @FXML
     private Button tornaLoginButton;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         registratiButton.setOnAction(event -> handleRegistratiButton());
         tornaLoginButton.setOnAction(event -> handleTornaLoginButton());
     }
 
-    public void inizializzazioneTemp()
+    public void initialize()
     {
         System.out.println("Inizializzazione Temporanea");
     }
@@ -62,6 +70,16 @@ public class RegistrazioneCtrlGrafico implements Initializable {
 
     private void handleTornaLoginButton() {
         // Logica per tornare alla schermata di login
-        System.out.println("Torna al login");
+        System.out.println("Torno alla schermata di login");
+
+        //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
+        try {
+            Stage stage = (Stage) tornaLoginButton.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_PRINCIPALE);
+
+        } catch (EccezzioneGenerica eccezzioneGenerica) {
+            System.out.println(eccezzioneGenerica.getMessage());
+        }
     }
 }

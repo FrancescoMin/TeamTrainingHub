@@ -1,0 +1,424 @@
+Index: src/main/java/controllerApplicativo/LoginControllerApplicativo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controllerApplicativo;\r\n\r\nimport engineering.bean.LoginBean;\r\nimport engineering.bean.RegistrazioneBean;\r\nimport engineering.dao.UtenteDAO;\r\nimport engineering.dao.UtenteDAOJSON;\r\nimport engineering.dao.UtenteDAOMySQL;\r\nimport engineering.eccezioni.EccezzioneGenerica;\r\nimport engineering.eccezioni.UtenteNonEsistenteEccezione;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Parent;\r\nimport javafx.scene.Scene;\r\nimport javafx.stage.Stage;\r\nimport modelli.Giocatore;\r\nimport modelli.Login;\r\nimport modelli.Registrazione;\r\nimport modelli.Utente;\r\nimport viste.first.RegistrazioneCtrlGrafico;\r\n\r\nimport static viste.first.utils.FxmlFileName.PAGINA_REGISTRAZIONE;\r\n\r\npublic class LoginControllerApplicativo {\r\n\r\n    public LoginControllerApplicativo() {\r\n    }\r\n\r\n    public void verificaCredenziali(LoginBean loginBean) {\r\n\r\n        //controllo delle credenziali\r\n        try {\r\n\r\n            //richiedo dalla persistenza i dati relativi all'email e password inseriti\r\n            //UtenteDAO dao = new UtenteDAOMySQL();\r\n\r\n            //creo un utente da passare all'interno del sistema\r\n            Login login = new Login(loginBean.getEmail(), loginBean.getPassword());\r\n\r\n\r\n            //PROVA\r\n            Registrazione registrazione = new Registrazione(login.getEmail(), login.getPassword(), \"Username di Prova\", false);\r\n            UtenteDAO utenteDao = new UtenteDAOJSON();\r\n            Utente utente = utenteDao.recuperaUtenteDaLogin(login);\r\n            System.out.println(\"Utente recuperato \"+ utente);\r\n\r\n\r\n            //passaggio da controller applicativo alla registrazione\r\n\r\n\r\n            /*\r\n\r\n            //richiedo i dati dell'utente, se esiste\r\n            Utente utente = dao.recuperaUtenteDaLogin(login);\r\n\r\n            System.out.println(\"Recupero Utente completato\");\r\n\r\n            //se l'utente è diverso da null ho trovato l'utente: creo un bean utente\r\n            if (utente == null){\r\n                //gestisco il caso in cui in cui ho un utente void\r\n\r\n            }\r\n\r\n            //creazione del bean da passare al prossimo controllore grafico con tutti i dati dell'utente\r\n            GenericoBean genericoBean;\r\n            if (utente.getAllenatore()) {\r\n                genericoBean = new AllenatoreBean(utente.getEmail(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadra());\r\n            } else\r\n            {\r\n                genericoBean = new GiocatoreBean(utente.getEmail(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadra());\r\n            }\r\n\r\n            //cambio di scena passando il bean appena creato\r\n\r\n             */\r\n\r\n        }\r\n\r\n        catch (Exception e)\r\n        {\r\n            throw new UtenteNonEsistenteEccezione(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public void cambioScenaRegistrazione(Stage stage) throws EccezzioneGenerica {\r\n        try {\r\n\r\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(PAGINA_REGISTRAZIONE));\r\n\r\n            System.out.println(\"Cambio scena\");\r\n\r\n\r\n            Parent root = loader.load();\r\n\r\n            System.out.println(\"Cambio scena\");\r\n\r\n            RegistrazioneCtrlGrafico controller = loader.getController();\r\n\r\n            controller.inizializzazioneTemp();\r\n\r\n            Scene scene = new Scene(root);\r\n            stage.setScene(scene);\r\n            stage.show();\r\n        }\r\n        catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public void creazioneUtente(LoginBean loginBean) {\r\n        //ci occupiamo di inizializzare tutti le entità che fanno parte del caso d'uso\r\n\r\n        //creazione dell'utente\r\n\r\n        //richiedo al DB i dati dei singoli allenamenti inerenti all'utente\r\n\r\n        //creazione dell'allenamento\r\n\r\n\r\n        //Allenamento allenamento = new Allenamento(\"12/12/2020\", \"1h\");\r\n\r\n\r\n        //aggiunta dell'allenamento selezionato all'utente per ogni allenamento nel DB per quell'utente\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/controllerApplicativo/LoginControllerApplicativo.java b/src/main/java/controllerApplicativo/LoginControllerApplicativo.java
+--- a/src/main/java/controllerApplicativo/LoginControllerApplicativo.java	(revision 4e09b613eeaf518101a1c84b3b5b7e7e7b641530)
++++ b/src/main/java/controllerApplicativo/LoginControllerApplicativo.java	(date 1733134104955)
+@@ -1,7 +1,6 @@
+ package controllerApplicativo;
+ 
+-import engineering.bean.LoginBean;
+-import engineering.bean.RegistrazioneBean;
++import engineering.bean.*;
+ import engineering.dao.UtenteDAO;
+ import engineering.dao.UtenteDAOJSON;
+ import engineering.dao.UtenteDAOMySQL;
+@@ -29,35 +28,13 @@
+         //controllo delle credenziali
+         try {
+ 
+-            //richiedo dalla persistenza i dati relativi all'email e password inseriti
+-            //UtenteDAO dao = new UtenteDAOMySQL();
+-
+             //creo un utente da passare all'interno del sistema
+             Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
+ 
+-
+-            //PROVA
+-            Registrazione registrazione = new Registrazione(login.getEmail(), login.getPassword(), "Username di Prova", false);
++            //decidere il metodo di scelta del DAO
+             UtenteDAO utenteDao = new UtenteDAOJSON();
++
+             Utente utente = utenteDao.recuperaUtenteDaLogin(login);
+-            System.out.println("Utente recuperato "+ utente);
+-
+-
+-            //passaggio da controller applicativo alla registrazione
+-
+-
+-            /*
+-
+-            //richiedo i dati dell'utente, se esiste
+-            Utente utente = dao.recuperaUtenteDaLogin(login);
+-
+-            System.out.println("Recupero Utente completato");
+-
+-            //se l'utente è diverso da null ho trovato l'utente: creo un bean utente
+-            if (utente == null){
+-                //gestisco il caso in cui in cui ho un utente void
+-
+-            }
+ 
+             //creazione del bean da passare al prossimo controllore grafico con tutti i dati dell'utente
+             GenericoBean genericoBean;
+@@ -70,7 +47,6 @@
+ 
+             //cambio di scena passando il bean appena creato
+ 
+-             */
+ 
+         }
+ 
+@@ -85,13 +61,8 @@
+ 
+             FXMLLoader loader = new FXMLLoader(getClass().getResource(PAGINA_REGISTRAZIONE));
+ 
+-            System.out.println("Cambio scena");
+-
+-
+             Parent root = loader.load();
+ 
+-            System.out.println("Cambio scena");
+-
+             RegistrazioneCtrlGrafico controller = loader.getController();
+ 
+             controller.inizializzazioneTemp();
+Index: src/main/java/engineering/dao/UtenteDAOJSON.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.dao;\r\n\r\nimport com.google.gson.*;\r\nimport engineering.eccezioni.EccezzioneGenerica;\r\nimport engineering.eccezioni.UtenteNonEsistenteEccezione;\r\nimport modelli.*;\r\n\r\nimport java.io.*;\r\nimport java.nio.file.Files;\r\nimport java.nio.file.Paths;\r\n\r\n\r\npublic class UtenteDAOJSON implements UtenteDAO\r\n{\r\n\r\n    public void handleDAOException(Exception e) throws EccezzioneGenerica{\r\n        throw new EccezzioneGenerica(e.getMessage());\r\n    }\r\n\r\n    public void inserisciUtente(Registrazione registrazione)\r\n    {\r\n        try {\r\n            //Creazione del path\r\n            String filePath = \"src/main/resources/persistenza/utenti/\" + registrazione.getUsername() + \".json\";\r\n\r\n            try {\r\n                //controllo che il file sia già esistente\r\n                Files.readAllBytes(Paths.get(filePath));\r\n                throw new EccezzioneGenerica(\"utente esistente\");\r\n\r\n            } catch (IOException e) {\r\n                //crezione del file con nome username dell'utente in formato json\r\n                Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n                FileWriter writer = new FileWriter(filePath);\r\n\r\n\r\n                //salvataggio dell'oggetto serializzato utente nel file json\r\n                writer.write(gson.toJson(registrazione));\r\n                writer.close();\r\n                throw new EccezzioneGenerica(\"utente inserito\");\r\n            }\r\n\r\n\r\n        } catch (Exception e) {\r\n            throw new EccezzioneGenerica(e.getMessage());\r\n        }\r\n\r\n    }\r\n\r\n    public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione//throws UserDoesNotExistException\r\n    {\r\n        try\r\n        {\r\n            //Serializziamo l'oggetto in JSON\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n            //creazione del path\r\n            String filePath = \"src/main/resources/persistenza/utenti/\"+login.getEmail()+\".json\";\r\n\r\n            //dato il path del file, leggo il file JSON\r\n            String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));\r\n            JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);\r\n\r\n            //inizializzo un oggetto di tipo Login per il controllo delle credenziali\r\n            Login deserializedLogin = new Login(jsonObject.get(\"username\").getAsString(), jsonObject.get(\"password\").getAsString());\r\n\r\n            //controllo della password\r\n            if (deserializedLogin.getPassword().equals(login.getPassword()))\r\n            {\r\n                System.out.println(\"Login effettuato con successo\");\r\n\r\n                //mi faccio recuperare dal metodo addetto l'utente che è acceduto\r\n                Utente utente = recuperaUtenteDaEmail(login.getEmail());\r\n                return utente;\r\n            }\r\n\r\n            else\r\n            {\r\n                System.out.println(\"Password errata: lancio eccezione di password errata\");\r\n                throw new UtenteNonEsistenteEccezione(\"Password errata: lancio eccezione di password errata\");\r\n            }\r\n        }\r\n\r\n        catch (UtenteNonEsistenteEccezione | IOException e)\r\n        {\r\n            throw new UtenteNonEsistenteEccezione(e.getMessage());\r\n        }\r\n\r\n    }\r\n\r\n\r\n    public Utente recuperaUtenteDaEmail(String string)  /*UserDoesNotExistException*/\r\n    {\r\n        try {\r\n            //Serializziamo l'oggetto in JSON\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n            //creazione del path\r\n            String filePath = \"src/main/resources/persistenza/utenti/\" + string + \".json\";\r\n\r\n            String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));\r\n            JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);\r\n\r\n\r\n            //faccio il controllo che l'untente sia un allenatore o un giocatore\r\n            if (jsonObject.get(\"allenatore\").getAsBoolean()) {\r\n                System.out.println(\"L'utente è un allenatore\");\r\n                Utente utente = new Allenatore(jsonObject.get(\"username\").getAsString(), jsonObject.get(\"email\").getAsString());\r\n                return utente;\r\n            } else {\r\n                Utente utente = new Giocatore(jsonObject.get(\"username\").getAsString(), jsonObject.get(\"email\").getAsString());\r\n                return utente;\r\n            }\r\n\r\n\r\n        }\r\n\r\n        catch(IOException e)\r\n        {\r\n            //gestione dell'eccezione\r\n            System.out.println(\"Errore di stream I/O\");\r\n\r\n            return null;\r\n        }\r\n    }\r\n\r\n    //public String getPasswordByEmail(String email);\r\n    //public boolean checkIfUserExistsByEmail(String email);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/dao/UtenteDAOJSON.java b/src/main/java/engineering/dao/UtenteDAOJSON.java
+--- a/src/main/java/engineering/dao/UtenteDAOJSON.java	(revision 4e09b613eeaf518101a1c84b3b5b7e7e7b641530)
++++ b/src/main/java/engineering/dao/UtenteDAOJSON.java	(date 1733132765987)
+@@ -8,6 +8,8 @@
+ import java.io.*;
+ import java.nio.file.Files;
+ import java.nio.file.Paths;
++import java.util.ArrayList;
++import java.util.List;
+ 
+ 
+ public class UtenteDAOJSON implements UtenteDAO
+@@ -17,6 +19,7 @@
+         throw new EccezzioneGenerica(e.getMessage());
+     }
+ 
++    //creazione del file json con i dati dell'utente registrato
+     public void inserisciUtente(Registrazione registrazione)
+     {
+         try {
+@@ -26,16 +29,34 @@
+             try {
+                 //controllo che il file sia già esistente
+                 Files.readAllBytes(Paths.get(filePath));
++
++                //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
+                 throw new EccezzioneGenerica("utente esistente");
+ 
+             } catch (IOException e) {
+                 //crezione del file con nome username dell'utente in formato json
++
++                // Create a Gson object
+                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                 FileWriter writer = new FileWriter(filePath);
+ 
++                // Step 1: Serialize the Person object to a JSON string
++                String jsonString = gson.toJson(registrazione);
++
++                // Step 2: Convert the JSON string to a JsonObject
++                JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
++
++                // Step 3: Create Allenamenti field array for java to the JsonObject
++                JsonArray allenamenti = new JsonArray();
++
++                // Step 4: Add Squadra field to the JsonObject
++                jsonObject.addProperty("Squadra", "");
++
++                // Step 5: Add Allenamenti to the JsonObject as an empty array
++                jsonObject.add("allenamenti", allenamenti);
+ 
+                 //salvataggio dell'oggetto serializzato utente nel file json
+-                writer.write(gson.toJson(registrazione));
++                writer.write(gson.toJson(jsonObject));
+                 writer.close();
+                 throw new EccezzioneGenerica("utente inserito");
+             }
+@@ -57,21 +78,22 @@
+             //creazione del path
+             String filePath = "src/main/resources/persistenza/utenti/"+login.getEmail()+".json";
+ 
+-            //dato il path del file, leggo il file JSON
++            //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
+             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
++
++            //creo un oggetto JSON per il controllo delle credenziali
+             JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
+ 
+             //inizializzo un oggetto di tipo Login per il controllo delle credenziali
+-            Login deserializedLogin = new Login(jsonObject.get("username").getAsString(), jsonObject.get("password").getAsString());
++            Login deserializedLogin = new Login(jsonObject.get("email").getAsString(), jsonObject.get("password").getAsString());
+ 
+             //controllo della password
+             if (deserializedLogin.getPassword().equals(login.getPassword()))
+             {
+                 System.out.println("Login effettuato con successo");
+ 
+-                //mi faccio recuperare dal metodo addetto l'utente che è acceduto
+-                Utente utente = recuperaUtenteDaEmail(login.getEmail());
+-                return utente;
++                //mi faccio recuperare dal metodo addetto l'utente e lo restituisco al controller
++                return recuperaUtenteDaEmail(login.getEmail());
+             }
+ 
+             else
+@@ -81,35 +103,44 @@
+             }
+         }
+ 
+-        catch (UtenteNonEsistenteEccezione | IOException e)
++        catch (UtenteNonEsistenteEccezione e)
++        {
++            throw new EccezzioneGenerica(e.getMessage());
++        }
++        catch (IOException e)
+         {
+-            throw new UtenteNonEsistenteEccezione(e.getMessage());
++            throw new EccezzioneGenerica("Utente non esistente");
+         }
+ 
+     }
+ 
+ 
+-    public Utente recuperaUtenteDaEmail(String string)  /*UserDoesNotExistException*/
++    public Utente recuperaUtenteDaEmail(String email)  throws EccezzioneGenerica
+     {
+         try {
+             //Serializziamo l'oggetto in JSON
+             Gson gson = new GsonBuilder().setPrettyPrinting().create();
+ 
+             //creazione del path
+-            String filePath = "src/main/resources/persistenza/utenti/" + string + ".json";
++            String filePath = "src/main/resources/persistenza/utenti/" + email + ".json";
+ 
++            //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
+             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
++
++            //creo l'oggetto JSON corrispondete all'utente con l'email passata
+             JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
+ 
++            //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
++            List<Allenamento> allenamenti=recuperaAllenamentiPerJsonArray(jsonObject.get("allenamenti").getAsJsonArray());
++            Squadra squadra = new Squadra(jsonObject.get("Squadra").getAsString());
+ 
+-            //faccio il controllo che l'untente sia un allenatore o un giocatore
++            //faccio il controllo che l'utente sia un allenatore o un giocatore
+             if (jsonObject.get("allenatore").getAsBoolean()) {
+                 System.out.println("L'utente è un allenatore");
+-                Utente utente = new Allenatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString());
+-                return utente;
++                return new Allenatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString(), allenamenti ,squadra);
++
+             } else {
+-                Utente utente = new Giocatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString());
+-                return utente;
++                return new Giocatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString());
+             }
+ 
+ 
+@@ -119,11 +150,21 @@
+         {
+             //gestione dell'eccezione
+             System.out.println("Errore di stream I/O");
++            throw new EccezzioneGenerica("Utente non esistente");
++        }
++    }
++
++    public List<Allenamento> recuperaAllenamentiPerJsonArray(JsonArray jsonArray)
++    {
++        List<Allenamento> allenamenti = new ArrayList<>();
+ 
+-            return null;
++        for (int i = 0; i < jsonArray.size(); i++)
++        {
++            JsonObject allenamento = jsonArray.get(i).getAsJsonObject();
++            allenamenti.add(new Allenamento(allenamento.get("data").getAsString(), allenamento.get("durata").getAsInt() , allenamento.get("tipo").getAsString()));
+         }
++
++        return allenamenti;
+     }
+ 
+-    //public String getPasswordByEmail(String email);
+-    //public boolean checkIfUserExistsByEmail(String email);
+ }
+Index: src/main/java/viste/first/LoginControllerGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport engineering.bean.LoginBean;\r\nimport engineering.eccezioni.EccezzioneGenerica;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.*;\r\nimport javafx.event.ActionEvent;\r\n\r\nimport java.io.IOException;\r\n\r\nimport controllerApplicativo.LoginControllerApplicativo;\r\nimport javafx.stage.Stage;\r\n\r\npublic class LoginControllerGrafico {\r\n\r\n    @FXML\r\n    private Button login;\r\n\r\n    @FXML\r\n    private RadioButton demo;\r\n\r\n    @FXML\r\n    private RadioButton full;\r\n\r\n    @FXML\r\n    private TextField email;\r\n\r\n    @FXML\r\n    private PasswordField password;\r\n\r\n    @FXML\r\n    private Button signUp;\r\n\r\n    @FXML\r\n    private Label erroreInserimento;\r\n\r\n    @FXML\r\n    private void initialize() {\r\n        ToggleGroup group = new ToggleGroup();\r\n        demo.setToggleGroup(group);\r\n        full.setToggleGroup(group);\r\n        full.setSelected(true);\r\n    }\r\n\r\n\r\n\r\n    @FXML\r\n    protected void userLogin(ActionEvent event) throws IOException {\r\n        String em = email.getText().trim();           //accesso con email\r\n        String pass = password.getText().trim();\r\n\r\n        if (em.isEmpty() || pass.isEmpty()) {\r\n            erroreInserimento.setText(\"There are empty fields!\");\r\n            erroreInserimento.setVisible(true);\r\n        }\r\n\r\n        else if(demo.isSelected())\r\n        {\r\n            System.out.println(\"Demo\");\r\n        }\r\n\r\n        else\r\n        {\r\n            try{\r\n                //passaggio del login e password al bean per il settaggio del controller applicativo\r\n                LoginBean loginBean = new LoginBean(em,pass);\r\n\r\n                //passaggio del bean al controller applicativo per il controllo delle credenziali\r\n                LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();\r\n                loginControllerApplicativo.verificaCredenziali(loginBean);\r\n\r\n                //passaggio del bean al controller applicativo per l'istanziazione dei modelli e dei bean\r\n                loginControllerApplicativo.creazioneUtente(loginBean);\r\n\r\n\r\n                //passaggio dell'istanza di userBean alla home page\r\n\r\n            } catch (Exception e){\r\n                erroreInserimento.setText(e.getMessage());\r\n                erroreInserimento.setVisible(true);\r\n\r\n            }\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    protected void userSignUp(ActionEvent event) throws IOException {\r\n        System.out.println(\"SignUp\");\r\n        //implemento di cambio di scena all pagina di registrazione\r\n\r\n\r\n        //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE\r\n\r\n        try {\r\n            Stage stage = (Stage) email.getScene().getWindow();\r\n            LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();\r\n            loginControllerApplicativo.cambioScenaRegistrazione(stage);\r\n\r\n        } catch (EccezzioneGenerica eccezzioneGenerica) {\r\n            System.out.println(eccezzioneGenerica.getMessage());\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/LoginControllerGrafico.java b/src/main/java/viste/first/LoginControllerGrafico.java
+--- a/src/main/java/viste/first/LoginControllerGrafico.java	(revision 4e09b613eeaf518101a1c84b3b5b7e7e7b641530)
++++ b/src/main/java/viste/first/LoginControllerGrafico.java	(date 1733133058430)
+@@ -29,7 +29,7 @@
+     private PasswordField password;
+ 
+     @FXML
+-    private Button signUp;
++    private Button registr;
+ 
+     @FXML
+     private Label erroreInserimento;
+@@ -84,13 +84,12 @@
+     }
+ 
+     @FXML
+-    protected void userSignUp(ActionEvent event) throws IOException {
+-        System.out.println("SignUp");
++    protected void registrazione(ActionEvent event) throws IOException {
++        System.out.println("registrazione");
+         //implemento di cambio di scena all pagina di registrazione
+ 
+ 
+         //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
+-
+         try {
+             Stage stage = (Stage) email.getScene().getWindow();
+             LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d48fabd9-9d0c-4832-9762-f7ff2f4fd62e\" name=\"Changes\" comment=\"ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Exception\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Simone2oo2&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub.git&quot;,\r\n    &quot;accountId&quot;: &quot;64b32a3e-6402-44ac-8316-64089203d618&quot;\r\n  }\r\n}</component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2nIPzptCElr3Z2cbKRrMzjtrfIO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.LoginApplicazione.executor\": \"Run\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"database.data.extractors.current.export.id\": \"Comma-separated (CSV)_id\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/PC/AppData/Local/SceneBuilder/SceneBuilder.exe\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Libraries\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.43908045\",\r\n    \"settings.editor.selected.configurable\": \"preferences.pluginManager\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"engineering.dao\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d48fabd9-9d0c-4832-9762-f7ff2f4fd62e\" name=\"Changes\" comment=\"\" />\r\n      <created>1728657885128</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1728657885128</updated>\r\n      <workItem from=\"1728657886213\" duration=\"2000\" />\r\n      <workItem from=\"1730031757462\" duration=\"424000\" />\r\n      <workItem from=\"1730055384804\" duration=\"595000\" />\r\n      <workItem from=\"1730114720831\" duration=\"614000\" />\r\n      <workItem from=\"1730297470122\" duration=\"757000\" />\r\n      <workItem from=\"1731494902140\" duration=\"1762000\" />\r\n      <workItem from=\"1731503704686\" duration=\"175000\" />\r\n      <workItem from=\"1731503929228\" duration=\"8329000\" />\r\n      <workItem from=\"1731660149013\" duration=\"81000\" />\r\n      <workItem from=\"1731663590971\" duration=\"19000\" />\r\n      <workItem from=\"1731669973962\" duration=\"2033000\" />\r\n      <workItem from=\"1731678912193\" duration=\"114000\" />\r\n      <workItem from=\"1731679800544\" duration=\"8602000\" />\r\n      <workItem from=\"1731690085548\" duration=\"3598000\" />\r\n      <workItem from=\"1731708870520\" duration=\"1064000\" />\r\n      <workItem from=\"1731713507914\" duration=\"491000\" />\r\n      <workItem from=\"1731920970801\" duration=\"7271000\" />\r\n      <workItem from=\"1731936574658\" duration=\"1994000\" />\r\n      <workItem from=\"1731939308213\" duration=\"278000\" />\r\n      <workItem from=\"1731939630965\" duration=\"3282000\" />\r\n      <workItem from=\"1731944980100\" duration=\"559000\" />\r\n      <workItem from=\"1731945576897\" duration=\"3952000\" />\r\n      <workItem from=\"1731951613505\" duration=\"822000\" />\r\n      <workItem from=\"1731952472557\" duration=\"419000\" />\r\n      <workItem from=\"1732011804518\" duration=\"2776000\" />\r\n      <workItem from=\"1732015320204\" duration=\"1679000\" />\r\n      <workItem from=\"1732021817997\" duration=\"12193000\" />\r\n      <workItem from=\"1732095496957\" duration=\"3707000\" />\r\n      <workItem from=\"1732102752245\" duration=\"2116000\" />\r\n      <workItem from=\"1732264224731\" duration=\"600000\" />\r\n      <workItem from=\"1732384130453\" duration=\"654000\" />\r\n      <workItem from=\"1732551254280\" duration=\"483000\" />\r\n      <workItem from=\"1732613552949\" duration=\"6793000\" />\r\n      <workItem from=\"1732627015626\" duration=\"753000\" />\r\n      <workItem from=\"1732627821227\" duration=\"3578000\" />\r\n      <workItem from=\"1732632844638\" duration=\"908000\" />\r\n      <workItem from=\"1732793668635\" duration=\"2129000\" />\r\n      <workItem from=\"1732799943619\" duration=\"369000\" />\r\n      <workItem from=\"1732800347095\" duration=\"307000\" />\r\n      <workItem from=\"1732801565657\" duration=\"230000\" />\r\n      <workItem from=\"1732802997053\" duration=\"1278000\" />\r\n      <workItem from=\"1732804685251\" duration=\"5232000\" />\r\n      <workItem from=\"1732811553954\" duration=\"422000\" />\r\n      <workItem from=\"1732812014378\" duration=\"4680000\" />\r\n      <workItem from=\"1732872209213\" duration=\"7053000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Inizio settaggio database\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730032171397</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730032171397</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"file workspace\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730299192134</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730299192136</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"inseriento BD,&#10;modifiche DAO,&#10;modalità demo introdotta\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731496548238</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731496548238</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"creazione metodo recuperoUtente per DAOJSON&#10;creazione di json di esempio\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1731713873114</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1731713873114</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB&#10;modifica DAO sql\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732095618051</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732095618051</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"correzione foreign Key DB\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732097143443</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732097143443</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"modifiche lista squadra in squadra\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732109650659</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732109650659</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Inizio registrazione in SQL e JSON\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732633281402</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732633281402</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732875789232</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732875789232</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"10\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Inizio settaggio database\" />\r\n    <MESSAGE value=\"commit e push di recupero\" />\r\n    <MESSAGE value=\"file workspace\" />\r\n    <MESSAGE value=\"inseriento BD,&#10;modifiche DAO,&#10;modalità demo introdotta\" />\r\n    <MESSAGE value=\"creazione metodo recuperoUtente per DAOJSON&#10;creazione di json di esempio\" />\r\n    <MESSAGE value=\"completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB\" />\r\n    <MESSAGE value=\"completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB&#10;modifica DAO sql\" />\r\n    <MESSAGE value=\"correzione foreign Key DB\" />\r\n    <MESSAGE value=\"modifiche lista squadra in squadra\" />\r\n    <MESSAGE value=\"Inizio registrazione in SQL e JSON\" />\r\n    <MESSAGE value=\"ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"engineering.eccezioni.EccezzioneGenerica\" package=\"engineering.eccezioni\" />\r\n          <option name=\"timeStamp\" value=\"4\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"engineering.eccezioni.UtenteNonEsistenteEccezione\" package=\"engineering.eccezioni\" />\r\n          <option name=\"timeStamp\" value=\"5\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 4e09b613eeaf518101a1c84b3b5b7e7e7b641530)
++++ b/.idea/workspace.xml	(date 1733175733041)
+@@ -4,13 +4,12 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL">
++    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="creazione di metodi per il cambio scena in modo temporaneo">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/provaLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/provaLogin.fxml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -59,30 +58,30 @@
+   <component name="ProjectViewState">
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.LoginApplicazione.executor": "Run",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+-    "git-widget-placeholder": "master",
+-    "ignore.virus.scanning.warn.message": "true",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/PC/AppData/Local/SceneBuilder/SceneBuilder.exe",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Libraries",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.43908045",
+-    "settings.editor.selected.configurable": "preferences.pluginManager",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CreateClassDialog.RecentsKey">
+       <recent name="engineering.dao" />
+@@ -149,6 +148,12 @@
+       <workItem from="1732811553954" duration="422000" />
+       <workItem from="1732812014378" duration="4680000" />
+       <workItem from="1732872209213" duration="7053000" />
++      <workItem from="1732886227609" duration="249000" />
++      <workItem from="1733126014426" duration="5926000" />
++      <workItem from="1733132615825" duration="3031000" />
++      <workItem from="1733137130616" duration="2500000" />
++      <workItem from="1733146781611" duration="1461000" />
++      <workItem from="1733169757030" duration="725000" />
+     </task>
+     <task id="LOCAL-00001" summary="Inizio settaggio database">
+       <option name="closed" value="true" />
+@@ -222,7 +227,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1732875789232</updated>
+     </task>
+-    <option name="localTasksCounter" value="10" />
++    <task id="LOCAL-00010" summary="creazione di metodi per il cambio scena in modo temporaneo">
++      <option name="closed" value="true" />
++      <created>1732886312832</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1732886312832</updated>
++    </task>
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -251,7 +264,8 @@
+     <MESSAGE value="modifiche lista squadra in squadra" />
+     <MESSAGE value="Inizio registrazione in SQL e JSON" />
+     <MESSAGE value="ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL" />
+-    <option name="LAST_COMMIT_MESSAGE" value="ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL" />
++    <MESSAGE value="creazione di metodi per il cambio scena in modo temporaneo" />
++    <option name="LAST_COMMIT_MESSAGE" value="creazione di metodi per il cambio scena in modo temporaneo" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: src/main/resources/viste/provaLogin.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.geometry.Insets?>\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.PasswordField?>\r\n<?import javafx.scene.control.RadioButton?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.image.Image?>\r\n<?import javafx.scene.image.ImageView?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.layout.ColumnConstraints?>\r\n<?import javafx.scene.layout.GridPane?>\r\n<?import javafx.scene.layout.HBox?>\r\n<?import javafx.scene.layout.RowConstraints?>\r\n<?import javafx.scene.layout.VBox?>\r\n<?import javafx.scene.text.Font?>\r\n\r\n<AnchorPane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"640.0\" prefWidth=\"1024.0\" xmlns=\"http://javafx.com/javafx/23\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"viste.first.LoginControllerGrafico\">\r\n   <children>\r\n      <VBox layoutX=\"112.0\" layoutY=\"50.0\" prefHeight=\"200.0\" prefWidth=\"100.0\" AnchorPane.bottomAnchor=\"0.0\" AnchorPane.leftAnchor=\"0.0\" AnchorPane.rightAnchor=\"0.0\" AnchorPane.topAnchor=\"0.0\">\r\n         <children>\r\n            <Label alignment=\"CENTER\" prefHeight=\"71.0\" prefWidth=\"1024.0\" text=\"BENVENUTO\" textAlignment=\"CENTER\">\r\n               <font>\r\n                  <Font size=\"36.0\" />\r\n               </font>\r\n            </Label>\r\n            <HBox prefHeight=\"296.0\" prefWidth=\"1024.0\">\r\n               <children>\r\n                  <ImageView fitHeight=\"307.0\" fitWidth=\"300.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                     <image>\r\n                        <Image url=\"@../foto/look.jpg\" />\r\n                     </image>\r\n                     <HBox.margin>\r\n                        <Insets left=\"50.0\" />\r\n                     </HBox.margin>\r\n                  </ImageView>\r\n                  <GridPane prefHeight=\"297.0\" prefWidth=\"674.0\">\r\n                     <columnConstraints>\r\n                        <ColumnConstraints hgrow=\"SOMETIMES\" maxWidth=\"332.0\" minWidth=\"10.0\" prefWidth=\"327.0\" />\r\n                        <ColumnConstraints hgrow=\"SOMETIMES\" maxWidth=\"400.0\" minWidth=\"10.0\" prefWidth=\"347.0\" />\r\n                     </columnConstraints>\r\n                     <rowConstraints>\r\n                        <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                        <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                     </rowConstraints>\r\n                     <children>\r\n                        <Label alignment=\"CENTER\" prefHeight=\"27.0\" prefWidth=\"400.0\" text=\"Email\">\r\n                           <font>\r\n                              <Font size=\"18.0\" />\r\n                           </font>\r\n                        </Label>\r\n                        <Label alignment=\"CENTER\" prefHeight=\"27.0\" prefWidth=\"400.0\" text=\"Password\" GridPane.rowIndex=\"1\">\r\n                           <font>\r\n                              <Font size=\"18.0\" />\r\n                           </font>\r\n                        </Label>\r\n                        <TextField fx:id=\"email\" promptText=\"Email\" GridPane.columnIndex=\"1\">\r\n                           <GridPane.margin>\r\n                              <Insets left=\"50.0\" right=\"80.0\" />\r\n                           </GridPane.margin>\r\n                        </TextField>\r\n                        <PasswordField fx:id=\"password\" prefHeight=\"25.0\" prefWidth=\"467.0\" promptText=\"Password\" GridPane.columnIndex=\"1\" GridPane.rowIndex=\"1\">\r\n                           <GridPane.margin>\r\n                              <Insets left=\"50.0\" right=\"80.0\" />\r\n                           </GridPane.margin>\r\n                        </PasswordField>\r\n                     </children>\r\n                  </GridPane>\r\n               </children>\r\n            </HBox>\r\n            <HBox prefHeight=\"36.0\" prefWidth=\"1024.0\">\r\n               <children>\r\n                  <RadioButton fx:id=\"demo\" mnemonicParsing=\"false\" text=\"Demo\">\r\n                     <HBox.margin>\r\n                        <Insets left=\"200.0\" />\r\n                     </HBox.margin>\r\n                  </RadioButton>\r\n                  <Button mnemonicParsing=\"false\" onAction=\"#userLogin\" text=\"Login\">\r\n                     <font>\r\n                        <Font size=\"16.0\" />\r\n                     </font>\r\n                     <HBox.margin>\r\n                        <Insets left=\"230.0\" />\r\n                     </HBox.margin>\r\n                  </Button>\r\n                  <RadioButton fx:id=\"full\" mnemonicParsing=\"false\" text=\"Full\">\r\n                     <HBox.margin>\r\n                        <Insets left=\"240.0\" />\r\n                     </HBox.margin>\r\n                  </RadioButton>\r\n               </children>\r\n               <VBox.margin>\r\n                  <Insets top=\"50.0\" />\r\n               </VBox.margin>\r\n            </HBox>\r\n            <Label fx:id=\"erroreInserimento\" alignment=\"CENTER\" prefHeight=\"18.0\" prefWidth=\"1024.0\" textFill=\"RED\">\r\n               <font>\r\n                  <Font size=\"18.0\" />\r\n               </font>\r\n               <VBox.margin>\r\n                  <Insets top=\"20.0\" />\r\n               </VBox.margin>\r\n            </Label>\r\n            <HBox prefHeight=\"103.0\" prefWidth=\"1024.0\">\r\n               <children>\r\n                  <Button fx:id=\"facebookLogIn\" mnemonicParsing=\"false\" text=\"Facebook Sign In\">\r\n                     <HBox.margin>\r\n                        <Insets left=\"150.0\" />\r\n                     </HBox.margin>\r\n                     <font>\r\n                        <Font size=\"16.0\" />\r\n                     </font>\r\n                  </Button>\r\n                  <Button fx:id=\"signUp\" mnemonicParsing=\"false\" onAction=\"#userSignUp\" text=\"Sign Up\">\r\n                     <HBox.margin>\r\n                        <Insets bottom=\"10.0\" left=\"183.0\" />\r\n                     </HBox.margin>\r\n                     <font>\r\n                        <Font size=\"16.0\" />\r\n                     </font>\r\n                  </Button>\r\n                  <Button fx:id=\"googleLogIn\" mnemonicParsing=\"false\" text=\"Google Sign In\">\r\n                     <HBox.margin>\r\n                        <Insets left=\"200.0\" />\r\n                     </HBox.margin>\r\n                     <font>\r\n                        <Font size=\"16.0\" />\r\n                     </font>\r\n                  </Button>\r\n               </children>\r\n               <VBox.margin>\r\n                  <Insets top=\"30.0\" />\r\n               </VBox.margin>\r\n            </HBox>\r\n         </children>\r\n      </VBox>\r\n   </children>\r\n</AnchorPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/viste/provaLogin.fxml b/src/main/resources/viste/provaLogin.fxml
+--- a/src/main/resources/viste/provaLogin.fxml	(revision 4e09b613eeaf518101a1c84b3b5b7e7e7b641530)
++++ b/src/main/resources/viste/provaLogin.fxml	(date 1733133064963)
+@@ -112,7 +112,7 @@
+                         <Font size="16.0" />
+                      </font>
+                   </Button>
+-                  <Button fx:id="signUp" mnemonicParsing="false" onAction="#userSignUp" text="Sign Up">
++                  <Button fx:id="registr" mnemonicParsing="false" onAction="#registrazione" text="Registrazione">
+                      <HBox.margin>
+                         <Insets bottom="10.0" left="183.0" />
+                      </HBox.margin>

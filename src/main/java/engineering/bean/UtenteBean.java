@@ -6,19 +6,21 @@ import modelli.Squadra;
 import java.util.List;
 
 
-public abstract class GenericoBean {
+public abstract class UtenteBean {
 
         private String username;
         private String email;
+        private String password;
         private List<Allenamento> allenamenti;
         protected boolean allenatore ;
         private Squadra squadra;
 
-        protected GenericoBean() {}
+        protected UtenteBean() {}
 
-        protected GenericoBean(String username, String email, List<Allenamento> allenamenti, Squadra squadra) {
+        protected UtenteBean(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
             setUsername(username);
             setEmail(email);
+            setPassword(password);
             setAllenamenti(allenamenti);
             setSquadra(squadra);
         }
@@ -54,4 +56,7 @@ public abstract class GenericoBean {
         public boolean getAllenatore() {
             return allenatore;
         }
+
+        public void setPassword(String password) {this.password = password;}
+        public String getPassword() {return this.password;}
 }

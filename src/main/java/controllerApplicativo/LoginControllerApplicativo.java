@@ -1,125 +1,65 @@
 package controllerApplicativo;
 
-import engineering.bean.LoginBean;
-import engineering.bean.RegistrazioneBean;
+import engineering.bean.*;
 import engineering.dao.UtenteDAO;
 import engineering.dao.UtenteDAOJSON;
-import engineering.dao.UtenteDAOMySQL;
-import engineering.eccezioni.EccezzioneGenerica;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import modelli.Giocatore;
+import engineering.pattern.Singleton;
 import modelli.Login;
-import modelli.Registrazione;
 import modelli.Utente;
-import viste.first.RegistrazioneCtrlGrafico;
-
-import static viste.first.utils.FxmlFileName.PAGINA_REGISTRAZIONE;
 
 public class LoginControllerApplicativo {
 
     public LoginControllerApplicativo() {
     }
 
-    public void verificaCredenziali(LoginBean loginBean) {
+    public Boolean verificaCredenziali(LoginBean loginBean) {
 
         //controllo delle credenziali
         try {
 
-            //richiedo dalla persistenza i dati relativi all'email e password inseriti
-            //UtenteDAO dao = new UtenteDAOMySQL();
-
             //creo un utente da passare all'interno del sistema
             Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
 
-
-            //PROVA
-            Registrazione registrazione = new Registrazione(login.getEmail(), login.getPassword(), "Username di Prova", false);
+            //decidere il metodo di scelta del DAO
             UtenteDAO utenteDao = new UtenteDAOJSON();
-            Utente utente = utenteDao.recuperaUtenteDaLogin(login);
-            System.out.println("Utente recuperato "+ utente);
 
+            //vedo se l'utente esiste nel singleton
+            Singleton istanza=Singleton.getInstance();
+            if(istanza.esisteUtenteDaLogin(login.getEmail(), login.getPassword()))
+            {return true;}
 
-            //passaggio da controller applicativo alla registrazione
-
-
-            /*
-
-            //richiedo i dati dell'utente, se esiste
-            Utente utente = dao.recuperaUtenteDaLogin(login);
-
-            System.out.println("Recupero Utente completato");
-
-            //se l'utente è diverso da null ho trovato l'utente: creo un bean utente
-            if (utente == null){
-                //gestisco il caso in cui in cui ho un utente void
-
+            else {
+                //recupero l'utente dal login
+                return utenteDao.esisteUtenteDaLogin(login);
             }
-
-            //creazione del bean da passare al prossimo controllore grafico con tutti i dati dell'utente
-            GenericoBean genericoBean;
-            if (utente.getAllenatore()) {
-                genericoBean = new AllenatoreBean(utente.getEmail(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadra());
-            } else
-            {
-                genericoBean = new GiocatoreBean(utente.getEmail(), utente.getEmail(), utente.getAllenamenti(), utente.getSquadra());
-            }
-
-            //cambio di scena passando il bean appena creato
-
-             */
-
         }
 
         catch (Exception e)
         {
-            throw new UtenteNonEsistenteEccezione(e.getMessage());
+            //se l'utente non esiste, lancio un'eccezione per comunicarlo al controller grafico
+            return false;
         }
     }
 
-    public void cambioScenaRegistrazione(Stage stage) throws EccezzioneGenerica {
-        try {
+    public UtenteBean creazioneUtente(LoginBean loginBean) {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(PAGINA_REGISTRAZIONE));
+        //decidere il metodo di scelta del DAO
+        UtenteDAO utenteDao = new UtenteDAOJSON();
 
-            System.out.println("Cambio scena");
+        //creazione del modello utente
+        Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
 
+        //creazione del bean utente in funzioni che sia un allenatore o un giocatore
+        if (utente.getAllenatore()) {
 
-            Parent root = loader.load();
-
-            System.out.println("Cambio scena");
-
-            RegistrazioneCtrlGrafico controller = loader.getController();
-
-            controller.inizializzazioneTemp();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            //restituzione del bean dell'allenatore creato
+            return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
+        } else
+        {
+            //restituzione del bean del giocatore creato
+            return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void creazioneUtente(LoginBean loginBean) {
-        //ci occupiamo di inizializzare tutti le entità che fanno parte del caso d'uso
-
-        //creazione dell'utente
-
-        //richiedo al DB i dati dei singoli allenamenti inerenti all'utente
-
-        //creazione dell'allenamento
-
-
-        //Allenamento allenamento = new Allenamento("12/12/2020", "1h");
-
-
-        //aggiunta dell'allenamento selezionato all'utente per ogni allenamento nel DB per quell'utente
-
     }
 
 }
