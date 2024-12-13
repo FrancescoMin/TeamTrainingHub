@@ -38,8 +38,8 @@ public abstract class UtenteBean {
         public Squadra getSquadra() {return this.squadra;}
         public void setSquadra(Squadra squadra) {this.squadra = squadra;}
 
-        public void setUsername(String nome) {
-            this.username = nome;
+        public void setUsername(String username) {
+            this.username = username;
         }
         public String getUsername() {
             return username;

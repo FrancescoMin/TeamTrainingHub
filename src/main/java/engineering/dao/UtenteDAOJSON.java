@@ -1,7 +1,8 @@
 package engineering.dao;
 
 import com.google.gson.*;
-import engineering.eccezioni.EccezzioneGenerica;
+import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneGenerica;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
 import modelli.*;
 
@@ -15,8 +16,8 @@ import java.util.List;
 public class UtenteDAOJSON implements UtenteDAO
 {
 
-    public void handleDAOException(Exception e) throws EccezzioneGenerica{
-        throw new EccezzioneGenerica(e.getMessage());
+    public void handleDAOException(Exception e) throws EccezioneGenerica{
+        throw new EccezioneGenerica(e.getMessage());
     }
 
     public Boolean esisteUtenteDaLogin(Login login) {return esisteUtenteDaEmail(login.getEmail());}
@@ -50,7 +51,7 @@ public class UtenteDAOJSON implements UtenteDAO
                 Files.readAllBytes(Paths.get(filePath));
 
                 //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
-                throw new EccezzioneGenerica("utente esistente");
+                throw new EccezioneGenerica("utente esistente");
 
             } catch (IOException e) {
                 //creazione del file con nome username dell'utente in formato json
@@ -77,12 +78,12 @@ public class UtenteDAOJSON implements UtenteDAO
                 //salvataggio dell'oggetto serializzato utente nel file json
                 writer.write(gson.toJson(jsonObject));
                 writer.close();
-                throw new EccezzioneGenerica("utente inserito");
+                throw new EccezioneGenerica("utente inserito");
             }
 
 
         } catch (Exception e) {
-            throw new EccezzioneGenerica(e.getMessage());
+            throw new EccezioneGenerica(e.getMessage());
         }
 
     }
@@ -124,17 +125,17 @@ public class UtenteDAOJSON implements UtenteDAO
 
         catch (UtenteNonEsistenteEccezione e)
         {
-            throw new EccezzioneGenerica(e.getMessage());
+            throw new EccezioneGenerica(e.getMessage());
         }
         catch (IOException e)
         {
-            throw new EccezzioneGenerica("Utente non esistente");
+            throw new EccezioneGenerica("Utente non esistente");
         }
 
     }
 
 
-    public Utente recuperaUtenteDaEmail(String email)  throws EccezzioneGenerica
+    public Utente recuperaUtenteDaEmail(String email)  throws EccezioneGenerica
     {
         try {
             //Serializziamo l'oggetto in JSON
@@ -169,7 +170,7 @@ public class UtenteDAOJSON implements UtenteDAO
         {
             //gestione dell'eccezione
             System.out.println("Errore di stream I/O");
-            throw new EccezzioneGenerica("Utente non esistente");
+            throw new EccezioneGenerica("Utente non esistente");
         }
     }
 

@@ -2,7 +2,7 @@ package engineering.dao;
 
 
 import engineering.altro.Connessione;
-import engineering.eccezioni.EccezzioneGenerica;
+import engineering.eccezioni.EccezioneGenerica;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
 import modelli.*;
 
@@ -16,7 +16,7 @@ import static engineering.query.QueryRegistrazione.InserisciUtenteQuery;
 
 public class UtenteDAOMySQL implements UtenteDAO {
 
-    public Utente recuperaUtenteDaEmail(String email) throws EccezzioneGenerica {
+    public Utente recuperaUtenteDaEmail(String email) throws EccezioneGenerica {
         Statement stmt = null, stmtSquad = null, stmtAll = null;
         Connection conn;
         ResultSet rs = null, rsSquad = null, rsAll = null;
@@ -30,7 +30,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 //invocazione del metodo per la ricerca dell'utente in funzione della variabile di ricerca
                 rs = RecuperaUtenteRSPerEmail(conn, email);
 
-                if(rs == null) throw new EccezzioneGenerica("Utente non esistente, generato dal DAO");
+                if(rs == null) throw new EccezioneGenerica("Utente non esistente, generato dal DAO");
 
                 System.out.println("email: " + rs.getString("email"));
                 System.out.println("username: " + rs.getString("username"));
@@ -42,7 +42,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 //controllo se un utente ha degli allenamenti
                 rsAll = RecuperaAllenamentiRSPerEmail(conn, email);
 
-                if(rsAll == null) throw new EccezzioneGenerica("Allenamenti non esistenti");
+                if(rsAll == null) throw new EccezioneGenerica("Allenamenti non esistenti");
 
                 List<Allenamento> allenamenti = new ArrayList<>();
 
@@ -57,7 +57,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
 
                 rsSquad = RecuperaSquadreRSPerEmail(conn, email);
 
-                if(rsSquad == null) throw new EccezzioneGenerica("Squadre non esistenti");
+                if(rsSquad == null) throw new EccezioneGenerica("Squadre non esistenti");
 
                 Squadra squadra = null;
 
@@ -79,7 +79,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
                     return utente;
                 }
 
-            } catch (SQLException e) {throw new EccezzioneGenerica(e.getMessage());}
+            } catch (SQLException e) {throw new EccezioneGenerica(e.getMessage());}
 
             finally
             {
@@ -88,20 +88,20 @@ public class UtenteDAOMySQL implements UtenteDAO {
             }
 
         }
-        throw new EccezzioneGenerica("Connessione con il DB non riuscita");
+        throw new EccezioneGenerica("Connessione con il DB non riuscita");
     }
 
-    public Boolean esisteUtenteDaLogin(Login login) throws EccezzioneGenerica {
+    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneGenerica {
         try
         {
             return esisteUtenteDaEmail(login.getEmail());
         }
-        catch (EccezzioneGenerica e)
+        catch (EccezioneGenerica e)
         {
-            throw new EccezzioneGenerica(e.getMessage());
+            throw new EccezioneGenerica(e.getMessage());
         }
     }
-    public Boolean esisteUtenteDaEmail(String email) throws EccezzioneGenerica{
+    public Boolean esisteUtenteDaEmail(String email) throws EccezioneGenerica{
         Statement stmt = null;
         Connection conn;
         ResultSet rs = null;
@@ -117,9 +117,9 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 //restituisco vero solamente se l'utente esiste e il result set è diverso da null
                 return rs != null;
             }
-            catch(EccezzioneGenerica e)
+            catch(EccezioneGenerica e)
             {
-                throw new EccezzioneGenerica(e.getMessage());
+                throw new EccezioneGenerica(e.getMessage());
             }
             finally {
                 try {
@@ -129,7 +129,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 }
             }
         }
-        throw new EccezzioneGenerica("Connessione con il DB non riuscita");
+        throw new EccezioneGenerica("Connessione con il DB non riuscita");
     }
 
     public void inserisciUtenteDaRegistrazione(Registrazione registrazione) {
@@ -149,30 +149,30 @@ public class UtenteDAOMySQL implements UtenteDAO {
                     System.out.println("A new user was inserted successfully!");
                 }
 
-            } catch (EccezzioneGenerica e)
-            {throw new EccezzioneGenerica(e.getMessage());}
+            } catch (EccezioneGenerica e)
+            {throw new EccezioneGenerica(e.getMessage());}
 
             finally {
                 try {if(conn!=null) conn.close();}
-                catch (SQLException e) {throw new EccezzioneGenerica("Errore nella chiusura della connessione con il database");}
+                catch (SQLException e) {throw new EccezioneGenerica("Errore nella chiusura della connessione con il database");}
             }
         }
     }
 
 
-    public Utente recuperaUtenteDaLogin(Login login) throws  EccezzioneGenerica {
+    public Utente recuperaUtenteDaLogin(Login login) throws  EccezioneGenerica {
         try {
             return recuperaUtenteDaEmail(login.getEmail());
         }
-        catch (EccezzioneGenerica e)
+        catch (EccezioneGenerica e)
         {
-            throw new EccezzioneGenerica(e.getMessage());
+            throw new EccezioneGenerica(e.getMessage());
         }
     }
 
 
-    public void handleDAOException(Exception e) throws EccezzioneGenerica {
-        throw new EccezzioneGenerica(e.getMessage());
+    public void handleDAOException(Exception e) throws EccezioneGenerica {
+        throw new EccezioneGenerica(e.getMessage());
     }
 }
 

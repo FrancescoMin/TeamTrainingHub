@@ -2,7 +2,7 @@ package viste.first;
 
 import engineering.bean.UtenteBean;
 import engineering.bean.LoginBean;
-import engineering.eccezioni.EccezzioneGenerica;
+import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
@@ -104,8 +104,8 @@ public class LoginControllerGrafico {
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_REGISTRAZIONE);
 
-        } catch (EccezzioneGenerica eccezzioneGenerica) {
-            System.out.println(eccezzioneGenerica.getMessage());
+        } catch (EccezioneGenerica eccezioneGenerica) {
+            System.out.println(eccezioneGenerica.getMessage());
         }
     }
 }

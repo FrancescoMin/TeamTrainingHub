@@ -1,6 +1,9 @@
 package controllerApplicativo;
 
 import engineering.bean.RegistrazioneBean;
+import engineering.bean.UtenteBean;
+import engineering.dao.UtenteDAO;
+import modelli.Utente;
 
 public class RegistrazioneCtrlApplicativo {
 
@@ -15,8 +18,13 @@ public class RegistrazioneCtrlApplicativo {
             throw new Exception("Tutti i campi sono obbligatori!");
         }
 
-        // Logica per salvare l'utente nel database
-        // ...
+        //UtenteBean UtenteBean = new Utente(username, email);
+        //UtenteBean.setPassword(password);
+        //UtenteBean.getAllenatore(isAllenatore);
+
+        //UtenteDAO utenteDAO = new UtenteDAO();
+        //utenteDAO.inserisciUtenteDaRegistrazione(RegistrazioneBean);
+
 
         System.out.println("Registrazione avvenuta con successo!");
     }

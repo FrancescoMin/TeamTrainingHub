@@ -1,6 +1,6 @@
 package engineering.query;
 
-import engineering.eccezioni.EccezzioneGenerica;
+import engineering.eccezioni.EccezioneGenerica;
 import modelli.Allenamento;
 import modelli.Login;
 
@@ -25,7 +25,7 @@ public class QueriesLogin {
 
      */
 
-    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection, String email) throws EccezzioneGenerica {
+    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection, String email) throws EccezioneGenerica {
         PreparedStatement statement = null;
 
         try {
@@ -43,7 +43,7 @@ public class QueriesLogin {
 
 
         } catch (SQLException e) {
-            throw new EccezzioneGenerica("Errore di recupero utente per email dalla query");
+            throw new EccezioneGenerica("Errore di recupero utente per email dalla query");
         }
     }
 
@@ -54,7 +54,7 @@ public class QueriesLogin {
 
         if(rs == null) {
             System.out.println("Utente non trovato, restituisco null al DAO");
-            throw new EccezzioneGenerica("Utente non trovato dalle query");
+            throw new EccezioneGenerica("Utente non trovato dalle query");
         }
 
         while (rs.next()) {
@@ -63,7 +63,7 @@ public class QueriesLogin {
                 return rs;
             }
         }
-        throw new EccezzioneGenerica("Password errata, utente non trovato dalla query");
+        throw new EccezioneGenerica("Password errata, utente non trovato dalla query");
     }
 
     public static ResultSet recuperaAllenamentiPerData(Connection connection, String data) throws SQLException {
@@ -98,7 +98,7 @@ public class QueriesLogin {
 
             return statement.executeQuery();
 
-        } catch (SQLException e) {throw new EccezzioneGenerica("Errore di recupera allenamenti per utente");}
+        } catch (SQLException e) {throw new EccezioneGenerica("Errore di recupera allenamenti per utente");}
     }
 
     public static ResultSet RecuperaAllenamentiRSPerEmail(Connection connection, String email) throws SQLException {
@@ -112,7 +112,7 @@ public class QueriesLogin {
 
             return statement.executeQuery();
 
-        } catch (SQLException e) {throw new EccezzioneGenerica("Errore di recupera allenamenti per utente");}
+        } catch (SQLException e) {throw new EccezioneGenerica("Errore di recupera allenamenti per utente");}
     }
 
 }

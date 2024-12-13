@@ -2,7 +2,7 @@ package viste.first;
 
 import controllerApplicativo.RegistrazioneCtrlApplicativo;
 import engineering.bean.RegistrazioneBean;
-import engineering.eccezioni.EccezzioneGenerica;
+import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
@@ -78,8 +78,8 @@ public class RegistrazioneCtrlGrafico implements Initializable {
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_PRINCIPALE);
 
-        } catch (EccezzioneGenerica eccezzioneGenerica) {
-            System.out.println(eccezzioneGenerica.getMessage());
+        } catch (EccezioneGenerica eccezioneGenerica) {
+            System.out.println(eccezioneGenerica.getMessage());
         }
     }
 }

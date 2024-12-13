@@ -33,8 +33,8 @@
       </Button>
       <Button fx:id="tornaLoginButton" layoutX="479.0" layoutY="352.0" mnemonicParsing="false" style="-fx-background-color: #0f9200;" text="Torna al Login" textFill="WHITE" />
       <Label layoutX="41.0" layoutY="268.0" text="Conferma Password" />
-      <PasswordField fx:id="ConfermaPasswordTextField" layoutX="41.0" layoutY="285.0" prefHeight="26.0" prefWidth="314.0" />
+      <PasswordField fx:id="confermaPasswordTextField" layoutX="41.0" layoutY="285.0" prefHeight="26.0" prefWidth="314.0" />
       <Text layoutX="397.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se vuoi iscriverti come allenatore:" />
-      <CheckBox fx:id="AllenatoreCheckbox" layoutX="443.0" layoutY="231.0" mnemonicParsing="false" text="Allenatore" />
+      <CheckBox fx:id="allenatoreCheckBox" layoutX="443.0" layoutY="231.0" mnemonicParsing="false" text="Allenatore" />
    </children>
 </AnchorPane>

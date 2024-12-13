@@ -1,6 +1,6 @@
 package engineering.pattern;
 
-import engineering.eccezioni.EccezzioneGenerica;
+import engineering.eccezioni.EccezioneGenerica;
 import modelli.*;
 
 import java.util.List;
@@ -19,8 +19,8 @@ public class Singleton {
     static {
         try {
             instance = new Singleton();
-        } catch (EccezzioneGenerica e) {
-            throw new EccezzioneGenerica("Exception occurred in creating singleton instance");
+        } catch (EccezioneGenerica e) {
+            throw new EccezioneGenerica("Exception occurred in creating singleton instance");
         }
     }
 
@@ -32,7 +32,7 @@ public class Singleton {
     public void aggiungiUtente(Utente utente) {utenti.add(utente);}
     public List<Utente> getUtenti() {return utenti;}
     public Boolean esisteUtenteDaUtente(Utente utente) {return esisteUtenteDaEmail(utente.getEmail());}
-    public Utente getUtenteDaLogin(Login login) throws EccezzioneGenerica {return getUtenteDaEmail(login.getEmail());}
+    public Utente getUtenteDaLogin(Login login) throws EccezioneGenerica {return getUtenteDaEmail(login.getEmail());}
 
     public Boolean esisteUtenteDaLogin(String email, String password) {
         for (Utente utente : utenti)
@@ -56,7 +56,7 @@ public class Singleton {
         return false;
     }
 
-    public Utente getUtenteDaEmail(String email) throws EccezzioneGenerica {
+    public Utente getUtenteDaEmail(String email) throws EccezioneGenerica {
         for (Utente utente : utenti)
         {
             if (utente.getEmail().equals(email))
@@ -64,7 +64,7 @@ public class Singleton {
                 return utente;
             }
         }
-        throw new EccezzioneGenerica("Utente non trovato");
+        throw new EccezioneGenerica("Utente non trovato");
     }
 
     public void aggiungiRegistrazione(Registrazione registrazione){
