@@ -3,6 +3,9 @@ package controllerApplicativo;
 import engineering.bean.RegistrazioneBean;
 import engineering.bean.UtenteBean;
 import engineering.dao.UtenteDAO;
+import engineering.dao.UtenteDAOJSON;
+import engineering.eccezioni.EccezioneGenerica;
+import modelli.Registrazione;
 import modelli.Utente;
 
 public class RegistrazioneCtrlApplicativo {
@@ -11,21 +14,29 @@ public class RegistrazioneCtrlApplicativo {
         String username = registrazioneBean.getUsername();
         String email = registrazioneBean.getEmail();
         String password = registrazioneBean.getPassword();
-        //boolean isAllenatore = registrazioneBean.isAllenatore(); // Non è stato definito il metodo isAllenatore
+        boolean isAllenatore = registrazioneBean.isAlleantore();
 
-        // logica per la registrazione
+        // Verifica che tutti i campi siano compilati
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
             throw new Exception("Tutti i campi sono obbligatori!");
         }
 
-        //UtenteBean UtenteBean = new Utente(username, email);
-        //UtenteBean.setPassword(password);
-        //UtenteBean.getAllenatore(isAllenatore);
-
-        //UtenteDAO utenteDAO = new UtenteDAO();
-        //utenteDAO.inserisciUtenteDaRegistrazione(RegistrazioneBean);
+        // Creazione del modello utente
+        UtenteDAO utente = new Utente(username, email, password, isAllenatore);
 
 
-        System.out.println("Registrazione avvenuta con successo!");
+        // Creazione del bean utente
+        UtenteBean utenteBean = new UtenteBean(username, email);
+        utenteBean.setPassword(password);
+        //utenteBean.setAllenatore(isAllenatore);
+
+        // Utilizzo del DAO per salvare l'utente
+        UtenteDAO UtenteDAO = new UtenteDAOJSON();
+        try {
+            UtenteDAO.inserisciUtenteDaRegistrazione(utente);
+            System.out.println("Registrazione avvenuta con successo!");
+        } catch (EccezioneGenerica e) {
+            throw new Exception("Errore durante la registrazione: " + e.getMessage());
+        }
     }
 }

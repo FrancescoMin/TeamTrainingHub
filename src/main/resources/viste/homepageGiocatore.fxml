@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #0f9200;">
+         <children>
+            <Label layoutX="270.0" layoutY="26.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="MS Outlook" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="EntraInSquadraButton" layoutX="238.0" layoutY="240.0" mnemonicParsing="false" text="Entra in una squadra" />
+      <Button fx:id="consultaAllenamentiButton" layoutX="237.0" layoutY="175.0" mnemonicParsing="false" text="Consulta allenamenti" />
+   </children>
+</AnchorPane>
