@@ -4,8 +4,9 @@ import java.util.List;
 
 public abstract class Utente {
     private String username;
-    private String password;
     private String email;
+    private String password;
+
     private List<Allenamento> allenamenti;
     private Squadra squadra;
 

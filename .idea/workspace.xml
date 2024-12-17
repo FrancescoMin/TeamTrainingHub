@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="RegistrazioneCtrlApplicativo funzionante">
+      <change afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/RegistrazioneBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/RegistrazioneBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Registrazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Registrazione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +29,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "FrancescoMin"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="85e127ae-09ee-4152-ace3-c561331c7528" />
+        <option name="url" value="https://github.com/FrancescoMin/TeamTrainingHub.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -99,7 +119,7 @@
       <workItem from="1734084904930" duration="4581000" />
       <workItem from="1734364185289" duration="606000" />
       <workItem from="1734386510091" duration="6108000" />
-      <workItem from="1734427385697" duration="1110000" />
+      <workItem from="1734427385697" duration="8929000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -173,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734393253773</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="RegistrazioneCtrlApplicativo funzionante">
+      <option name="closed" value="true" />
+      <created>1734428756847</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1734428756847</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +228,7 @@
     <MESSAGE value="rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;" />
     <MESSAGE value="correzione typo &quot;Eccezione&quot;, modifiche RegistrazioneCtrlApplicativo, non vengono salvati i dati di registrazione" />
     <MESSAGE value="Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo" />
+    <MESSAGE value="RegistrazioneCtrlApplicativo funzionante" />
+    <option name="LAST_COMMIT_MESSAGE" value="RegistrazioneCtrlApplicativo funzionante" />
   </component>
 </project>

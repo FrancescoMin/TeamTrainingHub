@@ -22,7 +22,7 @@ public class RegistrazioneCtrlApplicativo {
         }
 
         // Creazione del modello registrazione
-        Registrazione registrazione = new Registrazione(email, password, username, isAllenatore);
+        Registrazione registrazione = new Registrazione(username, email, password, isAllenatore);
 
 
 

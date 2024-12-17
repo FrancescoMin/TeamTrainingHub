@@ -7,7 +7,7 @@ public class RegistrazioneBean extends LoginBean{
 
     RegistrazioneBean(){}
 
-    public RegistrazioneBean(String email, String password, String username, boolean alleantore) {
+    public RegistrazioneBean(String username, String email, String password, boolean alleantore) {
         super(email, password);
         setUsername(username);
         setAlleantore(alleantore);

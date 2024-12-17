@@ -7,7 +7,7 @@ public class Registrazione extends Login{
 
     Registrazione(){}
 
-    public Registrazione(String email, String password, String username, Boolean allenatore) {
+    public Registrazione(String username, String email, String password, Boolean allenatore) {
         super(email, password);
         setUsername(username);
         setAllenatore(allenatore);
