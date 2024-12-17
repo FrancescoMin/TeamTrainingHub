@@ -14,26 +14,23 @@ public class RegistrazioneCtrlApplicativo {
         String username = registrazioneBean.getUsername();
         String email = registrazioneBean.getEmail();
         String password = registrazioneBean.getPassword();
-        boolean isAllenatore = registrazioneBean.isAlleantore();
+        boolean isAllenatore = registrazioneBean.getAlleantore();
 
         // Verifica che tutti i campi siano compilati
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
             throw new Exception("Tutti i campi sono obbligatori!");
         }
 
-        // Creazione del modello utente
-        UtenteDAO utente = new Utente(username, email, password, isAllenatore);
+        // Creazione del modello registrazione
+        Registrazione registrazione = new Registrazione(email, password, username, isAllenatore);
 
 
-        // Creazione del bean utente
-        UtenteBean utenteBean = new UtenteBean(username, email);
-        utenteBean.setPassword(password);
-        //utenteBean.setAllenatore(isAllenatore);
+
 
         // Utilizzo del DAO per salvare l'utente
         UtenteDAO UtenteDAO = new UtenteDAOJSON();
         try {
-            UtenteDAO.inserisciUtenteDaRegistrazione(utente);
+            UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
             System.out.println("Registrazione avvenuta con successo!");
         } catch (EccezioneGenerica e) {
             throw new Exception("Errore durante la registrazione: " + e.getMessage());
