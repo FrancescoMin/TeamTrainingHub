@@ -5,10 +5,7 @@ import engineering.bean.RegistrazioneBean;
 import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import viste.first.utils.CambioScena;
 
@@ -34,6 +31,8 @@ public class RegistrazioneCtrlGrafico implements Initializable {
     private Button registratiButton;
     @FXML
     private Button tornaLoginButton;
+    @FXML
+    private Label registrazioneAvvenuta;
 
 
     @Override
@@ -60,6 +59,8 @@ public class RegistrazioneCtrlGrafico implements Initializable {
             try {
                 registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);
                 System.out.println("Registrazione avvenuta con successo!");
+                registrazioneAvvenuta.setText("Registrazione avvenuta con successo"); // Messaggio di conferma, per ora non mostrato
+                registrazioneAvvenuta.setVisible(true);
             } catch (Exception e) {
                 System.out.println("Errore nella registrazione: " + e.getMessage());
             }
