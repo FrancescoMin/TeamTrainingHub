@@ -17,6 +17,14 @@ public abstract class UtenteBean {
 
         protected UtenteBean() {}
 
+        protected UtenteBean(String username, String email, String password) {
+            setUsername(username);
+            setEmail(email);
+            setPassword(password);
+            setAllenamenti(null);
+            setSquadra(null);
+        }
+
         protected UtenteBean(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
             setUsername(username);
             setEmail(email);

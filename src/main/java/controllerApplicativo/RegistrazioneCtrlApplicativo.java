@@ -32,8 +32,9 @@ public class RegistrazioneCtrlApplicativo {
         try {
             UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
             System.out.println("Registrazione avvenuta con successo!");
+
         } catch (EccezioneGenerica e) {
-            throw new Exception("Errore durante la registrazione: " + e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 }

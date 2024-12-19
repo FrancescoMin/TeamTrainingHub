@@ -3,6 +3,7 @@ package engineering.pattern;
 import engineering.eccezioni.EccezioneGenerica;
 import modelli.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Singleton {
@@ -11,7 +12,7 @@ public class Singleton {
     private static Singleton instance;
 
     //variabili private dove vengono salvate le istanze
-    private List<Utente> utenti;
+    private List<Utente> utenti = new ArrayList<>();;
 
     private Singleton(){}
 
@@ -30,14 +31,16 @@ public class Singleton {
 
     //metodi pubblici per ottenere le istanze di tutti gli utenti istanziati nel sistema
     public void aggiungiUtente(Utente utente) {utenti.add(utente);}
+
     public List<Utente> getUtenti() {return utenti;}
     public Boolean esisteUtenteDaUtente(Utente utente) {return esisteUtenteDaEmail(utente.getEmail());}
     public Utente getUtenteDaLogin(Login login) throws EccezioneGenerica {return getUtenteDaEmail(login.getEmail());}
 
-    public Boolean esisteUtenteDaLogin(String email, String password) {
+    public Boolean esisteUtenteDaLogin(Login login) {
         for (Utente utente : utenti)
         {
-            if (utente.getEmail().equals(email) && utente.getPassword().equals(password))
+
+            if (utente.getEmail().equals(login.getEmail()) && utente.getPassword().equals(login.getPassword()))
             {
                 return true;
             }
@@ -59,12 +62,13 @@ public class Singleton {
     public Utente getUtenteDaEmail(String email) throws EccezioneGenerica {
         for (Utente utente : utenti)
         {
+            System.out.println("utente email: " + utente.getEmail() + " password: " + utente.getPassword());
             if (utente.getEmail().equals(email))
             {
                 return utente;
             }
         }
-        throw new EccezioneGenerica("Utente non trovato");
+        throw new EccezioneGenerica("Utente non esistente");
     }
 
     public void aggiungiRegistrazione(Registrazione registrazione){

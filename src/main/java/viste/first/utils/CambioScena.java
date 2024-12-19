@@ -15,7 +15,7 @@ public class CambioScena {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            System.out.println("Errore nel cambio scena");
+            e.printStackTrace();
         }
     }
 }

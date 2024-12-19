@@ -1,12 +1,12 @@
 package modelli;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Utente {
     private String username;
-    private String email;
     private String password;
-
+    private String email;
     private List<Allenamento> allenamenti;
     private Squadra squadra;
 
@@ -19,8 +19,8 @@ public abstract class Utente {
         setUsername(username);
         setEmail(email);
         setPassword(password);
-        setAllenamenti(null);
-        setSquadre(null);
+        setAllenamenti(new ArrayList<>());
+        setSquadra(new Squadra());
     }
 
     public Utente(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
@@ -28,10 +28,10 @@ public abstract class Utente {
         setEmail(email);
         setPassword(password);
         setAllenamenti(allenamenti);
-        setSquadre(squadra);
+        setSquadra(squadra);
     }
 
-    public void setSquadre(Squadra squadra) {this.squadra = squadra;}
+    public void setSquadra(Squadra squadra) {this.squadra = squadra;}
     public Squadra getSquadra() {return this.squadra;}
 
 
@@ -39,23 +39,14 @@ public abstract class Utente {
     public String getPassword() {return this.password;}
 
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) {this.email = email;}
     public String getEmail() {return this.email;}
 
 
-    public void setUsername(String nome) {
-        this.username = nome;
-    }
-    public String getUsername() {
-        return this.username;
-    }
+    public void setUsername(String nome) {this.username = nome;}
+    public String getUsername() {return this.username;}
 
-
-    public void setAllenamenti(List<Allenamento> allenamenti) {
-        this.allenamenti = allenamenti;
-    }
+    public void setAllenamenti(List<Allenamento> allenamenti) {this.allenamenti = allenamenti;}
     public List<Allenamento> getAllenamenti() {return this.allenamenti;}
 
 

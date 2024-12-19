@@ -108,4 +108,6 @@ public class LoginControllerGrafico {
             System.out.println(eccezioneGenerica.getMessage());
         }
     }
+    public static class CreazioneAllenamentoControllerGrafico {
+    }
 }

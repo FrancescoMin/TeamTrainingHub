@@ -39,11 +39,13 @@ public class QueriesLogin {
             statement.setString(1, email);
 
             //esecuzione della query e restituzione del risultato
-            return statement.executeQuery();
-
+            ResultSet rs;
+            rs = statement.executeQuery();
+            rs.next();
+            return rs;
 
         } catch (SQLException e) {
-            throw new EccezioneGenerica("Errore di recupero utente per email dalla query");
+            throw new EccezioneGenerica(e.getMessage());
         }
     }
 
@@ -115,4 +117,19 @@ public class QueriesLogin {
         } catch (SQLException e) {throw new EccezioneGenerica("Errore di recupera allenamenti per utente");}
     }
 
+    public static int modificaSquadraPerEmail(Connection connection, String squadra, String email) throws SQLException {
+        PreparedStatement statement = null;
+
+        try {
+            String query= "UPDATE squadra set codice = ? where utenti_email = ? ;";
+            statement = connection.prepareStatement(query);
+
+            statement.setString(1, squadra);
+            statement.setString(2, email);
+
+            return statement.executeUpdate();
+
+        } catch (SQLException e) {throw new EccezioneGenerica("Errore di modifica squadra per utente");}
+    }
 }
+

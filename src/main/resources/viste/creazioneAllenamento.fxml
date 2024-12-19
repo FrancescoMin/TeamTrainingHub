@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.CreazioneAllenamentoControllerGrafico">
+   <children>
+      <TextField fx:id="nomeSquadra" layoutX="226.0" layoutY="47.0" promptText="Nome Squadra" />
+      <Button fx:id="creaAllenamento" layoutX="52.0" layoutY="142.0" mnemonicParsing="false" onAction="#CreaAllenamento" text="Crea Allenamento" />
+      <TextField fx:id="giornoAllenamento" layoutX="226.0" layoutY="98.0" promptText="Giorno Allenamento" />
+      <TextField fx:id="meseAllenamento" layoutX="219.0" layoutY="155.0" promptText="Mese Allenamento" />
+      <TextField fx:id="annoAllenamento" layoutX="219.0" layoutY="206.0" promptText="Anno Allenamento" />
+      <TextField fx:id="descrizioneAllenamento" layoutX="219.0" layoutY="323.0" promptText="Descrizione " />
+      <TextField fx:id="durataAllenamento" layoutX="219.0" layoutY="265.0" promptText="Durata" />
+   </children>
+</AnchorPane>

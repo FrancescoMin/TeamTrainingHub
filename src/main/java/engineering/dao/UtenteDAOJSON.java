@@ -2,7 +2,6 @@ package engineering.dao;
 
 import com.google.gson.*;
 import engineering.eccezioni.EccezioneGenerica;
-import engineering.eccezioni.EccezioneGenerica;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
 import modelli.*;
 
@@ -22,8 +21,7 @@ public class UtenteDAOJSON implements UtenteDAO
 
     public Boolean esisteUtenteDaLogin(Login login) {return esisteUtenteDaEmail(login.getEmail());}
 
-    public Boolean esisteUtenteDaEmail(String email)
-    {
+    public Boolean esisteUtenteDaEmail(String email) {
         try {
             //creazione del path
             String filePath = "src/main/resources/persistenza/utenti/" + email + ".json";
@@ -39,12 +37,49 @@ public class UtenteDAOJSON implements UtenteDAO
         }
     }
 
-    //creazione del file json con i dati dell'utente registrato
-    public void inserisciUtenteDaRegistrazione(Registrazione registrazione)
-    {
+    public void aggiornaUtente(Utente utente) {
+        //aggiunta dell'utente alla lista degli utenti
         try {
             //Creazione del path
-            String filePath = "src/main/resources/persistenza/utenti/" + registrazione.getEmail() + ".json";
+            String filePath = "src/main/resources/persistenza/utenti/" + utente.getEmail() + ".json";
+
+            try {
+                //controllo che il file sia già esistente
+                Files.readAllBytes(Paths.get(filePath));
+
+                // Create a Gson object
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                FileWriter writer = new FileWriter(filePath);
+
+                // Step 1: Serialize the Person object to a JSON string
+                String jsonString = gson.toJson(utente);
+
+                // Step 2: Convert the JSON string to a JsonObject
+                JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
+
+                //salvataggio dell'oggetto serializzato utente nel file json
+                writer.write(gson.toJson(jsonObject));
+                writer.close();
+
+                //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
+
+            } catch (IOException e) {
+                //creazione del file con nome username dell'utente in formato json
+
+                throw new EccezioneGenerica("utente non esistente");
+            }
+        } catch (Exception e) {
+            throw new EccezioneGenerica(e.getMessage());
+        }
+
+    }
+
+    public void inserisciUtenteDaUtente(Utente utente) {
+
+        //aggiunta dell'utente alla lista degli utenti
+        try {
+            //Creazione del path
+            String filePath = "src/main/resources/persistenza/utenti/" + utente.getEmail() + ".json";
 
             try {
                 //controllo che il file sia già esistente
@@ -61,26 +96,30 @@ public class UtenteDAOJSON implements UtenteDAO
                 FileWriter writer = new FileWriter(filePath);
 
                 // Step 1: Serialize the Person object to a JSON string
-                String jsonString = gson.toJson(registrazione);
+                String jsonString = gson.toJson(utente);
 
                 // Step 2: Convert the JSON string to a JsonObject
                 JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
 
-                // Step 3: Add Squadra field to the JsonObject
-                jsonObject.addProperty("Squadra", "");
-
-                // Step 4: Create Allenamenti field array for java to the JsonObject
-                JsonArray allenamenti = new JsonArray();
-
-                // Step 5: Add Allenamenti to the JsonObject as an empty array
-                jsonObject.add("allenamenti", allenamenti);
-
                 //salvataggio dell'oggetto serializzato utente nel file json
                 writer.write(gson.toJson(jsonObject));
                 writer.close();
-                throw new EccezioneGenerica("utente inserito");
             }
+        } catch (Exception e) {
+            throw new EccezioneGenerica(e.getMessage());
+        }
+    }
 
+    //creazione del file json con i dati dell'utente registrato
+    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) {
+        try {
+            if (registrazione.getAllenatore())
+            {
+                inserisciUtenteDaUtente(new Allenatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));
+            }
+            else {
+                inserisciUtenteDaUtente(new Giocatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));
+            }
 
         } catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());
@@ -88,8 +127,7 @@ public class UtenteDAOJSON implements UtenteDAO
 
     }
 
-    public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione//throws UserDoesNotExistException
-    {
+    public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione{
         try
         {
             //Serializziamo l'oggetto in JSON
@@ -134,9 +172,7 @@ public class UtenteDAOJSON implements UtenteDAO
 
     }
 
-
-    public Utente recuperaUtenteDaEmail(String email)  throws EccezioneGenerica
-    {
+    public Utente recuperaUtenteDaEmail(String email)  throws EccezioneGenerica {
         try {
             //Serializziamo l'oggetto in JSON
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -152,7 +188,8 @@ public class UtenteDAOJSON implements UtenteDAO
 
             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
             List<Allenamento> allenamenti=recuperaAllenamentiPerJsonArray(jsonObject.get("allenamenti").getAsJsonArray());
-            Squadra squadra = new Squadra(jsonObject.get("Squadra").getAsString());
+
+            Squadra squadra = new Squadra(jsonObject.get("squadra").getAsJsonObject().get("nome").getAsString());
 
             //faccio il controllo che l'utente sia un allenatore o un giocatore
             if (jsonObject.get("allenatore").getAsBoolean()) {
@@ -174,17 +211,23 @@ public class UtenteDAOJSON implements UtenteDAO
         }
     }
 
-    public List<Allenamento> recuperaAllenamentiPerJsonArray(JsonArray jsonArray)
-    {
-        List<Allenamento> allenamenti = new ArrayList<>();
+    public List<Allenamento> recuperaAllenamentiPerJsonArray(JsonArray jsonArray) {
+        try {
 
-        for (int i = 0; i < jsonArray.size(); i++)
-        {
-            JsonObject allenamento = jsonArray.get(i).getAsJsonObject();
-            allenamenti.add(new Allenamento(allenamento.get("data").getAsString(), allenamento.get("durata").getAsInt() , allenamento.get("tipo").getAsString()));
+            List<Allenamento> allenamenti = new ArrayList<>();
+
+            for (int i = 0; i < jsonArray.size(); i++) {
+
+                JsonObject allenamento = jsonArray.get(i).getAsJsonObject();
+                allenamenti.add(new Allenamento(allenamento.get("data").getAsString(), allenamento.get("durata").getAsInt(), allenamento.get("tipo").getAsString()));
+
+            }
+
+            return allenamenti;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
-
-        return allenamenti;
     }
 
 }
