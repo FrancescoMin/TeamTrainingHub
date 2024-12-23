@@ -4,6 +4,8 @@ import engineering.bean.UtenteBean;
 import engineering.dao.*;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
+import modelli.Allenatore;
+import modelli.Giocatore;
 import modelli.Squadra;
 import modelli.Utente;
 
@@ -26,8 +28,18 @@ public class CreazioneSquadraControllerApplicativo {
             //dato il bean passato dal controller grafico, recupero il modello dalla memoria locale
             Singleton instance = Singleton.getInstance();
 
-            //lavoro con il modello e lo aggiorno
-            Utente utente = instance.getUtenteDaEmail(utenteBean.getEmail());
+            //modifico il modello nella memoria centrale
+
+            //non dovrebbe essere necessario recuperare l'utente
+            //RIVEDERE SE è CORRETTO FARE QUESTA ASSEGNAZIONE
+            //Utente utente = instance.getUtenteDaEmail(utenteBean.getEmail());
+            Utente utente;
+            if (utenteBean.getAllenatore()) {
+                utente = new Allenatore(utenteBean.getUsername(), utenteBean.getEmail(), utenteBean.getPassword(), utenteBean.getAllenamenti(),utenteBean.getSquadra());
+            }
+            else {
+                utente = new Allenatore(utenteBean.getUsername(), utenteBean.getEmail(), utenteBean.getPassword(), utenteBean.getAllenamenti(),utenteBean.getSquadra());
+            }
             utente.setSquadra(new Squadra(nomeSquadra));
 
             //inoltre aggiorno la rappresentazione del modello nella persistenza

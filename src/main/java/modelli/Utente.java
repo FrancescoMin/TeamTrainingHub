@@ -5,8 +5,8 @@ import java.util.List;
 
 public abstract class Utente {
     private String username;
-    private String password;
     private String email;
+    private String password;
     private List<Allenamento> allenamenti;
     private Squadra squadra;
 
@@ -19,8 +19,8 @@ public abstract class Utente {
         setUsername(username);
         setEmail(email);
         setPassword(password);
-        setAllenamenti(new ArrayList<>());
-        setSquadra(new Squadra());
+        setAllenamenti(null);
+        setSquadra(null);
     }
 
     public Utente(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {

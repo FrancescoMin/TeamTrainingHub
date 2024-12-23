@@ -13,19 +13,23 @@ import java.nio.file.Paths;
 
 public class SquadraDAOJSON implements SquadraDAO {
 
-    public SquadraDAOJSON() {
-    }
+    public SquadraDAOJSON() {}
 
     public void creaSquadraPerAllenatore(Utente utente, Squadra squadra) {
 
-        creaSquadra(squadra);
-        IscrizioneUtenteASquadra(utente, squadra);
+        try {
+            creaSquadra(squadra);
+            IscrizioneUtenteASquadra(utente, squadra);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void IscrizioneUtenteASquadra(Utente utente, Squadra squadra) {
 
         try {
             System.out.println("Iscrizione dell'utente " + utente.getEmail() + "alla squadra: " + squadra.getNome());
+            utente.setSquadra(squadra);
 
             UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
             utenteDAOJSON.aggiornaUtente(utente);
@@ -41,7 +45,6 @@ public class SquadraDAOJSON implements SquadraDAO {
 
 
     public void creaSquadra(Squadra squadra) {
-        System.out.println("Creazione della squadra: " + squadra.getNome());
         try {
             //Creazione del path
             String filePath = "src/main/resources/persistenza/squadre/" + squadra.getNome() + ".json";

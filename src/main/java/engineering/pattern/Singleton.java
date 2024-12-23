@@ -62,7 +62,6 @@ public class Singleton {
     public Utente getUtenteDaEmail(String email) throws EccezioneGenerica {
         for (Utente utente : utenti)
         {
-            System.out.println("utente email: " + utente.getEmail() + " password: " + utente.getPassword());
             if (utente.getEmail().equals(email))
             {
                 return utente;

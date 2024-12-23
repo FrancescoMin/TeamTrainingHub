@@ -4,33 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Creazione Singleton, aggiunta della password in Utente e UtenteBean">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Creazione Singleton, creazione Squadra e Allenamento, modifiche minori su json">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/CreazioneSquadraControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/CreazioneSquadraControllerApplicativo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/AllenatoreBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/AllenatoreBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/eccezioni/EccezioneGenerica.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/CambioScena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/CambioScena.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneSquadraControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneSquadraControllerGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/Username di Prova.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/francesco.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/jlskkndjaksn.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/pippo.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/simone.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/utente.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/paginaPrincipale.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/paginaPrincipale.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,16 +46,14 @@
     &quot;assignee&quot;: &quot;FrancescoMin&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="85e127ae-09ee-4152-ace3-c561331c7528" />
-        <option name="url" value="https://github.com/FrancescoMin/TeamTrainingHub.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub.git&quot;,
+    &quot;accountId&quot;: &quot;64b32a3e-6402-44ac-8316-64089203d618&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -74,25 +63,29 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LoginApplicazione.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/max/Desktop/ISPW/Ispw/Ispw/progettiOthers/Project-master/libs/mysql-connector-j-8.0.31.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.48505747",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/max/Desktop/ISPW/Ispw/Ispw/progettiOthers/Project-master/libs/mysql-connector-j-8.0.31.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="OLDteamtraininghub" />
@@ -107,6 +100,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -145,6 +146,10 @@
       <workItem from="1734427385697" duration="11873000" />
       <workItem from="1734528607867" duration="6716000" />
       <workItem from="1734601053904" duration="981000" />
+      <workItem from="1734685591858" duration="382000" />
+      <workItem from="1734686289666" duration="16032000" />
+      <workItem from="1734892877229" duration="1451000" />
+      <workItem from="1734966919459" duration="4450000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -234,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734442708259</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Creazione Singleton, creazione Squadra e Allenamento, modifiche minori su json">
+      <option name="closed" value="true" />
+      <created>1734608604546</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1734608604546</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,6 +276,22 @@
     <MESSAGE value="Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo" />
     <MESSAGE value="RegistrazioneCtrlApplicativo funzionante" />
     <MESSAGE value="Fix valori stringhe nei json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix valori stringhe nei json" />
+    <MESSAGE value="Creazione Singleton, creazione Squadra e Allenamento, modifiche minori su json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creazione Singleton, creazione Squadra e Allenamento, modifiche minori su json" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java</url>
+          <line>17</line>
+          <properties class="engineering.dao.SquadraDAOJSON" method="creaSquadraPerAllenatore">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
