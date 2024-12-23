@@ -24,5 +24,3 @@ LoginApplicazione extends Application {
     }
 
 }
-
-

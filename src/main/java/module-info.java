@@ -4,6 +4,7 @@ module com.example.teamtraininghub {
     requires com.google.gson;
     requires java.sql;
     requires java.desktop;
+    requires com.fasterxml.jackson.databind;
 
     opens modelli to com.google.gson;
 

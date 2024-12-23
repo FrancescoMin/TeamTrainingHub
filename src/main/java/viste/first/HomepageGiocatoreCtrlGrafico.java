@@ -1,9 +1,13 @@
 package viste.first;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class HomepageGiocatoreCtrlGrafico {
 
@@ -32,8 +36,20 @@ public class HomepageGiocatoreCtrlGrafico {
 
     @FXML
     private void handleEntraInSquadraButtonAction() {
-        // Logica per il pulsante "Entra in una squadra"
-        System.out.println("Entra in una squadra cliccato");
+        try {
+            // Carica il file FXML della finestra di dialogo
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("entraInSquadra.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+
+            // Crea una nuova finestra di dialogo
+            Stage stage = new Stage();
+            stage.setTitle("Inserisci Squadra");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -5,7 +5,6 @@ public class RegistrazioneBean extends LoginBean{
     private String email;
     private boolean alleantore;
 
-    RegistrazioneBean(){}
 
     public RegistrazioneBean(String username, String email, String password, boolean alleantore) {
         super(email, password);
