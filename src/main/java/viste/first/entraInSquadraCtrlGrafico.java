@@ -4,8 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.fxml.Initializable;
 
-public class entraInSquadraCtrlGrafico {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class entraInSquadraCtrlGrafico implements Initializable {
 
     @FXML
     private TextField scriviSquadraTextField;
@@ -13,8 +17,8 @@ public class entraInSquadraCtrlGrafico {
     @FXML
     private Button richiediIngressoButton;
 
-    @FXML
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         richiediIngressoButton.setOnAction(event -> handleRichiediIngressoButtonAction());
     }
 

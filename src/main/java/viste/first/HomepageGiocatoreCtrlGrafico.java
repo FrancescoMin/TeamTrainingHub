@@ -1,15 +1,24 @@
 package viste.first;
 
+import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import viste.first.utils.CambioScena;
 
-public class HomepageGiocatoreCtrlGrafico {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import static viste.first.utils.FxmlFileName.PAGINA_ENTRAINSQUADRA;
+
+
+public class HomepageGiocatoreCtrlGrafico implements  Initializable{
 
     @FXML
     private Button EntraInSquadraButton;
@@ -25,8 +34,11 @@ public class HomepageGiocatoreCtrlGrafico {
 
     private String username;
 
-    public void initialize() {
-        // Imposta il messaggio di benvenuto
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        EntraInSquadraButton.setOnAction(event -> handleEntraInSquadraButtonAction());
+        consultaAllenamentiButton.setOnAction(event -> handleConsultaAllenamentiButtonAction());
         welcomeLabel.setText("Ciao " + username);
     }
 
@@ -37,18 +49,12 @@ public class HomepageGiocatoreCtrlGrafico {
     @FXML
     private void handleEntraInSquadraButtonAction() {
         try {
-            // Carica il file FXML della finestra di dialogo
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("entraInSquadra.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = (Stage) EntraInSquadraButton.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_ENTRAINSQUADRA);
 
-            // Crea una nuova finestra di dialogo
-            Stage stage = new Stage();
-            stage.setTitle("Inserisci Squadra");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(scene);
-            stage.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (EccezioneGenerica eccezioneGenerica) {
+            System.out.println(eccezioneGenerica.getMessage());
         }
     }
 
