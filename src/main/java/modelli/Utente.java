@@ -19,7 +19,7 @@ public abstract class Utente {
         setUsername(username);
         setEmail(email);
         setPassword(password);
-        setAllenamenti(null);
+        setAllenamenti(new ArrayList<>());
         setSquadra(null);
     }
 

@@ -2,15 +2,12 @@ package controllerApplicativo;
 
 import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneGenerica;
-import viste.first.PaginaPrincipaleControllerGrafico;
-import viste.first.utils.CambioScena;
+import viste.first.HomepageAllenatoreGrafico;
 
-import static viste.first.utils.FxmlFileName.PAGINA_CREAZIONE_SQUADRA;
-
-public class PaginaPrincipaleControllerApplicativo
+public class HomepageAllenatoreControllerApplicativo
 {
 
-    public PaginaPrincipaleControllerApplicativo() {
+    public HomepageAllenatoreControllerApplicativo() {
     }
 
     public void CreaSquadra(UtenteBean utenteBean) throws EccezioneGenerica{
@@ -24,11 +21,11 @@ public class PaginaPrincipaleControllerApplicativo
 
             //compio il cambio della scena
             //Nota che il cambio scena deve avvenire qui. Nel codice temporaneo do la responsabilità al controller grafico
-            PaginaPrincipaleControllerGrafico paginaPrincipaleControllerGrafico = new PaginaPrincipaleControllerGrafico();
+            HomepageAllenatoreGrafico homepageAllenatoreGrafico = new HomepageAllenatoreGrafico();
 
             System.out.println("Cambio scena alla creazione della squadra");
 
-            paginaPrincipaleControllerGrafico.CodiceTemporaneoPerCambioScena();
+            homepageAllenatoreGrafico.CodiceTemporaneoPerCambioScena();
         }
     }
 }

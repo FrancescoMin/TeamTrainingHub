@@ -70,6 +70,7 @@ public class LoginControllerApplicativo {
 
         else {
             //creazione del modello utente
+            System.out.println("Creazione dell'utente "+ loginBean.getEmail() +" con password "+ loginBean.getPassword());
             Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
             System.out.println("Creazione dell'utente");
 

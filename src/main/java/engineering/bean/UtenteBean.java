@@ -3,6 +3,7 @@ package engineering.bean;
 import modelli.Allenamento;
 import modelli.Squadra;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,7 +22,7 @@ public abstract class UtenteBean {
             setUsername(username);
             setEmail(email);
             setPassword(password);
-            setAllenamenti(null);
+            setAllenamenti(new ArrayList<>());
             setSquadra(null);
         }
 

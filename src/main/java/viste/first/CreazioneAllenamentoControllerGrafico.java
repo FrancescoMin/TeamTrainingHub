@@ -1,23 +1,21 @@
 package viste.first;
 
-import javafx.application.Application;
-import javafx.collections.FXCollections;
+import controllerApplicativo.CreazioneAllenamentoControllerApplivativo;
+import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
+import engineering.bean.AllenamentoBean;
 import javafx.stage.Stage;
+import viste.first.utils.CambioScena;
+
+import static viste.first.utils.FxmlFileName.PAGINA_HOME;
 
 public class CreazioneAllenamentoControllerGrafico{
 
-
     @FXML
-    private TextField nomeSquadra;
+    private Label labelErrori;
 
     @FXML
     private TextField giornoAllenamento;
@@ -45,8 +43,47 @@ public class CreazioneAllenamentoControllerGrafico{
 
     @FXML
     public void CreaAllenamento() {
-        System.out.println("Creazione Allenamento");
+        try {
+            System.out.println("Creazione Allenamento");
+            int giorno = Integer.parseInt(giornoAllenamento.getText());
+            int mese = Integer.parseInt(meseAllenamento.getText());
+            int anno = Integer.parseInt(annoAllenamento.getText());
+            int durata = Integer.parseInt(durataAllenamento.getText());
+            String descrizione = descrizioneAllenamento.getText();
 
+            if(giorno < 1 || giorno > 31) {
+                throw new EccezioneGenerica("Giorno non valido");
+            }
+            if (mese < 1 || mese > 12) {
+                throw new EccezioneGenerica("Mese non valido");
+            }
+            if (anno < 2021) {
+                throw new EccezioneGenerica("Anno non valido");
+            }
+            if (durata < 1) {
+                throw new EccezioneGenerica("Durata non valida");
+            }
+            String data = giorno + "-" + mese + "-" + anno;
+            AllenamentoBean allenamentoBean = new AllenamentoBean(data, durata, descrizione);
+            CreazioneAllenamentoControllerApplivativo creazioneAllenamentoControllerApplivativo = new CreazioneAllenamentoControllerApplivativo();
+            creazioneAllenamentoControllerApplivativo.creaAllenamento(allenamentoBean);
+            System.out.println("giorno: " + giorno + " mese: " + mese + " anno: " + anno + " durata: " + durata + " descrizione: " + descrizione);
+
+            try {
+                Stage stage = (Stage) labelErrori.getScene().getWindow();
+                CambioScena cambioScena = new CambioScena();
+                cambioScena.cambioScena(stage, PAGINA_HOME);
+
+            } catch (EccezioneGenerica EccezioneGenerica) {
+                System.out.println(EccezioneGenerica.getMessage());
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            labelErrori.setText(e.getMessage());
+            labelErrori.setVisible(true);
+        }
     }
 
 }

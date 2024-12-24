@@ -147,6 +147,7 @@ public class UtenteDAOJSON implements UtenteDAO {
 
                 //mi faccio recuperare dal metodo addetto l'utente e lo restituisco al controller
                 return recuperaUtenteDaEmail(login.getEmail());
+
             } else {
                 System.out.println("Password errata: lancio eccezione di password errata");
                 throw new UtenteNonEsistenteEccezione("Password errata: lancio eccezione di password errata");
@@ -176,6 +177,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
             List<Allenamento> allenamenti = recuperaAllenamentiPerJsonArray(jsonObject.get("allenamenti").getAsJsonArray());
 
+            System.out.println("Lalalalalal Stronzata");
 
             String nomeSquadra = jsonObject.get("squadra").getAsString();
             Squadra squadra = new Squadra(nomeSquadra);
@@ -209,7 +211,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             for (int i = 0; i < jsonArray.size(); i++) {
 
                 String nomeAllenamento = jsonArray.get(i).getAsString();
-                String filePath = "src/main/resources/persistenza/utenti/" + nomeAllenamento + ".json";
+                String filePath = "src/main/resources/persistenza/allenamenti/" + nomeAllenamento + ".json";
                 String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
                 //creo l'oggetto JSON corrispondete all'utente con l'email passata
