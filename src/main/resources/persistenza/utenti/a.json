@@ -1,0 +1,10 @@
+{
+  "username": "prova",
+  "email": "a",
+  "password": "1",
+  "allenatore": true,
+  "allenamenti": [
+    "10-5-3000"
+  ],
+  "squadra": ""
+}

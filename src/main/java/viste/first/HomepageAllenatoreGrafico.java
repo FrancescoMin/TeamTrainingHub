@@ -1,6 +1,5 @@
 package viste.first;
 
-import controllerApplicativo.PaginaPrincipaleControllerApplicativo;
 import engineering.bean.AllenatoreBean;
 import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneGenerica;
@@ -13,7 +12,7 @@ import viste.first.utils.CambioScena;
 import static viste.first.utils.FxmlFileName.PAGINA_CREAZIONE_ALLENAMENTO;
 import static viste.first.utils.FxmlFileName.PAGINA_CREAZIONE_SQUADRA;
 
-public class PaginaPrincipaleControllerGrafico {
+public class HomepageAllenatoreGrafico {
 
 
     public void initialize() {
@@ -55,7 +54,7 @@ public class PaginaPrincipaleControllerGrafico {
         UtenteBean utenteBean = new AllenatoreBean("username", "email", "password", null, null);
 
         /*commento il codice possibilmente corretto per usare qualcosa di temporaneo
-        PaginaPrincipaleControllerApplicativo paginaPrincipaleControllerApplicativo = new PaginaPrincipaleControllerApplicativo();
+        HomepageAllenatoreControllerApplicativo paginaPrincipaleControllerApplicativo = new HomepageAllenatoreControllerApplicativo();
         paginaPrincipaleControllerApplicativo.CreaSquadra(utenteBean);
          */
 

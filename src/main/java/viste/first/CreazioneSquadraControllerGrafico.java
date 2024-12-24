@@ -45,6 +45,7 @@ public class CreazioneSquadraControllerGrafico {
 
             CreazioneSquadraControllerApplicativo creazioneSquadraControllerApplicativo = new CreazioneSquadraControllerApplicativo();
 
+            //creazione di un utente di prova
             UtenteBean utenteBeanDiProva= new AllenatoreBean("UserProva","a", "1");
 
             //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean

@@ -1,0 +1,2031 @@
+Index: src/main/java/viste/first/RegistrazioneCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport controllerApplicativo.RegistrazioneCtrlApplicativo;\r\nimport engineering.bean.RegistrazioneBean;\r\nimport engineering.eccezioni.EccezioneGenerica;\r\nimport javafx.fxml.FXML;\r\nimport javafx.fxml.Initializable;\r\nimport javafx.scene.control.CheckBox;\r\nimport javafx.scene.control.PasswordField;\r\nimport javafx.scene.control.TextField;\r\nimport javafx.scene.control.Button;\r\nimport javafx.stage.Stage;\r\nimport viste.first.utils.CambioScena;\r\n\r\nimport java.net.URL;\r\nimport java.util.ResourceBundle;\r\n\r\nimport static viste.first.utils.FxmlFileName.PAGINA_PRINCIPALE;\r\nimport static viste.first.utils.FxmlFileName.PAGINA_REGISTRAZIONE;\r\n\r\npublic class RegistrazioneCtrlGrafico implements Initializable {\r\n\r\n    @FXML\r\n    private TextField usernameTextField;\r\n    @FXML\r\n    private TextField emailTextField;\r\n    @FXML\r\n    private PasswordField passwordTextField;\r\n    @FXML\r\n    private PasswordField confermaPasswordTextField;\r\n    @FXML\r\n    private CheckBox allenatoreCheckBox;\r\n    @FXML\r\n    private Button registratiButton;\r\n    @FXML\r\n    private Button tornaLoginButton;\r\n\r\n\r\n    @Override\r\n    public void initialize(URL location, ResourceBundle resources) {\r\n        registratiButton.setOnAction(event -> handleRegistratiButton());\r\n        tornaLoginButton.setOnAction(event -> handleTornaLoginButton());\r\n    }\r\n\r\n    public void initialize()\r\n    {\r\n        System.out.println(\"Inizializzazione Temporanea\");\r\n    }\r\n\r\n    private void handleRegistratiButton() {\r\n        String username = usernameTextField.getText();\r\n        String email = emailTextField.getText();\r\n        String password = passwordTextField.getText();\r\n        String confermaPassword = confermaPasswordTextField.getText();\r\n        boolean isAllenatore = allenatoreCheckBox.isSelected();\r\n\r\n        if (password.equals(confermaPassword)) {\r\n            RegistrazioneBean registrazioneBean = new RegistrazioneBean(username, email, password, isAllenatore);\r\n            RegistrazioneCtrlApplicativo registrazioneCtrlApplicativo = new RegistrazioneCtrlApplicativo();\r\n            try {\r\n                registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);\r\n                System.out.println(\"Registrazione avvenuta con successo!\");\r\n            } catch (Exception e) {\r\n                System.out.println(\"Errore nella registrazione: \" + e.getMessage());\r\n            }\r\n        } else {\r\n            System.out.println(\"Le password non coincidono!\");\r\n        }\r\n    }\r\n\r\n    private void handleTornaLoginButton() {\r\n        // Logica per tornare alla schermata di login\r\n        System.out.println(\"Torno alla schermata di login\");\r\n\r\n        //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE\r\n        try {\r\n            Stage stage = (Stage) tornaLoginButton.getScene().getWindow();\r\n            CambioScena cambioScena = new CambioScena();\r\n            cambioScena.cambioScena(stage, PAGINA_PRINCIPALE);\r\n\r\n        } catch (EccezioneGenerica eccezioneGenerica) {\r\n            System.out.println(eccezioneGenerica.getMessage());\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/RegistrazioneCtrlGrafico.java b/src/main/java/viste/first/RegistrazioneCtrlGrafico.java
+--- a/src/main/java/viste/first/RegistrazioneCtrlGrafico.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/viste/first/RegistrazioneCtrlGrafico.java	(date 1734602478549)
+@@ -2,13 +2,10 @@
+ 
+ import controllerApplicativo.RegistrazioneCtrlApplicativo;
+ import engineering.bean.RegistrazioneBean;
+-import engineering.eccezioni.EccezioneGenerica;
++import engineering.eccezioni.EccezzioneGenerica;
+ import javafx.fxml.FXML;
+ import javafx.fxml.Initializable;
+-import javafx.scene.control.CheckBox;
+-import javafx.scene.control.PasswordField;
+-import javafx.scene.control.TextField;
+-import javafx.scene.control.Button;
++import javafx.scene.control.*;
+ import javafx.stage.Stage;
+ import viste.first.utils.CambioScena;
+ 
+@@ -58,7 +55,7 @@
+             RegistrazioneBean registrazioneBean = new RegistrazioneBean(username, email, password, isAllenatore);
+             RegistrazioneCtrlApplicativo registrazioneCtrlApplicativo = new RegistrazioneCtrlApplicativo();
+             try {
+-                registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);
++                registrazioneCtrlApplicativo.registraUtente(registrazioneBean);
+                 System.out.println("Registrazione avvenuta con successo!");
+             } catch (Exception e) {
+                 System.out.println("Errore nella registrazione: " + e.getMessage());
+@@ -78,8 +75,8 @@
+             CambioScena cambioScena = new CambioScena();
+             cambioScena.cambioScena(stage, PAGINA_PRINCIPALE);
+ 
+-        } catch (EccezioneGenerica eccezioneGenerica) {
+-            System.out.println(eccezioneGenerica.getMessage());
++        } catch (EccezzioneGenerica eccezzioneGenerica) {
++            System.out.println(eccezzioneGenerica.getMessage());
+         }
+     }
+ }
+\ No newline at end of file
+Index: src/main/java/viste/first/utils/FxmlFileName.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first.utils;\r\n\r\npublic class FxmlFileName {\r\n    private FxmlFileName(){}\r\n\r\n    public static final String PAGINA_PRINCIPALE = \"/viste/provaLogin.fxml\";\r\n    public static final String PAGINA_REGISTRAZIONE = \"/viste/registrazione.fxml\";\r\n    public static final String PAGINA_HOME = \"/viste/paginaPrincipale.fxml\";\r\n    public static final String PAGINA_HOME_GIOCATORE = \"/viste/homepageGiocatore.fxml\";\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/utils/FxmlFileName.java b/src/main/java/viste/first/utils/FxmlFileName.java
+--- a/src/main/java/viste/first/utils/FxmlFileName.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/viste/first/utils/FxmlFileName.java	(date 1734598777200)
+@@ -6,7 +6,8 @@
+     public static final String PAGINA_PRINCIPALE = "/viste/provaLogin.fxml";
+     public static final String PAGINA_REGISTRAZIONE = "/viste/registrazione.fxml";
+     public static final String PAGINA_HOME = "/viste/paginaPrincipale.fxml";
+-    public static final String PAGINA_HOME_GIOCATORE = "/viste/homepageGiocatore.fxml";
++    public static final String PAGINA_CREAZIONE_SQUADRA = "/viste/creazioneSquadra.fxml";
++    public static final String PAGINA_CREAZIONE_ALLENAMENTO = "/viste/creazioneAllenamento.fxml";
+ 
+ }
+ 
+Index: src/main/java/inizio/LoginApplicazione.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package inizio;\r\n\r\nimport static viste.first.utils.FxmlFileName.*;\r\nimport javafx.application.Application;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Scene;\r\nimport javafx.stage.Stage;\r\nimport java.io.IOException;\r\n\r\npublic class LoginApplicazione extends Application {\r\n    @Override\r\n    public void start(Stage stage) throws IOException {\r\n\r\n        FXMLLoader fxmlLoader = new FXMLLoader(LoginApplicazione.class.getResource(PAGINA_PRINCIPALE));\r\n        Scene scene = new Scene(fxmlLoader.load(),1024 , 640);\r\n        stage.setTitle(\"Pagine Principale\");\r\n        stage.setScene(scene);\r\n        stage.show();\r\n\r\n    }\r\n    public static void main(String[] args) {\r\n        launch();\r\n    }\r\n\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/inizio/LoginApplicazione.java b/src/main/java/inizio/LoginApplicazione.java
+--- a/src/main/java/inizio/LoginApplicazione.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/inizio/LoginApplicazione.java	(date 1734513548903)
+@@ -25,3 +25,39 @@
+ }
+ 
+ 
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
+Index: src/main/java/controllerApplicativo/LoginControllerApplicativo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controllerApplicativo;\r\n\r\nimport engineering.bean.*;\r\nimport engineering.dao.UtenteDAO;\r\nimport engineering.dao.UtenteDAOJSON;\r\nimport engineering.eccezioni.UtenteNonEsistenteEccezione;\r\nimport engineering.pattern.Singleton;\r\nimport modelli.Login;\r\nimport modelli.Utente;\r\n\r\npublic class LoginControllerApplicativo {\r\n\r\n    public LoginControllerApplicativo() {\r\n    }\r\n\r\n    public Boolean verificaCredenziali(LoginBean loginBean) {\r\n\r\n        //controllo delle credenziali\r\n        try {\r\n\r\n            //creo un utente da passare all'interno del sistema\r\n            Login login = new Login(loginBean.getEmail(), loginBean.getPassword());\r\n\r\n            //decidere il metodo di scelta del DAO\r\n            UtenteDAO utenteDao = new UtenteDAOJSON();\r\n\r\n            //vedo se l'utente esiste nel singleton\r\n            Singleton istanza=Singleton.getInstance();\r\n            if(istanza.esisteUtenteDaLogin(login.getEmail(), login.getPassword()))\r\n            {return true;}\r\n\r\n            else {\r\n                //recupero l'utente dal login\r\n                return utenteDao.esisteUtenteDaLogin(login);\r\n            }\r\n        }\r\n\r\n        catch (Exception e)\r\n        {\r\n            //se l'utente non esiste, lancio un'eccezione per comunicarlo al controller grafico\r\n            return false;\r\n        }\r\n    }\r\n\r\n    public UtenteBean creazioneUtente(LoginBean loginBean) {\r\n\r\n        //decidere il metodo di scelta del DAO\r\n        UtenteDAO utenteDao = new UtenteDAOJSON();\r\n\r\n        //creazione del modello utente\r\n        Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));\r\n\r\n        //creazione del bean utente in funzioni che sia un allenatore o un giocatore\r\n        if (utente.getAllenatore()) {\r\n\r\n            //restituzione del bean dell'allenatore creato\r\n            return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());\r\n        } else\r\n        {\r\n            //restituzione del bean del giocatore creato\r\n            return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/controllerApplicativo/LoginControllerApplicativo.java b/src/main/java/controllerApplicativo/LoginControllerApplicativo.java
+--- a/src/main/java/controllerApplicativo/LoginControllerApplicativo.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/controllerApplicativo/LoginControllerApplicativo.java	(date 1734601192630)
+@@ -3,8 +3,10 @@
+ import engineering.bean.*;
+ import engineering.dao.UtenteDAO;
+ import engineering.dao.UtenteDAOJSON;
+-import engineering.eccezioni.UtenteNonEsistenteEccezione;
++import engineering.dao.UtenteDAOMySQL;
+ import engineering.pattern.Singleton;
++import modelli.Allenatore;
++import modelli.Giocatore;
+ import modelli.Login;
+ import modelli.Utente;
+ 
+@@ -26,11 +28,14 @@
+ 
+             //vedo se l'utente esiste nel singleton
+             Singleton istanza=Singleton.getInstance();
+-            if(istanza.esisteUtenteDaLogin(login.getEmail(), login.getPassword()))
+-            {return true;}
++
++            //se esiste ritorno true
++            if(istanza.esisteUtenteDaLogin(login)) {
++                return true;}
+ 
+             else {
+-                //recupero l'utente dal login
++                System.out.println("Login in corso");
++                //recupero l'utente dal login e lo restituisco
+                 return utenteDao.esisteUtenteDaLogin(login);
+             }
+         }
+@@ -46,19 +51,47 @@
+ 
+         //decidere il metodo di scelta del DAO
+         UtenteDAO utenteDao = new UtenteDAOJSON();
++        //UtenteDAO utenteDao = new UtenteDAOMySQL();
++
++        //vedo se l'utente esiste nel singleton
++        Singleton istanza=Singleton.getInstance();
++        Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
++        //se esiste nel singleton, lo recupero e lo restituisco
++        if(istanza.esisteUtenteDaLogin(login)) {
+ 
+-        //creazione del modello utente
+-        Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
++            Utente utente= istanza.getUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
++            if (utente.getAllenatore()) {
++                return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
++            }
++            else {
++                return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
++            }
++        }
++
++        else {
++            //creazione del modello utente
++            Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
++            System.out.println("Creazione dell'utente");
++
+ 
+-        //creazione del bean utente in funzioni che sia un allenatore o un giocatore
+-        if (utente.getAllenatore()) {
++            //creazione del bean utente in funzioni che sia un allenatore o un giocatore
++            if (utente.getAllenatore()) {
+ 
+-            //restituzione del bean dell'allenatore creato
+-            return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
+-        } else
+-        {
+-            //restituzione del bean del giocatore creato
+-            return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
++                Utente allenatore = new Allenatore(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
++                istanza.aggiungiUtente(allenatore);
++
++                //restituzione del bean dell'allenatore creato
++                return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
++            }
++
++            else {
++
++                Utente giocatore = new Giocatore(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
++                istanza.aggiungiUtente(giocatore);
++
++                //restituzione del bean del giocatore creato
++                return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
++            }
+         }
+     }
+ 
+Index: src/main/java/engineering/bean/RegistrazioneBean.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.bean;\r\n\r\npublic class RegistrazioneBean extends LoginBean{\r\n\r\n    private String email;\r\n    private boolean alleantore;\r\n\r\n    RegistrazioneBean(){}\r\n\r\n    public RegistrazioneBean(String username, String email, String password, boolean alleantore) {\r\n        super(email, password);\r\n        setUsername(username);\r\n        setAlleantore(alleantore);\r\n    }\r\n\r\n    public String getUsername() {return this.email;}\r\n    public void setUsername(String username) {this.email = username;}\r\n\r\n    public boolean getAlleantore() {return this.alleantore;}\r\n    public void setAlleantore(boolean alleantore) {this.alleantore = alleantore;}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/bean/RegistrazioneBean.java b/src/main/java/engineering/bean/RegistrazioneBean.java
+--- a/src/main/java/engineering/bean/RegistrazioneBean.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/engineering/bean/RegistrazioneBean.java	(date 1734598777122)
+@@ -7,7 +7,7 @@
+ 
+     RegistrazioneBean(){}
+ 
+-    public RegistrazioneBean(String username, String email, String password, boolean alleantore) {
++    public RegistrazioneBean(String email, String password, String username, boolean alleantore) {
+         super(email, password);
+         setUsername(username);
+         setAlleantore(alleantore);
+Index: src/main/resources/viste/homepageGiocatore.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/viste/homepageGiocatore.fxml b/src/main/resources/viste/homepageGiocatore.fxml
+deleted file mode 100644
+--- a/src/main/resources/viste/homepageGiocatore.fxml	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ /dev/null	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
+@@ -1,26 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<?import javafx.scene.control.Button?>
+-<?import javafx.scene.control.Label?>
+-<?import javafx.scene.layout.AnchorPane?>
+-<?import javafx.scene.text.Font?>
+-<?import javafx.scene.text.Text?>
+-
+-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.HomepageGiocatoreCtrlGrafico">
+-
+-   <children>
+-      <AnchorPane prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #0f9200;">
+-         <children>
+-            <Label layoutX="270.0" layoutY="26.0" text="Home" textFill="WHITE">
+-               <font>
+-                  <Font name="MS Outlook" size="25.0" />
+-               </font>
+-            </Label>
+-         </children>
+-      </AnchorPane>
+-      <Button fx:id="EntraInSquadraButton" layoutX="210.0" layoutY="259.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="180.0" text="Entra in una squadra"/>
+-      <Button fx:id="consultaAllenamentiButton" layoutX="210.0" layoutY="177.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="180.0" text="Consulta allenamenti"/>
+-      <Text fx:id="ciaoText" layoutX="35.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciao" />
+-      <Label fx:id="welcomeLabel" layoutX="67.0" layoutY="99.0" text="Label" />
+-   </children>
+-</AnchorPane>
+Index: src/main/resources/persistenza/utenti/jlskkndjaksn.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/jlskkndjaksn.json b/src/main/resources/persistenza/utenti/jlskkndjaksn.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/jlskkndjaksn.json	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ /dev/null	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
+@@ -1,4 +0,0 @@
+-{
+-  "email": "jlskkndjaksn",
+-  "password": "1234"
+-}
+\ No newline at end of file
+Index: src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java b/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java
+deleted file mode 100644
+--- a/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ /dev/null	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
+@@ -1,44 +0,0 @@
+-package viste.first;
+-
+-import javafx.fxml.FXML;
+-import javafx.scene.control.Button;
+-import javafx.scene.control.Label;
+-import javafx.scene.text.Text;
+-
+-public class HomepageGiocatoreCtrlGrafico {
+-
+-    @FXML
+-    private Button EntraInSquadraButton;
+-
+-    @FXML
+-    private Button consultaAllenamentiButton;
+-
+-    @FXML
+-    private Text ciaoText;
+-
+-    @FXML
+-    private Label welcomeLabel;
+-
+-    private String username;
+-
+-    public void initialize() {
+-        // Imposta il messaggio di benvenuto
+-        welcomeLabel.setText("Ciao " + username);
+-    }
+-
+-    public void setUsername(String username) {
+-        this.username = username;
+-    }
+-
+-    @FXML
+-    private void handleEntraInSquadraButtonAction() {
+-        // Logica per il pulsante "Entra in una squadra"
+-        System.out.println("Entra in una squadra cliccato");
+-    }
+-
+-    @FXML
+-    private void handleConsultaAllenamentiButtonAction() {
+-        // Logica per il pulsante "Consulta allenamenti"
+-        System.out.println("Consulta allenamenti cliccato");
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/engineering/eccezioni/EccezioneGenerica.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/eccezioni/EccezioneGenerica.java b/src/main/java/engineering/eccezioni/EccezioneGenerica.java
+deleted file mode 100644
+--- a/src/main/java/engineering/eccezioni/EccezioneGenerica.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ /dev/null	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
+@@ -1,9 +0,0 @@
+-package engineering.eccezioni;
+-
+-public class EccezioneGenerica extends RuntimeException
+-{
+-    public EccezioneGenerica(String message)
+-    {
+-        super(message);
+-    }
+-}
+Index: src/main/resources/persistenza/utenti/pippo.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/pippo.json b/src/main/resources/persistenza/utenti/pippo.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/pippo.json	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ /dev/null	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
+@@ -1,8 +0,0 @@
+-{
+-  "username": "pippo",
+-  "allenatore": false,
+-  "email": "pippo",
+-  "password": "pippo@gmail.com",
+-  "Squadra": "",
+-  "allenamenti": []
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/francesco.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/francesco.json b/src/main/resources/persistenza/utenti/francesco.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/francesco.json	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ /dev/null	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
+@@ -1,4 +0,0 @@
+-{
+-  "email": "francesco",
+-  "password": "12345"
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/utente.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/utente.json b/src/main/resources/persistenza/utenti/utente.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/utente.json	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ /dev/null	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
+@@ -1,4 +0,0 @@
+-{
+-  "email": "cnkasjnckj",
+-  "password": "1231242"
+-}
+\ No newline at end of file
+Index: src/main/java/modelli/Registrazione.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modelli;\r\n\r\npublic class Registrazione extends Login{\r\n\r\n    private String username;\r\n    private Boolean allenatore;\r\n\r\n    Registrazione(){}\r\n\r\n    public Registrazione(String username, String email, String password, Boolean allenatore) {\r\n        super(email, password);\r\n        setUsername(username);\r\n        setAllenatore(allenatore);\r\n    }\r\n\r\n    public void setUsername(String username) {this.username = username;}\r\n    public String getUsername() {return this.username;}\r\n\r\n    public void setAllenatore(Boolean allenatore) {this.allenatore = allenatore;}\r\n    public Boolean getAllenatore() {return this.allenatore;}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/modelli/Registrazione.java b/src/main/java/modelli/Registrazione.java
+--- a/src/main/java/modelli/Registrazione.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/modelli/Registrazione.java	(date 1734598777169)
+@@ -7,7 +7,7 @@
+ 
+     Registrazione(){}
+ 
+-    public Registrazione(String username, String email, String password, Boolean allenatore) {
++    public Registrazione(String email, String password, String username, Boolean allenatore) {
+         super(email, password);
+         setUsername(username);
+         setAllenatore(allenatore);
+Index: src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controllerApplicativo;\r\n\r\nimport engineering.bean.RegistrazioneBean;\r\nimport engineering.bean.UtenteBean;\r\nimport engineering.dao.UtenteDAO;\r\nimport engineering.dao.UtenteDAOJSON;\r\nimport engineering.eccezioni.EccezioneGenerica;\r\nimport modelli.Registrazione;\r\nimport modelli.Utente;\r\n\r\npublic class RegistrazioneCtrlApplicativo {\r\n\r\n    public void inserisciUtente(RegistrazioneBean registrazioneBean) throws Exception {\r\n        String username = registrazioneBean.getUsername();\r\n        String email = registrazioneBean.getEmail();\r\n        String password = registrazioneBean.getPassword();\r\n        boolean isAllenatore = registrazioneBean.getAlleantore();\r\n\r\n        // Verifica che tutti i campi siano compilati\r\n        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {\r\n            throw new Exception(\"Tutti i campi sono obbligatori!\");\r\n        }\r\n\r\n        // Creazione del modello registrazione\r\n        Registrazione registrazione = new Registrazione(username, email, password, isAllenatore);\r\n\r\n\r\n\r\n\r\n        // Utilizzo del DAO per salvare l'utente\r\n        UtenteDAO UtenteDAO = new UtenteDAOJSON();\r\n        try {\r\n            UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);\r\n            System.out.println(\"Registrazione avvenuta con successo!\");\r\n        } catch (EccezioneGenerica e) {\r\n            throw new Exception(\"Errore durante la registrazione: \" + e.getMessage());\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java b/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java
+--- a/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java	(date 1734598777044)
+@@ -1,39 +1,23 @@
+ package controllerApplicativo;
+ 
+ import engineering.bean.RegistrazioneBean;
+-import engineering.bean.UtenteBean;
+-import engineering.dao.UtenteDAO;
+-import engineering.dao.UtenteDAOJSON;
+-import engineering.eccezioni.EccezioneGenerica;
+-import modelli.Registrazione;
+-import modelli.Utente;
+ 
+ public class RegistrazioneCtrlApplicativo {
+ 
+-    public void inserisciUtente(RegistrazioneBean registrazioneBean) throws Exception {
++    public void registraUtente(RegistrazioneBean registrazioneBean) throws Exception {
+         String username = registrazioneBean.getUsername();
+         String email = registrazioneBean.getEmail();
+         String password = registrazioneBean.getPassword();
+-        boolean isAllenatore = registrazioneBean.getAlleantore();
++        //boolean isAllenatore = registrazioneBean.isAllenatore(); // Non è stato definito il metodo isAllenatore
+ 
+-        // Verifica che tutti i campi siano compilati
++        // logica per la registrazione
+         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+             throw new Exception("Tutti i campi sono obbligatori!");
+         }
+ 
+-        // Creazione del modello registrazione
+-        Registrazione registrazione = new Registrazione(username, email, password, isAllenatore);
+-
++        // Logica per salvare l'utente nel database
++        // ...
+ 
+-
+-
+-        // Utilizzo del DAO per salvare l'utente
+-        UtenteDAO UtenteDAO = new UtenteDAOJSON();
+-        try {
+-            UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
+-            System.out.println("Registrazione avvenuta con successo!");
+-        } catch (EccezioneGenerica e) {
+-            throw new Exception("Errore durante la registrazione: " + e.getMessage());
+-        }
++        System.out.println("Registrazione avvenuta con successo!");
+     }
+ }
+\ No newline at end of file
+Index: src/main/java/viste/first/LoginControllerGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport engineering.bean.UtenteBean;\r\nimport engineering.bean.LoginBean;\r\nimport engineering.eccezioni.EccezioneGenerica;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.*;\r\nimport javafx.event.ActionEvent;\r\n\r\nimport java.io.IOException;\r\n\r\nimport controllerApplicativo.LoginControllerApplicativo;\r\nimport javafx.stage.Stage;\r\nimport viste.first.utils.CambioScena;\r\n\r\nimport static viste.first.utils.FxmlFileName.*;\r\n\r\npublic class LoginControllerGrafico {\r\n\r\n    @FXML\r\n    private Button login;\r\n\r\n    @FXML\r\n    private RadioButton demo;\r\n\r\n    @FXML\r\n    private RadioButton full;\r\n\r\n    @FXML\r\n    private TextField email;\r\n\r\n    @FXML\r\n    private PasswordField password;\r\n\r\n    @FXML\r\n    private Button registr;\r\n\r\n    @FXML\r\n    private Label erroreInserimento;\r\n\r\n    @FXML\r\n    private void initialize() {\r\n        ToggleGroup group = new ToggleGroup();\r\n        demo.setToggleGroup(group);\r\n        full.setToggleGroup(group);\r\n        full.setSelected(true);\r\n    }\r\n\r\n\r\n\r\n    @FXML\r\n    protected void userLogin(ActionEvent event) throws IOException {\r\n        String em = email.getText().trim();           //accesso con email\r\n        String pass = password.getText().trim();\r\n\r\n        if (em.isEmpty() || pass.isEmpty()) {\r\n            erroreInserimento.setText(\"There are empty fields!\");\r\n            erroreInserimento.setVisible(true);\r\n        }\r\n\r\n        else if(demo.isSelected())\r\n        {\r\n            System.out.println(\"Demo\");\r\n        }\r\n\r\n        else\r\n        {\r\n            try{\r\n                //istanziazione del bean per il login\r\n                LoginBean loginBean = new LoginBean(em,pass);\r\n\r\n                //creazione del controler applicativo per il login\r\n                LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();\r\n\r\n                //passaggio del bean al controller applicativo per il controllo delle credenziali\r\n                if(loginControllerApplicativo.verificaCredenziali(loginBean));\r\n\r\n                //creazione del bean utente generico in funzione dei dati del bean di login\r\n                UtenteBean utenteBean = loginControllerApplicativo.creazioneUtente(loginBean);\r\n\r\n                //passaggio dell'istanza di utenteBean alla home page\r\n                Stage stage = (Stage) email.getScene().getWindow();\r\n                CambioScena cambioScena = new CambioScena();\r\n                cambioScena.cambioScena(stage, PAGINA_HOME);\r\n\r\n\r\n            } catch (Exception e){\r\n                erroreInserimento.setText(e.getMessage());\r\n                erroreInserimento.setVisible(true);\r\n\r\n            }\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    protected void registrazione(ActionEvent event) throws IOException {\r\n        System.out.println(\"registrazione\");\r\n        //implemento di cambio di scena all pagina di registrazione\r\n\r\n\r\n        //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE\r\n        try {\r\n            Stage stage = (Stage) email.getScene().getWindow();\r\n            CambioScena cambioScena = new CambioScena();\r\n            cambioScena.cambioScena(stage, PAGINA_REGISTRAZIONE);\r\n\r\n        } catch (EccezioneGenerica eccezioneGenerica) {\r\n            System.out.println(eccezioneGenerica.getMessage());\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/LoginControllerGrafico.java b/src/main/java/viste/first/LoginControllerGrafico.java
+--- a/src/main/java/viste/first/LoginControllerGrafico.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/viste/first/LoginControllerGrafico.java	(date 1734598777200)
+@@ -2,7 +2,7 @@
+ 
+ import engineering.bean.UtenteBean;
+ import engineering.bean.LoginBean;
+-import engineering.eccezioni.EccezioneGenerica;
++import engineering.eccezioni.EccezzioneGenerica;
+ import javafx.fxml.FXML;
+ import javafx.scene.control.*;
+ import javafx.event.ActionEvent;
+@@ -104,8 +104,11 @@
+             CambioScena cambioScena = new CambioScena();
+             cambioScena.cambioScena(stage, PAGINA_REGISTRAZIONE);
+ 
+-        } catch (EccezioneGenerica eccezioneGenerica) {
+-            System.out.println(eccezioneGenerica.getMessage());
++        } catch (EccezzioneGenerica eccezzioneGenerica) {
++            System.out.println(eccezzioneGenerica.getMessage());
+         }
+     }
++
++    public static class CreazioneAllenamentoControllerGrafico {
++    }
+ }
+\ No newline at end of file
+Index: src/main/java/modelli/Utente.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package modelli;\r\n\r\nimport java.util.List;\r\n\r\npublic abstract class Utente {\r\n    private String username;\r\n    private String email;\r\n    private String password;\r\n\r\n    private List<Allenamento> allenamenti;\r\n    private Squadra squadra;\r\n\r\n    protected boolean allenatore;\r\n\r\n    public Utente() {}\r\n\r\n\r\n    public Utente(String username, String email, String password) {\r\n        setUsername(username);\r\n        setEmail(email);\r\n        setPassword(password);\r\n        setAllenamenti(null);\r\n        setSquadre(null);\r\n    }\r\n\r\n    public Utente(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {\r\n        setUsername(username);\r\n        setEmail(email);\r\n        setPassword(password);\r\n        setAllenamenti(allenamenti);\r\n        setSquadre(squadra);\r\n    }\r\n\r\n    public void setSquadre(Squadra squadra) {this.squadra = squadra;}\r\n    public Squadra getSquadra() {return this.squadra;}\r\n\r\n\r\n    public void setPassword(String password) {this.password = password;}\r\n    public String getPassword() {return this.password;}\r\n\r\n\r\n    public void setEmail(String email) {\r\n        this.email = email;\r\n    }\r\n    public String getEmail() {return this.email;}\r\n\r\n\r\n    public void setUsername(String nome) {\r\n        this.username = nome;\r\n    }\r\n    public String getUsername() {\r\n        return this.username;\r\n    }\r\n\r\n\r\n    public void setAllenamenti(List<Allenamento> allenamenti) {\r\n        this.allenamenti = allenamenti;\r\n    }\r\n    public List<Allenamento> getAllenamenti() {return this.allenamenti;}\r\n\r\n\r\n    public boolean getAllenatore() {\r\n        return this.allenatore;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/modelli/Utente.java b/src/main/java/modelli/Utente.java
+--- a/src/main/java/modelli/Utente.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/modelli/Utente.java	(date 1734598777169)
+@@ -4,9 +4,8 @@
+ 
+ public abstract class Utente {
+     private String username;
+-    private String email;
+     private String password;
+-
++    private String email;
+     private List<Allenamento> allenamenti;
+     private Squadra squadra;
+ 
+@@ -20,7 +19,7 @@
+         setEmail(email);
+         setPassword(password);
+         setAllenamenti(null);
+-        setSquadre(null);
++        setSquadra(null);
+     }
+ 
+     public Utente(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
+@@ -28,10 +27,10 @@
+         setEmail(email);
+         setPassword(password);
+         setAllenamenti(allenamenti);
+-        setSquadre(squadra);
++        setSquadra(squadra);
+     }
+ 
+-    public void setSquadre(Squadra squadra) {this.squadra = squadra;}
++    public void setSquadra(Squadra squadra) {this.squadra = squadra;}
+     public Squadra getSquadra() {return this.squadra;}
+ 
+ 
+Index: src/main/java/engineering/dao/UtenteDAOMySQL.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.dao;\r\n\r\n\r\nimport engineering.altro.Connessione;\r\nimport engineering.eccezioni.EccezioneGenerica;\r\nimport engineering.eccezioni.UtenteNonEsistenteEccezione;\r\nimport modelli.*;\r\n\r\nimport java.sql.*;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n\r\nimport static engineering.query.QueriesLogin.*;\r\nimport static engineering.query.QueryRegistrazione.InserisciUtenteQuery;\r\n\r\npublic class UtenteDAOMySQL implements UtenteDAO {\r\n\r\n    public Utente recuperaUtenteDaEmail(String email) throws EccezioneGenerica {\r\n        Statement stmt = null, stmtSquad = null, stmtAll = null;\r\n        Connection conn;\r\n        ResultSet rs = null, rsSquad = null, rsAll = null;\r\n        Utente utente;\r\n\r\n        //apriamo la connessione con il DB\r\n        conn = Connessione.getInstance().getDBConnection();\r\n        if (conn != null) {\r\n            try {\r\n\r\n                //invocazione del metodo per la ricerca dell'utente in funzione della variabile di ricerca\r\n                rs = RecuperaUtenteRSPerEmail(conn, email);\r\n\r\n                if(rs == null) throw new EccezioneGenerica(\"Utente non esistente, generato dal DAO\");\r\n\r\n                System.out.println(\"email: \" + rs.getString(\"email\"));\r\n                System.out.println(\"username: \" + rs.getString(\"username\"));\r\n                System.out.println(\"password: \" + rs.getString(\"password\"));\r\n\r\n\r\n\r\n                System.out.println(\"Descrizione degli allenamenti e squadre per l'utente\");\r\n                //controllo se un utente ha degli allenamenti\r\n                rsAll = RecuperaAllenamentiRSPerEmail(conn, email);\r\n\r\n                if(rsAll == null) throw new EccezioneGenerica(\"Allenamenti non esistenti\");\r\n\r\n                List<Allenamento> allenamenti = new ArrayList<>();\r\n\r\n                while (rsAll.next()){\r\n                    System.out.println(\"data allenamento: \" + rsAll.getString(\"data\"));\r\n                    System.out.println(\"durata: \" + rsAll.getInt(\"durata\"));\r\n                    System.out.println(\"descrizione: \" + rsAll.getString(\"descrizione\"));\r\n\r\n                    //metodo per l'aggiunta di un allenamento all'utente\r\n                    allenamenti.add(new Allenamento(rsAll.getString(\"data\"), rsAll.getInt(\"durata\"), rsAll.getString(\"descrizione\")));\r\n                }\r\n\r\n                rsSquad = RecuperaSquadreRSPerEmail(conn, email);\r\n\r\n                if(rsSquad == null) throw new EccezioneGenerica(\"Squadre non esistenti\");\r\n\r\n                Squadra squadra = null;\r\n\r\n                while (rsSquad.next()) {\r\n                    System.out.println(\"codice squadra: \" + rsSquad.getString(\"codice\"));\r\n                    System.out.println(\"utente_email: \" + rsSquad.getString(\"utenti_email\"));\r\n\r\n                    //metodo per l'aggiunta di una squadra all'utente\r\n                    squadra = new Squadra(rsSquad.getString(\"codice\"));\r\n                }\r\n\r\n                if (rs.getBoolean(\"allenatore\")) {\r\n                    System.out.println(\"Utente allenatore\");\r\n                    utente = new Allenatore(rs.getString(\"username\"), rs.getString(\"email\"), rs.getString(\"password\") , allenamenti, squadra );\r\n                    return utente;\r\n                } else {\r\n                    System.out.println(\"Utente non allenatore\");\r\n                    utente = new Giocatore(rs.getString(\"username\"), rs.getString(\"email\"), rs.getString(\"password\") , allenamenti , squadra );\r\n                    return utente;\r\n                }\r\n\r\n            } catch (SQLException e) {throw new EccezioneGenerica(e.getMessage());}\r\n\r\n            finally\r\n            {\r\n                try {if (conn != null) conn.close();}\r\n                catch (SQLException e) {System.out.println(\"Seconda eccezione rilevata\");}\r\n            }\r\n\r\n        }\r\n        throw new EccezioneGenerica(\"Connessione con il DB non riuscita\");\r\n    }\r\n\r\n    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneGenerica {\r\n        try\r\n        {\r\n            return esisteUtenteDaEmail(login.getEmail());\r\n        }\r\n        catch (EccezioneGenerica e)\r\n        {\r\n            throw new EccezioneGenerica(e.getMessage());\r\n        }\r\n    }\r\n    public Boolean esisteUtenteDaEmail(String email) throws EccezioneGenerica{\r\n        Statement stmt = null;\r\n        Connection conn;\r\n        ResultSet rs = null;\r\n\r\n        //apriamo la connessione con il DB\r\n        conn = Connessione.getInstance().getDBConnection();\r\n        if (conn != null) {\r\n            try\r\n            {\r\n                //invocazione del metodo per la ricerca dell'utente in funzione della email\r\n                rs = RecuperaUtenteRSPerEmail(conn, email);\r\n\r\n                //restituisco vero solamente se l'utente esiste e il result set è diverso da null\r\n                return rs != null;\r\n            }\r\n            catch(EccezioneGenerica e)\r\n            {\r\n                throw new EccezioneGenerica(e.getMessage());\r\n            }\r\n            finally {\r\n                try {\r\n                    if (conn != null) conn.close();\r\n                } catch (SQLException e) {\r\n                    System.out.println(\"Seconda eccezione rilevata\");\r\n                }\r\n            }\r\n        }\r\n        throw new EccezioneGenerica(\"Connessione con il DB non riuscita\");\r\n    }\r\n\r\n    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) {\r\n        Statement stmt = null;\r\n        Connection conn = null;\r\n        ResultSet rs = null;\r\n        int result = 0;\r\n\r\n        conn = Connessione.getInstance().getDBConnection();\r\n\r\n        if(conn!=null)\r\n        {\r\n            try\r\n            {\r\n                result = InserisciUtenteQuery(conn, registrazione);\r\n                if (result > 0) {\r\n                    System.out.println(\"A new user was inserted successfully!\");\r\n                }\r\n\r\n            } catch (EccezioneGenerica e)\r\n            {throw new EccezioneGenerica(e.getMessage());}\r\n\r\n            finally {\r\n                try {if(conn!=null) conn.close();}\r\n                catch (SQLException e) {throw new EccezioneGenerica(\"Errore nella chiusura della connessione con il database\");}\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n    public Utente recuperaUtenteDaLogin(Login login) throws  EccezioneGenerica {\r\n        try {\r\n            return recuperaUtenteDaEmail(login.getEmail());\r\n        }\r\n        catch (EccezioneGenerica e)\r\n        {\r\n            throw new EccezioneGenerica(e.getMessage());\r\n        }\r\n    }\r\n\r\n\r\n    public void handleDAOException(Exception e) throws EccezioneGenerica {\r\n        throw new EccezioneGenerica(e.getMessage());\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/dao/UtenteDAOMySQL.java b/src/main/java/engineering/dao/UtenteDAOMySQL.java
+--- a/src/main/java/engineering/dao/UtenteDAOMySQL.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/engineering/dao/UtenteDAOMySQL.java	(date 1734598777137)
+@@ -2,8 +2,7 @@
+ 
+ 
+ import engineering.altro.Connessione;
+-import engineering.eccezioni.EccezioneGenerica;
+-import engineering.eccezioni.UtenteNonEsistenteEccezione;
++import engineering.eccezioni.EccezzioneGenerica;
+ import modelli.*;
+ 
+ import java.sql.*;
+@@ -16,8 +15,7 @@
+ 
+ public class UtenteDAOMySQL implements UtenteDAO {
+ 
+-    public Utente recuperaUtenteDaEmail(String email) throws EccezioneGenerica {
+-        Statement stmt = null, stmtSquad = null, stmtAll = null;
++    public Utente recuperaUtenteDaEmail(String email) throws EccezzioneGenerica {
+         Connection conn;
+         ResultSet rs = null, rsSquad = null, rsAll = null;
+         Utente utente;
+@@ -27,29 +25,23 @@
+         if (conn != null) {
+             try {
+ 
++                System.out.println("Inizio lavoro dell'utenteDAOMySQL");
+                 //invocazione del metodo per la ricerca dell'utente in funzione della variabile di ricerca
+                 rs = RecuperaUtenteRSPerEmail(conn, email);
+ 
+-                if(rs == null) throw new EccezioneGenerica("Utente non esistente, generato dal DAO");
++                if(rs == null) throw new EccezzioneGenerica("Utente non esistente, generato dal DAO");
+ 
+-                System.out.println("email: " + rs.getString("email"));
+-                System.out.println("username: " + rs.getString("username"));
+-                System.out.println("password: " + rs.getString("password"));
++                System.out.println("email: " + rs.getString("email") + "    username: " + rs.getString("username") + "  password: " + rs.getString("password"));
+ 
+ 
+-
+-                System.out.println("Descrizione degli allenamenti e squadre per l'utente");
++                System.out.println("Descrizione degli allenamenti:");
+                 //controllo se un utente ha degli allenamenti
+                 rsAll = RecuperaAllenamentiRSPerEmail(conn, email);
+ 
+-                if(rsAll == null) throw new EccezioneGenerica("Allenamenti non esistenti");
+-
+                 List<Allenamento> allenamenti = new ArrayList<>();
+ 
+                 while (rsAll.next()){
+-                    System.out.println("data allenamento: " + rsAll.getString("data"));
+-                    System.out.println("durata: " + rsAll.getInt("durata"));
+-                    System.out.println("descrizione: " + rsAll.getString("descrizione"));
++                    System.out.println("data allenamento: " + rsAll.getString("data") + "   durata: " + rsAll.getInt("durata") + "  descrizione: " + rsAll.getString("descrizione"));
+ 
+                     //metodo per l'aggiunta di un allenamento all'utente
+                     allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getInt("durata"), rsAll.getString("descrizione")));
+@@ -57,21 +49,26 @@
+ 
+                 rsSquad = RecuperaSquadreRSPerEmail(conn, email);
+ 
+-                if(rsSquad == null) throw new EccezioneGenerica("Squadre non esistenti");
++                if(rsSquad == null) throw new EccezzioneGenerica("Squadre non esistenti");
+ 
+                 Squadra squadra = null;
+ 
++                System.out.println("Codici squadra:");
+                 while (rsSquad.next()) {
+-                    System.out.println("codice squadra: " + rsSquad.getString("codice"));
+-                    System.out.println("utente_email: " + rsSquad.getString("utenti_email"));
++                    System.out.println(rsSquad.getString("codice"));
+ 
+                     //metodo per l'aggiunta di una squadra all'utente
+                     squadra = new Squadra(rsSquad.getString("codice"));
+                 }
+ 
++                System.out.println("Finito lavoro dell'utenteDAOMySQL");
++
+                 if (rs.getBoolean("allenatore")) {
+                     System.out.println("Utente allenatore");
+                     utente = new Allenatore(rs.getString("username"), rs.getString("email"), rs.getString("password") , allenamenti, squadra );
++                    rs.close();
++                    rsSquad.close();
++                    rsAll.close();
+                     return utente;
+                 } else {
+                     System.out.println("Utente non allenatore");
+@@ -79,29 +76,34 @@
+                     return utente;
+                 }
+ 
+-            } catch (SQLException e) {throw new EccezioneGenerica(e.getMessage());}
++            } catch (SQLException e) {throw new EccezzioneGenerica(e.getMessage());}
+ 
+             finally
+             {
+-                try {if (conn != null) conn.close();}
++                try
++                {
++                    if (rs!=null) {rs.close();}
++                    if (rsSquad!=null) {rsSquad.close();}
++                    if(rsAll!=null) {rsAll.close();}
++                }
+                 catch (SQLException e) {System.out.println("Seconda eccezione rilevata");}
+             }
+ 
+         }
+-        throw new EccezioneGenerica("Connessione con il DB non riuscita");
++        throw new EccezzioneGenerica("Connessione con il DB non riuscita");
+     }
+ 
+-    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneGenerica {
++    public Boolean esisteUtenteDaLogin(Login login) throws EccezzioneGenerica {
+         try
+         {
+             return esisteUtenteDaEmail(login.getEmail());
+         }
+-        catch (EccezioneGenerica e)
++        catch (EccezzioneGenerica e)
+         {
+-            throw new EccezioneGenerica(e.getMessage());
++            throw new EccezzioneGenerica(e.getMessage());
+         }
+     }
+-    public Boolean esisteUtenteDaEmail(String email) throws EccezioneGenerica{
++    public Boolean esisteUtenteDaEmail(String email) throws EccezzioneGenerica{
+         Statement stmt = null;
+         Connection conn;
+         ResultSet rs = null;
+@@ -114,12 +116,14 @@
+                 //invocazione del metodo per la ricerca dell'utente in funzione della email
+                 rs = RecuperaUtenteRSPerEmail(conn, email);
+ 
++                System.out.println("Creazione dell'utente");
++
+                 //restituisco vero solamente se l'utente esiste e il result set è diverso da null
+                 return rs != null;
+             }
+-            catch(EccezioneGenerica e)
++            catch(EccezzioneGenerica e)
+             {
+-                throw new EccezioneGenerica(e.getMessage());
++                throw new EccezzioneGenerica(e.getMessage());
+             }
+             finally {
+                 try {
+@@ -129,7 +133,7 @@
+                 }
+             }
+         }
+-        throw new EccezioneGenerica("Connessione con il DB non riuscita");
++        throw new EccezzioneGenerica("Connessione con il DB non riuscita");
+     }
+ 
+     public void inserisciUtenteDaRegistrazione(Registrazione registrazione) {
+@@ -149,30 +153,62 @@
+                     System.out.println("A new user was inserted successfully!");
+                 }
+ 
+-            } catch (EccezioneGenerica e)
+-            {throw new EccezioneGenerica(e.getMessage());}
++            } catch (EccezzioneGenerica e)
++            {throw new EccezzioneGenerica(e.getMessage());}
+ 
+             finally {
+                 try {if(conn!=null) conn.close();}
+-                catch (SQLException e) {throw new EccezioneGenerica("Errore nella chiusura della connessione con il database");}
++                catch (SQLException e) {throw new EccezzioneGenerica("Errore nella chiusura della connessione con il database");}
+             }
+         }
+     }
+ 
++    public void modificaSquadraPerUtente(Squadra squadra, Utente utente){
++        Connection conn;
++        int righeModificate = 0;
++
++        //apriamo la connessione con il DB
++        conn = Connessione.getInstance().getDBConnection();
++        if (conn != null) {
++            try
++            {
++                //invocazione del metodo per la ricerca dell'utente in funzione della email
++                righeModificate = modificaSquadraPerEmail(conn, squadra.getNome(), utente.getEmail());
+ 
+-    public Utente recuperaUtenteDaLogin(Login login) throws  EccezioneGenerica {
++                //controllo di aver modificato 1 riga nel DB prima di completare il codice
++                if (righeModificate==0)
++                {
++                    throw new EccezzioneGenerica("Errore nella modifica della squadra");
++                }
++            }
++            catch(Exception e)
++            {
++                throw new EccezzioneGenerica(e.getMessage());
++            }
++            finally {
++                try {
++                    if (conn != null) conn.close();
++                } catch (SQLException e) {
++                    System.out.println("Seconda eccezione rilevata");
++                }
++            }
++        }
++        throw new EccezzioneGenerica("Connessione con il DB non riuscita nella modifica della squadra");
++    }
++
++    public Utente recuperaUtenteDaLogin(Login login) throws  EccezzioneGenerica {
+         try {
+             return recuperaUtenteDaEmail(login.getEmail());
+         }
+-        catch (EccezioneGenerica e)
++        catch (EccezzioneGenerica e)
+         {
+-            throw new EccezioneGenerica(e.getMessage());
++            throw new EccezzioneGenerica(e.getMessage());
+         }
+     }
+ 
+ 
+-    public void handleDAOException(Exception e) throws EccezioneGenerica {
+-        throw new EccezioneGenerica(e.getMessage());
++    public void handleDAOException(Exception e) throws EccezzioneGenerica {
++        throw new EccezzioneGenerica(e.getMessage());
+     }
+ }
+ 
+Index: src/main/java/engineering/dao/UtenteDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.dao;\r\n\r\nimport engineering.bean.RegistrazioneBean;\r\nimport engineering.eccezioni.EccezioneGenerica;\r\nimport engineering.eccezioni.UtenteNonEsistenteEccezione;\r\nimport modelli.Login;\r\nimport modelli.Registrazione;\r\nimport modelli.Utente;\r\n\r\npublic interface UtenteDAO\r\n{\r\n\r\n    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) throws EccezioneGenerica;//throws EmailAlreadyInUseException, UsernameAlreadyInUseException;\r\n    public Utente recuperaUtenteDaEmail(String string);//throws UserDoesNotExistException;\r\n    public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione; /* throws UserDoesNotExistException;*/\r\n    public void handleDAOException(Exception e) throws  EccezioneGenerica;\r\n    public Boolean esisteUtenteDaEmail(String email) throws EccezioneGenerica;\r\n    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneGenerica;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/dao/UtenteDAO.java b/src/main/java/engineering/dao/UtenteDAO.java
+--- a/src/main/java/engineering/dao/UtenteDAO.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/engineering/dao/UtenteDAO.java	(date 1734598777153)
+@@ -1,7 +1,7 @@
+ package engineering.dao;
+ 
+ import engineering.bean.RegistrazioneBean;
+-import engineering.eccezioni.EccezioneGenerica;
++import engineering.eccezioni.EccezzioneGenerica;
+ import engineering.eccezioni.UtenteNonEsistenteEccezione;
+ import modelli.Login;
+ import modelli.Registrazione;
+@@ -10,10 +10,10 @@
+ public interface UtenteDAO
+ {
+ 
+-    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) throws EccezioneGenerica;//throws EmailAlreadyInUseException, UsernameAlreadyInUseException;
++    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) throws EccezzioneGenerica;//throws EmailAlreadyInUseException, UsernameAlreadyInUseException;
+     public Utente recuperaUtenteDaEmail(String string);//throws UserDoesNotExistException;
+     public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione; /* throws UserDoesNotExistException;*/
+-    public void handleDAOException(Exception e) throws  EccezioneGenerica;
+-    public Boolean esisteUtenteDaEmail(String email) throws EccezioneGenerica;
+-    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneGenerica;
++    public void handleDAOException(Exception e) throws  EccezzioneGenerica;
++    public Boolean esisteUtenteDaEmail(String email) throws EccezzioneGenerica;
++    public Boolean esisteUtenteDaLogin(Login login) throws EccezzioneGenerica;
+ }
+Index: src/main/java/engineering/dao/UtenteDAOJSON.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.dao;\r\n\r\nimport com.google.gson.*;\r\nimport engineering.eccezioni.EccezioneGenerica;\r\nimport engineering.eccezioni.EccezioneGenerica;\r\nimport engineering.eccezioni.UtenteNonEsistenteEccezione;\r\nimport modelli.*;\r\n\r\nimport java.io.*;\r\nimport java.nio.file.Files;\r\nimport java.nio.file.Paths;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n\r\npublic class UtenteDAOJSON implements UtenteDAO\r\n{\r\n\r\n    public void handleDAOException(Exception e) throws EccezioneGenerica{\r\n        throw new EccezioneGenerica(e.getMessage());\r\n    }\r\n\r\n    public Boolean esisteUtenteDaLogin(Login login) {return esisteUtenteDaEmail(login.getEmail());}\r\n\r\n    public Boolean esisteUtenteDaEmail(String email)\r\n    {\r\n        try {\r\n            //creazione del path\r\n            String filePath = \"src/main/resources/persistenza/utenti/\" + email + \".json\";\r\n\r\n            //controllo se il file esiste\r\n            Files.readAllBytes(Paths.get(filePath));\r\n            return true;\r\n        }\r\n\r\n        catch (IOException e)\r\n        {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    //creazione del file json con i dati dell'utente registrato\r\n    public void inserisciUtenteDaRegistrazione(Registrazione registrazione)\r\n    {\r\n        try {\r\n            //Creazione del path\r\n            String filePath = \"src/main/resources/persistenza/utenti/\" + registrazione.getEmail() + \".json\";\r\n\r\n            try {\r\n                //controllo che il file sia già esistente\r\n                Files.readAllBytes(Paths.get(filePath));\r\n\r\n                //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione\r\n                throw new EccezioneGenerica(\"utente esistente\");\r\n\r\n            } catch (IOException e) {\r\n                //creazione del file con nome username dell'utente in formato json\r\n\r\n                // Create a Gson object\r\n                Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n                FileWriter writer = new FileWriter(filePath);\r\n\r\n                // Step 1: Serialize the Person object to a JSON string\r\n                String jsonString = gson.toJson(registrazione);\r\n\r\n                // Step 2: Convert the JSON string to a JsonObject\r\n                JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();\r\n\r\n                // Step 3: Add Squadra field to the JsonObject\r\n                jsonObject.addProperty(\"Squadra\", \"\");\r\n\r\n                // Step 4: Create Allenamenti field array for java to the JsonObject\r\n                JsonArray allenamenti = new JsonArray();\r\n\r\n                // Step 5: Add Allenamenti to the JsonObject as an empty array\r\n                jsonObject.add(\"allenamenti\", allenamenti);\r\n\r\n                //salvataggio dell'oggetto serializzato utente nel file json\r\n                writer.write(gson.toJson(jsonObject));\r\n                writer.close();\r\n                throw new EccezioneGenerica(\"utente inserito\");\r\n            }\r\n\r\n\r\n        } catch (Exception e) {\r\n            throw new EccezioneGenerica(e.getMessage());\r\n        }\r\n\r\n    }\r\n\r\n    public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione//throws UserDoesNotExistException\r\n    {\r\n        try\r\n        {\r\n            //Serializziamo l'oggetto in JSON\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n            //creazione del path\r\n            String filePath = \"src/main/resources/persistenza/utenti/\"+login.getEmail()+\".json\";\r\n\r\n            //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste\r\n            String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));\r\n\r\n            //creo un oggetto JSON per il controllo delle credenziali\r\n            JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);\r\n\r\n            //inizializzo un oggetto di tipo Login per il controllo delle credenziali\r\n            Login deserializedLogin = new Login(jsonObject.get(\"email\").getAsString(), jsonObject.get(\"password\").getAsString());\r\n\r\n            //controllo della password\r\n            if (deserializedLogin.getPassword().equals(login.getPassword()))\r\n            {\r\n                System.out.println(\"Login effettuato con successo\");\r\n\r\n                //mi faccio recuperare dal metodo addetto l'utente e lo restituisco al controller\r\n                return recuperaUtenteDaEmail(login.getEmail());\r\n            }\r\n\r\n            else\r\n            {\r\n                System.out.println(\"Password errata: lancio eccezione di password errata\");\r\n                throw new UtenteNonEsistenteEccezione(\"Password errata: lancio eccezione di password errata\");\r\n            }\r\n        }\r\n\r\n        catch (UtenteNonEsistenteEccezione e)\r\n        {\r\n            throw new EccezioneGenerica(e.getMessage());\r\n        }\r\n        catch (IOException e)\r\n        {\r\n            throw new EccezioneGenerica(\"Utente non esistente\");\r\n        }\r\n\r\n    }\r\n\r\n\r\n    public Utente recuperaUtenteDaEmail(String email)  throws EccezioneGenerica\r\n    {\r\n        try {\r\n            //Serializziamo l'oggetto in JSON\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n            //creazione del path\r\n            String filePath = \"src/main/resources/persistenza/utenti/\" + email + \".json\";\r\n\r\n            //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste\r\n            String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));\r\n\r\n            //creo l'oggetto JSON corrispondete all'utente con l'email passata\r\n            JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);\r\n\r\n            //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente\r\n            List<Allenamento> allenamenti=recuperaAllenamentiPerJsonArray(jsonObject.get(\"allenamenti\").getAsJsonArray());\r\n            Squadra squadra = new Squadra(jsonObject.get(\"Squadra\").getAsString());\r\n\r\n            //faccio il controllo che l'utente sia un allenatore o un giocatore\r\n            if (jsonObject.get(\"allenatore\").getAsBoolean()) {\r\n                System.out.println(\"L'utente è un allenatore\");\r\n                return new Allenatore(jsonObject.get(\"username\").getAsString(), jsonObject.get(\"email\").getAsString(), jsonObject.get(\"password\").getAsString() , allenamenti ,squadra);\r\n\r\n            } else {\r\n                return new Giocatore(jsonObject.get(\"username\").getAsString(), jsonObject.get(\"email\").getAsString(), jsonObject.get(\"password\").getAsString() , allenamenti ,squadra);\r\n            }\r\n\r\n\r\n        }\r\n\r\n        catch(IOException e)\r\n        {\r\n            //gestione dell'eccezione\r\n            System.out.println(\"Errore di stream I/O\");\r\n            throw new EccezioneGenerica(\"Utente non esistente\");\r\n        }\r\n    }\r\n\r\n    public List<Allenamento> recuperaAllenamentiPerJsonArray(JsonArray jsonArray)\r\n    {\r\n        List<Allenamento> allenamenti = new ArrayList<>();\r\n\r\n        for (int i = 0; i < jsonArray.size(); i++)\r\n        {\r\n            JsonObject allenamento = jsonArray.get(i).getAsJsonObject();\r\n            allenamenti.add(new Allenamento(allenamento.get(\"data\").getAsString(), allenamento.get(\"durata\").getAsInt() , allenamento.get(\"tipo\").getAsString()));\r\n        }\r\n\r\n        return allenamenti;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/dao/UtenteDAOJSON.java b/src/main/java/engineering/dao/UtenteDAOJSON.java
+--- a/src/main/java/engineering/dao/UtenteDAOJSON.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/engineering/dao/UtenteDAOJSON.java	(date 1734598777153)
+@@ -1,8 +1,7 @@
+ package engineering.dao;
+ 
+ import com.google.gson.*;
+-import engineering.eccezioni.EccezioneGenerica;
+-import engineering.eccezioni.EccezioneGenerica;
++import engineering.eccezioni.EccezzioneGenerica;
+ import engineering.eccezioni.UtenteNonEsistenteEccezione;
+ import modelli.*;
+ 
+@@ -16,14 +15,13 @@
+ public class UtenteDAOJSON implements UtenteDAO
+ {
+ 
+-    public void handleDAOException(Exception e) throws EccezioneGenerica{
+-        throw new EccezioneGenerica(e.getMessage());
++    public void handleDAOException(Exception e) throws EccezzioneGenerica{
++        throw new EccezzioneGenerica(e.getMessage());
+     }
+ 
+     public Boolean esisteUtenteDaLogin(Login login) {return esisteUtenteDaEmail(login.getEmail());}
+ 
+-    public Boolean esisteUtenteDaEmail(String email)
+-    {
++    public Boolean esisteUtenteDaEmail(String email) {
+         try {
+             //creazione del path
+             String filePath = "src/main/resources/persistenza/utenti/" + email + ".json";
+@@ -39,19 +37,55 @@
+         }
+     }
+ 
+-    //creazione del file json con i dati dell'utente registrato
+-    public void inserisciUtenteDaRegistrazione(Registrazione registrazione)
+-    {
++    public void aggiornaUtente(Utente utente) {
++        //aggiunta dell'utente alla lista degli utenti
++        try {
++            //Creazione del path
++            String filePath = "src/main/resources/persistenza/utenti/" + utente.getEmail() + ".json";
++
++            try {
++                //controllo che il file sia già esistente
++                Files.readAllBytes(Paths.get(filePath));
++
++                // Create a Gson object
++                Gson gson = new GsonBuilder().setPrettyPrinting().create();
++                FileWriter writer = new FileWriter(filePath);
++
++                // Step 1: Serialize the Person object to a JSON string
++                String jsonString = gson.toJson(utente);
++
++                // Step 2: Convert the JSON string to a JsonObject
++                JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
++
++                //salvataggio dell'oggetto serializzato utente nel file json
++                writer.write(gson.toJson(jsonObject));
++                writer.close();
++
++                //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
++
++            } catch (IOException e) {
++                //creazione del file con nome username dell'utente in formato json
++
++                throw new EccezzioneGenerica("utente non esistente");
++            }
++        } catch (Exception e) {
++            throw new EccezzioneGenerica(e.getMessage());
++        }
++
++    }
++
++    public void inserisciUtenteDaUtente(Utente utente) {
++        //aggiunta dell'utente alla lista degli utenti
+         try {
+             //Creazione del path
+-            String filePath = "src/main/resources/persistenza/utenti/" + registrazione.getEmail() + ".json";
++            String filePath = "src/main/resources/persistenza/utenti/" + utente.getEmail() + ".json";
+ 
+             try {
+                 //controllo che il file sia già esistente
+                 Files.readAllBytes(Paths.get(filePath));
+ 
+                 //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
+-                throw new EccezioneGenerica("utente esistente");
++                throw new EccezzioneGenerica("utente esistente");
+ 
+             } catch (IOException e) {
+                 //creazione del file con nome username dell'utente in formato json
+@@ -61,11 +95,12 @@
+                 FileWriter writer = new FileWriter(filePath);
+ 
+                 // Step 1: Serialize the Person object to a JSON string
+-                String jsonString = gson.toJson(registrazione);
++                String jsonString = gson.toJson(utente);
+ 
+                 // Step 2: Convert the JSON string to a JsonObject
+                 JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
+ 
++                /*
+                 // Step 3: Add Squadra field to the JsonObject
+                 jsonObject.addProperty("Squadra", "");
+ 
+@@ -75,21 +110,38 @@
+                 // Step 5: Add Allenamenti to the JsonObject as an empty array
+                 jsonObject.add("allenamenti", allenamenti);
+ 
++                 */
++
+                 //salvataggio dell'oggetto serializzato utente nel file json
+                 writer.write(gson.toJson(jsonObject));
+                 writer.close();
+-                throw new EccezioneGenerica("utente inserito");
++                throw new EccezzioneGenerica("utente inserito");
+             }
++        } catch (Exception e) {
++            throw new EccezzioneGenerica(e.getMessage());
++        }
++
++
++    }
+ 
++    //creazione del file json con i dati dell'utente registrato
++    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) {
++        try {
++            if (registrazione.getAllenatore())
++            {
++                inserisciUtenteDaUtente(new Allenatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));
++            }
++            else {
++                inserisciUtenteDaUtente(new Giocatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));
++            }
+ 
+         } catch (Exception e) {
+-            throw new EccezioneGenerica(e.getMessage());
++            throw new EccezzioneGenerica(e.getMessage());
+         }
+ 
+     }
+ 
+-    public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione//throws UserDoesNotExistException
+-    {
++    public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione{
+         try
+         {
+             //Serializziamo l'oggetto in JSON
+@@ -125,18 +177,16 @@
+ 
+         catch (UtenteNonEsistenteEccezione e)
+         {
+-            throw new EccezioneGenerica(e.getMessage());
++            throw new EccezzioneGenerica(e.getMessage());
+         }
+         catch (IOException e)
+         {
+-            throw new EccezioneGenerica("Utente non esistente");
++            throw new EccezzioneGenerica("Utente non esistente");
+         }
+ 
+     }
+ 
+-
+-    public Utente recuperaUtenteDaEmail(String email)  throws EccezioneGenerica
+-    {
++    public Utente recuperaUtenteDaEmail(String email)  throws EccezzioneGenerica {
+         try {
+             //Serializziamo l'oggetto in JSON
+             Gson gson = new GsonBuilder().setPrettyPrinting().create();
+@@ -152,7 +202,8 @@
+ 
+             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
+             List<Allenamento> allenamenti=recuperaAllenamentiPerJsonArray(jsonObject.get("allenamenti").getAsJsonArray());
+-            Squadra squadra = new Squadra(jsonObject.get("Squadra").getAsString());
++
++            Squadra squadra = new Squadra(jsonObject.get("squadra").getAsJsonObject().get("nome").getAsString());
+ 
+             //faccio il controllo che l'utente sia un allenatore o un giocatore
+             if (jsonObject.get("allenatore").getAsBoolean()) {
+@@ -170,21 +221,27 @@
+         {
+             //gestione dell'eccezione
+             System.out.println("Errore di stream I/O");
+-            throw new EccezioneGenerica("Utente non esistente");
++            throw new EccezzioneGenerica("Utente non esistente");
+         }
+     }
+ 
+-    public List<Allenamento> recuperaAllenamentiPerJsonArray(JsonArray jsonArray)
+-    {
+-        List<Allenamento> allenamenti = new ArrayList<>();
++    public List<Allenamento> recuperaAllenamentiPerJsonArray(JsonArray jsonArray) {
++        try {
++
++            List<Allenamento> allenamenti = new ArrayList<>();
+ 
+-        for (int i = 0; i < jsonArray.size(); i++)
+-        {
+-            JsonObject allenamento = jsonArray.get(i).getAsJsonObject();
+-            allenamenti.add(new Allenamento(allenamento.get("data").getAsString(), allenamento.get("durata").getAsInt() , allenamento.get("tipo").getAsString()));
+-        }
++            for (int i = 0; i < jsonArray.size(); i++) {
++
++                JsonObject allenamento = jsonArray.get(i).getAsJsonObject();
++                allenamenti.add(new Allenamento(allenamento.get("data").getAsString(), allenamento.get("durata").getAsInt(), allenamento.get("tipo").getAsString()));
++
++            }
+ 
+-        return allenamenti;
++            return allenamenti;
++        } catch (Exception e) {
++            System.out.println(e.getMessage());
++            throw new RuntimeException(e);
++        }
+     }
+ 
+ }
+Index: src/main/java/engineering/bean/UtenteBean.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.bean;\r\n\r\nimport modelli.Allenamento;\r\nimport modelli.Squadra;\r\n\r\nimport java.util.List;\r\n\r\n\r\npublic abstract class UtenteBean {\r\n\r\n        private String username;\r\n        private String email;\r\n        private String password;\r\n        private List<Allenamento> allenamenti;\r\n        protected boolean allenatore ;\r\n        private Squadra squadra;\r\n\r\n        protected UtenteBean() {}\r\n\r\n        protected UtenteBean(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {\r\n            setUsername(username);\r\n            setEmail(email);\r\n            setPassword(password);\r\n            setAllenamenti(allenamenti);\r\n            setSquadra(squadra);\r\n        }\r\n\r\n\r\n        public void setEmail(String email) {\r\n            //implementare una classe che si occupi di controllare che la mail sia formattata in modo corretto\r\n            this.email = email;\r\n        }\r\n        public String getEmail() {\r\n            return email;\r\n        }\r\n\r\n\r\n        public Squadra getSquadra() {return this.squadra;}\r\n        public void setSquadra(Squadra squadra) {this.squadra = squadra;}\r\n\r\n        public void setUsername(String username) {\r\n            this.username = username;\r\n        }\r\n        public String getUsername() {\r\n            return username;\r\n        }\r\n\r\n\r\n        public void setAllenamenti(List<Allenamento> allenamenti) {\r\n            this.allenamenti = allenamenti;\r\n        }\r\n        public List<Allenamento> getAllenamenti() {\r\n            return allenamenti;\r\n        }\r\n\r\n        public boolean getAllenatore() {\r\n            return allenatore;\r\n        }\r\n\r\n        public void setPassword(String password) {this.password = password;}\r\n        public String getPassword() {return this.password;}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/bean/UtenteBean.java b/src/main/java/engineering/bean/UtenteBean.java
+--- a/src/main/java/engineering/bean/UtenteBean.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/engineering/bean/UtenteBean.java	(date 1734598777122)
+@@ -17,7 +17,16 @@
+ 
+         protected UtenteBean() {}
+ 
+-        protected UtenteBean(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
++    protected UtenteBean(String username, String email, String password) {
++        setUsername(username);
++        setEmail(email);
++        setPassword(password);
++        setAllenamenti(null);
++        setSquadra(null);
++    }
++
++
++    protected UtenteBean(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
+             setUsername(username);
+             setEmail(email);
+             setPassword(password);
+@@ -38,8 +47,8 @@
+         public Squadra getSquadra() {return this.squadra;}
+         public void setSquadra(Squadra squadra) {this.squadra = squadra;}
+ 
+-        public void setUsername(String username) {
+-            this.username = username;
++        public void setUsername(String nome) {
++            this.username = nome;
+         }
+         public String getUsername() {
+             return username;
+Index: src/main/java/engineering/bean/GiocatoreBean.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.bean;\r\n\r\nimport modelli.Allenamento;\r\nimport modelli.Squadra;\r\n\r\nimport java.util.List;\r\n\r\npublic class GiocatoreBean  extends UtenteBean {\r\n\r\n    public GiocatoreBean() {}\r\n\r\n    public GiocatoreBean(String username, String email, String password, List<Allenamento> allenamenti, Squadra squadra) {\r\n        super(username, email, password , allenamenti, squadra);\r\n        this.allenatore=false;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/bean/GiocatoreBean.java b/src/main/java/engineering/bean/GiocatoreBean.java
+--- a/src/main/java/engineering/bean/GiocatoreBean.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/engineering/bean/GiocatoreBean.java	(date 1734513626428)
+@@ -9,6 +9,11 @@
+ 
+     public GiocatoreBean() {}
+ 
++    public GiocatoreBean(String username, String email, String password){
++        super(username, email, password);
++        this.allenatore=false;
++    }
++
+     public GiocatoreBean(String username, String email, String password, List<Allenamento> allenamenti, Squadra squadra) {
+         super(username, email, password , allenamenti, squadra);
+         this.allenatore=false;
+Index: src/main/java/engineering/query/QueriesLogin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.query;\r\n\r\nimport engineering.eccezioni.EccezioneGenerica;\r\nimport modelli.Allenamento;\r\nimport modelli.Login;\r\n\r\nimport java.sql.*;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class QueriesLogin {\r\n\r\n    /*\r\n    public static int InserimentoUtente(Statement stmt, Login login) throws SQLException {\r\n        try {\r\n            String query= \"SELECT * FROM utenti where username = ? and password = ? ;\";\r\n\r\n            int risultato = stmt.executeUpdate(query);\r\n            return risultato;\r\n\r\n        } catch (SQLException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n    }\r\n\r\n     */\r\n\r\n    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection, String email) throws EccezioneGenerica {\r\n        PreparedStatement statement = null;\r\n\r\n        try {\r\n            //creazione della query parametrica\r\n            String query= \"SELECT * FROM utenti where email = ? \";\r\n\r\n            //preparazione dello statement\r\n            statement = connection.prepareStatement(query);\r\n\r\n            //setting dei parametri della query\r\n            statement.setString(1, email);\r\n\r\n            //esecuzione della query e restituzione del risultato\r\n            return statement.executeQuery();\r\n\r\n\r\n        } catch (SQLException e) {\r\n            throw new EccezioneGenerica(\"Errore di recupero utente per email dalla query\");\r\n        }\r\n    }\r\n\r\n    public static ResultSet RecuperaUtenteRSPerLogin(Connection connection, Login login) throws SQLException {\r\n        ResultSet rs = null;\r\n\r\n        rs= RecuperaUtenteRSPerEmail(connection, login.getEmail());\r\n\r\n        if(rs == null) {\r\n            System.out.println(\"Utente non trovato, restituisco null al DAO\");\r\n            throw new EccezioneGenerica(\"Utente non trovato dalle query\");\r\n        }\r\n\r\n        while (rs.next()) {\r\n            if (rs.getString(\"password\").equals(login.getPassword())) {\r\n                System.out.println(\"Utente trovato, restituisco il risultato al DAO\");\r\n                return rs;\r\n            }\r\n        }\r\n        throw new EccezioneGenerica(\"Password errata, utente non trovato dalla query\");\r\n    }\r\n\r\n    public static ResultSet recuperaAllenamentiPerData(Connection connection, String data) throws SQLException {\r\n\r\n        PreparedStatement statement = null;\r\n\r\n        try {\r\n            String query = \"SELECT * from allenamento where data = ? ;\";\r\n            statement = connection.prepareStatement(query);\r\n\r\n            statement.setString(1, data);\r\n\r\n            ResultSet rs=  statement.executeQuery();\r\n\r\n            //restituiamo il risultato di tutte le operazioni\r\n            return rs;\r\n\r\n        } catch (SQLException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n\r\n    }\r\n\r\n    public static ResultSet RecuperaSquadreRSPerEmail(Connection connection, String email) throws SQLException {\r\n        PreparedStatement statement = null;\r\n\r\n        try {\r\n            String query= \"SELECT * FROM squadra where utenti_email = ? ;\";\r\n            statement = connection.prepareStatement(query);\r\n\r\n            statement.setString(1, email);\r\n\r\n            return statement.executeQuery();\r\n\r\n        } catch (SQLException e) {throw new EccezioneGenerica(\"Errore di recupera allenamenti per utente\");}\r\n    }\r\n\r\n    public static ResultSet RecuperaAllenamentiRSPerEmail(Connection connection, String email) throws SQLException {\r\n        PreparedStatement statement = null;\r\n\r\n        try {\r\n            String query= \"SELECT * FROM allenamento where utenti_email = ? ;\";\r\n            statement = connection.prepareStatement(query);\r\n\r\n            statement.setString(1, email);\r\n\r\n            return statement.executeQuery();\r\n\r\n        } catch (SQLException e) {throw new EccezioneGenerica(\"Errore di recupera allenamenti per utente\");}\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/query/QueriesLogin.java b/src/main/java/engineering/query/QueriesLogin.java
+--- a/src/main/java/engineering/query/QueriesLogin.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/engineering/query/QueriesLogin.java	(date 1734598777106)
+@@ -1,6 +1,6 @@
+ package engineering.query;
+ 
+-import engineering.eccezioni.EccezioneGenerica;
++import engineering.eccezioni.EccezzioneGenerica;
+ import modelli.Allenamento;
+ import modelli.Login;
+ 
+@@ -25,7 +25,7 @@
+ 
+      */
+ 
+-    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection, String email) throws EccezioneGenerica {
++    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection, String email) throws EccezzioneGenerica {
+         PreparedStatement statement = null;
+ 
+         try {
+@@ -39,11 +39,13 @@
+             statement.setString(1, email);
+ 
+             //esecuzione della query e restituzione del risultato
+-            return statement.executeQuery();
+-
++            ResultSet rs;
++            rs = statement.executeQuery();
++            rs.next();
++            return rs;
+ 
+         } catch (SQLException e) {
+-            throw new EccezioneGenerica("Errore di recupero utente per email dalla query");
++            throw new EccezzioneGenerica(e.getMessage());
+         }
+     }
+ 
+@@ -54,7 +56,7 @@
+ 
+         if(rs == null) {
+             System.out.println("Utente non trovato, restituisco null al DAO");
+-            throw new EccezioneGenerica("Utente non trovato dalle query");
++            throw new EccezzioneGenerica("Utente non trovato dalle query");
+         }
+ 
+         while (rs.next()) {
+@@ -63,7 +65,7 @@
+                 return rs;
+             }
+         }
+-        throw new EccezioneGenerica("Password errata, utente non trovato dalla query");
++        throw new EccezzioneGenerica("Password errata, utente non trovato dalla query");
+     }
+ 
+     public static ResultSet recuperaAllenamentiPerData(Connection connection, String data) throws SQLException {
+@@ -98,7 +100,7 @@
+ 
+             return statement.executeQuery();
+ 
+-        } catch (SQLException e) {throw new EccezioneGenerica("Errore di recupera allenamenti per utente");}
++        } catch (SQLException e) {throw new EccezzioneGenerica("Errore di recupera allenamenti per utente");}
+     }
+ 
+     public static ResultSet RecuperaAllenamentiRSPerEmail(Connection connection, String email) throws SQLException {
+@@ -112,7 +114,21 @@
+ 
+             return statement.executeQuery();
+ 
+-        } catch (SQLException e) {throw new EccezioneGenerica("Errore di recupera allenamenti per utente");}
++        } catch (SQLException e) {throw new EccezzioneGenerica("Errore di recupera allenamenti per utente");}
+     }
+ 
++    public static int modificaSquadraPerEmail(Connection connection, String squadra, String email) throws SQLException {
++        PreparedStatement statement = null;
++
++        try {
++            String query= "UPDATE squadra set codice = ? where utenti_email = ? ;";
++            statement = connection.prepareStatement(query);
++
++            statement.setString(1, squadra);
++            statement.setString(2, email);
++
++            return statement.executeUpdate();
++
++        } catch (SQLException e) {throw new EccezzioneGenerica("Errore di modifica squadra per utente");}
++    }
+ }
+Index: src/main/resources/viste/registrazione.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.CheckBox?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.PasswordField?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.text.Font?>\r\n<?import javafx.scene.text.Text?>\r\n\r\n<AnchorPane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"400.0\" prefWidth=\"600.0\" xmlns=\"http://javafx.com/javafx/23\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"viste.first.RegistrazioneCtrlGrafico\">\r\n   <children>\r\n      <AnchorPane prefHeight=\"80.0\" prefWidth=\"600.0\" style=\"-fx-background-color: #0f9200;\">\r\n         <children>\r\n            <Label layoutX=\"229.0\" layoutY=\"25.0\" text=\"Registrazione\" textFill=\"WHITE\">\r\n               <font>\r\n                  <Font name=\"MS Outlook\" size=\"25.0\" />\r\n               </font>\r\n            </Label>\r\n         </children>\r\n      </AnchorPane>\r\n      <Label layoutX=\"40.0\" layoutY=\"89.0\" text=\"Username\" />\r\n      <TextField fx:id=\"usernameTextField\" layoutX=\"40.0\" layoutY=\"107.0\" prefHeight=\"26.0\" prefWidth=\"314.0\" />\r\n      <Label layoutX=\"40.0\" layoutY=\"151.0\" text=\"Email\" />\r\n      <TextField fx:id=\"emailTextField\" layoutX=\"40.0\" layoutY=\"169.0\" prefHeight=\"26.0\" prefWidth=\"314.0\" />\r\n      <PasswordField fx:id=\"passwordTextField\" layoutX=\"41.0\" layoutY=\"226.0\" prefHeight=\"26.0\" prefWidth=\"314.0\" />\r\n      <Label layoutX=\"41.0\" layoutY=\"208.0\" text=\"Password\" />\r\n      <Button fx:id=\"registratiButton\" layoutX=\"245.0\" layoutY=\"343.0\" mnemonicParsing=\"false\" style=\"-fx-background-color: #0f9200;\" text=\"Registrati\" textFill=\"WHITE\">\r\n         <font>\r\n            <Font size=\"20.0\" />\r\n         </font>\r\n      </Button>\r\n      <Button fx:id=\"tornaLoginButton\" layoutX=\"479.0\" layoutY=\"352.0\" mnemonicParsing=\"false\" style=\"-fx-background-color: #0f9200;\" text=\"Torna al Login\" textFill=\"WHITE\" />\r\n      <Label layoutX=\"41.0\" layoutY=\"268.0\" text=\"Conferma Password\" />\r\n      <PasswordField fx:id=\"confermaPasswordTextField\" layoutX=\"41.0\" layoutY=\"285.0\" prefHeight=\"26.0\" prefWidth=\"314.0\" />\r\n      <Text layoutX=\"397.0\" layoutY=\"212.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Se vuoi iscriverti come allenatore:\" />\r\n      <CheckBox fx:id=\"allenatoreCheckBox\" layoutX=\"443.0\" layoutY=\"231.0\" mnemonicParsing=\"false\" text=\"Allenatore\" />\r\n   </children>\r\n</AnchorPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/viste/registrazione.fxml b/src/main/resources/viste/registrazione.fxml
+--- a/src/main/resources/viste/registrazione.fxml	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/resources/viste/registrazione.fxml	(date 1734598777028)
+@@ -33,8 +33,8 @@
+       </Button>
+       <Button fx:id="tornaLoginButton" layoutX="479.0" layoutY="352.0" mnemonicParsing="false" style="-fx-background-color: #0f9200;" text="Torna al Login" textFill="WHITE" />
+       <Label layoutX="41.0" layoutY="268.0" text="Conferma Password" />
+-      <PasswordField fx:id="confermaPasswordTextField" layoutX="41.0" layoutY="285.0" prefHeight="26.0" prefWidth="314.0" />
++      <PasswordField fx:id="ConfermaPasswordTextField" layoutX="41.0" layoutY="285.0" prefHeight="26.0" prefWidth="314.0" />
+       <Text layoutX="397.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se vuoi iscriverti come allenatore:" />
+-      <CheckBox fx:id="allenatoreCheckBox" layoutX="443.0" layoutY="231.0" mnemonicParsing="false" text="Allenatore" />
++      <CheckBox fx:id="AllenatoreCheckbox" layoutX="443.0" layoutY="231.0" mnemonicParsing="false" text="Allenatore" />
+    </children>
+ </AnchorPane>
+Index: src/main/resources/persistenza/utenti/simone.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"email\": \"simone\",\r\n  \"password\": \"123\",\r\n  \"allenatore\" : true,\r\n  \"username\" : \"simsalabin\",  \r\n  \"Allenamento\" :\r\n  [\r\n    {\r\n      \"data\": \"2021-06-01\",\r\n      \"durata\": \"1:30\",\r\n      \"tipo\": \"corsa\"\r\n    },\r\n    {\r\n      \"data\": \"2021-06-02\",\r\n      \"durata\": \"1:00\",\r\n      \"tipo\": \"ciclismo\"\r\n    }\r\n  ]\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/simone.json b/src/main/resources/persistenza/utenti/simone.json
+--- a/src/main/resources/persistenza/utenti/simone.json	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/resources/persistenza/utenti/simone.json	(date 1734598776997)
+@@ -2,17 +2,18 @@
+   "email": "simone",
+   "password": "123",
+   "allenatore" : true,
+-  "username" : "simsalabin",  
+-  "Allenamento" :
++  "username" : "simsalabin",
++  "Squadra": "squadra1",
++  "allenamenti" :
+   [
+     {
+       "data": "2021-06-01",
+-      "durata": "1:30",
++      "durata": 90,
+       "tipo": "corsa"
+     },
+     {
+       "data": "2021-06-02",
+-      "durata": "1:00",
++      "durata": 60,
+       "tipo": "ciclismo"
+     }
+   ]
+Index: src/main/resources/viste/paginaPrincipale.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import java.lang.*?>\r\n<?import java.util.*?>\r\n<?import javafx.scene.*?>\r\n<?import javafx.scene.control.*?>\r\n<?import javafx.scene.layout.*?>\r\n\r\n<AnchorPane xmlns=\"http://javafx.com/javafx\"\r\n            xmlns:fx=\"http://javafx.com/fxml\"\r\n            fx:controller=\"viste.first.PaginaPrincipaleControllerGrafico\"\r\n            prefHeight=\"400.0\" prefWidth=\"600.0\">\r\n\r\n</AnchorPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/viste/paginaPrincipale.fxml b/src/main/resources/viste/paginaPrincipale.fxml
+--- a/src/main/resources/viste/paginaPrincipale.fxml	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/resources/viste/paginaPrincipale.fxml	(date 1734599335152)
+@@ -1,14 +1,11 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ 
+-<?import java.lang.*?>
+-<?import java.util.*?>
+-<?import javafx.scene.*?>
+-<?import javafx.scene.control.*?>
+-<?import javafx.scene.layout.*?>
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.layout.AnchorPane?>
+ 
+-<AnchorPane xmlns="http://javafx.com/javafx"
+-            xmlns:fx="http://javafx.com/fxml"
+-            fx:controller="viste.first.PaginaPrincipaleControllerGrafico"
+-            prefHeight="400.0" prefWidth="600.0">
+-
++<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.PaginaPrincipaleControllerGrafico">
++   <children>
++      <Button fx:id="creaSquadra" layoutX="244.0" layoutY="50.0" mnemonicParsing="false" onAction="#CreaSquadra" text="creazione squadra" />
++      <Button fx:id="creaAllenamento" layoutX="233.0" layoutY="156.0" mnemonicParsing="false" onAction="#CreaAllenamento" text="creazione allenamento" />
++   </children>
+ </AnchorPane>
+Index: src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport engineering.bean.UtenteBean;\r\n\r\npublic class PaginaPrincipaleControllerGrafico {\r\n\r\n    public void initialize(UtenteBean utente) {\r\n        System.out.println(\"Inizializzazione Temporanea\");\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java b/src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java
+--- a/src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java	(date 1734599231617)
+@@ -1,11 +1,85 @@
+ package viste.first;
+ 
++import controllerApplicativo.PaginaPrincipaleControllerApplicativo;
++import engineering.bean.AllenatoreBean;
+ import engineering.bean.UtenteBean;
++import engineering.eccezioni.EccezzioneGenerica;
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.Button;
++import javafx.stage.Stage;
++import viste.first.utils.CambioScena;
++
++import static viste.first.utils.FxmlFileName.PAGINA_CREAZIONE_ALLENAMENTO;
++import static viste.first.utils.FxmlFileName.PAGINA_CREAZIONE_SQUADRA;
+ 
+ public class PaginaPrincipaleControllerGrafico {
+ 
+-    public void initialize(UtenteBean utente) {
+-        System.out.println("Inizializzazione Temporanea");
++
++    public void initialize() {
++        System.out.println("Inizializzazione Temporanea della Pagina Principale");
++    }
++
++    @FXML
++    private Button creaSquadra;
++
++    @FXML
++    private Button creaAllenamento;
++
++    @FXML
++    protected void CreaAllenamento(ActionEvent event) {
++
++        System.out.println("Creazione Allenamento");
++
++        //cambio scena alla pagina di creazione dell'allenamento
++        try {
++            Stage stage = (Stage) creaAllenamento.getScene().getWindow();
++            CambioScena cambioScena = new CambioScena();
++            cambioScena.cambioScena(stage, PAGINA_CREAZIONE_ALLENAMENTO);
++
++        } catch (EccezzioneGenerica eccezzioneGenerica) {
++            System.out.println(eccezzioneGenerica.getMessage());
++        }
++    }
++
++    @FXML
++    protected void CreaSquadra(ActionEvent event) {
++
++        System.out.println("Creazione Squadra");
++
++        //cambio scena alla prima vista dove compiamo la creazione della squadra
++
++        //passo al controller applicativo il bean dell'utente che sta richiedendo la creazione della squadra codì che possa fare il cambio scena
++
++        //creo un utente bean fittizio da passare al controller applicativo. Nella realtà l'utente bean sarà già inizializzato e dovrò solamente passarlo
++        UtenteBean utenteBean = new AllenatoreBean("username", "email", "password", null, null);
++
++        /*commento il codice possibilmente corretto per usare qualcosa di temporaneo
++        PaginaPrincipaleControllerApplicativo paginaPrincipaleControllerApplicativo = new PaginaPrincipaleControllerApplicativo();
++        paginaPrincipaleControllerApplicativo.CreaSquadra(utenteBean);
++         */
++
++        try {
++            Stage stage = (Stage) creaSquadra.getScene().getWindow();
++            CambioScena cambioScena = new CambioScena();
++            cambioScena.cambioScena(stage, PAGINA_CREAZIONE_SQUADRA);
++
++        } catch (EccezzioneGenerica eccezzioneGenerica) {
++            System.out.println(eccezzioneGenerica.getMessage());
++        }
++
++    }
++
++
++    public void CodiceTemporaneoPerCambioScena() {
++        try {
++            Stage stage = (Stage) creaSquadra.getScene().getWindow();
++            CambioScena cambioScena = new CambioScena();
++            cambioScena.cambioScena(stage, PAGINA_CREAZIONE_SQUADRA);
++
++        } catch (EccezzioneGenerica eccezzioneGenerica) {
++            System.out.println(eccezzioneGenerica.getMessage());
++        }
+     }
+ 
+ }
+Index: src/main/java/engineering/pattern/Singleton.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.pattern;\r\n\r\nimport engineering.eccezioni.EccezioneGenerica;\r\nimport modelli.*;\r\n\r\nimport java.util.List;\r\n\r\npublic class Singleton {\r\n\r\n    //variabile statica che contiene l'istanza della classe\r\n    private static Singleton instance;\r\n\r\n    //variabili private dove vengono salvate le istanze\r\n    private List<Utente> utenti;\r\n\r\n    private Singleton(){}\r\n\r\n    // static block initialization for exception handling\r\n    static {\r\n        try {\r\n            instance = new Singleton();\r\n        } catch (EccezioneGenerica e) {\r\n            throw new EccezioneGenerica(\"Exception occurred in creating singleton instance\");\r\n        }\r\n    }\r\n\r\n    public static Singleton getInstance() {\r\n        return instance;\r\n    }\r\n\r\n    //metodi pubblici per ottenere le istanze di tutti gli utenti istanziati nel sistema\r\n    public void aggiungiUtente(Utente utente) {utenti.add(utente);}\r\n    public List<Utente> getUtenti() {return utenti;}\r\n    public Boolean esisteUtenteDaUtente(Utente utente) {return esisteUtenteDaEmail(utente.getEmail());}\r\n    public Utente getUtenteDaLogin(Login login) throws EccezioneGenerica {return getUtenteDaEmail(login.getEmail());}\r\n\r\n    public Boolean esisteUtenteDaLogin(String email, String password) {\r\n        for (Utente utente : utenti)\r\n        {\r\n            if (utente.getEmail().equals(email) && utente.getPassword().equals(password))\r\n            {\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public Boolean esisteUtenteDaEmail(String email) {\r\n        for (Utente utente : utenti)\r\n        {\r\n            if (utente.getEmail().equals(email))\r\n            {\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public Utente getUtenteDaEmail(String email) throws EccezioneGenerica {\r\n        for (Utente utente : utenti)\r\n        {\r\n            if (utente.getEmail().equals(email))\r\n            {\r\n                return utente;\r\n            }\r\n        }\r\n        throw new EccezioneGenerica(\"Utente non trovato\");\r\n    }\r\n\r\n    public void aggiungiRegistrazione(Registrazione registrazione){\r\n        if (registrazione.getAllenatore()) {\r\n            utenti.add(new Allenatore(registrazione.getUsername(),registrazione.getEmail(), registrazione.getPassword()));\r\n        } else {\r\n            utenti.add(new Giocatore(registrazione.getUsername(),registrazione.getEmail(), registrazione.getPassword()));\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/pattern/Singleton.java b/src/main/java/engineering/pattern/Singleton.java
+--- a/src/main/java/engineering/pattern/Singleton.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/engineering/pattern/Singleton.java	(date 1734598777090)
+@@ -1,8 +1,9 @@
+ package engineering.pattern;
+ 
+-import engineering.eccezioni.EccezioneGenerica;
++import engineering.eccezioni.EccezzioneGenerica;
+ import modelli.*;
+ 
++import java.util.ArrayList;
+ import java.util.List;
+ 
+ public class Singleton {
+@@ -11,7 +12,7 @@
+     private static Singleton instance;
+ 
+     //variabili private dove vengono salvate le istanze
+-    private List<Utente> utenti;
++    private List<Utente> utenti = new ArrayList<>();;
+ 
+     private Singleton(){}
+ 
+@@ -19,8 +20,8 @@
+     static {
+         try {
+             instance = new Singleton();
+-        } catch (EccezioneGenerica e) {
+-            throw new EccezioneGenerica("Exception occurred in creating singleton instance");
++        } catch (EccezzioneGenerica e) {
++            throw new EccezzioneGenerica("Exception occurred in creating singleton instance");
+         }
+     }
+ 
+@@ -30,14 +31,16 @@
+ 
+     //metodi pubblici per ottenere le istanze di tutti gli utenti istanziati nel sistema
+     public void aggiungiUtente(Utente utente) {utenti.add(utente);}
++
+     public List<Utente> getUtenti() {return utenti;}
+     public Boolean esisteUtenteDaUtente(Utente utente) {return esisteUtenteDaEmail(utente.getEmail());}
+-    public Utente getUtenteDaLogin(Login login) throws EccezioneGenerica {return getUtenteDaEmail(login.getEmail());}
++    public Utente getUtenteDaLogin(Login login) throws EccezzioneGenerica {return getUtenteDaEmail(login.getEmail());}
+ 
+-    public Boolean esisteUtenteDaLogin(String email, String password) {
++    public Boolean esisteUtenteDaLogin(Login login) {
+         for (Utente utente : utenti)
+         {
+-            if (utente.getEmail().equals(email) && utente.getPassword().equals(password))
++
++            if (utente.getEmail().equals(login.getEmail()) && utente.getPassword().equals(login.getPassword()))
+             {
+                 return true;
+             }
+@@ -56,15 +59,16 @@
+         return false;
+     }
+ 
+-    public Utente getUtenteDaEmail(String email) throws EccezioneGenerica {
++    public Utente getUtenteDaEmail(String email) throws EccezzioneGenerica {
+         for (Utente utente : utenti)
+         {
++            System.out.println("utente email: " + utente.getEmail() + " password: " + utente.getPassword());
+             if (utente.getEmail().equals(email))
+             {
+                 return utente;
+             }
+         }
+-        throw new EccezioneGenerica("Utente non trovato");
++        throw new EccezzioneGenerica("Utente non esistente");
+     }
+ 
+     public void aggiungiRegistrazione(Registrazione registrazione){
+Index: src/main/java/viste/first/utils/CambioScena.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first.utils;\r\n\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Parent;\r\nimport javafx.scene.Scene;\r\nimport javafx.stage.Stage;\r\n\r\nimport java.util.Objects;\r\n\r\npublic class CambioScena {\r\n    public void cambioScena(Stage stage, String string) {\r\n        try {\r\n\r\n            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(string)));\r\n            stage.setScene(new Scene(root));\r\n            stage.show();\r\n        } catch (Exception e) {\r\n            System.out.println(\"Errore nel cambio scena\");\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/utils/CambioScena.java b/src/main/java/viste/first/utils/CambioScena.java
+--- a/src/main/java/viste/first/utils/CambioScena.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/viste/first/utils/CambioScena.java	(date 1734513614265)
+@@ -10,12 +10,11 @@
+ public class CambioScena {
+     public void cambioScena(Stage stage, String string) {
+         try {
+-
+             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(string)));
+             stage.setScene(new Scene(root));
+             stage.show();
+         } catch (Exception e) {
+-            System.out.println("Errore nel cambio scena");
++            e.printStackTrace();
+         }
+     }
+ }
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-232.10335.12\">\r\n    <data-source name=\"database\" uuid=\"77b9377d-7f76-49e7-98de-b479fd83680a\">\r\n      <database-info product=\"MySQL\" version=\"8.0.40\" jdbc-version=\"4.2\" driver-name=\"MySQL Connector/J\" driver-version=\"mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)\" dbms=\"MYSQL\" exact-version=\"8.0.40\" exact-driver-version=\"8.2\">\r\n        <extra-name-characters>#@</extra-name-characters>\r\n        <identifier-quote-string>`</identifier-quote-string>\r\n      </database-info>\r\n      <case-sensitivity plain-identifiers=\"lower\" quoted-identifiers=\"lower\" />\r\n      <secret-storage>master_key</secret-storage>\r\n      <user-name>root</user-name>\r\n      <schema-mapping>\r\n        <introspection-scope>\r\n          <node kind=\"schema\" qname=\"database\" />\r\n        </introspection-scope>\r\n      </schema-mapping>\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/.idea/dataSources.local.xml	(date 1734598938055)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-232.10335.12">
++  <component name="dataSourceStorageLocal" created-in="IU-243.22562.145">
+     <data-source name="database" uuid="77b9377d-7f76-49e7-98de-b479fd83680a">
+       <database-info product="MySQL" version="8.0.40" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.40" exact-driver-version="8.2">
+         <extra-name-characters>#@</extra-name-characters>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d48fabd9-9d0c-4832-9762-f7ff2f4fd62e\" name=\"Changes\" comment=\"RegistrazioneCtrlApplicativo funzionante\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/bean/RegistrazioneBean.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/bean/RegistrazioneBean.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/modelli/Registrazione.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/modelli/Registrazione.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/modelli/Utente.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/modelli/Utente.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"FrancescoMin\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"85e127ae-09ee-4152-ace3-c561331c7528\" />\r\n        <option name=\"url\" value=\"https://github.com/FrancescoMin/TeamTrainingHub.git\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2nIPzptCElr3Z2cbKRrMzjtrfIO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/max/Desktop/ISPW/Ispw/Ispw/progettiOthers/Project-master/libs/mysql-connector-j-8.0.31.jar&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d48fabd9-9d0c-4832-9762-f7ff2f4fd62e\" name=\"Changes\" comment=\"\" />\r\n      <created>1728657885128</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1728657885128</updated>\r\n      <workItem from=\"1728657886213\" duration=\"2000\" />\r\n      <workItem from=\"1730031757462\" duration=\"424000\" />\r\n      <workItem from=\"1730055384804\" duration=\"595000\" />\r\n      <workItem from=\"1730114720831\" duration=\"614000\" />\r\n      <workItem from=\"1730297470122\" duration=\"795000\" />\r\n      <workItem from=\"1730367712503\" duration=\"1261000\" />\r\n      <workItem from=\"1730900062191\" duration=\"11000\" />\r\n      <workItem from=\"1730900495932\" duration=\"139000\" />\r\n      <workItem from=\"1730900654982\" duration=\"1874000\" />\r\n      <workItem from=\"1731419658599\" duration=\"1145000\" />\r\n      <workItem from=\"1731510660528\" duration=\"565000\" />\r\n      <workItem from=\"1731513936734\" duration=\"1087000\" />\r\n      <workItem from=\"1732372725814\" duration=\"1497000\" />\r\n      <workItem from=\"1732618556068\" duration=\"9617000\" />\r\n      <workItem from=\"1732719715292\" duration=\"1949000\" />\r\n      <workItem from=\"1732787371589\" duration=\"8556000\" />\r\n      <workItem from=\"1732810871835\" duration=\"127000\" />\r\n      <workItem from=\"1733073299051\" duration=\"853000\" />\r\n      <workItem from=\"1733240050872\" duration=\"2012000\" />\r\n      <workItem from=\"1733675765565\" duration=\"234000\" />\r\n      <workItem from=\"1733845576886\" duration=\"191000\" />\r\n      <workItem from=\"1733997673195\" duration=\"1357000\" />\r\n      <workItem from=\"1734004004118\" duration=\"9782000\" />\r\n      <workItem from=\"1734084904930\" duration=\"4581000\" />\r\n      <workItem from=\"1734364185289\" duration=\"606000\" />\r\n      <workItem from=\"1734386510091\" duration=\"6108000\" />\r\n      <workItem from=\"1734427385697\" duration=\"8929000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Inizio settaggio database\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730032171397</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730032171397</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"file workspace\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730299192134</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730299192136</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"commit e push di recupero\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730299261335</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730299261335</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"view della registrazione (senza controller)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730901612261</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730901612261</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Modifica di controller applicativo, grafico della registrazione e fxml della registrazione\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732726100799</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732726100800</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Typo nel package, aggiunta string password\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733074263323</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733074263323</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733675993534</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733675993534</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"correzione typo &quot;Eccezione&quot;, modifiche RegistrazioneCtrlApplicativo, non vengono salvati i dati di registrazione\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734108476104</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734108476104</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734393253773</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734393253773</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"RegistrazioneCtrlApplicativo funzionante\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734428756847</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734428756847</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"11\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Inizio settaggio database\" />\r\n    <MESSAGE value=\"file workspace\" />\r\n    <MESSAGE value=\"commit e push di recupero\" />\r\n    <MESSAGE value=\"view della registrazione (senza controller)\" />\r\n    <MESSAGE value=\"Modifica di controller applicativo, grafico della registrazione e fxml della registrazione\" />\r\n    <MESSAGE value=\"Typo nel package, aggiunta string password\" />\r\n    <MESSAGE value=\"rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;\" />\r\n    <MESSAGE value=\"correzione typo &quot;Eccezione&quot;, modifiche RegistrazioneCtrlApplicativo, non vengono salvati i dati di registrazione\" />\r\n    <MESSAGE value=\"Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo\" />\r\n    <MESSAGE value=\"RegistrazioneCtrlApplicativo funzionante\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"RegistrazioneCtrlApplicativo funzionante\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/.idea/workspace.xml	(date 1734602659415)
+@@ -4,15 +4,42 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="RegistrazioneCtrlApplicativo funzionante">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" afterDir="false" />
++    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Creazione Singleton, aggiunta della password in Utente e UtenteBean">
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/database.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/database.mwb" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/database.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/database.mwb.bak" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/AllenatoreBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/AllenatoreBean.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/RegistrazioneBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/RegistrazioneBean.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/eccezioni/EccezioneGenerica.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueryRegistrazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueryRegistrazione.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Registrazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Registrazione.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/CambioScena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/CambioScena.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/francesco.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/jlskkndjaksn.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/pippo.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/simone.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/simone.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/utente.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/paginaPrincipale.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/paginaPrincipale.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -23,26 +50,37 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="Interface" />
++        <option value="Exception" />
++        <option value="FxmlFile" />
+         <option value="Class" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "FrancescoMin"
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;Simone2oo2&quot;
+   }
+-}]]></component>
+-  <component name="GithubPullRequestsUISettings">
+-    <option name="selectedUrlAndAccountId">
+-      <UrlAndAccount>
+-        <option name="accountId" value="85e127ae-09ee-4152-ace3-c561331c7528" />
+-        <option name="url" value="https://github.com/FrancescoMin/TeamTrainingHub.git" />
+-      </UrlAndAccount>
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub.git&quot;,
++    &quot;accountId&quot;: &quot;64b32a3e-6402-44ac-8316-64089203d618&quot;
++  }
++}</component>
++  <component name="MavenImportPreferences">
++    <option name="generalSettings">
++      <MavenGeneralSettings>
++        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
++      </MavenGeneralSettings>
+     </option>
++  </component>
++  <component name="ProblemsViewState">
++    <option name="selectedTabId" value="CurrentFile" />
+   </component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 7
+@@ -54,36 +92,40 @@
+   </component>
+   <component name="PropertiesComponent">{
+   &quot;keyToString&quot;: {
++    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,
+     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/max/Desktop/ISPW/Ispw/Ispw/progettiOthers/Project-master/libs/mysql-connector-j-8.0.31.jar&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
+     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.43908045&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.log&quot;,
+     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+ }</component>
+-  <component name="RunManager">
+-    <configuration default="true" type="JetRunConfigurationType">
+-      <module name="OLDteamtraininghub" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+-      <module name="OLDteamtraininghub" />
+-      <option name="filePath" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
++  <component name="RecentsManager">
++    <key name="CreateClassDialog.RecentsKey">
++      <recent name="engineering.dao" />
++    </key>
++  </component>
++  <component name="SharedIndexes">
++    <attachedChunks>
++      <set>
++        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
++        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
++      </set>
++    </attachedChunks>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -97,29 +139,56 @@
+       <workItem from="1730031757462" duration="424000" />
+       <workItem from="1730055384804" duration="595000" />
+       <workItem from="1730114720831" duration="614000" />
+-      <workItem from="1730297470122" duration="795000" />
+-      <workItem from="1730367712503" duration="1261000" />
+-      <workItem from="1730900062191" duration="11000" />
+-      <workItem from="1730900495932" duration="139000" />
+-      <workItem from="1730900654982" duration="1874000" />
+-      <workItem from="1731419658599" duration="1145000" />
+-      <workItem from="1731510660528" duration="565000" />
+-      <workItem from="1731513936734" duration="1087000" />
+-      <workItem from="1732372725814" duration="1497000" />
+-      <workItem from="1732618556068" duration="9617000" />
+-      <workItem from="1732719715292" duration="1949000" />
+-      <workItem from="1732787371589" duration="8556000" />
+-      <workItem from="1732810871835" duration="127000" />
+-      <workItem from="1733073299051" duration="853000" />
+-      <workItem from="1733240050872" duration="2012000" />
+-      <workItem from="1733675765565" duration="234000" />
+-      <workItem from="1733845576886" duration="191000" />
+-      <workItem from="1733997673195" duration="1357000" />
+-      <workItem from="1734004004118" duration="9782000" />
+-      <workItem from="1734084904930" duration="4581000" />
+-      <workItem from="1734364185289" duration="606000" />
+-      <workItem from="1734386510091" duration="6108000" />
+-      <workItem from="1734427385697" duration="8929000" />
++      <workItem from="1730297470122" duration="757000" />
++      <workItem from="1731494902140" duration="1762000" />
++      <workItem from="1731503704686" duration="175000" />
++      <workItem from="1731503929228" duration="8329000" />
++      <workItem from="1731660149013" duration="81000" />
++      <workItem from="1731663590971" duration="19000" />
++      <workItem from="1731669973962" duration="2033000" />
++      <workItem from="1731678912193" duration="114000" />
++      <workItem from="1731679800544" duration="8602000" />
++      <workItem from="1731690085548" duration="3598000" />
++      <workItem from="1731708870520" duration="1064000" />
++      <workItem from="1731713507914" duration="491000" />
++      <workItem from="1731920970801" duration="7271000" />
++      <workItem from="1731936574658" duration="1994000" />
++      <workItem from="1731939308213" duration="278000" />
++      <workItem from="1731939630965" duration="3282000" />
++      <workItem from="1731944980100" duration="559000" />
++      <workItem from="1731945576897" duration="3952000" />
++      <workItem from="1731951613505" duration="822000" />
++      <workItem from="1731952472557" duration="419000" />
++      <workItem from="1732011804518" duration="2776000" />
++      <workItem from="1732015320204" duration="1679000" />
++      <workItem from="1732021817997" duration="12193000" />
++      <workItem from="1732095496957" duration="3707000" />
++      <workItem from="1732102752245" duration="2116000" />
++      <workItem from="1732264224731" duration="600000" />
++      <workItem from="1732384130453" duration="654000" />
++      <workItem from="1732551254280" duration="483000" />
++      <workItem from="1732613552949" duration="6793000" />
++      <workItem from="1732627015626" duration="753000" />
++      <workItem from="1732627821227" duration="3578000" />
++      <workItem from="1732632844638" duration="908000" />
++      <workItem from="1732793668635" duration="2129000" />
++      <workItem from="1732799943619" duration="369000" />
++      <workItem from="1732800347095" duration="307000" />
++      <workItem from="1732801565657" duration="230000" />
++      <workItem from="1732802997053" duration="1278000" />
++      <workItem from="1732804685251" duration="5232000" />
++      <workItem from="1732811553954" duration="422000" />
++      <workItem from="1732812014378" duration="4680000" />
++      <workItem from="1732872209213" duration="7053000" />
++      <workItem from="1733347812521" duration="1510000" />
++      <workItem from="1733675674840" duration="7743000" />
++      <workItem from="1733819535923" duration="372000" />
++      <workItem from="1733820334018" duration="9441000" />
++      <workItem from="1733830982627" duration="655000" />
++      <workItem from="1734526567829" duration="2225000" />
++      <workItem from="1734547918221" duration="1335000" />
++      <workItem from="1734597588161" duration="1016000" />
++      <workItem from="1734598645099" duration="3557000" />
+     </task>
+     <task id="LOCAL-00001" summary="Inizio settaggio database">
+       <option name="closed" value="true" />
+@@ -137,71 +206,95 @@
+       <option name="project" value="LOCAL" />
+       <updated>1730299192136</updated>
+     </task>
+-    <task id="LOCAL-00003" summary="commit e push di recupero">
++    <task id="LOCAL-00003" summary="inseriento BD,&#10;modifiche DAO,&#10;modalità demo introdotta">
+       <option name="closed" value="true" />
+-      <created>1730299261335</created>
++      <created>1731496548238</created>
+       <option name="number" value="00003" />
+       <option name="presentableId" value="LOCAL-00003" />
+       <option name="project" value="LOCAL" />
+-      <updated>1730299261335</updated>
++      <updated>1731496548238</updated>
+     </task>
+-    <task id="LOCAL-00004" summary="view della registrazione (senza controller)">
++    <task id="LOCAL-00004" summary="creazione metodo recuperoUtente per DAOJSON&#10;creazione di json di esempio">
+       <option name="closed" value="true" />
+-      <created>1730901612261</created>
++      <created>1731713873114</created>
+       <option name="number" value="00004" />
+       <option name="presentableId" value="LOCAL-00004" />
+       <option name="project" value="LOCAL" />
+-      <updated>1730901612261</updated>
++      <updated>1731713873114</updated>
+     </task>
+-    <task id="LOCAL-00005" summary="Modifica di controller applicativo, grafico della registrazione e fxml della registrazione">
++    <task id="LOCAL-00005" summary="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB&#10;modifica DAO sql">
+       <option name="closed" value="true" />
+-      <created>1732726100799</created>
++      <created>1732095618051</created>
+       <option name="number" value="00005" />
+       <option name="presentableId" value="LOCAL-00005" />
+       <option name="project" value="LOCAL" />
+-      <updated>1732726100800</updated>
++      <updated>1732095618051</updated>
+     </task>
+-    <task id="LOCAL-00006" summary="Typo nel package, aggiunta string password">
++    <task id="LOCAL-00006" summary="correzione foreign Key DB">
+       <option name="closed" value="true" />
+-      <created>1733074263323</created>
++      <created>1732097143443</created>
+       <option name="number" value="00006" />
+       <option name="presentableId" value="LOCAL-00006" />
+       <option name="project" value="LOCAL" />
+-      <updated>1733074263323</updated>
++      <updated>1732097143443</updated>
+     </task>
+-    <task id="LOCAL-00007" summary="rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;">
++    <task id="LOCAL-00007" summary="modifiche lista squadra in squadra">
+       <option name="closed" value="true" />
+-      <created>1733675993534</created>
++      <created>1732109650659</created>
+       <option name="number" value="00007" />
+       <option name="presentableId" value="LOCAL-00007" />
+       <option name="project" value="LOCAL" />
+-      <updated>1733675993534</updated>
++      <updated>1732109650659</updated>
+     </task>
+-    <task id="LOCAL-00008" summary="correzione typo &quot;Eccezione&quot;, modifiche RegistrazioneCtrlApplicativo, non vengono salvati i dati di registrazione">
++    <task id="LOCAL-00008" summary="Inizio registrazione in SQL e JSON">
+       <option name="closed" value="true" />
+-      <created>1734108476104</created>
++      <created>1732633281402</created>
+       <option name="number" value="00008" />
+       <option name="presentableId" value="LOCAL-00008" />
+       <option name="project" value="LOCAL" />
+-      <updated>1734108476104</updated>
++      <updated>1732633281402</updated>
+     </task>
+-    <task id="LOCAL-00009" summary="Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo">
++    <task id="LOCAL-00009" summary="ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL">
+       <option name="closed" value="true" />
+-      <created>1734393253773</created>
++      <created>1732875789232</created>
+       <option name="number" value="00009" />
+       <option name="presentableId" value="LOCAL-00009" />
+       <option name="project" value="LOCAL" />
+-      <updated>1734393253773</updated>
++      <updated>1732875789232</updated>
+     </task>
+-    <task id="LOCAL-00010" summary="RegistrazioneCtrlApplicativo funzionante">
++    <task id="LOCAL-00010" summary="creazione della connessione al DB dal file property">
+       <option name="closed" value="true" />
+-      <created>1734428756847</created>
++      <created>1733677808798</created>
+       <option name="number" value="00010" />
+       <option name="presentableId" value="LOCAL-00010" />
+       <option name="project" value="LOCAL" />
+-      <updated>1734428756847</updated>
++      <updated>1733677808798</updated>
+     </task>
+-    <option name="localTasksCounter" value="11" />
++    <task id="LOCAL-00011" summary="Creazione Classe Cambioscena, paginaPrincipale con controller senza funzionalità">
++      <option name="closed" value="true" />
++      <created>1733683261373</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1733683261373</updated>
++    </task>
++    <task id="LOCAL-00012" summary="Creazione Classe Cambioscena, paginaPrincipale con controller senza funzionalità">
++      <option name="closed" value="true" />
++      <created>1733683509636</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1733683509637</updated>
++    </task>
++    <task id="LOCAL-00013" summary="Creazione Singleton, aggiunta della password in Utente e UtenteBean">
++      <option name="closed" value="true" />
++      <created>1733825960982</created>
++      <option name="number" value="00013" />
++      <option name="presentableId" value="LOCAL-00013" />
++      <option name="project" value="LOCAL" />
++      <updated>1733825960982</updated>
++    </task>
++    <option name="localTasksCounter" value="14" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -212,7 +305,19 @@
+       <map>
+         <entry key="MAIN">
+           <value>
+-            <State />
++            <State>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="HEAD" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
++            </State>
+           </value>
+         </entry>
+       </map>
+@@ -220,15 +325,37 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Inizio settaggio database" />
+-    <MESSAGE value="file workspace" />
+     <MESSAGE value="commit e push di recupero" />
+-    <MESSAGE value="view della registrazione (senza controller)" />
+-    <MESSAGE value="Modifica di controller applicativo, grafico della registrazione e fxml della registrazione" />
+-    <MESSAGE value="Typo nel package, aggiunta string password" />
+-    <MESSAGE value="rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;" />
+-    <MESSAGE value="correzione typo &quot;Eccezione&quot;, modifiche RegistrazioneCtrlApplicativo, non vengono salvati i dati di registrazione" />
+-    <MESSAGE value="Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo" />
+-    <MESSAGE value="RegistrazioneCtrlApplicativo funzionante" />
+-    <option name="LAST_COMMIT_MESSAGE" value="RegistrazioneCtrlApplicativo funzionante" />
++    <MESSAGE value="file workspace" />
++    <MESSAGE value="inseriento BD,&#10;modifiche DAO,&#10;modalità demo introdotta" />
++    <MESSAGE value="creazione metodo recuperoUtente per DAOJSON&#10;creazione di json di esempio" />
++    <MESSAGE value="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB" />
++    <MESSAGE value="completamento JSON Login&#10;modifica nomi DAO&#10;modifiche DB&#10;modifica DAO sql" />
++    <MESSAGE value="correzione foreign Key DB" />
++    <MESSAGE value="modifiche lista squadra in squadra" />
++    <MESSAGE value="Inizio registrazione in SQL e JSON" />
++    <MESSAGE value="ristrutturazione BD MySQL, PK utenti, elimina FK squadra, PK allenamenti=data,utente_email(FK)&#10;parametrizzazione di query MySQL" />
++    <MESSAGE value="creazione della connessione al DB dal file property" />
++    <MESSAGE value="Creazione Classe Cambioscena, paginaPrincipale con controller senza funzionalità" />
++    <MESSAGE value="Creazione Singleton, aggiunta della password in Utente e UtenteBean" />
++    <option name="LAST_COMMIT_MESSAGE" value="Creazione Singleton, aggiunta della password in Utente e UtenteBean" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <breakpoint enabled="true" type="java-exception">
++          <properties class="engineering.eccezioni.EccezzioneGenerica" package="engineering.eccezioni" />
++          <option name="timeStamp" value="4" />
++        </breakpoint>
++        <breakpoint enabled="true" type="java-exception">
++          <properties class="engineering.eccezioni.UtenteNonEsistenteEccezione" package="engineering.eccezioni" />
++          <option name="timeStamp" value="5" />
++        </breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
++  </component>
++  <component name="XSLT-Support.FileAssociations.UIState">
++    <expand />
++    <select />
+   </component>
+ </project>
+\ No newline at end of file
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n  <modelVersion>4.0.0</modelVersion>\r\n\r\n  <groupId>com.example</groupId>\r\n  <artifactId>TeamTrainingHub</artifactId>\r\n  <version>1.0-SNAPSHOT</version>\r\n  <name>TeamTrainingHub</name>\r\n\r\n  <properties>\r\n    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n<junit.version>5.9.2</junit.version>  </properties>\r\n\r\n  <dependencies>\r\n    <dependency>\r\n      <groupId>org.openjfx</groupId>\r\n      <artifactId>javafx-controls</artifactId>\r\n      <version>23</version>\r\n    </dependency>\r\n    <dependency>\r\n      <groupId>org.openjfx</groupId>\r\n      <artifactId>javafx-fxml</artifactId>\r\n      <version>23</version>\r\n    </dependency>\r\n\r\n\r\n      <dependency>\r\n        <groupId>com.google.code.gson</groupId>\r\n        <artifactId>gson</artifactId>\r\n        <version>2.10.1</version>  <!-- Use the latest version -->\r\n      </dependency>\r\n\r\n    <dependency>\r\n      <groupId>mysql</groupId>\r\n      <artifactId>mysql-connector-java</artifactId>\r\n      <version>8.0.31</version> <!-- Usa l'ultima versione disponibile -->\r\n    </dependency>\r\n\r\n\r\n\r\n    <dependency>\r\n      <groupId>org.junit.jupiter</groupId>\r\n      <artifactId>junit-jupiter-api</artifactId>\r\n      <version>${junit.version}</version>\r\n      <scope>test</scope>\r\n    </dependency>\r\n    <dependency>\r\n      <groupId>org.junit.jupiter</groupId>\r\n      <artifactId>junit-jupiter-engine</artifactId>\r\n      <version>${junit.version}</version>\r\n      <scope>test</scope>\r\n    </dependency>  </dependencies>\r\n\r\n  <build>\r\n    <plugins>\r\n      <plugin>\r\n        <groupId>org.apache.maven.plugins</groupId>\r\n        <artifactId>maven-compiler-plugin</artifactId>\r\n        <version>3.11.0</version>\r\n        <configuration>\r\n          <source>21</source>\r\n          <target>21</target>\r\n        </configuration>\r\n      </plugin>\r\n      <plugin>\r\n        <groupId>org.openjfx</groupId>\r\n        <artifactId>javafx-maven-plugin</artifactId>\r\n        <version>0.0.8</version>\r\n        <executions>\r\n          <execution>\r\n            <!-- Default configuration for running with: mvn clean javafx:run -->\r\n            <id>default-cli</id>\r\n            <configuration>\r\n              <mainClass>inizio.LoginApplicazione</mainClass>\r\n              <launcher>app</launcher>\r\n              <jlinkZipName>app</jlinkZipName>\r\n              <jlinkImageName>app</jlinkImageName>\r\n              <noManPages>true</noManPages>\r\n              <stripDebug>true</stripDebug>\r\n              <noHeaderFiles>true</noHeaderFiles>\r\n            </configuration>\r\n          </execution>\r\n        </executions>\r\n      </plugin>\r\n    </plugins>\r\n  </build>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/pom.xml	(date 1734599820338)
+@@ -53,6 +53,13 @@
+       <scope>test</scope>
+     </dependency>  </dependencies>
+ 
++  <repositories>
++    <repository>
++      <id>gluon-repo</id>
++      <url>https://repo.gluonhq.com/maven</url>
++    </repository>
++  </repositories>
++
+   <build>
+     <plugins>
+       <plugin>
+Index: src/main/java/engineering/query/QueryRegistrazione.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.query;\r\n\r\nimport engineering.eccezioni.EccezioneGenerica;\r\nimport modelli.Login;\r\nimport modelli.Registrazione;\r\nimport modelli.Utente;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.SQLException;\r\n\r\npublic class QueryRegistrazione {\r\n\r\n    public static int InserisciUtenteQuery(Connection conn, Registrazione registrazione) throws EccezioneGenerica {\r\n        String sql = \"INSERT INTO utenti(user, email, password, allenatore) VALUES (?, ?, ?, ?)\";\r\n\r\n        try {\r\n            PreparedStatement ps = conn.prepareStatement(sql);\r\n            ps.setString(1, registrazione.getUsername());\r\n            ps.setString(2, registrazione.getEmail());\r\n            ps.setString(3, registrazione.getPassword());\r\n            ps.setBoolean(4, registrazione.getAllenatore());\r\n            return ps.executeUpdate();\r\n\r\n        } catch (SQLException e) {\r\n            throw new EccezioneGenerica(\"Errrore nell'inserimento dell'utente\");\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/query/QueryRegistrazione.java b/src/main/java/engineering/query/QueryRegistrazione.java
+--- a/src/main/java/engineering/query/QueryRegistrazione.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/engineering/query/QueryRegistrazione.java	(date 1734598777106)
+@@ -1,6 +1,6 @@
+ package engineering.query;
+ 
+-import engineering.eccezioni.EccezioneGenerica;
++import engineering.eccezioni.EccezzioneGenerica;
+ import modelli.Login;
+ import modelli.Registrazione;
+ import modelli.Utente;
+@@ -11,7 +11,7 @@
+ 
+ public class QueryRegistrazione {
+ 
+-    public static int InserisciUtenteQuery(Connection conn, Registrazione registrazione) throws EccezioneGenerica {
++    public static int InserisciUtenteQuery(Connection conn, Registrazione registrazione) throws EccezzioneGenerica {
+         String sql = "INSERT INTO utenti(user, email, password, allenatore) VALUES (?, ?, ?, ?)";
+ 
+         try {
+@@ -23,7 +23,7 @@
+             return ps.executeUpdate();
+ 
+         } catch (SQLException e) {
+-            throw new EccezioneGenerica("Errrore nell'inserimento dell'utente");
++            throw new EccezzioneGenerica("Errrore nell'inserimento dell'utente");
+         }
+     }
+ }
+Index: src/main/java/engineering/bean/AllenatoreBean.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.bean;\r\n\r\nimport modelli.Allenamento;\r\nimport modelli.Squadra;\r\n\r\nimport java.util.List;\r\n\r\npublic class AllenatoreBean extends UtenteBean {\r\n\r\n    public AllenatoreBean() {}\r\n\r\n    public AllenatoreBean(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {\r\n        super(username, email, password , allenamenti, squadra);\r\n        this.allenatore=true;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/bean/AllenatoreBean.java b/src/main/java/engineering/bean/AllenatoreBean.java
+--- a/src/main/java/engineering/bean/AllenatoreBean.java	(revision 6950d10c466384002e22c8a9893cc85c795c9c02)
++++ b/src/main/java/engineering/bean/AllenatoreBean.java	(date 1734513626450)
+@@ -9,6 +9,11 @@
+ 
+     public AllenatoreBean() {}
+ 
++    public AllenatoreBean(String username, String email, String password) {
++        super(username, email, password);
++        this.allenatore = true;
++    }
++
+     public AllenatoreBean(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
+         super(username, email, password , allenamenti, squadra);
+         this.allenatore=true;

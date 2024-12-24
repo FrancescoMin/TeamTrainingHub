@@ -126,11 +126,11 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 throw new EccezioneGenerica(e.getMessage());
             }
             finally {
-                try {
-                    if (conn != null) conn.close();
-                } catch (SQLException e) {
-                    System.out.println("Seconda eccezione rilevata");
+                try
+                {
+                    if (rs!=null) {rs.close();}
                 }
+                catch (SQLException e) {System.out.println("Seconda eccezione rilevata");}
             }
         }
         throw new EccezioneGenerica("Connessione con il DB non riuscita");
@@ -157,8 +157,11 @@ public class UtenteDAOMySQL implements UtenteDAO {
             {throw new EccezioneGenerica(e.getMessage());}
 
             finally {
-                try {if(conn!=null) conn.close();}
-                catch (SQLException e) {throw new EccezioneGenerica("Errore nella chiusura della connessione con il database");}
+                try
+                {
+                    if (rs!=null) {rs.close();}
+                }
+                catch (SQLException e) {System.out.println("Seconda eccezione rilevata");}
             }
         }
     }
@@ -185,13 +188,6 @@ public class UtenteDAOMySQL implements UtenteDAO {
             {
                 throw new EccezioneGenerica(e.getMessage());
             }
-            finally {
-                try {
-                    if (conn != null) conn.close();
-                } catch (SQLException e) {
-                    System.out.println("Seconda eccezione rilevata");
-                }
-            }
         }
         throw new EccezioneGenerica("Connessione con il DB non riuscita nella modifica della squadra");
     }
@@ -211,5 +207,3 @@ public class UtenteDAOMySQL implements UtenteDAO {
         throw new EccezioneGenerica(e.getMessage());
     }
 }
-
-
