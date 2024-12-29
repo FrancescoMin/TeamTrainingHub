@@ -5,25 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Modificato la rappresentazione di squadra nei file utenti in json e derivanti modifiche nei fai dao">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/CreazioneAllenamentoControllerApplivativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/CreazioneAllenamentoControllerApplivativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/PaginaPrincipaleControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/HomepageAllenatoreControllerApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoControllerGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageAllenatoreGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/lollo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/nomeDiProva.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/Username di Prova.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/a.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/francesco.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/jlskkndjaksn.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/pippo.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/simone.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/utente.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/paginaPrincipale.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

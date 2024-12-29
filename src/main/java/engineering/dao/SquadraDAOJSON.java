@@ -18,7 +18,7 @@ public class SquadraDAOJSON implements SquadraDAO {
     public void creaSquadraPerAllenatore(Utente utente, Squadra squadra) {
 
         try {
-            creaSquadra(squadra);
+            creaSquadra(squadra, utente);
             IscrizioneUtenteASquadra(utente, squadra);
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,7 +44,7 @@ public class SquadraDAOJSON implements SquadraDAO {
     }
 
 
-    public void creaSquadra(Squadra squadra) {
+    public void creaSquadra(Squadra squadra, Utente utente) {
         try {
             //Creazione del path
             String filePath = "src/main/resources/persistenza/squadre/" + squadra.getNome() + ".json";
@@ -63,11 +63,9 @@ public class SquadraDAOJSON implements SquadraDAO {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 FileWriter writer = new FileWriter(filePath);
 
-                // Step 1: Serialize the Person object to a JSON string
-                String jsonString = gson.toJson(squadra);
-
-                // Step 2: Convert the JSON string to a JsonObject
-                JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("allenatore", utente.getEmail());
+                jsonObject.addProperty("nome", squadra.getNome());
 
                 //salvataggio dell'oggetto serializzato utente nel file json
                 writer.write(gson.toJson(jsonObject));
