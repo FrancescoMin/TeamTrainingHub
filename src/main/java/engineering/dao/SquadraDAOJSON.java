@@ -53,7 +53,7 @@ public class SquadraDAOJSON implements SquadraDAO {
                 //controllo che il file sia già esistente
                 Files.readAllBytes(Paths.get(filePath));
 
-                //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
+                //se il file esiste, una squadra con lo stesso nome esiste già e lancio un'eccezione
                 throw new EccezioneGenerica("squadra esistente");
 
             } catch (IOException e) {

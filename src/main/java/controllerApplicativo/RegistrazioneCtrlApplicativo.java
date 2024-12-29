@@ -30,17 +30,18 @@ public class RegistrazioneCtrlApplicativo {
 
         // Utilizzo del DAO per salvare l'utente
         UtenteDAO UtenteDAO = new UtenteDAOJSON();
+
         try {
             UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
             System.out.println("Registrazione avvenuta con successo!");
             Singleton singleton = Singleton.getInstance();
-            if (registrazione.getAllenatore())
-            {
+
+            if (registrazione.getAllenatore()) {
                 Utente utente = new Allenatore(username, email, password);
                 singleton.aggiungiUtente(utente);
             }
-            else
-            {
+
+            else {
                 Utente utente = new Giocatore(username, email, password);
                 singleton.aggiungiUtente(utente);
             }

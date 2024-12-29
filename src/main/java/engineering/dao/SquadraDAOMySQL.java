@@ -18,7 +18,8 @@ public class SquadraDAOMySQL implements SquadraDAO {
         try{
             System.out.println("Creazione della squadra per l'allenatore");
 
-            if(creaSquadra(squadra, utente)){IscrizioneUtenteASquadra(utente, squadra);}
+            creaSquadra(squadra, utente);
+            IscrizioneUtenteASquadra(utente, squadra);
         }
         catch (EccezioneGenerica e)
         {
@@ -27,7 +28,7 @@ public class SquadraDAOMySQL implements SquadraDAO {
 
     }
 
-    public Boolean creaSquadra(Squadra squadra, Utente utente) {
+    public void creaSquadra(Squadra squadra, Utente utente) {
         Connection conn;
         int righeModificate = 0;
 
@@ -38,7 +39,6 @@ public class SquadraDAOMySQL implements SquadraDAO {
             try
             {
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
-                System.out.println("non lo so");
                 righeModificate = QuerySquadra.createSquadra(conn, squadra.getNome(), utente.getEmail());
 
                 System.out.println("Creazione della squadra con nome: " + squadra.getNome() + " e utente_email: " + utente.getEmail());
@@ -48,7 +48,6 @@ public class SquadraDAOMySQL implements SquadraDAO {
                 {
                     throw new EccezioneGenerica("Errore nella creazione della squadra");
                 }
-                return true;
             }
             catch(EccezioneGenerica e) {
                 throw new EccezioneGenerica(e.getMessage());
@@ -56,12 +55,13 @@ public class SquadraDAOMySQL implements SquadraDAO {
         }
         else {
             System.out.println("Connessione con il DB non riuscita nella creazione della squadra");
+            throw new EccezioneGenerica("Connessione con il DB non riuscita nella creazione della squadra");
         }
-        throw new EccezioneGenerica("Connessione con il DB non riuscita nella creazione della squadra");
 
     }
 
     public void IscrizioneUtenteASquadra(Utente utente, Squadra squadra) {
+        //effettivamente noi non iscriviamo l'utente alla squadra, ma possiamo immaginare che il metodo faccia qualcosa
         System.out.println("Iscrizione dell'utente alla squadra");
     }
     public void visualizzaTutteLeSquadre() {

@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 
 public class AllenamentoDAOJSON implements AllenamentoDAO {
 
-    public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) {
+    public void creaAllenamento(Allenamento allenamento){
         System.out.println("Creazione Allenamento JSON");
         //aggiunta dell'utente alla lista degli utenti
         try {
@@ -48,6 +48,12 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
         } catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());
         }
+
+    }
+
+    public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) {
+
+        creaAllenamento(allenamento);
 
         utente.getAllenamenti().add(allenamento);
 

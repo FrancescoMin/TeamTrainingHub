@@ -76,7 +76,7 @@ public class LoginControllerGrafico {
                 if(loginControllerApplicativo.verificaCredenziali(loginBean));
 
                 //creazione del bean utente generico in funzione dei dati del bean di login
-                UtenteBean utenteBean = loginControllerApplicativo.creazioneUtente(loginBean);
+                UtenteBean utenteBean = loginControllerApplicativo.recuperoUtente(loginBean);
 
                 //passaggio dell'istanza di utenteBean alla home page
                 Stage stage = (Stage) email.getScene().getWindow();

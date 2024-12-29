@@ -1,6 +1,8 @@
 package viste.first;
 
 import controllerApplicativo.CreazioneAllenamentoControllerApplivativo;
+import engineering.bean.AllenatoreBean;
+import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -38,8 +40,7 @@ public class CreazioneAllenamentoControllerGrafico{
     public void initialize() {
         System.out.println("Inizializzazione Temporanea della Pagina di Creazione Allenamento");
         // Populate the ChoiceBox with items
-
-    }
+        }
 
     @FXML
     public void CreaAllenamento() {
@@ -57,7 +58,7 @@ public class CreazioneAllenamentoControllerGrafico{
             if (mese < 1 || mese > 12) {
                 throw new EccezioneGenerica("Mese non valido");
             }
-            if (anno < 2021) {
+            if (anno < 2021 ) {
                 throw new EccezioneGenerica("Anno non valido");
             }
             if (durata < 1) {
@@ -65,8 +66,11 @@ public class CreazioneAllenamentoControllerGrafico{
             }
             String data = giorno + "-" + mese + "-" + anno;
             AllenamentoBean allenamentoBean = new AllenamentoBean(data, durata, descrizione);
+
+            UtenteBean utenteBean = new AllenatoreBean("prova", "a", "1");
+
             CreazioneAllenamentoControllerApplivativo creazioneAllenamentoControllerApplivativo = new CreazioneAllenamentoControllerApplivativo();
-            creazioneAllenamentoControllerApplivativo.creaAllenamento(allenamentoBean);
+            creazioneAllenamentoControllerApplivativo.creaAllenamento(allenamentoBean, utenteBean);
             System.out.println("giorno: " + giorno + " mese: " + mese + " anno: " + anno + " durata: " + durata + " descrizione: " + descrizione);
 
             try {
@@ -77,7 +81,6 @@ public class CreazioneAllenamentoControllerGrafico{
             } catch (EccezioneGenerica EccezioneGenerica) {
                 System.out.println(EccezioneGenerica.getMessage());
             }
-
 
         } catch (Exception e) {
             e.printStackTrace();

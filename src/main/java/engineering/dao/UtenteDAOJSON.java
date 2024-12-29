@@ -177,8 +177,6 @@ public class UtenteDAOJSON implements UtenteDAO {
             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
             List<Allenamento> allenamenti = recuperaAllenamentiPerJsonArray(jsonObject.get("allenamenti").getAsJsonArray());
 
-            System.out.println("Lalalalalal Stronzata");
-
             String nomeSquadra = jsonObject.get("squadra").getAsString();
             Squadra squadra = new Squadra(nomeSquadra);
 
@@ -244,10 +242,12 @@ public class UtenteDAOJSON implements UtenteDAO {
         if (utente.getAllenamenti() == null) {
             System.out.println("allenamento null");
             jsonObject.add("allenamenti", jsonArray);
+
         } else if (utente.getAllenamenti().isEmpty()) {
             System.out.println("allenamento vuoto");
-            jsonObject.addProperty("allenamenti", "");
+            jsonObject.add("allenamenti", jsonArray);
         } else {
+
             System.out.println("allenamento trovato");
             for (int i = 0; i < utente.getAllenamenti().size(); i++) {
                 jsonArray.add(utente.getAllenamenti().get(i).getData());

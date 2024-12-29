@@ -5,6 +5,6 @@ import modelli.Utente;
 
 public interface AllenamentoDAO {
 
-    public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente );
+    public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente);
 
 }

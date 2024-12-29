@@ -1,24 +1,39 @@
 package controllerApplicativo;
 
+import engineering.bean.UtenteBean;
 import engineering.dao.AllenamentoDAO;
 import engineering.dao.AllenamentoDAOJSON;
+import engineering.dao.AllenamentoDAOMySQL;
+import engineering.pattern.Singleton;
 import modelli.Allenamento;
 import engineering.bean.AllenamentoBean;
-import modelli.Allenatore;
 import modelli.Utente;
 
 public class CreazioneAllenamentoControllerApplivativo {
 
-    public void creaAllenamento(AllenamentoBean allenamentoBean) {
+    public void creaAllenamento(AllenamentoBean allenamentoBean, UtenteBean utenteBean) {
 
         try {
-            Utente utente = new Allenatore("prova", "a", "1");
+            Singleton instance = Singleton.getInstance();
+            Utente utente=instance.getUtenteDaEmail(utenteBean.getEmail());
 
-            AllenamentoDAO allenamentoDAO = new AllenamentoDAOJSON();
-            allenamentoDAO.inserisciAllenamentoAdUtente(new Allenamento(allenamentoBean.getData(), allenamentoBean.getDurata(), allenamentoBean.getDescrizione()), utente);
+            Allenamento allenamento=new Allenamento(allenamentoBean.getData(), allenamentoBean.getDurata(), allenamentoBean.getDescrizione());
+
+
+
+
+            //AllenamentoDAO allenamentoDAO = new AllenamentoDAOJSON();
+            AllenamentoDAO allenamentoDAO = new AllenamentoDAOMySQL();
+
+
+
+
+
+
+            //assegniamo l'allenamento all'allenatore che lo ha creato
+            allenamentoDAO.inserisciAllenamentoAdUtente(allenamento, utente);
 
             System.out.println("Creazione ed inserimento dell'allenamento avvenuto con successo");
-
 
         } catch (Exception e) {
             e.printStackTrace();

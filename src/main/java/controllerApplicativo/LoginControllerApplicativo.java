@@ -23,8 +23,22 @@ public class LoginControllerApplicativo {
             //creo un utente da passare all'interno del sistema
             Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
 
+
+
+
+
+
+
+
             //decidere il metodo di scelta del DAO
             UtenteDAO utenteDao = new UtenteDAOJSON();
+
+
+
+
+
+
+
 
             //vedo se l'utente esiste nel singleton
             Singleton istanza=Singleton.getInstance();
@@ -47,11 +61,22 @@ public class LoginControllerApplicativo {
         }
     }
 
-    public UtenteBean creazioneUtente(LoginBean loginBean) {
+    public UtenteBean recuperoUtente(LoginBean loginBean) {
+
+
+
+
+
 
         //decidere il metodo di scelta del DAO
+        //UtenteDAO utenteDao = new UtenteDAOJSON();
         UtenteDAO utenteDao = new UtenteDAOJSON();
-        //UtenteDAO utenteDao = new UtenteDAOMySQL();
+
+
+
+
+
+
 
         //vedo se l'utente esiste nel singleton
         Singleton istanza=Singleton.getInstance();
@@ -70,10 +95,8 @@ public class LoginControllerApplicativo {
 
         else {
             //creazione del modello utente
-            System.out.println("Creazione dell'utente "+ loginBean.getEmail() +" con password "+ loginBean.getPassword());
+            System.out.println("Recupero l'utente "+ loginBean.getEmail() +" con password "+ loginBean.getPassword() + "dalla persistenza");
             Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
-            System.out.println("Creazione dell'utente");
-
 
             //creazione del bean utente in funzioni che sia un allenatore o un giocatore
             if (utente.getAllenatore()) {

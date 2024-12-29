@@ -16,6 +16,8 @@ public class HomepageAllenatoreControllerApplicativo
         //implemento i controlli sull'allenatore che richiedere la creazione della Squadra
         if (utenteBean.getSquadra()!=null) {
             System.out.println("L'allenatore ha già una squadra");
+            throw new EccezioneGenerica("L'allenatore ha già una squadra");
+
         } else {
             System.out.println("L'allenatore non ha una squadra e procedo alla creazione della squadra");
 
