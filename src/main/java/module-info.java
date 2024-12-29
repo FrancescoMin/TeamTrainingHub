@@ -5,6 +5,7 @@ module com.example.teamtraininghub {
     requires java.sql;
     requires java.desktop;
     requires com.fasterxml.jackson.databind;
+    requires org.junit.jupiter.api;
 
     opens modelli to com.google.gson;
 

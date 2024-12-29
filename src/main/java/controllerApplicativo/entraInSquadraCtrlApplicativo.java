@@ -1,28 +1,33 @@
 package controllerApplicativo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
+import engineering.eccezioni.EccezioneGenerica;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class entraInSquadraCtrlApplicativo {
 
-    private List<String> teamList;
+    private static final String FILE_PATH = "src/main/resources/persistenza/squadre/";
 
     public entraInSquadraCtrlApplicativo() {
-        caricaSquadreJSON();
+        // Costruttore vuoto
     }
 
-    private void caricaSquadreJSON() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            teamList = objectMapper.readValue(new File("src/main/resources/persistenza/squadre"), List.class);
-        } catch (IOException e) {
-            e.printStackTrace();
+    /**
+     * Verifica se esiste una squadra con il nome specificato nella persistenza.
+     *
+     * @param nomeSquadra Nome della squadra da verificare.
+     * @return True se il file esiste, False altrimenti.
+     * @throws EccezioneGenerica Se il nome della squadra è vuoto o invalido.
+     */
+    public boolean verificaEsistenzaSquadra(String nomeSquadra) throws EccezioneGenerica {
+        if (nomeSquadra == null || nomeSquadra.trim().isEmpty()) {
+            throw new EccezioneGenerica("Il nome della squadra non può essere vuoto.");
         }
-    }
 
-    public boolean nomeValido(String teamName) {
-        return teamList.contains(teamName);
+        String filePath = FILE_PATH + nomeSquadra + ".json";
+
+        // Controlla se il file esiste
+        return Files.exists(Paths.get(filePath));
     }
 }
