@@ -1,11 +1,24 @@
 package viste.first;
 
+import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import viste.first.utils.CambioScena;
 
-public class HomepageGiocatoreCtrlGrafico {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import static viste.first.utils.FxmlFileName.PAGINA_ENTRAINSQUADRA;
+
+
+public class HomepageGiocatoreCtrlGrafico implements  Initializable{
 
     @FXML
     private Button EntraInSquadraButton;
@@ -21,8 +34,11 @@ public class HomepageGiocatoreCtrlGrafico {
 
     private String username;
 
-    public void initialize() {
-        // Imposta il messaggio di benvenuto
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        EntraInSquadraButton.setOnAction(event -> handleEntraInSquadraButtonAction());
+        consultaAllenamentiButton.setOnAction(event -> handleConsultaAllenamentiButtonAction());
         welcomeLabel.setText("Ciao " + username);
     }
 
@@ -32,8 +48,14 @@ public class HomepageGiocatoreCtrlGrafico {
 
     @FXML
     private void handleEntraInSquadraButtonAction() {
-        // Logica per il pulsante "Entra in una squadra"
-        System.out.println("Entra in una squadra cliccato");
+        try {
+            Stage stage = (Stage) EntraInSquadraButton.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_ENTRAINSQUADRA);
+
+        } catch (EccezioneGenerica eccezioneGenerica) {
+            System.out.println(eccezioneGenerica.getMessage());
+        }
     }
 
     @FXML

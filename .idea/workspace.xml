@@ -4,32 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Creazione allenamenti per allenatore">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_12_2024_11_04_[Changes]1/database.mwb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_12_2024_11_04_[Changes]1/database.mwb.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_12_2024_11_04_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_12_2024_11_04__Changes_1.xml" beforeDir="false" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Modificato la rappresentazione di squadra nei file utenti in json e derivanti modifiche nei fai dao">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/CreazioneAllenamentoControllerApplivativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/CreazioneAllenamentoControllerApplivativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/HomepageAllenatoreControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/HomepageAllenatoreControllerApplicativo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOMySQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/PaginaPrincipaleControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/HomepageAllenatoreControllerApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Utente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoControllerGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/lollo.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/nomeDiProva.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/PaginaPrincipaleControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageAllenatoreGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/Username di Prova.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/a.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/francesco.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/jlskkndjaksn.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/pippo.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/simone.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/utente.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/paginaPrincipale.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,11 +153,7 @@
       <workItem from="1734686289666" duration="16032000" />
       <workItem from="1734892877229" duration="1451000" />
       <workItem from="1734966919459" duration="8233000" />
-      <workItem from="1735032977134" duration="4732000" />
-      <workItem from="1735039653997" duration="2005000" />
-      <workItem from="1735304090450" duration="1477000" />
-      <workItem from="1735405422618" duration="4586000" />
-      <workItem from="1735468124267" duration="5149000" />
+      <workItem from="1735032977134" duration="4180000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -269,23 +259,7 @@
       <option name="project" value="LOCAL" />
       <updated>1734989947328</updated>
     </task>
-    <task id="LOCAL-00014" summary="Modificato la rappresentazione di squadra nei file utenti in json e derivanti modifiche nei fai dao">
-      <option name="closed" value="true" />
-      <created>1735039173518</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1735039173518</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Creazione allenamenti per allenatore">
-      <option name="closed" value="true" />
-      <created>1735039244941</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1735039244941</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,8 +290,7 @@
     <MESSAGE value="Fix valori stringhe nei json" />
     <MESSAGE value="Creazione Singleton, creazione Squadra e Allenamento, modifiche minori su json" />
     <MESSAGE value="Modificato la rappresentazione di squadra nei file utenti in json e derivanti modifiche nei fai dao" />
-    <MESSAGE value="Creazione allenamenti per allenatore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creazione allenamenti per allenatore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modificato la rappresentazione di squadra nei file utenti in json e derivanti modifiche nei fai dao" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

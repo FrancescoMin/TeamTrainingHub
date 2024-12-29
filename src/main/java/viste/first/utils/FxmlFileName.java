@@ -9,6 +9,7 @@ public class FxmlFileName {
     public static final String PAGINA_HOME_GIOCATORE = "/viste/homepageGiocatore.fxml";
     public static final String PAGINA_CREAZIONE_SQUADRA = "/viste/creazioneSquadra.fxml";
     public static final String PAGINA_CREAZIONE_ALLENAMENTO = "/viste/creazioneAllenamento.fxml";
+    public static final String PAGINA_ENTRAINSQUADRA = "/viste/entraInSquadra.fxml";
 
 }
 
