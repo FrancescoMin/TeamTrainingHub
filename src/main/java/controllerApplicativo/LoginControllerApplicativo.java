@@ -5,6 +5,7 @@ import engineering.dao.UtenteDAO;
 import engineering.dao.UtenteDAOJSON;
 import engineering.dao.UtenteDAOMySQL;
 import engineering.pattern.Singleton;
+import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Allenatore;
 import modelli.Giocatore;
 import modelli.Login;
@@ -22,21 +23,7 @@ public class LoginControllerApplicativo {
 
             //creo un utente da passare all'interno del sistema
             Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
-
-
-
-
-
-
-
-
-            //decidere il metodo di scelta del DAO
-            UtenteDAO utenteDao = new UtenteDAOJSON();
-
-
-
-
-
+            UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
 
 
 
@@ -66,11 +53,9 @@ public class LoginControllerApplicativo {
 
 
 
-
-
+        UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
         //decidere il metodo di scelta del DAO
         //UtenteDAO utenteDao = new UtenteDAOJSON();
-        UtenteDAO utenteDao = new UtenteDAOJSON();
 
 
 

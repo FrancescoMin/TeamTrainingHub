@@ -50,9 +50,6 @@ public class HomepageAllenatoreGrafico {
 
         //passo al controller applicativo il bean dell'utente che sta richiedendo la creazione della squadra codì che possa fare il cambio scena
 
-        //creo un utente bean fittizio da passare al controller applicativo. Nella realtà l'utente bean sarà già inizializzato e dovrò solamente passarlo
-        UtenteBean utenteBean = new AllenatoreBean("username", "email", "password", null, null);
-
         /*commento il codice possibilmente corretto per usare qualcosa di temporaneo
         HomepageAllenatoreControllerApplicativo paginaPrincipaleControllerApplicativo = new HomepageAllenatoreControllerApplicativo();
         paginaPrincipaleControllerApplicativo.CreaSquadra(utenteBean);
