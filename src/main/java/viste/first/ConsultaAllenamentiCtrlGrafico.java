@@ -25,8 +25,8 @@ public class ConsultaAllenamentiCtrlGrafico {
     @FXML
     private TableColumn<Allenamento, String> descrizioneColumn;
 
-    @FXML
-    private javafx.scene.control.Button refreshButton;
+   // @FXML
+    //private javafx.scene.control.Button refreshButton;
 
     private ConsultaAllenamentiCtrlApplicativo applicativoController;
 
@@ -41,13 +41,13 @@ public class ConsultaAllenamentiCtrlGrafico {
         // Caricam gli allenamenti iniziali
         caricaAllenamenti();
 
-        // Aggiungi un listener per il pulsante di aggiornamento (TASTO OPZIONALE)
-        refreshButton.setOnAction(event -> caricaAllenamenti());
+        //listener per il pulsante di aggiornamento (TASTO OPZIONALE)
+       // refreshButton.setOnAction(event -> caricaAllenamenti());
     }
 
     private void caricaAllenamenti() {
         List<Allenamento> allenamenti = applicativoController.leggiAllenamenti();
-        ObservableList<Allenamento> allenamentiObservable = FXCollections.observableArrayList(allenamenti);
+        ObservableList<Allenamento> allenamentiObservable = FXCollections.observableArrayList();
         allenamentiTable.setItems(allenamentiObservable);
     }
 }
