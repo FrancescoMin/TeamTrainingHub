@@ -11,8 +11,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import viste.first.utils.CambioScena;
 
-import static viste.first.utils.FxmlFileName.PAGINA_CREAZIONE_ALLENAMENTO;
-import static viste.first.utils.FxmlFileName.PAGINA_CREAZIONE_SQUADRA;
+import static viste.first.utils.FxmlFileName.*;
 
 public class HomepageAllenatoreGrafico {
 
@@ -29,6 +28,22 @@ public class HomepageAllenatoreGrafico {
 
     @FXML
     private Button creaAllenamento;
+
+    @FXML
+    protected void RitornoAlLogin(ActionEvent event) {
+
+        System.out.println("Ritorno al Login");
+
+        //cambio scena alla pagina di login
+        try {
+            Stage stage = (Stage) creaAllenamento.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_PRINCIPALE);
+
+        } catch (EccezioneGenerica EccezioneGenerica) {
+            System.out.println(EccezioneGenerica.getMessage());
+        }
+    }
 
     @FXML
     protected void CreaAllenamento(ActionEvent event) {

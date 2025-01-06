@@ -3,18 +3,18 @@ package engineering.bean;
 public class RegistrazioneBean extends LoginBean{
 
     private String email;
-    private boolean alleantore;
+    private boolean allenatore;
 
 
-    public RegistrazioneBean(String username, String email, String password, boolean alleantore) {
+    public RegistrazioneBean(String username, String email, String password, boolean allenatore) {
         super(email, password);
         setUsername(username);
-        setAlleantore(alleantore);
+        setAllenatore(allenatore);
     }
 
     public String getUsername() {return this.email;}
     public void setUsername(String username) {this.email = username;}
 
-    public boolean getAlleantore() {return this.alleantore;}
-    public void setAlleantore(boolean alleantore) {this.alleantore = alleantore;}
+    public boolean getAllenatore() {return this.allenatore;}
+    public void setAllenatore(boolean allenatore) {this.allenatore = allenatore;}
 }

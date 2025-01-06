@@ -1,11 +1,10 @@
 package controllerApplicativo;
 
 import engineering.bean.RegistrazioneBean;
-import engineering.bean.UtenteBean;
 import engineering.dao.UtenteDAO;
-import engineering.dao.UtenteDAOJSON;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
+import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Allenatore;
 import modelli.Giocatore;
 import modelli.Registrazione;
@@ -17,7 +16,7 @@ public class RegistrazioneCtrlApplicativo {
         String username = registrazioneBean.getUsername();
         String email = registrazioneBean.getEmail();
         String password = registrazioneBean.getPassword();
-        boolean isAllenatore = registrazioneBean.getAlleantore();
+        boolean isAllenatore = registrazioneBean.getAllenatore();
 
         // Verifica che tutti i campi siano compilati
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
@@ -27,23 +26,26 @@ public class RegistrazioneCtrlApplicativo {
         // Creazione del modello registrazione
         Registrazione registrazione = new Registrazione(username, email, password, isAllenatore);
 
+        //controllo che l'utente esisti già nel singleton
+        Singleton istanza = Singleton.getInstance();
+        if (istanza.esisteUtenteDaRegistrazione(registrazione)) {
+            throw new Exception("Utente già registrato!");
+        }
 
         // Utilizzo del DAO per salvare l'utente
-        UtenteDAO UtenteDAO = new UtenteDAOJSON();
+        UtenteDAO UtenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
 
         try {
             UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
-            System.out.println("Registrazione avvenuta con successo!");
-            Singleton singleton = Singleton.getInstance();
+            istanza.aggiungiRegistrazione(registrazione);
 
             if (registrazione.getAllenatore()) {
                 Utente utente = new Allenatore(username, email, password);
-                singleton.aggiungiUtente(utente);
             }
 
             else {
                 Utente utente = new Giocatore(username, email, password);
-                singleton.aggiungiUtente(utente);
+
             }
             //gestione del cambio di scena per tornare alla pagina principale
 

@@ -1,12 +1,9 @@
 package controllerApplicativo;
 
-import engineering.bean.UtenteBean;
 import engineering.dao.*;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
-import modelli.Allenatore;
-import modelli.Giocatore;
 import modelli.Squadra;
 import modelli.Utente;
 

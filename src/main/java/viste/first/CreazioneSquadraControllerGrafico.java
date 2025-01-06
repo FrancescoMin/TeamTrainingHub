@@ -53,7 +53,7 @@ public class CreazioneSquadraControllerGrafico {
                 try {
                     Stage stage = (Stage) nomeSquadra.getScene().getWindow();
                     CambioScena cambioScena = new CambioScena();
-                    cambioScena.cambioScena(stage, PAGINA_HOME);
+                    cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
 
                 } catch (EccezioneGenerica EccezioneGenerica) {
                     System.out.println(EccezioneGenerica.getMessage());

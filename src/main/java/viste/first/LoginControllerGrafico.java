@@ -73,15 +73,22 @@ public class LoginControllerGrafico {
                 LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();
 
                 //passaggio del bean al controller applicativo per il controllo delle credenziali
-                if(loginControllerApplicativo.verificaCredenziali(loginBean));
+                if(!loginControllerApplicativo.verificaCredenziali(loginBean)){
+                    throw new EccezioneGenerica("Credenziali errate");
+                }
 
                 //creazione del bean utente generico in funzione dei dati del bean di login
                 UtenteBean utenteBean = loginControllerApplicativo.recuperoUtente(loginBean);
 
-                //passaggio dell'istanza di utenteBean alla home page
                 Stage stage = (Stage) email.getScene().getWindow();
                 CambioScena cambioScena = new CambioScena();
-                cambioScena.cambioScena(stage, PAGINA_HOME);
+
+                //codice temporaneo per il cambio di scena alla home page del giocatore o allenatore
+                if (utenteBean.getAllenatore()) {
+                    cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
+                } else {
+                    cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
+                }
 
 
             } catch (Exception e){

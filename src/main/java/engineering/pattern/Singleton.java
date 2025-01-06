@@ -39,7 +39,18 @@ public class Singleton {
     public void setUtenteCorrente(Utente utente) {utenteCorrente = utente;}
 
     public List<Utente> getUtenti() {return utenti;}
+
     public Boolean esisteUtenteDaUtente(Utente utente) {return esisteUtenteDaEmail(utente.getEmail());}
+    public Boolean esisteUtenteDaLogin(Login login) {return esisteUtenteDaEmail(login.getEmail());}
+    public Boolean esisteUtenteDaRegistrazione(Registrazione registrazione) {return esisteUtenteDaEmail(registrazione.getEmail());}
+    public Boolean esisteUtenteDaEmail(String email) {
+        for (Utente utente : utenti) {
+            if (utente.getEmail().equals(email)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Boolean esisteSquadraDaNome(String nome) {
         for (Utente utente : utenti) {
@@ -54,30 +65,9 @@ public class Singleton {
     }
 
     public Utente getUtenteDaLogin(Login login) throws EccezioneGenerica {return getUtenteDaEmail(login.getEmail());}
-    public Boolean esisteUtenteDaLogin(Login login) {
-        for (Utente utente : utenti) {
-            if (utente.getEmail().equals(login.getEmail()) && utente.getPassword().equals(login.getPassword()))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Boolean esisteUtenteDaEmail(String email) {
+    public Utente getUtenteDaEmail(String email) throws EccezioneGenerica {
         for (Utente utente : utenti) {
             if (utente.getEmail().equals(email)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Utente getUtenteDaEmail(String email) throws EccezioneGenerica {
-        for (Utente utente : utenti)
-        {
-            if (utente.getEmail().equals(email))
-            {
                 return utente;
             }
         }

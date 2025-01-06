@@ -12,8 +12,8 @@ import viste.first.utils.CambioScena;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static viste.first.utils.FxmlFileName.PAGINA_PRINCIPALE;
-import static viste.first.utils.FxmlFileName.PAGINA_REGISTRAZIONE;
+import static viste.first.utils.FxmlFileName.*;
+import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
 public class RegistrazioneCtrlGrafico implements Initializable {
 
@@ -53,19 +53,37 @@ public class RegistrazioneCtrlGrafico implements Initializable {
         String confermaPassword = confermaPasswordTextField.getText();
         boolean isAllenatore = allenatoreCheckBox.isSelected();
 
+        //se le password coincidono continuiamo con il salvataggio nel sistema della registrazione
         if (password.equals(confermaPassword)) {
+
+            //creiamo il bean per la registrazione
             RegistrazioneBean registrazioneBean = new RegistrazioneBean(username, email, password, isAllenatore);
+
+            //creiamo il controller applicativo per la registrazione
             RegistrazioneCtrlApplicativo registrazioneCtrlApplicativo = new RegistrazioneCtrlApplicativo();
+
             try {
+
                 registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);
                 System.out.println("Registrazione avvenuta con successo!");
-                registrazioneAvvenuta.setText("Registrazione avvenuta con successo"); // Messaggio di conferma, per ora non mostrato
-                registrazioneAvvenuta.setVisible(true);
+
+                Stage stage = (Stage) registrazioneAvvenuta.getScene().getWindow();
+                CambioScena cambioScena = new CambioScena();
+
+                //codice temporaneo per il cambio di scena alla home page del giocatore o allenatore
+                if (registrazioneBean.getAllenatore()) {
+                    cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
+                } else {
+                    cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
+                }
+
             } catch (Exception e) {
-                System.out.println("Errore nella registrazione: " + e.getMessage());
+                registrazioneAvvenuta.setText(e.getMessage());
+                registrazioneAvvenuta.setVisible(true);
             }
         } else {
-            System.out.println("Le password non coincidono!");
+            registrazioneAvvenuta.setText("Le password non coincidono!");
+            registrazioneAvvenuta.setVisible(true);
         }
     }
 

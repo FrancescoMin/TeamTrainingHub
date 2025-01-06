@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public abstract class DAOFactory {
 
-    private static engineering.pattern.abstract_factory.DAOFactory me = null;
+    private static DAOFactory me = null;
 
     protected DAOFactory(){
     }

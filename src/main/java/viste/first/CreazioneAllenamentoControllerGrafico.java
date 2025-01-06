@@ -10,7 +10,7 @@ import engineering.bean.AllenamentoBean;
 import javafx.stage.Stage;
 import viste.first.utils.CambioScena;
 
-import static viste.first.utils.FxmlFileName.PAGINA_HOME;
+import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
 
 public class CreazioneAllenamentoControllerGrafico{
 
@@ -71,7 +71,7 @@ public class CreazioneAllenamentoControllerGrafico{
             try {
                 Stage stage = (Stage) labelErrori.getScene().getWindow();
                 CambioScena cambioScena = new CambioScena();
-                cambioScena.cambioScena(stage, PAGINA_HOME);
+                cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
 
             } catch (EccezioneGenerica EccezioneGenerica) {
                 System.out.println(EccezioneGenerica.getMessage());

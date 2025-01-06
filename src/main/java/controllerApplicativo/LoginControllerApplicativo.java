@@ -4,6 +4,7 @@ import engineering.bean.*;
 import engineering.dao.UtenteDAO;
 import engineering.dao.UtenteDAOJSON;
 import engineering.dao.UtenteDAOMySQL;
+import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Allenatore;
@@ -19,33 +20,24 @@ public class LoginControllerApplicativo {
     public Boolean verificaCredenziali(LoginBean loginBean) {
 
         //controllo delle credenziali
-        try {
 
-            //creo un utente da passare all'interno del sistema
-            Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
-            UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
+        //creo un utente da passare all'interno del sistema
+        Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
+        UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
 
+        //vedo se l'utente esiste nel singleton
+        Singleton istanza=Singleton.getInstance();
 
+        //se esiste ritorno true
+        if(istanza.esisteUtenteDaLogin(login)) {
+            return true;}
 
-            //vedo se l'utente esiste nel singleton
-            Singleton istanza=Singleton.getInstance();
-
-            //se esiste ritorno true
-            if(istanza.esisteUtenteDaLogin(login)) {
-                return true;}
-
-            else {
-                System.out.println("Login in corso");
-                //recupero l'utente dal login e lo restituisco
-                return utenteDao.esisteUtenteDaLogin(login);
-            }
+        else {
+            System.out.println("Login in corso");
+            //recupero l'utente dal login e lo restituisco
+            return utenteDao.esisteUtenteDaLogin(login);
         }
 
-        catch (Exception e)
-        {
-            //se l'utente non esiste, lancio un'eccezione per comunicarlo al controller grafico
-            return false;
-        }
     }
 
     public UtenteBean recuperoUtente(LoginBean loginBean) {
