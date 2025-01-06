@@ -4,6 +4,7 @@ import engineering.bean.UtenteBean;
 import engineering.dao.*;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
+import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Allenatore;
 import modelli.Giocatore;
 import modelli.Squadra;
@@ -13,33 +14,23 @@ public class CreazioneSquadraControllerApplicativo {
 
     public CreazioneSquadraControllerApplicativo() {}
 
-    public void creazioneSquadra(UtenteBean utenteBean, String nomeSquadra) throws EccezioneGenerica {
+    public void creazioneSquadra(String nomeSquadra) throws EccezioneGenerica {
         try {
-            //implementazione della logica per la creazione della squadra
-            // nel caso JSON
-            SquadraDAO squadraDAO = new SquadraDAOJSON();
 
-            //caso MySQL
-            //SquadraDAO squadraDAO = new SquadraDAOMySQL();
+            //istanzio il dao per la squadra
+            SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
 
             System.out.println("Tento di creare la squadra: " + nomeSquadra);
 
+            //ottengo il singleton per ricavare l'utente che sta creando la squadra
+            Singleton istanza = Singleton.getInstance();
+            Utente utente = istanza.getUtenteCorrente();
 
-            //dato il bean passato dal controller grafico, recupero il modello dalla memoria locale
-            Singleton instance = Singleton.getInstance();
-
-            //modifico il modello nella memoria centrale
-
-            //non dovrebbe essere necessario recuperare l'utente
-            //RIVEDERE SE è CORRETTO FARE QUESTA ASSEGNAZIONE
-            //Utente utente = instance.getUtenteDaEmail(utenteBean.getEmail());
-            Utente utente;
-            if (utenteBean.getAllenatore()) {
-                utente = new Allenatore(utenteBean.getUsername(), utenteBean.getEmail(), utenteBean.getPassword(), utenteBean.getAllenamenti(),utenteBean.getSquadra());
+            if (istanza.esisteSquadraDaNome(nomeSquadra) ){
+                throw new EccezioneGenerica("squadra esistente");
             }
-            else {
-                utente = new Allenatore(utenteBean.getUsername(), utenteBean.getEmail(), utenteBean.getPassword(), utenteBean.getAllenamenti(),utenteBean.getSquadra());
-            }
+
+            //modifico il modello Utente con la squadra che stiamo creando
             utente.setSquadra(new Squadra(nomeSquadra));
 
             //inoltre aggiorno la rappresentazione del modello nella persistenza
@@ -48,10 +39,18 @@ public class CreazioneSquadraControllerApplicativo {
             //completata l'applicazione della logica, posso mostrare qualche tipo di feedback
             System.out.println("completato con successo");
 
-            //cambio di scena tornando alla pagina principale
+            //cambio di scena tornando alla pagina principale implementato nel controller grafico in questo caso in modo temporaneo
+
         }
         catch (EccezioneGenerica e)
         {
+            //ottengo il singleton per ricavare l'utente che sta creando la squadra
+            Singleton istanza = Singleton.getInstance();
+            Utente utente = istanza.getUtenteCorrente();
+
+            //modifico il modello Utente con la squadra che stiamo creando
+            utente.setSquadra(new Squadra(""));
+            System.out.println("Errore nella creazione della squadra");
             throw new EccezioneGenerica(e.getMessage());
         }
     }

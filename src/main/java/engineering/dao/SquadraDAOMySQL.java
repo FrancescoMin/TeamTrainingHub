@@ -62,9 +62,9 @@ public class SquadraDAOMySQL implements SquadraDAO {
 
     public void IscrizioneUtenteASquadra(Utente utente, Squadra squadra) {
         //effettivamente noi non iscriviamo l'utente alla squadra, ma possiamo immaginare che il metodo faccia qualcosa
-        System.out.println("Iscrizione dell'utente alla squadra");
+        System.out.println("Iscrizione dell'utente alla squadra non implementa niente di significativo");
     }
     public void visualizzaTutteLeSquadre() {
-        System.out.println("Visualizzazione di tutte le squadre");
+        System.out.println("Visualizzazione di tutte le squadre non implementato");
     }
 }

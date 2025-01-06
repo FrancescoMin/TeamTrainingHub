@@ -2,7 +2,11 @@ package controllerApplicativo;
 
 import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneGenerica;
+import engineering.pattern.Singleton;
+import modelli.Utente;
 import viste.first.HomepageAllenatoreGrafico;
+
+import java.util.Objects;
 
 public class HomepageAllenatoreControllerApplicativo
 {
@@ -10,11 +14,12 @@ public class HomepageAllenatoreControllerApplicativo
     public HomepageAllenatoreControllerApplicativo() {
     }
 
-    public void CreaSquadra(UtenteBean utenteBean) throws EccezioneGenerica{
-        System.out.println("Inizializzazione della Creazione della Squadra");
+    public void CreaSquadra() throws EccezioneGenerica{
+        Singleton istanza= Singleton.getInstance();
+        Utente utente= istanza.getUtenteCorrente();
 
         //implemento i controlli sull'allenatore che richiedere la creazione della Squadra
-        if (utenteBean.getSquadra()!=null) {
+        if (!utente.getSquadra().getNome().isEmpty()) {
             System.out.println("L'allenatore ha già una squadra");
             throw new EccezioneGenerica("L'allenatore ha già una squadra");
 
@@ -22,12 +27,14 @@ public class HomepageAllenatoreControllerApplicativo
             System.out.println("L'allenatore non ha una squadra e procedo alla creazione della squadra");
 
             //compio il cambio della scena
+            /*
             //Nota che il cambio scena deve avvenire qui. Nel codice temporaneo do la responsabilità al controller grafico
             HomepageAllenatoreGrafico homepageAllenatoreGrafico = new HomepageAllenatoreGrafico();
 
             System.out.println("Cambio scena alla creazione della squadra");
 
             homepageAllenatoreGrafico.CodiceTemporaneoPerCambioScena();
+             */
         }
     }
 }

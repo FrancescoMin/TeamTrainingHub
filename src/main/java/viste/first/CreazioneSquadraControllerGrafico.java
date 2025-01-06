@@ -4,6 +4,7 @@ import controllerApplicativo.CreazioneSquadraControllerApplicativo;
 import engineering.bean.AllenatoreBean;
 import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneGenerica;
+import engineering.pattern.Singleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,35 +33,35 @@ public class CreazioneSquadraControllerGrafico {
 
     @FXML
     public void CreaSquadra(ActionEvent actionEvent) {
+        try {
+            if (nomeSquadra.getText().isEmpty()) {
+                messaggioErrore.setText("There are empty fields!");
+                messaggioErrore.setVisible(true);
 
-        if (nomeSquadra.getText().isEmpty()) {
-            messaggioErrore.setText("There are empty fields!");
-            messaggioErrore.setVisible(true);
-        }
+            } else {
+                System.out.println("Nome squadra: " + nomeSquadra.getText());
+                //implementazione della logica per la creazione della squadra
 
-        else
-        {
-            System.out.println("Nome squadra: " + nomeSquadra.getText());
-            //implementazione della logica per la creazione della squadra
+                //inizializziamo il controller applicativo
+                CreazioneSquadraControllerApplicativo creazioneSquadraControllerApplicativo = new CreazioneSquadraControllerApplicativo();
 
-            CreazioneSquadraControllerApplicativo creazioneSquadraControllerApplicativo = new CreazioneSquadraControllerApplicativo();
+                //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean
+                creazioneSquadraControllerApplicativo.creazioneSquadra(nomeSquadra.getText());
 
-            //creazione di un utente di prova
-            UtenteBean utenteBeanDiProva= new AllenatoreBean("UserProva","a", "1");
+                //finita la logica cambio la scena
+                //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
+                try {
+                    Stage stage = (Stage) nomeSquadra.getScene().getWindow();
+                    CambioScena cambioScena = new CambioScena();
+                    cambioScena.cambioScena(stage, PAGINA_HOME);
 
-            //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean
-            creazioneSquadraControllerApplicativo.creazioneSquadra(utenteBeanDiProva, nomeSquadra.getText());
-
-            //finita la logica cambio scena
-            //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
-            try {
-                Stage stage = (Stage) nomeSquadra.getScene().getWindow();
-                CambioScena cambioScena = new CambioScena();
-                cambioScena.cambioScena(stage, PAGINA_HOME);
-
-            } catch (EccezioneGenerica EccezioneGenerica) {
-                System.out.println(EccezioneGenerica.getMessage());
+                } catch (EccezioneGenerica EccezioneGenerica) {
+                    System.out.println(EccezioneGenerica.getMessage());
+                }
             }
+        } catch (EccezioneGenerica e) {
+            messaggioErrore.setText(e.getMessage());
+            messaggioErrore.setVisible(true);
         }
 
 

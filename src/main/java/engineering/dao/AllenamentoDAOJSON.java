@@ -55,8 +55,6 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
 
         creaAllenamento(allenamento);
 
-        utente.getAllenamenti().add(allenamento);
-
         UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
         utenteDAOJSON.aggiornaUtente(utente);
     }

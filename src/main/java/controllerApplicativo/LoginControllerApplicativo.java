@@ -50,17 +50,7 @@ public class LoginControllerApplicativo {
 
     public UtenteBean recuperoUtente(LoginBean loginBean) {
 
-
-
-
         UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
-        //decidere il metodo di scelta del DAO
-        //UtenteDAO utenteDao = new UtenteDAOJSON();
-
-
-
-
-
 
 
         //vedo se l'utente esiste nel singleton
@@ -69,7 +59,11 @@ public class LoginControllerApplicativo {
         //se esiste nel singleton, lo recupero e lo restituisco
         if(istanza.esisteUtenteDaLogin(login)) {
 
+            //inizializzo il modello all'interno del sistema per l'utilizzo
             Utente utente= istanza.getUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
+
+            //salvo all'interno del singleton l'utente con utenteCorrente
+            istanza.setUtenteCorrente(utente);
             if (utente.getAllenatore()) {
                 return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
             }
@@ -81,22 +75,24 @@ public class LoginControllerApplicativo {
         else {
             //creazione del modello utente
             System.out.println("Recupero l'utente "+ loginBean.getEmail() +" con password "+ loginBean.getPassword() + "dalla persistenza");
+
+            //creo una nuova istanza di utente che contiene l'utente che fa uso del sistema
             Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
+
+            //salvo all'interno del singleton l'utente come utenteCorrente
+            istanza.setUtenteCorrente(utente);
+
+            //salvo l'utente all'interno del singleton nella lista di utenti che hanno fatto uso del sistema
+            istanza.aggiungiUtente(utente);
 
             //creazione del bean utente in funzioni che sia un allenatore o un giocatore
             if (utente.getAllenatore()) {
-
-                Utente allenatore = new Allenatore(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
-                istanza.aggiungiUtente(allenatore);
 
                 //restituzione del bean dell'allenatore creato
                 return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
             }
 
             else {
-
-                Utente giocatore = new Giocatore(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
-                istanza.aggiungiUtente(giocatore);
 
                 //restituzione del bean del giocatore creato
                 return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());

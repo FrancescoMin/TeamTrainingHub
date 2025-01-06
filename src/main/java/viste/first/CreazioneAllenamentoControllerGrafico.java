@@ -1,8 +1,6 @@
 package viste.first;
 
-import controllerApplicativo.CreazioneAllenamentoControllerApplivativo;
-import engineering.bean.AllenatoreBean;
-import engineering.bean.UtenteBean;
+import controllerApplicativo.CreazioneAllenamentoControllerApplicativo;
 import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,7 +37,6 @@ public class CreazioneAllenamentoControllerGrafico{
 
     public void initialize() {
         System.out.println("Inizializzazione Temporanea della Pagina di Creazione Allenamento");
-        // Populate the ChoiceBox with items
         }
 
     @FXML
@@ -67,10 +64,8 @@ public class CreazioneAllenamentoControllerGrafico{
             String data = giorno + "-" + mese + "-" + anno;
             AllenamentoBean allenamentoBean = new AllenamentoBean(data, durata, descrizione);
 
-            UtenteBean utenteBean = new AllenatoreBean("prova", "a", "1");
-
-            CreazioneAllenamentoControllerApplivativo creazioneAllenamentoControllerApplivativo = new CreazioneAllenamentoControllerApplivativo();
-            creazioneAllenamentoControllerApplivativo.creaAllenamento(allenamentoBean, utenteBean);
+            CreazioneAllenamentoControllerApplicativo creazioneAllenamentoControllerApplicativo = new CreazioneAllenamentoControllerApplicativo();
+            creazioneAllenamentoControllerApplicativo.creaAllenamento(allenamentoBean);
             System.out.println("giorno: " + giorno + " mese: " + mese + " anno: " + anno + " durata: " + durata + " descrizione: " + descrizione);
 
             try {

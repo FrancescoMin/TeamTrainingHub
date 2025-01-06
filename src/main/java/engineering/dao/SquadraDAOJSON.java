@@ -21,7 +21,7 @@ public class SquadraDAOJSON implements SquadraDAO {
             creaSquadra(squadra, utente);
             IscrizioneUtenteASquadra(utente, squadra);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new EccezioneGenerica(e.getMessage());
         }
     }
 
@@ -29,7 +29,8 @@ public class SquadraDAOJSON implements SquadraDAO {
 
         try {
             System.out.println("Iscrizione dell'utente " + utente.getEmail() + "alla squadra: " + squadra.getNome());
-            utente.setSquadra(squadra);
+            //poiché è il sistema a modificare i modelli e non il dao, non c'è bisogno di fare il setSquadra
+            //utente.setSquadra(squadra);
 
             UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
             utenteDAOJSON.aggiornaUtente(utente);
