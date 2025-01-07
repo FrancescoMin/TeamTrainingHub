@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Modifica creazione dei dao, utilizzando ora la factory. Sistemata la creazione delle squadre da parte degli allenatori">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="risolti errori a runtime per consultare allenamenti">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/08-01-2025-10-30.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/CreazioneSquadraControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/CreazioneSquadraControllerApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/LoginControllerApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/RegistrazioneCtrlApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/RegistrazioneBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/RegistrazioneBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/abstract_factory/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/abstract_factory/DAOFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoControllerGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneSquadraControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneSquadraControllerGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/HomepageAllenatoreGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageAllenatoreGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/LoginControllerGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/persistenzaJson.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/persistenzaJson.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllerApplicativo/ConsultaAllenamentiCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllerApplicativo/ConsultaAllenamentiCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Allenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Allenamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/ConsultaAllenamentiCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/ConsultaAllenamentiCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/entraInSquadraCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/entraInSquadraCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/entraInSquadra.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/entraInSquadra.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +29,6 @@
       <list>
         <option value="Interface" />
         <option value="FxmlFile" />
-        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -46,15 +42,16 @@
     &quot;assignee&quot;: &quot;FrancescoMin&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub.git&quot;,
-    &quot;accountId&quot;: &quot;64b32a3e-6402-44ac-8316-64089203d618&quot;
-  }
-}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="85e127ae-09ee-4152-ace3-c561331c7528" />
+        <option name="url" value="https://github.com/FrancescoMin/TeamTrainingHub.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
-    <option name="showPreview" value="true" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -66,20 +63,15 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/max/Desktop/ISPW/Ispw/Ispw/progettiOthers/Project-master/libs/mysql-connector-j-8.0.31.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,
@@ -101,14 +93,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
-      </set>
-    </attachedChunks>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="OLDteamtraininghub" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="OLDteamtraininghub" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -146,15 +143,21 @@
       <workItem from="1734386510091" duration="6108000" />
       <workItem from="1734427385697" duration="11873000" />
       <workItem from="1734528607867" duration="6716000" />
-      <workItem from="1734601053904" duration="981000" />
-      <workItem from="1734685591858" duration="382000" />
-      <workItem from="1734686289666" duration="16032000" />
-      <workItem from="1734892877229" duration="1451000" />
-      <workItem from="1734966919459" duration="8233000" />
-      <workItem from="1735032977134" duration="4180000" />
-      <workItem from="1735901497067" duration="2500000" />
-      <workItem from="1735987121389" duration="619000" />
-      <workItem from="1735990839984" duration="3029000" />
+      <workItem from="1734601053904" duration="7748000" />
+      <workItem from="1734692612739" duration="2111000" />
+      <workItem from="1734796908625" duration="5339000" />
+      <workItem from="1734862555389" duration="6467000" />
+      <workItem from="1734974038587" duration="706000" />
+      <workItem from="1735036002463" duration="3338000" />
+      <workItem from="1735040248138" duration="605000" />
+      <workItem from="1735383789763" duration="1649000" />
+      <workItem from="1735401058574" duration="6814000" />
+      <workItem from="1735469017340" duration="11381000" />
+      <workItem from="1735901517487" duration="3570000" />
+      <workItem from="1736012938977" duration="1842000" />
+      <workItem from="1736072047840" duration="2860000" />
+      <workItem from="1736177918852" duration="9082000" />
+      <workItem from="1736256472061" duration="395000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -244,31 +247,47 @@
       <option name="project" value="LOCAL" />
       <updated>1734442708259</updated>
     </task>
-    <task id="LOCAL-00012" summary="Creazione Singleton, creazione Squadra e Allenamento, modifiche minori su json">
+    <task id="LOCAL-00012" summary="Commit fix versione locale, poche modifiche, non significative">
       <option name="closed" value="true" />
-      <created>1734608604546</created>
+      <created>1734602305673</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1734608604546</updated>
+      <updated>1734602305673</updated>
     </task>
-    <task id="LOCAL-00013" summary="Modificato la rappresentazione di squadra nei file utenti in json e derivanti modifiche nei fai dao">
+    <task id="LOCAL-00013" summary="parziale implementazione entraInSquadra">
       <option name="closed" value="true" />
-      <created>1734989947328</created>
+      <created>1734974150480</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1734989947328</updated>
+      <updated>1734974150480</updated>
     </task>
-    <task id="LOCAL-00014" summary="Modifica creazione dei dao, utilizzando ora la factory. Sistemata la creazione delle squadre da parte degli allenatori">
+    <task id="LOCAL-00014" summary="fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori">
       <option name="closed" value="true" />
-      <created>1736183441254</created>
+      <created>1735039696644</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1736183441254</updated>
+      <updated>1735039696644</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti">
+      <option name="closed" value="true" />
+      <created>1735498458976</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1735498458976</updated>
+    </task>
+    <task id="LOCAL-00016" summary="risolti errori a runtime per consultare allenamenti">
+      <option name="closed" value="true" />
+      <created>1736181732483</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1736181732483</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,9 +316,11 @@
     <MESSAGE value="Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo" />
     <MESSAGE value="RegistrazioneCtrlApplicativo funzionante" />
     <MESSAGE value="Fix valori stringhe nei json" />
-    <MESSAGE value="Creazione Singleton, creazione Squadra e Allenamento, modifiche minori su json" />
-    <MESSAGE value="Modificato la rappresentazione di squadra nei file utenti in json e derivanti modifiche nei fai dao" />
-    <MESSAGE value="Modifica creazione dei dao, utilizzando ora la factory. Sistemata la creazione delle squadre da parte degli allenatori" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifica creazione dei dao, utilizzando ora la factory. Sistemata la creazione delle squadre da parte degli allenatori" />
+    <MESSAGE value="Commit fix versione locale, poche modifiche, non significative" />
+    <MESSAGE value="parziale implementazione entraInSquadra" />
+    <MESSAGE value="fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori" />
+    <MESSAGE value="Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti" />
+    <MESSAGE value="risolti errori a runtime per consultare allenamenti" />
+    <option name="LAST_COMMIT_MESSAGE" value="risolti errori a runtime per consultare allenamenti" />
   </component>
 </project>

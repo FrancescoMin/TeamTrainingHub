@@ -1,8 +1,13 @@
 package modelli;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Allenamento{
+    @JsonProperty("data")
     private String data;
+    @JsonProperty("durata")
     private int durata;
+    @JsonProperty("descrizione")
     private String descrizione;
 
 

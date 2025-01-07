@@ -45,9 +45,14 @@ public class ConsultaAllenamentiCtrlGrafico {
        // refreshButton.setOnAction(event -> caricaAllenamenti());
     }
 
-    private void caricaAllenamenti() {
+    private void caricaAllenamenti() { //carica gli allenamenti dal controller applicativo
         List<Allenamento> allenamenti = applicativoController.leggiAllenamenti();
-        ObservableList<Allenamento> allenamentiObservable = FXCollections.observableArrayList();
-        allenamentiTable.setItems(allenamentiObservable);
+        if (allenamenti != null && !allenamenti.isEmpty()) {
+            ObservableList<Allenamento> allenamentiObservable = FXCollections.observableArrayList(allenamenti);
+            allenamentiTable.setItems(allenamentiObservable);
+        } else {
+            System.out.println("Nessun allenamento trovato.");
+        }
     }
+
 }

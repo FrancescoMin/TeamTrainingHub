@@ -7,8 +7,7 @@ module com.example.teamtraininghub {
     requires com.fasterxml.jackson.databind;
     requires org.junit.jupiter.api;
 
-    //opens modelli to com.google.gson;
-    opens modelli to com.fasterxml.jackson.databind;
+    opens modelli to javafx.base, com.fasterxml.jackson.databind, com.google.gson;
 
     exports inizio to javafx.graphics;
     opens inizio to javafx.fxml;

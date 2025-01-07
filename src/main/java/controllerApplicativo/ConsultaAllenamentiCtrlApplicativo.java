@@ -1,17 +1,10 @@
 package controllerApplicativo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import engineering.eccezioni.EccezioneGenerica;
 import modelli.Allenamento;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -47,15 +40,14 @@ public class ConsultaAllenamentiCtrlApplicativo {
 
 public class ConsultaAllenamentiCtrlApplicativo {
 
-    private static final String DIRECTORY_PATH = "src/main/resources/persistenza/allenamenti";
 
-    public List<Allenamento> leggiAllenamenti() {
+    public List<Allenamento> leggiAllenamenti() { //legge gli allenamenti dalla persistenza
         List<Allenamento> allenamenti = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            // Ottieni tutti i file JSON nella directory
-            File directory = new File(DIRECTORY_PATH);
+            // Ottieni tutti i file JSON nella directory degli allenamenti
+            File directory = new File(getClass().getClassLoader().getResource("persistenza/allenamenti").toURI());
             if (directory.exists() && directory.isDirectory()) {
                 File[] files = directory.listFiles((dir, name) -> name.endsWith(".json"));
                 if (files != null) {

@@ -7,9 +7,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.fxml.Initializable;
+import javafx.stage.Stage;
+import viste.first.utils.CambioScena;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import  static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
 public class entraInSquadraCtrlGrafico implements Initializable {
 
@@ -18,6 +21,8 @@ public class entraInSquadraCtrlGrafico implements Initializable {
 
     @FXML
     private Button richiediIngressoButton;
+    @FXML
+    private Button tornaInHomepageGiocatoreButton;
 
     private entraInSquadraCtrlApplicativo applicativoController;
 
@@ -25,6 +30,7 @@ public class entraInSquadraCtrlGrafico implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         applicativoController = new entraInSquadraCtrlApplicativo();
         richiediIngressoButton.setOnAction(event -> handleRichiediIngressoButtonAction());
+        tornaInHomepageGiocatoreButton.setOnAction(event -> handleTornaInHomepageGiocatoreButtonAction());
     }
 
     private void handleRichiediIngressoButtonAction() {
@@ -54,5 +60,17 @@ public class entraInSquadraCtrlGrafico implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(messaggio);
         alert.showAndWait();
+    }
+
+
+    private void handleTornaInHomepageGiocatoreButtonAction() {
+        try {
+            Stage stage = (Stage) tornaInHomepageGiocatoreButton.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
+
+        } catch (EccezioneGenerica eccezioneGenerica) {
+            System.out.println(eccezioneGenerica.getMessage());
+        }
     }
 }

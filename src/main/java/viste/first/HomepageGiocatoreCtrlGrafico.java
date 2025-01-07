@@ -15,6 +15,7 @@ import viste.first.utils.CambioScena;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static viste.first.utils.FxmlFileName.PAGINA_CONSULTA_ALLENAMENTI;
 import static viste.first.utils.FxmlFileName.PAGINA_ENTRAINSQUADRA;
 
 
@@ -61,6 +62,14 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
     @FXML
     private void handleConsultaAllenamentiButtonAction() {
         // Logica per il pulsante "Consulta allenamenti"
+        try {
+            Stage stage = (Stage) consultaAllenamentiButton.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_CONSULTA_ALLENAMENTI);
+
+        } catch (EccezioneGenerica eccezioneGenerica) {
+            System.out.println(eccezioneGenerica.getMessage());
+        }
         System.out.println("Consulta allenamenti cliccato");
     }
 }
