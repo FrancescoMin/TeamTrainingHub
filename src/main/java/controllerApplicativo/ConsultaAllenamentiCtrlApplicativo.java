@@ -40,7 +40,6 @@ public class ConsultaAllenamentiCtrlApplicativo {
 
 public class ConsultaAllenamentiCtrlApplicativo {
 
-
     public List<Allenamento> leggiAllenamenti() { //legge gli allenamenti dalla persistenza
         List<Allenamento> allenamenti = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();

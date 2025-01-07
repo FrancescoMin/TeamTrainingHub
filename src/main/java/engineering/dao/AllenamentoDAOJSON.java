@@ -32,15 +32,22 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
             } catch (IOException e) {
                 //creazione del file con nome username dell'utente in formato json
 
+                System.out.println("CreaAllenamento 1 ");
+
                 // Create a Gson object
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
                 FileWriter writer = new FileWriter(filePath);
 
+                System.out.println("CreaAllenamento 2 ");
+
                 String jsonString = gson.toJson(allenamento);
+
+                System.out.println("CreaAllenamento 3 ");
 
                 // Step 2: Convert the JSON string to a JsonObject
                 JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
 
+                System.out.println("CreaAllenamento 4 ");
                 //salvataggio dell'oggetto serializzato utente nel file json
                 writer.write(gson.toJson(jsonObject));
                 writer.close();
@@ -54,7 +61,6 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
     public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) {
 
         creaAllenamento(allenamento);
-
         UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
         utenteDAOJSON.aggiornaUtente(utente);
     }

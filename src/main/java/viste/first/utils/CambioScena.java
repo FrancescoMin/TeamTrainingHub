@@ -15,7 +15,8 @@ public class CambioScena {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 }

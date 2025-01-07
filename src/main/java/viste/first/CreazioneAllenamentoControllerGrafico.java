@@ -55,19 +55,26 @@ public class CreazioneAllenamentoControllerGrafico{
             if (mese < 1 || mese > 12) {
                 throw new EccezioneGenerica("Mese non valido");
             }
-            if (anno < 2021 ) {
+            if (anno < 2025 ) {
                 throw new EccezioneGenerica("Anno non valido");
             }
             if (durata < 1) {
                 throw new EccezioneGenerica("Durata non valida");
             }
+            //creazione della data con cui verrà salvato l'allenamento
             String data = giorno + "-" + mese + "-" + anno;
+
+            //creazione del ben dell'allenamento da far salvare al sistema
             AllenamentoBean allenamentoBean = new AllenamentoBean(data, durata, descrizione);
 
+            //richiediamo al sistema di salvare il bean dell'allenamento
             CreazioneAllenamentoControllerApplicativo creazioneAllenamentoControllerApplicativo = new CreazioneAllenamentoControllerApplicativo();
             creazioneAllenamentoControllerApplicativo.creaAllenamento(allenamentoBean);
+
+            //abbiamo completato il salvataggio e lo facciamo vedere con una stampa a schermo
             System.out.println("giorno: " + giorno + " mese: " + mese + " anno: " + anno + " durata: " + durata + " descrizione: " + descrizione);
 
+            //facciamo il cambio scena per tornare alla home dell'allenatore
             try {
                 Stage stage = (Stage) labelErrori.getScene().getWindow();
                 CambioScena cambioScena = new CambioScena();
@@ -78,7 +85,6 @@ public class CreazioneAllenamentoControllerGrafico{
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
             labelErrori.setText(e.getMessage());
             labelErrori.setVisible(true);
         }

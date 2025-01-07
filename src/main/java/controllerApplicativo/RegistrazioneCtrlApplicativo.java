@@ -35,19 +35,10 @@ public class RegistrazioneCtrlApplicativo {
         // Utilizzo del DAO per salvare l'utente
         UtenteDAO UtenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
 
+        //aggiungo l'utente al singleton e alla persistenza
         try {
             UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
             istanza.aggiungiRegistrazione(registrazione);
-
-            if (registrazione.getAllenatore()) {
-                Utente utente = new Allenatore(username, email, password);
-            }
-
-            else {
-                Utente utente = new Giocatore(username, email, password);
-
-            }
-            //gestione del cambio di scena per tornare alla pagina principale
 
         } catch (EccezioneGenerica e) {
             throw new Exception(e.getMessage());

@@ -8,9 +8,11 @@ import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.util.List;
 
 import controllerApplicativo.LoginControllerApplicativo;
 import javafx.stage.Stage;
+import modelli.Allenamento;
 import viste.first.utils.CambioScena;
 
 import static viste.first.utils.FxmlFileName.*;
@@ -19,12 +21,6 @@ public class LoginControllerGrafico {
 
     @FXML
     private Button login;
-
-    @FXML
-    private RadioButton demo;
-
-    @FXML
-    private RadioButton full;
 
     @FXML
     private TextField email;
@@ -40,10 +36,7 @@ public class LoginControllerGrafico {
 
     @FXML
     private void initialize() {
-        ToggleGroup group = new ToggleGroup();
-        demo.setToggleGroup(group);
-        full.setToggleGroup(group);
-        full.setSelected(true);
+        erroreInserimento.setVisible(false);
     }
 
 
@@ -58,19 +51,14 @@ public class LoginControllerGrafico {
             erroreInserimento.setVisible(true);
         }
 
-        else if(demo.isSelected())
-        {
-            System.out.println("Demo");
-        }
-
-        else
-        {
+        else {
+            LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();
+            loginControllerApplicativo.setDemo(false);
             try{
                 //istanziazione del bean per il login
                 LoginBean loginBean = new LoginBean(em,pass);
 
                 //creazione del controler applicativo per il login
-                LoginControllerApplicativo loginControllerApplicativo = new LoginControllerApplicativo();
 
                 //passaggio del bean al controller applicativo per il controllo delle credenziali
                 if(!loginControllerApplicativo.verificaCredenziali(loginBean)){

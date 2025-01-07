@@ -14,9 +14,6 @@ public class CreazioneSquadraControllerApplicativo {
     public void creazioneSquadra(String nomeSquadra) throws EccezioneGenerica {
         try {
 
-            //istanzio il dao per la squadra
-            SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
-
             System.out.println("Tento di creare la squadra: " + nomeSquadra);
 
             //ottengo il singleton per ricavare l'utente che sta creando la squadra
@@ -30,8 +27,13 @@ public class CreazioneSquadraControllerApplicativo {
             //modifico il modello Utente con la squadra che stiamo creando
             utente.setSquadra(new Squadra(nomeSquadra));
 
-            //inoltre aggiorno la rappresentazione del modello nella persistenza
-            squadraDAO.creaSquadraPerAllenatore(utente, utente.getSquadra());
+            if(!istanza.getDemo()) {
+                //istanzio il dao per la squadra
+                SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
+
+                //inoltre aggiorno la rappresentazione del modello nella persistenza
+                squadraDAO.creaSquadraPerAllenatore(utente, utente.getSquadra());
+            }
 
             //completata l'applicazione della logica, posso mostrare qualche tipo di feedback
             System.out.println("completato con successo");

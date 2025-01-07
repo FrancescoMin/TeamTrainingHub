@@ -30,16 +30,14 @@ public class Allenamento{
     public void setData(String data) {
         this.data = data;
     }
-    public String getData() {
-        return data;
-    }
+    public String getData() {return data;}
 
 
     public void setDurata(int durata) {
         this.durata = durata;
     }
     public int getDurata() {
-        return durata;
+        return this.durata;
     }
 
 
@@ -47,6 +45,6 @@ public class Allenamento{
         this.descrizione = descrizione;
     }
     public String getDescrizione() {
-        return descrizione;
+        return this.descrizione;
     }
 }

@@ -3,9 +3,6 @@
   "email": "a",
   "password": "1",
   "allenatore": true,
-  "allenamenti": [
-    "13-9-2050",
-    "19-9-2039"
-  ],
+  "allenamenti": [],
   "squadra": "nonDeveFunzionare"
 }

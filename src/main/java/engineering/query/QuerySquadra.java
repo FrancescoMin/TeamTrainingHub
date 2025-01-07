@@ -38,7 +38,7 @@ public class QuerySquadra {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             throw new EccezioneGenerica(e.getMessage());
         }
     }

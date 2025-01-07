@@ -64,9 +64,11 @@ public class RegistrazioneCtrlGrafico implements Initializable {
 
             try {
 
+                //tentiamo di registrare l'utente
                 registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);
                 System.out.println("Registrazione avvenuta con successo!");
 
+                //a registrazione avvenuta, cambiamo scena
                 Stage stage = (Stage) registrazioneAvvenuta.getScene().getWindow();
                 CambioScena cambioScena = new CambioScena();
 

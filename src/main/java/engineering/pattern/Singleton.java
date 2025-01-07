@@ -16,6 +16,8 @@ public class Singleton {
 
     //variabile privata che contiene l'istanza dell'utente che sta facendo uso del sistema
     private Utente utenteCorrente;
+    //variabile che indica se il sistema è in modalità demo o meno
+    private Boolean demo;
 
     private Singleton(){}
 
@@ -37,6 +39,9 @@ public class Singleton {
 
     public Utente getUtenteCorrente() {return utenteCorrente;}
     public void setUtenteCorrente(Utente utente) {utenteCorrente = utente;}
+
+    public Boolean getDemo() {return demo;}
+    public void setDemo(Boolean demo) {this.demo = demo;}
 
     public List<Utente> getUtenti() {return utenti;}
 

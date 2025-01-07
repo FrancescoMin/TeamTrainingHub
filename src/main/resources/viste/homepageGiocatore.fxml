@@ -22,5 +22,6 @@
         <Button fx:id="consultaAllenamentiButton" layoutX="210.0" layoutY="177.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="180.0" text="Consulta allenamenti"/>
         <Text fx:id="ciaoText" layoutX="35.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciao" />
         <Label fx:id="welcomeLabel" layoutX="67.0" layoutY="99.0" text="Label" />
+        <Button fx:id="logoutButton" layoutX="210.0" layoutY="341.0" mnemonicParsing="false" onAction="#RitornoAlLogin" prefHeight="68.0" prefWidth="180.0" text="Logout"/>
     </children>
 </AnchorPane>

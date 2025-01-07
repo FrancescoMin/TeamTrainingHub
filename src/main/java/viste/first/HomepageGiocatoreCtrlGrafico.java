@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 import static viste.first.utils.FxmlFileName.PAGINA_CONSULTA_ALLENAMENTI;
 import static viste.first.utils.FxmlFileName.PAGINA_ENTRAINSQUADRA;
+import static viste.first.utils.FxmlFileName.PAGINA_PRINCIPALE;
 
 
 public class HomepageGiocatoreCtrlGrafico implements  Initializable{
@@ -35,6 +36,20 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
 
     private String username;
 
+    @FXML
+    protected void RitornoAlLogin() {
+        System.out.println("Ritorno al Login");
+
+        //cambio scena alla pagina di login
+        try {
+            Stage stage = (Stage) ciaoText.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_PRINCIPALE);
+
+        } catch (EccezioneGenerica EccezioneGenerica) {
+            System.out.println(EccezioneGenerica.getMessage());
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -14,14 +14,11 @@ LoginApplicazione extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-
-
         FXMLLoader fxmlLoader = new FXMLLoader(LoginApplicazione.class.getResource(PAGINA_PRINCIPALE));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Pagine Principale");
         stage.setScene(scene);
         stage.show();
-
     }
 
     /** Lettura dal file di configurazione per la scelta dell'interfaccia */
@@ -57,7 +54,7 @@ LoginApplicazione extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginApplicazione.class.getResource(PAGINA_HOME_GIOCATORE));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginApplicazione.class.getResource(PAGINA_PRINCIPALE));
         Scene scene = new Scene(fxmlLoader.load(),1024 , 640);
         stage.setTitle("Consulta Allenamenti");
         stage.setScene(scene);

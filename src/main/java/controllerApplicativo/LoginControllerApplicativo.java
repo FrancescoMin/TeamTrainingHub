@@ -2,13 +2,9 @@ package controllerApplicativo;
 
 import engineering.bean.*;
 import engineering.dao.UtenteDAO;
-import engineering.dao.UtenteDAOJSON;
-import engineering.dao.UtenteDAOMySQL;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
-import modelli.Allenatore;
-import modelli.Giocatore;
 import modelli.Login;
 import modelli.Utente;
 
@@ -17,23 +13,33 @@ public class LoginControllerApplicativo {
     public LoginControllerApplicativo() {
     }
 
+    public void setDemo(Boolean demo) {
+        Singleton.getInstance().setDemo(demo);
+    }
+
     public Boolean verificaCredenziali(LoginBean loginBean) {
 
         //controllo delle credenziali
 
         //creo un utente da passare all'interno del sistema
         Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
-        UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
 
         //vedo se l'utente esiste nel singleton
         Singleton istanza=Singleton.getInstance();
 
-        //se esiste ritorno true
-        if(istanza.esisteUtenteDaLogin(login)) {
-            return true;}
+        //creazione del dao per controllare le credenziali
+        UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
+
+        //controllo che l'utente esiste nel singleton
+        if(istanza.esisteUtenteDaLogin(login)) {return true;}
+
+        //se siamo nella modalità demo, non devo controllare le credenziali dalla persistenza
+        else if(istanza.getDemo()){
+        return false;}
+
 
         else {
-            System.out.println("Login in corso");
+
             //recupero l'utente dal login e lo restituisco
             return utenteDao.esisteUtenteDaLogin(login);
         }
@@ -64,6 +70,11 @@ public class LoginControllerApplicativo {
             }
         }
 
+        //se siamo nella modalità demo non dovremmo arrivare a questo punto del codice. Per sicurezza alzo un eccezione
+        else if(istanza.getDemo()){
+            throw new EccezioneGenerica("Impossibile recuperare l'utente dallo stato di persistenza visto che siamo nella modalità demo");}
+
+        //richiediamo l'utente dalla persistenza
         else {
             //creazione del modello utente
             System.out.println("Recupero l'utente "+ loginBean.getEmail() +" con password "+ loginBean.getPassword() + "dalla persistenza");

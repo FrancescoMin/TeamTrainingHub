@@ -1,17 +1,46 @@
 package controllerApplicativo;
 
-import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
 import modelli.Utente;
-import viste.first.HomepageAllenatoreGrafico;
-
-import java.util.Objects;
 
 public class HomepageAllenatoreControllerApplicativo
 {
 
     public HomepageAllenatoreControllerApplicativo() {
+        //costruttore vuoto di default del controllore applicativo
+    }
+
+    public Boolean esisteSquadra(){
+
+        Singleton istanza= Singleton.getInstance();
+        Utente utente= istanza.getUtenteCorrente();
+
+        if (utente.getSquadra().getNome().isEmpty()) {
+            System.out.println("L'allenatore non ha una squadra");
+            return false;
+        }
+        else {
+            System.out.println("L'allenatore ha una squadra");
+            return true;
+        }
+    }
+
+    /*
+    public void GestisciSquadra() throws EccezioneGenerica{
+        Singleton istanza= Singleton.getInstance();
+        Utente utente= istanza.getUtenteCorrente();
+
+        //implemento i controlli sull'allenatore che richiedere la gestione della Squadra
+        if (utente.getSquadra().getNome().isEmpty()) {
+            System.out.println("L'allenatore non ha una squadra");
+            throw new EccezioneGenerica("L'allenatore non ha una squadra");
+
+        } else {
+            System.out.println("L'allenatore ha una squadra e procedo alla gestione della squadra");
+
+            //compio il cambio della scena
+        }
     }
 
     public void CreaSquadra() throws EccezioneGenerica{
@@ -27,14 +56,8 @@ public class HomepageAllenatoreControllerApplicativo
             System.out.println("L'allenatore non ha una squadra e procedo alla creazione della squadra");
 
             //compio il cambio della scena
-            /*
-            //Nota che il cambio scena deve avvenire qui. Nel codice temporaneo do la responsabilità al controller grafico
-            HomepageAllenatoreGrafico homepageAllenatoreGrafico = new HomepageAllenatoreGrafico();
-
-            System.out.println("Cambio scena alla creazione della squadra");
-
-            homepageAllenatoreGrafico.CodiceTemporaneoPerCambioScena();
-             */
         }
     }
+
+     */
 }
