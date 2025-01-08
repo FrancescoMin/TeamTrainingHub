@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class AllenamentoDAOJSON implements AllenamentoDAO {
 
@@ -65,4 +66,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
         utenteDAOJSON.aggiornaUtente(utente);
     }
 
+    public List<Allenamento> leggiAllenamentiPerUtente(Utente utente) {
+        return null;
+    }
 }

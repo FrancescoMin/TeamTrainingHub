@@ -68,6 +68,7 @@ public class SquadraDAOJSON implements SquadraDAO {
                 jsonObject.addProperty("allenatore", utente.getEmail());
                 jsonObject.addProperty("nome", squadra.getNome());
 
+
                 //salvataggio dell'oggetto serializzato utente nel file json
                 writer.write(gson.toJson(jsonObject));
                 writer.close();

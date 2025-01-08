@@ -1,6 +1,6 @@
 package viste.first;
 
-import controllerApplicativo.ConsultaAllenamentiCtrlApplicativo;
+import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

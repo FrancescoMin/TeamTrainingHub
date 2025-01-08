@@ -1,4 +1,4 @@
-package controllerApplicativo;
+package ctrlApplicativo;
 
 import engineering.dao.*;
 import engineering.eccezioni.EccezioneGenerica;
@@ -7,9 +7,9 @@ import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Squadra;
 import modelli.Utente;
 
-public class CreazioneSquadraControllerApplicativo {
+public class CreazioneSquadraCtrlApplicativo {
 
-    public CreazioneSquadraControllerApplicativo() {}
+    public CreazioneSquadraCtrlApplicativo() {}
 
     public void creazioneSquadra(String nomeSquadra) throws EccezioneGenerica {
         try {

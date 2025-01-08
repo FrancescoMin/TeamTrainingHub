@@ -3,7 +3,7 @@ package viste.first.utils;
 public class FxmlFileName {
     private FxmlFileName(){}
 
-    public static final String PAGINA_PRINCIPALE = "/viste/provaLogin.fxml";
+    public static final String PAGINA_PRINCIPALE = "/viste/paginaLogin.fxml";
     public static final String PAGINA_REGISTRAZIONE = "/viste/registrazione.fxml";
     public static final String PAGINA_HOME_ALLENATORE = "/viste/homepageAllenatore.fxml";
     public static final String PAGINA_HOME_GIOCATORE = "/viste/homepageGiocatore.fxml";

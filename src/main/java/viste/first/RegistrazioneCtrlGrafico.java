@@ -1,6 +1,6 @@
 package viste.first;
 
-import controllerApplicativo.RegistrazioneCtrlApplicativo;
+import ctrlApplicativo.RegistrazioneCtrlApplicativo;
 import engineering.bean.RegistrazioneBean;
 import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
@@ -80,6 +80,7 @@ public class RegistrazioneCtrlGrafico implements Initializable {
                 }
 
             } catch (Exception e) {
+                System.out.println(e.getMessage());
                 registrazioneAvvenuta.setText(e.getMessage());
                 registrazioneAvvenuta.setVisible(true);
             }

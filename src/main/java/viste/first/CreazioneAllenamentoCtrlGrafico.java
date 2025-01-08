@@ -1,6 +1,6 @@
 package viste.first;
 
-import controllerApplicativo.CreazioneAllenamentoControllerApplicativo;
+import ctrlApplicativo.CreazioneAllenamentoCtrlApplicativo;
 import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +12,7 @@ import viste.first.utils.CambioScena;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
 
-public class CreazioneAllenamentoControllerGrafico{
+public class CreazioneAllenamentoCtrlGrafico {
 
     @FXML
     private Label labelErrori;
@@ -68,8 +68,8 @@ public class CreazioneAllenamentoControllerGrafico{
             AllenamentoBean allenamentoBean = new AllenamentoBean(data, durata, descrizione);
 
             //richiediamo al sistema di salvare il bean dell'allenamento
-            CreazioneAllenamentoControllerApplicativo creazioneAllenamentoControllerApplicativo = new CreazioneAllenamentoControllerApplicativo();
-            creazioneAllenamentoControllerApplicativo.creaAllenamento(allenamentoBean);
+            CreazioneAllenamentoCtrlApplicativo creazioneAllenamentoCtrlApplicativo = new CreazioneAllenamentoCtrlApplicativo();
+            creazioneAllenamentoCtrlApplicativo.creaAllenamento(allenamentoBean);
 
             //abbiamo completato il salvataggio e lo facciamo vedere con una stampa a schermo
             System.out.println("giorno: " + giorno + " mese: " + mese + " anno: " + anno + " durata: " + durata + " descrizione: " + descrizione);

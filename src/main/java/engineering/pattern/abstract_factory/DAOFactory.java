@@ -1,5 +1,4 @@
 package engineering.pattern.abstract_factory;
-import controllerApplicativo.LoginControllerApplicativo;
 import engineering.dao.*;
 import engineering.pattern.Singleton;
 

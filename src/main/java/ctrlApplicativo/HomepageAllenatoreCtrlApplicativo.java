@@ -1,20 +1,23 @@
-package controllerApplicativo;
+package ctrlApplicativo;
 
-import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
 import modelli.Utente;
 
-public class HomepageAllenatoreControllerApplicativo
+public class HomepageAllenatoreCtrlApplicativo
 {
 
-    public HomepageAllenatoreControllerApplicativo() {
+    public HomepageAllenatoreCtrlApplicativo() {
         //costruttore vuoto di default del controllore applicativo
     }
 
     public Boolean esisteSquadra(){
 
+
         Singleton istanza= Singleton.getInstance();
         Utente utente= istanza.getUtenteCorrente();
+
+        System.out.println("utente corrente " + istanza.getUtenteCorrente().getEmail());
+        System.out.println("la squadra è " + istanza.getUtenteCorrente().getSquadra());
 
         if (utente.getSquadra().getNome().isEmpty()) {
             System.out.println("L'allenatore non ha una squadra");

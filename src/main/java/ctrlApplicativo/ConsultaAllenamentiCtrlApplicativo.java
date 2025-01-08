@@ -1,4 +1,4 @@
-package controllerApplicativo;
+package ctrlApplicativo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import modelli.Allenamento;

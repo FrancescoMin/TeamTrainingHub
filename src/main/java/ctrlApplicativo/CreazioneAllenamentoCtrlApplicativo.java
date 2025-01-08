@@ -1,4 +1,4 @@
-package controllerApplicativo;
+package ctrlApplicativo;
 
 import engineering.dao.AllenamentoDAO;
 import engineering.eccezioni.EccezioneGenerica;
@@ -8,7 +8,7 @@ import modelli.Allenamento;
 import engineering.bean.AllenamentoBean;
 import modelli.Utente;
 
-public class CreazioneAllenamentoControllerApplicativo {
+public class CreazioneAllenamentoCtrlApplicativo {
 
     public void creaAllenamento(AllenamentoBean allenamentoBean) {
 

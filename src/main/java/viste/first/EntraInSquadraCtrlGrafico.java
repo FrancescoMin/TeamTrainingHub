@@ -1,6 +1,6 @@
 package viste.first;
 
-import controllerApplicativo.entraInSquadraCtrlApplicativo;
+import ctrlApplicativo.EntraInSquadraCtrlApplicativo;
 import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import  static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
-public class entraInSquadraCtrlGrafico implements Initializable {
+public class EntraInSquadraCtrlGrafico implements Initializable {
 
     @FXML
     private TextField scriviSquadraTextField;
@@ -24,11 +24,11 @@ public class entraInSquadraCtrlGrafico implements Initializable {
     @FXML
     private Button tornaInHomepageGiocatoreButton;
 
-    private entraInSquadraCtrlApplicativo applicativoController;
+    private EntraInSquadraCtrlApplicativo applicativoController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        applicativoController = new entraInSquadraCtrlApplicativo();
+        applicativoController = new EntraInSquadraCtrlApplicativo();
         richiediIngressoButton.setOnAction(event -> handleRichiediIngressoButtonAction());
         tornaInHomepageGiocatoreButton.setOnAction(event -> handleTornaInHomepageGiocatoreButtonAction());
     }

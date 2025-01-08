@@ -1,6 +1,6 @@
 package viste.first;
 
-import controllerApplicativo.HomepageAllenatoreControllerApplicativo;
+import ctrlApplicativo.HomepageAllenatoreCtrlApplicativo;
 import engineering.eccezioni.EccezioneGenerica;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +11,7 @@ import viste.first.utils.CambioScena;
 
 import static viste.first.utils.FxmlFileName.*;
 
-public class HomepageAllenatoreGraficoGrafico {
+public class HomepageAllenatoreCtrlGrafico {
 
 
     public void initialize() {
@@ -55,7 +55,7 @@ public class HomepageAllenatoreGraficoGrafico {
     @FXML
     protected void GestisciSquadra(ActionEvent event) {
         //controlliamo che l'allenatore abbia o meno una squadra chiedendolo al controllore applicativo
-        HomepageAllenatoreControllerApplicativo paginaPrincipaleControllerApplicativo = new HomepageAllenatoreControllerApplicativo();
+        HomepageAllenatoreCtrlApplicativo paginaPrincipaleControllerApplicativo = new HomepageAllenatoreCtrlApplicativo();
 
         if(paginaPrincipaleControllerApplicativo.esisteSquadra()){
             //Se l'allenatore ha una squadra allora compiamo il cambio scena alla pagina di gestione della squadra

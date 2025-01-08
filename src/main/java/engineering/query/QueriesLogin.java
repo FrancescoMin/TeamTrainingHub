@@ -10,21 +10,6 @@ import java.util.List;
 
 public class QueriesLogin {
 
-    /*
-    public static int InserimentoUtente(Statement stmt, Login login) throws SQLException {
-        try {
-            String query= "SELECT * FROM utenti where username = ? and password = ? ;";
-
-            int risultato = stmt.executeUpdate(query);
-            return risultato;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-     */
-
     public static ResultSet RecuperaUtenteRSPerEmail(Connection connection, String email) throws EccezioneGenerica {
         PreparedStatement statement = null;
 

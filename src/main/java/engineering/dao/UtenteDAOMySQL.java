@@ -66,15 +66,12 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 if (rs.getBoolean("allenatore")) {
                     System.out.println("Utente allenatore");
                     utente = new Allenatore(rs.getString("username"), rs.getString("email"), rs.getString("password") , allenamenti, squadra );
-                    rs.close();
-                    rsSquad.close();
-                    rsAll.close();
-                    return utente;
+
                 } else {
                     System.out.println("Utente non allenatore");
                     utente = new Giocatore(rs.getString("username"), rs.getString("email"), rs.getString("password") , allenamenti , squadra );
-                    return utente;
                 }
+                return utente;
 
             } catch (SQLException e) {throw new EccezioneGenerica(e.getMessage());}
 
@@ -104,7 +101,6 @@ public class UtenteDAOMySQL implements UtenteDAO {
         }
     }
     public Boolean esisteUtenteDaEmail(String email) throws EccezioneGenerica{
-        Statement stmt = null;
         Connection conn;
         ResultSet rs = null;
 
@@ -137,7 +133,6 @@ public class UtenteDAOMySQL implements UtenteDAO {
     }
 
     public void inserisciUtenteDaRegistrazione(Registrazione registrazione) {
-        Statement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
         int result = 0;

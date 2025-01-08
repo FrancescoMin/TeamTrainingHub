@@ -1,14 +1,11 @@
-package controllerApplicativo;
+package ctrlApplicativo;
 
 import engineering.bean.RegistrazioneBean;
 import engineering.dao.UtenteDAO;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
-import modelli.Allenatore;
-import modelli.Giocatore;
 import modelli.Registrazione;
-import modelli.Utente;
 
 public class RegistrazioneCtrlApplicativo {
 
@@ -26,22 +23,28 @@ public class RegistrazioneCtrlApplicativo {
         // Creazione del modello registrazione
         Registrazione registrazione = new Registrazione(username, email, password, isAllenatore);
 
+        //creo il DAO per l'inserimento dell'utente
+        UtenteDAO UtenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
+
         //controllo che l'utente esisti già nel singleton
         Singleton istanza = Singleton.getInstance();
         if (istanza.esisteUtenteDaRegistrazione(registrazione)) {
             throw new Exception("Utente già registrato!");
         }
 
-        // Utilizzo del DAO per salvare l'utente
-        UtenteDAO UtenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
+        //aggiungo l'utente al singleton
+        istanza.aggiungiRegistrazione(registrazione);
 
-        //aggiungo l'utente al singleton e alla persistenza
-        try {
-            UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
-            istanza.aggiungiRegistrazione(registrazione);
+        //se non siamo nella modalità demo, inserisco l'utente nella persistenza
+        if(!istanza.getDemo()) {
+            try {
+                //compio l'inserimento dell'utente nella persistenza
+                UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
 
-        } catch (EccezioneGenerica e) {
-            throw new Exception(e.getMessage());
+
+            } catch (EccezioneGenerica e) {
+                throw new Exception(e.getMessage());
+            }
         }
     }
 }

@@ -1,15 +1,15 @@
-package controllerApplicativo;
+package ctrlApplicativo;
 
 import engineering.eccezioni.EccezioneGenerica;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class entraInSquadraCtrlApplicativo {
+public class EntraInSquadraCtrlApplicativo {
 
     private static final String FILE_PATH = "src/main/resources/persistenza/squadre/";
 
-    public entraInSquadraCtrlApplicativo() {
+    public EntraInSquadraCtrlApplicativo() {
         // Costruttore vuoto
     }
 

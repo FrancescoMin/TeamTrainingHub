@@ -1,4 +1,4 @@
-package controllerApplicativo;
+package ctrlApplicativo;
 
 import engineering.bean.*;
 import engineering.dao.UtenteDAO;
@@ -8,9 +8,9 @@ import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Login;
 import modelli.Utente;
 
-public class LoginControllerApplicativo {
+public class LoginCtrlApplicativo {
 
-    public LoginControllerApplicativo() {
+    public LoginCtrlApplicativo() {
     }
 
     public void setDemo(Boolean demo) {
@@ -53,6 +53,11 @@ public class LoginControllerApplicativo {
 
         //vedo se l'utente esiste nel singleton
         Singleton istanza=Singleton.getInstance();
+
+
+        System.out.println("Valore booleano del singleton demo: " + istanza.getDemo());
+
+
         Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
         //se esiste nel singleton, lo recupero e lo restituisco
         if(istanza.esisteUtenteDaLogin(login)) {

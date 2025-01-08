@@ -80,10 +80,17 @@ public class Singleton {
     }
 
     public void aggiungiRegistrazione(Registrazione registrazione){
+        Utente utente;
         if (registrazione.getAllenatore()) {
-            utenti.add(new Allenatore(registrazione.getUsername(),registrazione.getEmail(), registrazione.getPassword()));
+            utente=new Allenatore(registrazione.getUsername(),registrazione.getEmail(), registrazione.getPassword());
+            utenti.add(utente);
+            setUtenteCorrente(utente);
         } else {
-            utenti.add(new Giocatore(registrazione.getUsername(),registrazione.getEmail(), registrazione.getPassword()));
+            utente=new Giocatore(registrazione.getUsername(),registrazione.getEmail(), registrazione.getPassword());
+            utenti.add(utente);
+            setUtenteCorrente(utente);
         }
+        System.out.println("Utente " + utente.getEmail() + " aggiunto al sistema");
+        System.out.println("Utente corrente: " + utenteCorrente.getEmail());
     }
 }
