@@ -25,25 +25,6 @@ public class SquadraDAOJSON implements SquadraDAO {
         }
     }
 
-    public void IscrizioneUtenteASquadra(Utente utente, Squadra squadra) {
-
-        try {
-            System.out.println("Iscrizione dell'utente " + utente.getEmail() + "alla squadra: " + squadra.getNome());
-            //poiché è il sistema a modificare i modelli e non il dao, non c'è bisogno di fare il setSquadra
-            //utente.setSquadra(squadra);
-
-            UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
-            utenteDAOJSON.aggiornaUtente(utente);
-
-        } catch (Exception e) {
-            System.out.println("Errore nell'iscrizione dell'utente alla squadra");
-        }
-    }
-
-    public void visualizzaTutteLeSquadre() {
-        System.out.println("Visualizzazione di tutte le squadre");
-    }
-
 
     public void creaSquadra(Squadra squadra, Utente utente) {
         try {
@@ -76,8 +57,6 @@ public class SquadraDAOJSON implements SquadraDAO {
                 writer.write(gson.toJson(jsonObject));
                 writer.close();
 
-
-
                 //capire se qui devo effettivamente lanciare questa eccezione
                 //throw new EccezioneGenerica("squadra inserita");
             }
@@ -88,4 +67,25 @@ public class SquadraDAOJSON implements SquadraDAO {
         }
 
     }
+
+    public void IscrizioneUtenteASquadra(Utente utente, Squadra squadra) {
+
+        try {
+            System.out.println("Iscrizione dell'utente " + utente.getEmail() + "alla squadra: " + squadra.getNome());
+            //poiché è il sistema a modificare i modelli e non il dao, non c'è bisogno di fare il setSquadra
+            //utente.setSquadra(squadra);
+
+            UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
+            utenteDAOJSON.aggiornaUtente(utente);
+
+        } catch (Exception e) {
+            System.out.println("Errore nell'iscrizione dell'utente alla squadra");
+        }
+    }
+
+    public void visualizzaTutteLeSquadre() {
+        System.out.println("Visualizzazione di tutte le squadre");
+    }
+
+
 }

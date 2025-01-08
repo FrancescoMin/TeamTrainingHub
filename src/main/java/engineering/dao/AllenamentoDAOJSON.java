@@ -18,10 +18,12 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
 
     public void creaAllenamento(Allenamento allenamento){
         System.out.println("Creazione Allenamento JSON");
+        String path= allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine();
+
         //aggiunta dell'utente alla lista degli utenti
         try {
             //Creazione del path
-            String filePath = "src/main/resources/persistenza/allenamenti/" + allenamento.getData() + ".json";
+            String filePath = "src/main/resources/persistenza/allenamenti/" + path + ".json";
 
             try {
                 //controllo che il file sia già esistente
@@ -54,7 +56,6 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
     }
 
     public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) {
-
         creaAllenamento(allenamento);
         UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
         utenteDAOJSON.aggiornaUtente(utente);

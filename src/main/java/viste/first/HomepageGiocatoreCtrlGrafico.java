@@ -58,10 +58,6 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
         welcomeLabel.setText("Ciao " + username);
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     @FXML
     private void handleEntraInSquadraButtonAction() {
         try {

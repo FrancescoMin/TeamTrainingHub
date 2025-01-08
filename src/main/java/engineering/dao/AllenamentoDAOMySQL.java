@@ -53,7 +53,7 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
                     System.out.println("data allenamento: " + rsAll.getString("data") + "   durata: " + rsAll.getInt("durata") + "  descrizione: " + rsAll.getString("descrizione"));
 
                     //metodo per l'aggiunta di un allenamento all'utente
-                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getInt("durata"), rsAll.getString("descrizione")));
+                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString("descrizione")));
                 }
                 return allenamenti;
 

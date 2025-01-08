@@ -1,50 +1,40 @@
 package modelli;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Allenamento{
-    @JsonProperty("data")
+
     private String data;
-    @JsonProperty("durata")
-    private int durata;
-    @JsonProperty("descrizione")
     private String descrizione;
+    private String orarioInizio;
+    private String orarioFine;
 
 
     public Allenamento() {}
 
 
-    public Allenamento(String data, int durata) {
+    public Allenamento(String data, String orarioInizio, String orarioFine) {
         setData(data);
-        setDurata(durata);
+        setOrarioInizio(orarioInizio);
+        setOrarioFine(orarioFine);
         setDescrizione("");
     }
 
 
-    public Allenamento(String data, int durata, String descrizione) {
+    public Allenamento(String data, String orarioInizio, String orarioFine, String descrizione) {
         setData(data);
-        setDurata(durata);
+        setOrarioInizio(orarioInizio);
+        setOrarioFine(orarioFine);
         setDescrizione(descrizione);
     }
 
-    public void setData(String data) {
-        this.data = data;
-    }
+    public void setData(String data) {this.data = data;}
     public String getData() {return data;}
 
+    public void setDescrizione(String descrizione) {this.descrizione = descrizione;}
+    public String getDescrizione() {return this.descrizione;}
 
-    public void setDurata(int durata) {
-        this.durata = durata;
-    }
-    public int getDurata() {
-        return this.durata;
-    }
+    public void setOrarioInizio(String orarioInizio) {this.orarioInizio = orarioInizio;}
+    public String getOrarioInizio() {return this.orarioInizio;}
 
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-    public String getDescrizione() {
-        return this.descrizione;
-    }
+    public void setOrarioFine(String orarioFine) {this.orarioFine = orarioFine;}
+    public String getOrarioFine() {return this.orarioFine;}
 }

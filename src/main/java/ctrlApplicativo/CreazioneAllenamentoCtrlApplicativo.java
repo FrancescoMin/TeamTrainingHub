@@ -19,7 +19,7 @@ public class CreazioneAllenamentoCtrlApplicativo {
             Utente utente= istanza.getUtenteCorrente();
 
             //creo il modello allenamento che verrà inserito nel database
-            Allenamento allenamento=new Allenamento(allenamentoBean.getData(), allenamentoBean.getDurata(), allenamentoBean.getDescrizione());
+            Allenamento allenamento=new Allenamento(allenamentoBean.getData(), allenamentoBean.getOrarioInizio(), allenamentoBean.getOrarioFine(), allenamentoBean.getDescrizione());
 
             //aggiungo l'allenamento all'utente
             utente.getAllenamenti().add(allenamento);

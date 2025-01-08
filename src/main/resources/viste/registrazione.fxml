@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viste.first.RegistrazioneCtrlGrafico">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.RegistrazioneCtrlGrafico">
    <children>
       <AnchorPane prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #0f9200;">
          <children>
@@ -25,18 +24,18 @@
       <TextField fx:id="usernameTextField" layoutX="40.0" layoutY="107.0" prefHeight="26.0" prefWidth="314.0" />
       <Label layoutX="40.0" layoutY="151.0" text="Email" />
       <TextField fx:id="emailTextField" layoutX="40.0" layoutY="169.0" prefHeight="26.0" prefWidth="314.0" />
-      <PasswordField fx:id="passwordTextField" layoutX="41.0" layoutY="226.0" prefHeight="26.0" prefWidth="314.0" />
       <Label layoutX="41.0" layoutY="208.0" text="Password" />
+      <PasswordField fx:id="passwordTextField" layoutX="41.0" layoutY="226.0" prefHeight="26.0" prefWidth="314.0" />
+      <Label layoutX="41.0" layoutY="268.0" text="Conferma Password" />
+      <PasswordField fx:id="confermaPasswordTextField" layoutX="41.0" layoutY="285.0" prefHeight="26.0" prefWidth="314.0" />
+      <CheckBox fx:id="allenatoreCheckBox" layoutX="443.0" layoutY="231.0" mnemonicParsing="false" text="Allenatore" />
       <Button fx:id="registratiButton" layoutX="245.0" layoutY="343.0" mnemonicParsing="false" style="-fx-background-color: #0f9200;" text="Registrati" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
       <Button fx:id="tornaLoginButton" layoutX="479.0" layoutY="352.0" mnemonicParsing="false" style="-fx-background-color: #0f9200;" text="Torna al Login" textFill="WHITE" />
-      <Label layoutX="41.0" layoutY="268.0" text="Conferma Password" />
-      <PasswordField fx:id="confermaPasswordTextField" layoutX="41.0" layoutY="285.0" prefHeight="26.0" prefWidth="314.0" />
       <Text layoutX="397.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se vuoi iscriverti come allenatore:" />
-      <CheckBox fx:id="allenatoreCheckBox" layoutX="443.0" layoutY="231.0" mnemonicParsing="false" text="Allenatore" />
       <Label fx:id="erroreInserimento" alignment="CENTER" layoutX="1.0" layoutY="318.0" prefHeight="18.0" prefWidth="600.0" textAlignment="CENTER" textFill="RED">
          <font>
             <Font size="16.0" />

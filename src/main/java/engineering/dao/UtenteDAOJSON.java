@@ -206,13 +206,21 @@ public class UtenteDAOJSON implements UtenteDAO {
             for (int i = 0; i < jsonArray.size(); i++) {
 
                 String nomeAllenamento = jsonArray.get(i).getAsString();
-                String filePath = "src/main/resources/persistenza/allenamenti/" + nomeAllenamento + ".json";
+                /*
+                String nomeAllenamento = jsonObject.get("nome").getAsString();
+                String orarioInizio = jsonObject.get("orarioInizio").getAsString();
+                String oraFine = jsonObject.get("oraFine").getAsString();
+                 */
+                String path= nomeAllenamento;
+
+
+                String filePath = "src/main/resources/persistenza/allenamenti/" + path + ".json";
                 String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
                 //creo l'oggetto JSON corrispondete all'utente con l'email passata
                 JsonObject allenamento = gson.fromJson(jsonString, JsonObject.class);
 
-                allenamenti.add(new Allenamento(allenamento.get("data").getAsString(), allenamento.get("durata").getAsInt(), allenamento.get("descrizione").getAsString()));
+                allenamenti.add(new Allenamento(allenamento.get("data").getAsString(),allenamento.get("orarioInizio").getAsString(), allenamento.get("orarioFine").getAsString() , allenamento.get("descrizione").getAsString()));
 
             }
 
@@ -247,7 +255,7 @@ public class UtenteDAOJSON implements UtenteDAO {
 
             System.out.println("allenamento trovato");
             for (int i = 0; i < utente.getAllenamenti().size(); i++) {
-                jsonArray.add(utente.getAllenamenti().get(i).getData());
+                jsonArray.add(utente.getAllenamenti().get(i).getData() + "-" + utente.getAllenamenti().get(i).getOrarioInizio() + "-" + utente.getAllenamenti().get(i).getOrarioFine());
             }
             jsonObject.add("allenamenti", jsonArray);
         }

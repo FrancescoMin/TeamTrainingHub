@@ -27,7 +27,16 @@ public class CreazioneAllenamentoCtrlGrafico {
     private TextField annoAllenamento;
 
     @FXML
-    private TextField durataAllenamento;
+    private TextField oraInizio;
+
+    @FXML
+    private TextField minutoInizio;
+
+    @FXML
+    private TextField oraFine;
+
+    @FXML
+    private TextField minutoFine;
 
     @FXML
     private TextField descrizioneAllenamento;
@@ -46,7 +55,11 @@ public class CreazioneAllenamentoCtrlGrafico {
             int giorno = Integer.parseInt(giornoAllenamento.getText());
             int mese = Integer.parseInt(meseAllenamento.getText());
             int anno = Integer.parseInt(annoAllenamento.getText());
-            int durata = Integer.parseInt(durataAllenamento.getText());
+            int oraIn = Integer.parseInt(oraInizio.getText());
+            int minutoIn = Integer.parseInt(minutoInizio.getText());
+            int oraFin = Integer.parseInt(oraFine.getText());
+            int minutoFin = Integer.parseInt(minutoFine.getText());
+
             String descrizione = descrizioneAllenamento.getText();
 
             if(giorno < 1 || giorno > 31) {
@@ -58,21 +71,28 @@ public class CreazioneAllenamentoCtrlGrafico {
             if (anno < 2025 ) {
                 throw new EccezioneGenerica("Anno non valido");
             }
-            if (durata < 1) {
-                throw new EccezioneGenerica("Durata non valida");
+            if (oraIn < 0 || oraIn > 23) {
+                throw new EccezioneGenerica("Ora di inizio non valida");
             }
+            if (minutoIn < 0 || minutoIn > 59) {
+                throw new EccezioneGenerica("Minuto di inizio non valido");
+            }
+
+            String orarioInizio = oraIn + "-" + minutoIn;
+            String orarioFine = oraFin + "-" + minutoFin;
+
             //creazione della data con cui verrà salvato l'allenamento
             String data = giorno + "-" + mese + "-" + anno;
 
             //creazione del ben dell'allenamento da far salvare al sistema
-            AllenamentoBean allenamentoBean = new AllenamentoBean(data, durata, descrizione);
+            AllenamentoBean allenamentoBean = new AllenamentoBean(data, orarioInizio, orarioFine, descrizione);
 
             //richiediamo al sistema di salvare il bean dell'allenamento
             CreazioneAllenamentoCtrlApplicativo creazioneAllenamentoCtrlApplicativo = new CreazioneAllenamentoCtrlApplicativo();
             creazioneAllenamentoCtrlApplicativo.creaAllenamento(allenamentoBean);
 
             //abbiamo completato il salvataggio e lo facciamo vedere con una stampa a schermo
-            System.out.println("giorno: " + giorno + " mese: " + mese + " anno: " + anno + " durata: " + durata + " descrizione: " + descrizione);
+            System.out.println("giorno: " + giorno + " mese: " + mese + " anno: " + anno + "orario inizio " + orarioInizio + " orario fine "+ orarioFine + " descrizione: " + descrizione);
 
             //facciamo il cambio scena per tornare alla home dell'allenatore
             try {
@@ -85,6 +105,7 @@ public class CreazioneAllenamentoCtrlGrafico {
             }
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             labelErrori.setText(e.getMessage());
             labelErrori.setVisible(true);
         }

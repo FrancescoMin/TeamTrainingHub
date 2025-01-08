@@ -1,12 +1,9 @@
 package engineering.query;
 
 import engineering.eccezioni.EccezioneGenerica;
-import modelli.Allenamento;
 import modelli.Login;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class QueriesLogin {
 
@@ -53,7 +50,7 @@ public class QueriesLogin {
         throw new EccezioneGenerica("Password errata, utente non trovato dalla query");
     }
 
-    public static ResultSet recuperaAllenamentiPerData(Connection connection, String data) throws SQLException {
+    public static ResultSet recuperaAllenamentiPerData(Connection connection, String data) throws EccezioneGenerica {
 
         PreparedStatement statement = null;
 
@@ -69,7 +66,7 @@ public class QueriesLogin {
             return rs;
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new EccezioneGenerica (e.getMessage());
         }
 
     }
