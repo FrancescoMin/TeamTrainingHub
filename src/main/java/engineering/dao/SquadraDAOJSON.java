@@ -69,6 +69,9 @@ public class SquadraDAOJSON implements SquadraDAO {
                 jsonObject.addProperty("nome", squadra.getNome());
 
 
+                JsonArray jsonArray = new JsonArray();
+                jsonObject.add("allenamenti", jsonArray);
+
                 //salvataggio dell'oggetto serializzato utente nel file json
                 writer.write(gson.toJson(jsonObject));
                 writer.close();

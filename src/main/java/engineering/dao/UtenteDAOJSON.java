@@ -1,13 +1,11 @@
 package engineering.dao;
 
 import com.google.gson.*;
-//import engineering.altro.UtenteAdapter;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.eccezioni.UtenteNonEsistenteEccezione;
 import modelli.*;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -23,7 +21,6 @@ public class UtenteDAOJSON implements UtenteDAO {
     public Boolean esisteUtenteDaLogin(Login login) {
         return esisteUtenteDaEmail(login.getEmail());
     }
-
     public Boolean esisteUtenteDaEmail(String email) {
         try {
             //creazione del path
@@ -71,7 +68,6 @@ public class UtenteDAOJSON implements UtenteDAO {
         } catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());
         }
-
     }
 
     public void inserisciUtenteDaUtente(Utente utente) {
@@ -94,10 +90,13 @@ public class UtenteDAOJSON implements UtenteDAO {
                 // Create a Gson object
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+                //serializzo l'oggetto java in un oggetto json
                 JsonObject jsonObject = serializzazioneUtente(utente);
 
+                //parso l'oggetto json in una stringa
                 String json = gson.toJson(jsonObject);
 
+                //creazione del file con nome username dell'utente in formato json
                 FileWriter writer = new FileWriter(filePath);
 
                 //salvataggio dell'oggetto serializzato utente nel file json
@@ -108,7 +107,6 @@ public class UtenteDAOJSON implements UtenteDAO {
             throw new EccezioneGenerica(e.getMessage());
         }
     }
-
     //creazione del file json con i dati dell'utente registrato
     public void inserisciUtenteDaRegistrazione(Registrazione registrazione) {
         try {
@@ -159,7 +157,6 @@ public class UtenteDAOJSON implements UtenteDAO {
         }
 
     }
-
     public Utente recuperaUtenteDaEmail(String email) throws EccezioneGenerica {
         try {
             //Serializziamo l'oggetto in JSON
@@ -265,5 +262,4 @@ public class UtenteDAOJSON implements UtenteDAO {
 
         return jsonObject;
     }
-
 }
