@@ -26,7 +26,6 @@ public class SquadraDAOJSON implements SquadraDAO {
         }
     }
 
-
     public void modificaSquadra(Squadra squadra, Utente utente, Allenamento allenamento, Boolean isCreazione) {
         try {
 
@@ -116,5 +115,13 @@ public class SquadraDAOJSON implements SquadraDAO {
         System.out.println("Visualizzazione di tutte le squadre");
     }
 
+    public void inviaRichiestaASquadra(Squadra squadra, Utente utente) {
+        System.out.println("Invio della richiesta alla squadra non implementato");
+    }
+
+    public Squadra verificaEsistenzaSquadra(String nomeSquadra){
+        System.out.println("Verifica esistenza squadra non implementato");
+        return null;
+    }
 
 }
