@@ -5,6 +5,7 @@ import engineering.eccezioni.EccezioneGenerica;
 import modelli.Squadra;
 import modelli.Utente;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -87,5 +88,45 @@ public class SquadraDAOJSON implements SquadraDAO {
         System.out.println("Visualizzazione di tutte le squadre");
     }
 
+    public void inviaRichiestaASquadra(Squadra squadra, Utente utente) {
+
+    }
+
+/*
+    public Squadra verificaEsistenzaSquadra(String nomeSquadra) {
+        try {
+            String filePath = "src/main/resources/persistenza/squadre/" + nomeSquadra + ".json";
+
+            try {
+                //controllo che il file sia già esistente
+                Files.readAllBytes(Paths.get(filePath));
+
+            } catch (IOException e) {
+                //se il file non esiste, la squadra non esiste e lancio un'eccezione
+                //throw new EccezioneGenerica("squadra non esistente"); in EntraInSquadraCtrlApplicativo c'è un già l'eccezione
+            }
+
+        } catch (Exception e) {
+            throw new EccezioneGenerica(e.getMessage());
+        }
+        return null;
+    }
+
+ */
+
+    public Squadra verificaEsistenzaSquadra(String nomeSquadra) {
+        String filePath = "src/main/resources/persistenza/squadre/" + nomeSquadra + ".json";
+        File file = new File(filePath);
+        if (file.exists()) {
+            try {
+                // Leggi il file JSON e deserializza in un oggetto Squadra
+                Gson gson = new Gson();
+                return gson.fromJson(new FileReader(file), Squadra.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 
 }

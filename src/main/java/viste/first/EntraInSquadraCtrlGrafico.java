@@ -12,7 +12,8 @@ import viste.first.utils.CambioScena;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import  static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
+
+import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
 public class EntraInSquadraCtrlGrafico implements Initializable {
 
@@ -38,14 +39,9 @@ public class EntraInSquadraCtrlGrafico implements Initializable {
 
         if (nomeSquadra != null && !nomeSquadra.trim().isEmpty()) {
             try {
-                // Verifica tramite il controller applicativo
-                boolean esiste = applicativoController.verificaEsistenzaSquadra(nomeSquadra);
-
-                if (esiste) {
-                    mostraMessaggio("Successo", "La squadra esiste in persistenza.");
-                } else {
-                    mostraMessaggio("Errore", "La squadra non è presente in persistenza.");
-                }
+                // Invio della richiesta alla squadra tramite il controller applicativo
+                applicativoController.inviaRichiestaAllaSquadra(nomeSquadra);
+                mostraMessaggio("Successo", "Richiesta inviata con successo all'allenatore della squadra.");
             } catch (EccezioneGenerica e) {
                 mostraMessaggio("Errore", e.getMessage());
             }
@@ -62,13 +58,11 @@ public class EntraInSquadraCtrlGrafico implements Initializable {
         alert.showAndWait();
     }
 
-
     private void handleTornaInHomepageGiocatoreButtonAction() {
         try {
             Stage stage = (Stage) tornaInHomepageGiocatoreButton.getScene().getWindow();
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
-
         } catch (EccezioneGenerica eccezioneGenerica) {
             System.out.println(eccezioneGenerica.getMessage());
         }

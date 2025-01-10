@@ -1,33 +1,61 @@
 package ctrlApplicativo;
 
+import engineering.dao.SquadraDAO;
 import engineering.eccezioni.EccezioneGenerica;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import engineering.pattern.Singleton;
+import engineering.pattern.abstract_factory.DAOFactory;
+import modelli.Squadra;
+import modelli.Utente;
 
 public class EntraInSquadraCtrlApplicativo {
 
-    private static final String FILE_PATH = "src/main/resources/persistenza/squadre/";
+    private final SquadraDAO squadraDAO;
 
     public EntraInSquadraCtrlApplicativo() {
-        // Costruttore vuoto
+        // Inizializza il DAO tramite la factory
+        this.squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
     }
 
     /**
-     * Verifica se esiste una squadra con il nome specificato nella persistenza.
+     * Verifica se una squadra esiste.
      *
      * @param nomeSquadra Nome della squadra da verificare.
-     * @return True se il file esiste, False altrimenti.
-     * @throws EccezioneGenerica Se il nome della squadra è vuoto o invalido.
+     * @return true se la squadra esiste, false altrimenti.
+     * @throws EccezioneGenerica Se il nome della squadra è nullo o vuoto.
      */
     public boolean verificaEsistenzaSquadra(String nomeSquadra) throws EccezioneGenerica {
         if (nomeSquadra == null || nomeSquadra.trim().isEmpty()) {
             throw new EccezioneGenerica("Il nome della squadra non può essere vuoto.");
         }
+        System.out.println("Verifica esistenza per: " + nomeSquadra);
+        Squadra squadra = squadraDAO.verificaEsistenzaSquadra(nomeSquadra);
+        System.out.println("Squadra trovata: " + (squadra != null));
 
-        String filePath = FILE_PATH + nomeSquadra + ".json";
+        return squadra != null;
+    }
 
-        // Controlla se il file esiste
-        return Files.exists(Paths.get(filePath));
+    /**
+     * Invia una richiesta di ingresso alla squadra specificata.
+     *
+     * @param nomeSquadra Nome della squadra a cui inviare la richiesta.
+     * @throws EccezioneGenerica Se l'utente è già in una squadra o la squadra non esiste.
+     */
+    public void inviaRichiestaAllaSquadra(String nomeSquadra) throws EccezioneGenerica {
+        Singleton istanza = Singleton.getInstance();
+        Utente utente = istanza.getUtenteCorrente();
+
+        if (!utente.getSquadra().getNome().isEmpty()) {
+            throw new EccezioneGenerica("L'utente è già in una squadra.");
+        }
+
+        if (!verificaEsistenzaSquadra(nomeSquadra)) {
+            throw new EccezioneGenerica("La squadra specificata non esiste.");
+        }
+
+        Squadra squadra = squadraDAO.verificaEsistenzaSquadra(nomeSquadra);
+
+        // Invia la richiesta all'allenatore della squadra
+        squadraDAO.inviaRichiestaASquadra(squadra, utente);
     }
 }
+
