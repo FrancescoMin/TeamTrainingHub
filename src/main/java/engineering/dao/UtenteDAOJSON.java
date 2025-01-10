@@ -179,7 +179,6 @@ public class UtenteDAOJSON implements UtenteDAO {
 
             //faccio il controllo che l'utente sia un allenatore o un giocatore
             if (jsonObject.get("allenatore").getAsBoolean()) {
-                System.out.println("L'utente è un allenatore");
                 return new Allenatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString(), jsonObject.get("password").getAsString(), allenamenti, squadra);
 
             } else {
@@ -192,7 +191,6 @@ public class UtenteDAOJSON implements UtenteDAO {
             System.out.println("Errore di stream I/O");
             throw new EccezioneGenerica("Utente non esistente");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -205,15 +203,7 @@ public class UtenteDAOJSON implements UtenteDAO {
 
             for (int i = 0; i < jsonArray.size(); i++) {
 
-                String nomeAllenamento = jsonArray.get(i).getAsString();
-                /*
-                String nomeAllenamento = jsonObject.get("nome").getAsString();
-                String orarioInizio = jsonObject.get("orarioInizio").getAsString();
-                String oraFine = jsonObject.get("oraFine").getAsString();
-                 */
-                String path= nomeAllenamento;
-
-
+                String path = jsonArray.get(i).getAsString();
                 String filePath = "src/main/resources/persistenza/allenamenti/" + path + ".json";
                 String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
@@ -226,7 +216,6 @@ public class UtenteDAOJSON implements UtenteDAO {
 
             return allenamenti;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -245,15 +234,11 @@ public class UtenteDAOJSON implements UtenteDAO {
         JsonArray jsonArray = new JsonArray();
 
         if (utente.getAllenamenti() == null) {
-            System.out.println("allenamento null");
             jsonObject.add("allenamenti", jsonArray);
 
         } else if (utente.getAllenamenti().isEmpty()) {
-            System.out.println("allenamento vuoto");
             jsonObject.add("allenamenti", jsonArray);
         } else {
-
-            System.out.println("allenamento trovato");
             for (int i = 0; i < utente.getAllenamenti().size(); i++) {
                 jsonArray.add(utente.getAllenamenti().get(i).getData() + "-" + utente.getAllenamenti().get(i).getOrarioInizio() + "-" + utente.getAllenamenti().get(i).getOrarioFine());
             }
@@ -261,10 +246,8 @@ public class UtenteDAOJSON implements UtenteDAO {
         }
 
         if (utente.getSquadra() == null) {
-            System.out.println("Squadra null");
             jsonObject.addProperty("squadra", "");
         } else {
-            System.out.println("Squadra non null");
             jsonObject.addProperty("squadra", utente.getSquadra().getNome());
         }
 

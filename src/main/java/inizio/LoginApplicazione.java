@@ -32,6 +32,7 @@ LoginApplicazione extends Application {
                 System.out.println("MainApplication: Impossibile trovare il file di configurazione.");
 
             }
+
         } catch (IOException e) {
             System.out.println("MainApplication: Errore durante la lettura del file di configurazione %s" + e.getMessage());
         }

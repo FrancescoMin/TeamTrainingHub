@@ -10,7 +10,7 @@ public class EntraInSquadraCtrlApplicativo {
     private static final String FILE_PATH = "src/main/resources/persistenza/squadre/";
 
     public EntraInSquadraCtrlApplicativo() {
-        // Costruttore vuoto
+        // Costruttore vuoto di default
     }
 
     /**

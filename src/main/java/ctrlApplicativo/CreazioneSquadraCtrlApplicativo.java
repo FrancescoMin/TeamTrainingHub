@@ -9,7 +9,9 @@ import modelli.Utente;
 
 public class CreazioneSquadraCtrlApplicativo {
 
-    public CreazioneSquadraCtrlApplicativo() {}
+    public CreazioneSquadraCtrlApplicativo() {
+        // Costruttore vuoto di default
+    }
 
     public void creazioneSquadra(String nomeSquadra) throws EccezioneGenerica {
         try {

@@ -25,7 +25,20 @@ public class HomepageAllenatoreCtrlGrafico {
     private Button gestisciSquadra;
 
     @FXML
-    protected void RitornoAlLogin(ActionEvent event) {
+    private void VisualizzaRichiestePartecipazione(){
+        System.out.println("Visualizza Richieste Partecipazione");
+
+        //cambio scena alla pagina di visualizzazione delle richieste di partecipazione
+        try {
+            Cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
+
+        } catch (EccezioneGenerica EccezioneGenerica) {
+            mostraErrori.setText(EccezioneGenerica.getMessage());
+        }
+    }
+
+    @FXML
+    protected void RitornoAlLogin() {
 
         System.out.println("Ritorno al Login");
 
@@ -39,7 +52,7 @@ public class HomepageAllenatoreCtrlGrafico {
     }
 
     @FXML
-    protected void CreaAllenamento(ActionEvent event) {
+    protected void CreaAllenamento() {
 
         System.out.println("Creazione Allenamento");
 
@@ -53,7 +66,7 @@ public class HomepageAllenatoreCtrlGrafico {
     }
 
     @FXML
-    protected void GestisciSquadra(ActionEvent event) {
+    protected void GestisciSquadra() {
         //controlliamo che l'allenatore abbia o meno una squadra chiedendolo al controllore applicativo
         HomepageAllenatoreCtrlApplicativo paginaPrincipaleControllerApplicativo = new HomepageAllenatoreCtrlApplicativo();
 

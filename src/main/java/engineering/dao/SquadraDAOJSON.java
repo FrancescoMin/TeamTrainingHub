@@ -2,10 +2,10 @@ package engineering.dao;
 
 import com.google.gson.*;
 import engineering.eccezioni.EccezioneGenerica;
+import modelli.Allenamento;
 import modelli.Squadra;
 import modelli.Utente;
 
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,7 +18,8 @@ public class SquadraDAOJSON implements SquadraDAO {
     public void creaSquadraPerAllenatore(Utente utente, Squadra squadra) {
 
         try {
-            creaSquadra(squadra, utente);
+            modificaSquadra(squadra, utente, null , true);
+            //creaSquadra(squadra, utente);
             IscrizioneUtenteASquadra(utente, squadra);
         } catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());
@@ -26,39 +27,65 @@ public class SquadraDAOJSON implements SquadraDAO {
     }
 
 
-    public void creaSquadra(Squadra squadra, Utente utente) {
+    public void modificaSquadra(Squadra squadra, Utente utente, Allenamento allenamento, Boolean isCreazione) {
         try {
+
             //Creazione del path
             String filePath = "src/main/resources/persistenza/squadre/" + squadra.getNome() + ".json";
+            // Create a Gson object
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("allenatore", utente.getEmail());
+            jsonObject.addProperty("nome", squadra.getNome());
+
+            JsonArray jsonArray = new JsonArray();
+
+
 
             try {
                 //controllo che il file sia già esistente
                 Files.readAllBytes(Paths.get(filePath));
 
-                //se il file esiste, una squadra con lo stesso nome esiste già e lancio un'eccezione
-                throw new EccezioneGenerica("squadra esistente");
+                //se stiamo facendo la creazione della squadra e il file esiste, una squadra con lo stesso nome esiste già e lancio un'eccezione
+                if(isCreazione){
+                    throw new EccezioneGenerica("squadra esistente, impossibile crearla");
+                }
 
-            } catch (IOException e) {
-                //creazione del file con nome username dell'utente in formato json
+                //se arrivo qui vuol dire che sto facendo una modifica e il file esiste, quindi posso sovrascriverlo
+                String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
-                // Create a Gson object
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                FileWriter writer = new FileWriter(filePath);
+                JsonObject jsonObject1 = gson.fromJson(jsonString, JsonObject.class);
 
-                JsonObject jsonObject = new JsonObject();
-                jsonObject.addProperty("allenatore", utente.getEmail());
-                jsonObject.addProperty("nome", squadra.getNome());
-
-
-                JsonArray jsonArray = new JsonArray();
+                jsonArray=jsonObject1.getAsJsonArray("allenamenti");
+                jsonArray.add(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
                 jsonObject.add("allenamenti", jsonArray);
 
-                //salvataggio dell'oggetto serializzato utente nel file json
-                writer.write(gson.toJson(jsonObject));
+                //aggiorno l'oggetto json per avere la lista degli allenamenti aggiornata
+                FileWriter writer = new FileWriter(filePath);
+
+                //salvataggio dell'oggetto serializzato squadra nel file json
+                writer.write(gson.toJson(jsonObject1));
                 writer.close();
 
                 //capire se qui devo effettivamente lanciare questa eccezione
                 //throw new EccezioneGenerica("squadra inserita");
+
+
+            } catch (IOException e) {
+                //se stiamo facendo la modifica della squadra e il file esiste, una squadra con lo stesso nome esiste già e lancio un'eccezione
+                if(!isCreazione){
+                    throw new EccezioneGenerica("squadra non esistente, impossibile modificare");
+                }
+
+                jsonObject.add("allenamenti", jsonArray);
+
+                //se arrivo qui vuol dire che sto facendo una modifica e il file esiste, quindi posso sovrascriverlo
+                FileWriter writer = new FileWriter(filePath);
+
+                //salvataggio dell'oggetto serializzato utente nel file json
+                writer.write(gson.toJson(jsonObject));
+                writer.close();
             }
 
 
@@ -67,6 +94,8 @@ public class SquadraDAOJSON implements SquadraDAO {
         }
 
     }
+
+
 
     public void IscrizioneUtenteASquadra(Utente utente, Squadra squadra) {
 

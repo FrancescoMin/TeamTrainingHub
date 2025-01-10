@@ -9,6 +9,10 @@ import modelli.Registrazione;
 
 public class RegistrazioneCtrlApplicativo {
 
+    public RegistrazioneCtrlApplicativo() {
+        //costruttore vuoto di default
+    }
+
     public void inserisciUtente(RegistrazioneBean registrazioneBean) throws Exception {
         String username = registrazioneBean.getUsername();
         String email = registrazioneBean.getEmail();

@@ -10,7 +10,6 @@ import java.util.Objects;
 public class CambioScena {
     public void cambioScena(Stage stage, String string) {
         try {
-
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(string)));
             stage.setScene(new Scene(root));
             stage.show();

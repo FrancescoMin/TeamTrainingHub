@@ -1,10 +1,8 @@
 {
-  "username": "qewq",
+  "username": "1",
   "email": "1",
   "password": "1",
   "allenatore": true,
-  "allenamenti": [
-    "10-10-101010-10-10-12-12"
-  ],
-  "squadra": "123"
+  "allenamenti": [],
+  "squadra": "prova1"
 }

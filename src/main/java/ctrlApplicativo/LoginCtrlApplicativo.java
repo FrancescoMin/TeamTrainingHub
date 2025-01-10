@@ -11,6 +11,7 @@ import modelli.Utente;
 public class LoginCtrlApplicativo {
 
     public LoginCtrlApplicativo() {
+        //costruttore vuoto di default
     }
 
     public void setDemo(Boolean demo) {
