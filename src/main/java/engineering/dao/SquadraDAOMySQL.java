@@ -67,4 +67,12 @@ public class SquadraDAOMySQL implements SquadraDAO {
     public void visualizzaTutteLeSquadre() {
         System.out.println("Visualizzazione di tutte le squadre non implementato");
     }
+
+    public Squadra verificaEsistenzaSquadra(String nomeSquadra){
+        System.out.println("Verifica esistenza squadra non implementato");
+        return null;
+    }
+    public void inviaRichiestaASquadra(Squadra squadra, Utente utente) {
+        System.out.println("Invio della richiesta alla squadra non implementato");
+    }
 }

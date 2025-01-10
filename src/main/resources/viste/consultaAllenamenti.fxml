@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -17,12 +18,13 @@
             </Label>
          </children>
       </AnchorPane>
-       <TableView fx:id="allenamentiTable" layoutX="100.0" layoutY="80.0" prefHeight="300" prefWidth="400">
+       <TableView fx:id="allenamentiTable" layoutX="66.0" layoutY="80.0" prefHeight="262.0" prefWidth="467.0">
            <columns>
                <TableColumn fx:id="dataColumn" prefWidth="100" text="Data" />
                <TableColumn fx:id="durataColumn" prefWidth="100" text="Durata" />
-               <TableColumn fx:id="descrizioneColumn" prefWidth="200" text="Descrizione" />
+               <TableColumn fx:id="descrizioneColumn" prefWidth="266.40001220703124" text="Descrizione" />
            </columns>
        </TableView>
+      <Button fx:id="tornaInHomepageGiocatoreButton" layoutX="240.0" layoutY="349.0" mnemonicParsing="false" text="Torna in homepage" />
    </children>
 </AnchorPane>
