@@ -20,7 +20,7 @@ public abstract class Utente {
         setEmail(email);
         setPassword(password);
         setAllenamenti(new ArrayList<>());
-        setSquadra(new Squadra(""));
+        setSquadra(new Squadra());
     }
 
     public Utente(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {

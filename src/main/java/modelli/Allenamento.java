@@ -10,7 +10,6 @@ public class Allenamento{
 
     public Allenamento() {}
 
-
     public Allenamento(String data, String orarioInizio, String orarioFine) {
         setData(data);
         setOrarioInizio(orarioInizio);
@@ -18,13 +17,13 @@ public class Allenamento{
         setDescrizione("");
     }
 
-
     public Allenamento(String data, String orarioInizio, String orarioFine, String descrizione) {
         setData(data);
         setOrarioInizio(orarioInizio);
         setOrarioFine(orarioFine);
         setDescrizione(descrizione);
     }
+
 
     public void setData(String data) {this.data = data;}
     public String getData() {return data;}

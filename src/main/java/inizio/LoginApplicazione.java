@@ -28,12 +28,13 @@ LoginApplicazione extends Application {
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
             if (input != null) {
                 properties.load(input);
-            } else {
+            }
+            else {
                 System.out.println("MainApplication: Impossibile trovare il file di configurazione.");
-
             }
 
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             System.out.println("MainApplication: Errore durante la lettura del file di configurazione %s" + e.getMessage());
         }
         return properties;

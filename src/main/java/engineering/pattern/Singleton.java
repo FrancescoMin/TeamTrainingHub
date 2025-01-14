@@ -56,18 +56,17 @@ public class Singleton {
         }
         return false;
     }
-
-    public Boolean esisteSquadraDaNome(String nome) {
+    public Boolean esisteSquadraDaNome(String nomeSquadra) {
         for (Utente utente : utenti) {
-            if (utente instanceof Allenatore allenatore) {
-                Squadra squadra = allenatore.getSquadra();
-                if (squadra.getNome().equals(nome)) {
+            if (utente.getAllenatore()) {
+                if (utente.getSquadra().getNome().equals(nomeSquadra)) {
                     return true;
                 }
             }
         }
         return false;
     }
+
 
     public Utente getUtenteDaLogin(Login login) throws EccezioneGenerica {return getUtenteDaEmail(login.getEmail());}
     public Utente getUtenteDaEmail(String email) throws EccezioneGenerica {
@@ -77,6 +76,16 @@ public class Singleton {
             }
         }
         throw new EccezioneGenerica("Utente non esistente");
+    }
+    public Squadra getSquadraDaNome(String nomeSquadra) throws EccezioneGenerica {
+        for (Utente utente : utenti) {
+            if (utente instanceof Allenatore allenatore) {
+                if (allenatore.getSquadra().getNome().equals(nomeSquadra)) {
+                    return allenatore.getSquadra();
+                }
+            }
+        }
+        throw new EccezioneGenerica("Squadra non esistente");
     }
 
     public void aggiungiRegistrazione(Registrazione registrazione){

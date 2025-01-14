@@ -27,7 +27,7 @@ public class CreazioneSquadraCtrlApplicativo {
             }
 
             //modifico il modello Utente con la squadra che stiamo creando
-            utente.setSquadra(new Squadra(nomeSquadra));
+            utente.setSquadra(new Squadra(nomeSquadra, utente.getEmail()));
 
             if(!istanza.getDemo()) {
                 //istanzio il dao per la squadra
@@ -50,7 +50,7 @@ public class CreazioneSquadraCtrlApplicativo {
             Utente utente = istanza.getUtenteCorrente();
 
             //modifico il modello Utente con la squadra che stiamo creando
-            utente.setSquadra(new Squadra(""));
+            utente.setSquadra(new Squadra());
             System.out.println("Errore nella creazione della squadra");
             throw new EccezioneGenerica(e.getMessage());
         }

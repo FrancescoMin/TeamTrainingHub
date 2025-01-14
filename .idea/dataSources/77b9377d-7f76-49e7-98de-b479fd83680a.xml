@@ -996,7 +996,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </collation>
     <schema id="288" parent="1" name="database">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-01-08.14:45:54</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-01-14.10:28:54</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="information_schema">
@@ -1040,122 +1040,180 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb3_general_ci</CollationName>
     </table>
-    <table id="300" parent="288" name="squadra">
+    <table id="300" parent="288" name="richiesteiscrizione">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb3_general_ci</CollationName>
     </table>
-    <table id="301" parent="288" name="utenti">
+    <table id="301" parent="288" name="squadra">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb3_general_ci</CollationName>
     </table>
-    <column id="302" parent="299" name="data">
+    <table id="302" parent="288" name="utenti">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </table>
+    <column id="303" parent="299" name="data">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="303" parent="299" name="descrizione">
+    <column id="304" parent="299" name="descrizione">
       <Position>2</Position>
       <StoredType>varchar(200)|0s</StoredType>
     </column>
-    <column id="304" parent="299" name="utenti_email">
+    <column id="305" parent="299" name="utenti_email">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="305" parent="299" name="orarioInizio">
+    <column id="306" parent="299" name="orarioInizio">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="306" parent="299" name="orarioFine">
+    <column id="307" parent="299" name="orarioFine">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <foreign-key id="307" parent="299" name="fk_allenamento_utenti1">
+    <foreign-key id="308" parent="299" name="fk_allenamento_utenti1">
       <ColNames>utenti_email</ColNames>
       <RefColNames>email</RefColNames>
       <RefTableName>utenti</RefTableName>
     </foreign-key>
-    <index id="308" parent="299" name="data_UNIQUE">
+    <index id="309" parent="299" name="data_UNIQUE">
       <ColNames>data</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="309" parent="299" name="PRIMARY">
+    <index id="310" parent="299" name="PRIMARY">
       <ColNames>utenti_email
 data</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="310" parent="299" name="fk_allenamento_utenti1_idx">
+    <index id="311" parent="299" name="fk_allenamento_utenti1_idx">
       <ColNames>utenti_email</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="311" parent="299" name="PRIMARY">
+    <key id="312" parent="299" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="312" parent="299" name="data_UNIQUE">
+    <key id="313" parent="299" name="data_UNIQUE">
       <UnderlyingIndexName>data_UNIQUE</UnderlyingIndexName>
     </key>
-    <column id="313" parent="300" name="codice">
+    <column id="314" parent="300" name="utenti_email">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="314" parent="300" name="utenti_email">
+    <column id="315" parent="300" name="Squadra_codice">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <foreign-key id="315" parent="300" name="fk_Squadra_utenti1">
+    <column id="316" parent="300" name="Squadra_utenti_email">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="317" parent="300" name="allenatore">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <foreign-key id="318" parent="300" name="fk_table1_utenti1">
       <ColNames>utenti_email</ColNames>
       <RefColNames>email</RefColNames>
       <RefTableName>utenti</RefTableName>
     </foreign-key>
-    <index id="316" parent="300" name="PRIMARY">
+    <foreign-key id="319" parent="300" name="fk_table1_Squadra1">
+      <ColNames>Squadra_codice
+Squadra_utenti_email</ColNames>
+      <RefColNames>codice
+utenti_email</RefColNames>
+      <RefTableName>squadra</RefTableName>
+    </foreign-key>
+    <index id="320" parent="300" name="PRIMARY">
+      <ColNames>utenti_email
+Squadra_codice
+Squadra_utenti_email</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="321" parent="300" name="fk_table1_Squadra1_idx">
+      <ColNames>Squadra_codice
+Squadra_utenti_email</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="322" parent="300" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="323" parent="301" name="codice">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="324" parent="301" name="utenti_email">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="325" parent="301" name="allenatore">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <foreign-key id="326" parent="301" name="fk_Squadra_utenti1">
+      <ColNames>utenti_email</ColNames>
+      <RefColNames>email</RefColNames>
+      <RefTableName>utenti</RefTableName>
+    </foreign-key>
+    <index id="327" parent="301" name="PRIMARY">
       <ColNames>codice
 utenti_email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="317" parent="300" name="fk_Squadra_utenti1_idx">
+    <index id="328" parent="301" name="fk_Squadra_utenti1_idx">
       <ColNames>utenti_email</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="318" parent="300" name="PRIMARY">
+    <key id="329" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="319" parent="301" name="username">
+    <column id="330" parent="302" name="username">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="320" parent="301" name="email">
+    <column id="331" parent="302" name="email">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="321" parent="301" name="password">
+    <column id="332" parent="302" name="password">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="322" parent="301" name="allenatore">
+    <column id="333" parent="302" name="allenatore">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>tinyint|0s</StoredType>
     </column>
-    <index id="323" parent="301" name="PRIMARY">
+    <index id="334" parent="302" name="PRIMARY">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="324" parent="301" name="PRIMARY">
+    <key id="335" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

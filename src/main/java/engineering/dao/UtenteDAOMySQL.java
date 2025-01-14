@@ -3,6 +3,7 @@ package engineering.dao;
 
 import engineering.altro.Connessione;
 import engineering.eccezioni.EccezioneGenerica;
+import engineering.query.QueryRegistrazione;
 import modelli.*;
 
 import java.sql.*;
@@ -11,9 +12,13 @@ import java.util.List;
 
 
 import static engineering.query.QueriesLogin.*;
-import static engineering.query.QueryRegistrazione.InserisciUtenteQuery;
+import static engineering.query.QueryRegistrazione.*;
 
 public class UtenteDAOMySQL implements UtenteDAO {
+
+    public static String password = "password";
+    public static String email1 = "email";
+    public static String username = "username";
 
     public Utente recuperaUtenteDaEmail(String email) throws EccezioneGenerica {
         Connection conn;
@@ -29,10 +34,9 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 //invocazione del metodo per la ricerca dell'utente in funzione della variabile di ricerca
                 rs = RecuperaUtenteRSPerEmail(conn, email);
 
-                if(rs == null) throw new EccezioneGenerica("Utente non esistente, generato dal DAO");
-
-                System.out.println("email: " + rs.getString("email") + "    username: " + rs.getString("username") + "  password: " + rs.getString("password"));
-
+                if (!rs.next()) {
+                    throw new EccezioneGenerica("Utente non trovato");
+                }
 
                 System.out.println("Descrizione degli allenamenti:");
                 //controllo se un utente ha degli allenamenti
@@ -41,7 +45,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 List<Allenamento> allenamenti = new ArrayList<>();
 
                 while (rsAll.next()){
-                    System.out.println("data allenamento: " + rsAll.getString("data") + "   durata: " + rsAll.getInt("durata") + "  descrizione: " + rsAll.getString("descrizione"));
+                    System.out.println("data allenamento: " + rsAll.getString("data") + "  descrizione: " + rsAll.getString("descrizione") + " orario inizio: " + rsAll.getString("orarioInizio") + " orario fine: " + rsAll.getString("orarioFine"));
 
                     //metodo per l'aggiunta di un allenamento all'utente
                     allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString("descrizione")));
@@ -49,31 +53,36 @@ public class UtenteDAOMySQL implements UtenteDAO {
 
                 rsSquad = RecuperaSquadreRSPerEmail(conn, email);
 
-                if(rsSquad == null) throw new EccezioneGenerica("Squadre non esistenti");
-
-                Squadra squadra = null;
+                Squadra squadra = new Squadra();
 
                 System.out.println("Codici squadra:");
                 while (rsSquad.next()) {
                     System.out.println(rsSquad.getString("codice"));
 
-                    //metodo per l'aggiunta di una squadra all'utente
-                    squadra = new Squadra(rsSquad.getString("codice"));
+                    //creo una squadra senza lista di iscrizioni
+                    squadra = new Squadra(rsSquad.getString("codice"), rsSquad.getString("allenatore"));
+
+                    //aggiungo la lista di iscrizioni alla squadra
+                    SquadraDAOMySQL squadraDAOMySQL = new SquadraDAOMySQL();
+                    squadra.setRichiesteIngresso(squadraDAOMySQL.getRichiesteIscrizionePerSquadra(squadra));
                 }
 
                 System.out.println("Finito lavoro dell'utenteDAOMySQL");
 
                 if (rs.getBoolean("allenatore")) {
                     System.out.println("Utente allenatore");
-                    utente = new Allenatore(rs.getString("username"), rs.getString("email"), rs.getString("password") , allenamenti, squadra );
+                    utente = new Allenatore(rs.getString(username), rs.getString(email1), rs.getString(password) , allenamenti, squadra );
 
                 } else {
                     System.out.println("Utente non allenatore");
-                    utente = new Giocatore(rs.getString("username"), rs.getString("email"), rs.getString("password") , allenamenti , squadra );
+                    utente = new Giocatore(rs.getString(username), rs.getString(email1), rs.getString(password) , allenamenti , squadra );
                 }
                 return utente;
 
-            } catch (SQLException e) {throw new EccezioneGenerica(e.getMessage());}
+            }
+            catch (SQLException e) {
+                throw new EccezioneGenerica(e.getMessage());
+            }
 
             finally
             {
@@ -111,13 +120,10 @@ public class UtenteDAOMySQL implements UtenteDAO {
             {
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
                 rs = RecuperaUtenteRSPerEmail(conn, email);
+                return rs.next();
 
-                System.out.println("Creazione dell'utente");
-
-                //restituisco vero solamente se l'utente esiste e il result set è diverso da null
-                return rs != null;
             }
-            catch(EccezioneGenerica e)
+            catch(Exception e)
             {
                 throw new EccezioneGenerica(e.getMessage());
             }
@@ -129,7 +135,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 catch (SQLException e) {System.out.println("Seconda eccezione rilevata");}
             }
         }
-        throw new EccezioneGenerica("Connessione con il DB non riuscita");
+        return false;
     }
 
     public void inserisciUtenteDaRegistrazione(Registrazione registrazione) {
@@ -143,7 +149,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
         {
             try
             {
-                result = InserisciUtenteQuery(conn, registrazione);
+                result = QueryRegistrazione.InserisciUtenteQuery(conn, registrazione);
                 if (result > 0) {
                     System.out.println("A new user was inserted successfully!");
                 }

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class QueryRegistrazione {
 
     public static int InserisciUtenteQuery(Connection conn, Registrazione registrazione) throws EccezioneGenerica {
-        String sql = "INSERT INTO utenti(user, email, password, allenatore) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO utenti(username, email, password, allenatore) VALUES (?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -23,7 +23,8 @@ public class QueryRegistrazione {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new EccezioneGenerica("Errrore nell'inserimento dell'utente");
+            System.out.println("Errore nell'inserimento dell'utente");
+            throw new EccezioneGenerica(e.getMessage());
         }
     }
 }

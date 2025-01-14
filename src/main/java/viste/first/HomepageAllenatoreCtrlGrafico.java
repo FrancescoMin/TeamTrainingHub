@@ -28,12 +28,17 @@ public class HomepageAllenatoreCtrlGrafico {
     private void VisualizzaRichiestePartecipazione(){
         System.out.println("Visualizza Richieste Partecipazione");
 
-        //cambio scena alla pagina di visualizzazione delle richieste di partecipazione
-        try {
-            Cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
+        if(new HomepageAllenatoreCtrlApplicativo().esisteSquadra()) {
+            //cambio scena alla pagina di visualizzazione delle richieste di partecipazione
+            try {
+                Cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
 
-        } catch (EccezioneGenerica EccezioneGenerica) {
-            mostraErrori.setText(EccezioneGenerica.getMessage());
+            } catch (EccezioneGenerica e) {
+                MostraErrore(e.getMessage());
+            }
+        }
+        else {
+            MostraErrore("Non hai una squadra, non puoi visualizzare le richieste di partecipazione");
         }
     }
 
@@ -56,21 +61,27 @@ public class HomepageAllenatoreCtrlGrafico {
 
         System.out.println("Creazione Allenamento");
 
-        //cambio scena alla pagina di creazione dell'allenamento
-        try {
-            Cambio(PAGINA_CREAZIONE_ALLENAMENTO);
+        HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();
+        if(homepageAllenatoreCtrlApplicativo.esisteSquadra()) {
+            //cambio scena alla pagina di creazione dell'allenamento
+            try {
+                Cambio(PAGINA_CREAZIONE_ALLENAMENTO);
 
-        } catch (EccezioneGenerica EccezioneGenerica) {
-            mostraErrori.setText(EccezioneGenerica.getMessage());
+            } catch (EccezioneGenerica e) {
+                MostraErrore(e.getMessage());
+            }
+        }
+        else {
+            MostraErrore("Non hai una squadra, non puoi creare un allenamento");
         }
     }
 
     @FXML
     protected void GestisciSquadra() {
         //controlliamo che l'allenatore abbia o meno una squadra chiedendolo al controllore applicativo
-        HomepageAllenatoreCtrlApplicativo paginaPrincipaleControllerApplicativo = new HomepageAllenatoreCtrlApplicativo();
+        HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();
 
-        if(paginaPrincipaleControllerApplicativo.esisteSquadra()){
+        if(homepageAllenatoreCtrlApplicativo.esisteSquadra()){
             //Se l'allenatore ha una squadra allora compiamo il cambio scena alla pagina di gestione della squadra
             System.out.println("Gestione Squadra");
 
@@ -81,8 +92,8 @@ public class HomepageAllenatoreCtrlGrafico {
             try {
                 Cambio(PAGINA_GESTIONE_SQUADRA);
 
-            } catch (EccezioneGenerica EccezioneGenerica) {
-                mostraErrori.setText(EccezioneGenerica.getMessage());
+            } catch (EccezioneGenerica e) {
+                MostraErrore(e.getMessage());
             }
         } 
         else {
@@ -97,12 +108,12 @@ public class HomepageAllenatoreCtrlGrafico {
                 try {
                     Cambio(PAGINA_CREAZIONE_SQUADRA);
 
-                } catch (EccezioneGenerica EccezioneGenerica) {
-                    mostraErrori.setText(EccezioneGenerica.getMessage());
+                } catch (EccezioneGenerica e) {
+                    MostraErrore(e.getMessage());
                 }
             }
             catch (EccezioneGenerica e) {
-                mostraErrori.setText(e.getMessage());
+                MostraErrore(e.getMessage());
             }
         }
     }
@@ -113,8 +124,13 @@ public class HomepageAllenatoreCtrlGrafico {
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, paginaDiCambioScena);
 
-        } catch (EccezioneGenerica EccezioneGenerica) {
-            mostraErrori.setText(EccezioneGenerica.getMessage());
+        } catch (EccezioneGenerica e) {
+            MostraErrore(e.getMessage());
         }
+    }
+
+    private void MostraErrore(String messaggio) {
+        mostraErrori.setText(messaggio);
+        mostraErrori.setVisible(true);
     }
 }

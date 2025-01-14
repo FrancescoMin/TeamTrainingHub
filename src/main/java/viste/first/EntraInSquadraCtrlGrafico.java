@@ -5,6 +5,7 @@ import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
@@ -21,35 +22,56 @@ public class EntraInSquadraCtrlGrafico implements Initializable {
     private TextField scriviSquadraTextField;
 
     @FXML
+    private Label mostraErrore;
+
+    @FXML
     private Button richiediIngressoButton;
     @FXML
     private Button tornaInHomepageGiocatoreButton;
 
     private EntraInSquadraCtrlApplicativo applicativoController;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        applicativoController = new EntraInSquadraCtrlApplicativo();
-        richiediIngressoButton.setOnAction(event -> handleRichiediIngressoButtonAction());
-        tornaInHomepageGiocatoreButton.setOnAction(event -> handleTornaInHomepageGiocatoreButtonAction());
-    }
-
-    private void handleRichiediIngressoButtonAction() {
+    @FXML
+    protected void richiediIngresso() {
+        //prendiamo dalla text field il nome della squadra
         String nomeSquadra = scriviSquadraTextField.getText();
 
+        //se il nome della squadra non è vuoto
         if (nomeSquadra != null && !nomeSquadra.trim().isEmpty()) {
             try {
                 // Invio della richiesta alla squadra tramite il controller applicativo
-                applicativoController.inviaRichiestaAllaSquadra(nomeSquadra);
-                mostraMessaggio("Successo", "Richiesta inviata con successo all'allenatore della squadra.");
+                EntraInSquadraCtrlApplicativo entraInSquadraCtrlApplicativo = new EntraInSquadraCtrlApplicativo();
+
+                if(entraInSquadraCtrlApplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
+
+                    entraInSquadraCtrlApplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
+                    System.out.println("Richiesta inviata");
+                }
+                else {
+                    throw new EccezioneGenerica("Squadra inserita non esiste");
+                }
+
             } catch (EccezioneGenerica e) {
-                mostraMessaggio("Errore", e.getMessage());
+                mostraErrore.setText(e.getMessage());
+                mostraErrore.setVisible(true);
             }
         } else {
-            mostraMessaggio("Errore", "Il campo nome della squadra non può essere vuoto.");
+            mostraErrore.setText("Squadra inserita non valida");
+            mostraErrore.setVisible(true);
         }
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        /*
+        applicativoController = new EntraInSquadraCtrlApplicativo();
+        richiediIngressoButton.setOnAction(event -> handleRichiediIngressoButtonAction());
+
+         */
+        tornaInHomepageGiocatoreButton.setOnAction(event -> handleTornaInHomepageGiocatoreButtonAction());
+    }
+
+    /*
     private void mostraMessaggio(String titolo, String messaggio) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titolo);
@@ -57,6 +79,7 @@ public class EntraInSquadraCtrlGrafico implements Initializable {
         alert.setContentText(messaggio);
         alert.showAndWait();
     }
+     */
 
     private void handleTornaInHomepageGiocatoreButtonAction() {
         try {
@@ -67,4 +90,5 @@ public class EntraInSquadraCtrlGrafico implements Initializable {
             System.out.println(eccezioneGenerica.getMessage());
         }
     }
+
 }

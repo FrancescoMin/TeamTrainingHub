@@ -42,9 +42,9 @@ public class RegistrazioneCtrlApplicativo {
         //se non siamo nella modalità demo, inserisco l'utente nella persistenza
         if(!istanza.getDemo()) {
             try {
+
                 //compio l'inserimento dell'utente nella persistenza
                 UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
-
 
             } catch (EccezioneGenerica e) {
                 throw new Exception(e.getMessage());

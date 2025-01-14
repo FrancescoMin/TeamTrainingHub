@@ -46,8 +46,7 @@ public class CreazioneAllenamentoCtrlApplicativo {
                 allenamentoDAO.inserisciAllenamentoAdUtente(allenamento, utente);
             }
 
-            System.out.println("Creazione ed inserimento dell'allenamento avvenuto con successo");
-
+            
         } catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());
         }

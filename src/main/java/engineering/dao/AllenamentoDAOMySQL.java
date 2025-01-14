@@ -63,8 +63,9 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
             finally {
                 try {
                     if(rsAll!=null) {rsAll.close();}
-                } catch (Exception e) {
-                    throw new EccezioneGenerica(e.getMessage());
+                }
+                catch (Exception e) {
+                    System.out.println(e.getMessage());
                 }
             }
         }

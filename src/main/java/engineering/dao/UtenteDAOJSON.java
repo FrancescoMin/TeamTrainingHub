@@ -14,6 +14,16 @@ import java.util.List;
 
 public class UtenteDAOJSON implements UtenteDAO {
 
+    public static String json = ".json";
+    public static String pathUtenti = "src/main/resources/persistenza/utenti/";
+    public static String password = "password";
+    public static String email1 = "email";
+    public static String user = "username";
+    
+    public static String trainings = "allenamenti";
+    public static String squadra = "squadra";
+    public static String allenatore = "allenatore";
+
     public void handleDAOException(Exception e) throws EccezioneGenerica {
         throw new EccezioneGenerica(e.getMessage());
     }
@@ -24,7 +34,7 @@ public class UtenteDAOJSON implements UtenteDAO {
     public Boolean esisteUtenteDaEmail(String email) {
         try {
             //creazione del path
-            String filePath = "src/main/resources/persistenza/utenti/" + email + ".json";
+            String filePath = pathUtenti + email + json;
 
             //controllo se il file esiste
             Files.readAllBytes(Paths.get(filePath));
@@ -38,7 +48,7 @@ public class UtenteDAOJSON implements UtenteDAO {
         //aggiunta dell'utente alla lista degli utenti
         try {
             //Creazione del path
-            String filePath = "src/main/resources/persistenza/utenti/" + utente.getEmail() + ".json";
+            String filePath = pathUtenti + utente.getEmail() + json;
 
             try {
                 //controllo che il file sia già esistente
@@ -75,7 +85,7 @@ public class UtenteDAOJSON implements UtenteDAO {
         //aggiunta dell'utente alla lista degli utenti
         try {
             //Creazione del path
-            String filePath = "src/main/resources/persistenza/utenti/" + utente.getEmail() + ".json";
+            String filePath = pathUtenti + utente.getEmail() + json;
 
             try {
                 //controllo che il file sia già esistente
@@ -128,7 +138,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             //creazione del path
-            String filePath = "src/main/resources/persistenza/utenti/" + login.getEmail() + ".json";
+            String filePath = pathUtenti + login.getEmail() + json;
 
             //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -137,7 +147,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
 
             //inizializzo un oggetto di tipo Login per il controllo delle credenziali
-            Login deserializedLogin = new Login(jsonObject.get("email").getAsString(), jsonObject.get("password").getAsString());
+            Login deserializedLogin = new Login(jsonObject.get(email1).getAsString(), jsonObject.get(password).getAsString());
 
             //controllo della password
             if (deserializedLogin.getPassword().equals(login.getPassword())) {
@@ -163,7 +173,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             //creazione del path
-            String filePath = "src/main/resources/persistenza/utenti/" + email + ".json";
+            String filePath = pathUtenti + email + json;
 
             //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
@@ -172,19 +182,23 @@ public class UtenteDAOJSON implements UtenteDAO {
             JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
 
             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
-            List<Allenamento> allenamenti = recuperaAllenamentiPerJsonArray(jsonObject.get("allenamenti").getAsJsonArray());
+            List<Allenamento> allenamenti = recuperaAllenamentiPerJsonArray(jsonObject.get(trainings).getAsJsonArray());
 
-            String nomeSquadra = jsonObject.get("squadra").getAsString();
-            Squadra squadra = new Squadra(nomeSquadra);
+            //ottengo il nome della stringa della squadra
+            String nomeSquadra = jsonObject.get(squadra).getAsString();
+
+            //mi faccio recuperare dal DAO responsabile l'oggetto squadra
+            SquadraDAOJSON squadraDAOJSON = new SquadraDAOJSON();
+            Squadra squadra = squadraDAOJSON.getSquadraDaNome(nomeSquadra);
+
 
             //faccio il controllo che l'utente sia un allenatore o un giocatore
-            if (jsonObject.get("allenatore").getAsBoolean()) {
-                return new Allenatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString(), jsonObject.get("password").getAsString(), allenamenti, squadra);
+            if (jsonObject.get(allenatore).getAsBoolean()) {
+                return new Allenatore(jsonObject.get(user).getAsString(), jsonObject.get(email1).getAsString(), jsonObject.get(password).getAsString(), allenamenti, squadra);
 
             } else {
-                return new Giocatore(jsonObject.get("username").getAsString(), jsonObject.get("email").getAsString(), jsonObject.get("password").getAsString(), allenamenti, squadra);
+                return new Giocatore(jsonObject.get(user).getAsString(), jsonObject.get(email1).getAsString(), jsonObject.get(password).getAsString(), allenamenti, squadra);
             }
-
 
         } catch (IOException e) {
             //gestione dell'eccezione
@@ -204,7 +218,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             for (int i = 0; i < jsonArray.size(); i++) {
 
                 String path = jsonArray.get(i).getAsString();
-                String filePath = "src/main/resources/persistenza/allenamenti/" + path + ".json";
+                String filePath = "src/main/resources/persistenza/allenamenti/" + path + json;
                 String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
                 //creo l'oggetto JSON corrispondete all'utente con l'email passata
@@ -226,29 +240,29 @@ public class UtenteDAOJSON implements UtenteDAO {
         System.out.println("Sono nell'adapter");
 
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("username", utente.getUsername());
-        jsonObject.addProperty("email", utente.getEmail());
-        jsonObject.addProperty("password", utente.getPassword());
-        jsonObject.addProperty("allenatore", utente.getAllenatore());
+        jsonObject.addProperty(user, utente.getUsername());
+        jsonObject.addProperty(email1, utente.getEmail());
+        jsonObject.addProperty(password, utente.getPassword());
+        jsonObject.addProperty(allenatore, utente.getAllenatore());
 
         JsonArray jsonArray = new JsonArray();
 
         if (utente.getAllenamenti() == null) {
-            jsonObject.add("allenamenti", jsonArray);
+            jsonObject.add(trainings, jsonArray);
 
         } else if (utente.getAllenamenti().isEmpty()) {
-            jsonObject.add("allenamenti", jsonArray);
+            jsonObject.add(trainings, jsonArray);
         } else {
             for (int i = 0; i < utente.getAllenamenti().size(); i++) {
                 jsonArray.add(utente.getAllenamenti().get(i).getData() + "-" + utente.getAllenamenti().get(i).getOrarioInizio() + "-" + utente.getAllenamenti().get(i).getOrarioFine());
             }
-            jsonObject.add("allenamenti", jsonArray);
+            jsonObject.add(trainings, jsonArray);
         }
 
         if (utente.getSquadra() == null) {
-            jsonObject.addProperty("squadra", "");
+            jsonObject.addProperty(squadra, "");
         } else {
-            jsonObject.addProperty("squadra", utente.getSquadra().getNome());
+            jsonObject.addProperty(squadra, utente.getSquadra().getNome());
         }
 
         return jsonObject;

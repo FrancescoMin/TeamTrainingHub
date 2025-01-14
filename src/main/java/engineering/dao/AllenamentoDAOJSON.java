@@ -15,6 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static engineering.dao.UtenteDAOJSON.json;
+
 public class AllenamentoDAOJSON implements AllenamentoDAO {
 
 
@@ -33,7 +35,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
 
             //passo 3: aggiorno la squadra dell'utente in modo che aggiungo alla squadra l'allenamento nella lista di allenamenti della squadra
             SquadraDAOJSON squadraDAOJSON = new SquadraDAOJSON();
-            squadraDAOJSON.modificaSquadra(utente.getSquadra(), utente, allenamento, false);
+            squadraDAOJSON.aggiungiAllenamentoASquadra(utente.getSquadra(), allenamento);
         }
         catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());
@@ -72,7 +74,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
         //aggiunta dell'allenamento alla lista degli allenamenti
         try {
             //Creazione del path
-            String filePath = "src/main/resources/persistenza/allenamenti/" + path + ".json";
+            String filePath = "src/main/resources/persistenza/allenamenti/" + path + json;
 
             try {
                 //controllo che il file sia già esistente
@@ -110,7 +112,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             //creazione del path
-            String filePath = "src/main/resources/persistenza/squadre/" + squadra.getNome() + ".json";
+            String filePath = "src/main/resources/persistenza/squadre/" + squadra.getNome() + json;
 
 
             //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, la squadra non esiste
@@ -160,7 +162,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
             for (int i = 0; i < jsonArray.size(); i++) {
 
                 String path = jsonArray.get(i).getAsString();
-                String filePath = "src/main/resources/persistenza/allenamenti/" + path + ".json";
+                String filePath = "src/main/resources/persistenza/allenamenti/" + path + json;
                 String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
                 //creo l'oggetto JSON corrispondete all'utente con l'email passata

@@ -1,6 +1,7 @@
 package ctrlApplicativo;
 
 import engineering.dao.SquadraDAO;
+import engineering.dao.SquadraDAOJSON;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
@@ -9,11 +10,8 @@ import modelli.Utente;
 
 public class EntraInSquadraCtrlApplicativo {
 
-    private final SquadraDAO squadraDAO;
-
     public EntraInSquadraCtrlApplicativo() {
         // Inizializza il DAO tramite la factory
-        this.squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
     }
 
     /**
@@ -28,10 +26,26 @@ public class EntraInSquadraCtrlApplicativo {
             throw new EccezioneGenerica("Il nome della squadra non può essere vuoto.");
         }
         System.out.println("Verifica esistenza per: " + nomeSquadra);
-        Squadra squadra = squadraDAO.verificaEsistenzaSquadra(nomeSquadra);
-        System.out.println("Squadra trovata: " + (squadra != null));
 
-        return squadra != null;
+        Singleton istanza = Singleton.getInstance();
+
+        //L'utente è sicuramente in una squadra e quindi verifico solamente se la squadra esiste
+
+        //controllo negli utenti se esiste una squadra con quel nome nel singleton prima di tutto
+        if(istanza.esisteSquadraDaNome(nomeSquadra)){
+            return true;
+        }
+
+        //se l'utente è in modalità demo e non ho trovato nulla nel singleton, restituisco false
+        if (istanza.getDemo()){
+            return false;
+        }
+
+        //se non è in modalità demo, controllo nel database
+        else {
+            return DAOFactory.getDAOFactory().createSquadraDAO().verificaEsistenzaSquadra(nomeSquadra);
+        }
+
     }
 
     /**
@@ -41,21 +55,36 @@ public class EntraInSquadraCtrlApplicativo {
      * @throws EccezioneGenerica Se l'utente è già in una squadra o la squadra non esiste.
      */
     public void inviaRichiestaAllaSquadra(String nomeSquadra) throws EccezioneGenerica {
+        //poiché sono arrivato all'invio della richiesta, l'utente ha sicuramente inserito una squadra esistente
+
         Singleton istanza = Singleton.getInstance();
         Utente utente = istanza.getUtenteCorrente();
 
-        if (!utente.getSquadra().getNome().isEmpty()) {
-            throw new EccezioneGenerica("L'utente è già in una squadra.");
+        //In questa funzione non mi preoccupo di controllare se la squadra esiste perché è stato già controllato
+        //come prima cosa, ottengo la squadra da nome
+        Squadra squadra = new Squadra();
+
+        //controllo se sono in modalità demo
+        if(istanza.getDemo() && istanza.esisteSquadraDaNome(nomeSquadra)){
+            squadra = istanza.getSquadraDaNome(nomeSquadra);
+            squadra.getRichiesteIngresso().add(utente);
         }
 
-        if (!verificaEsistenzaSquadra(nomeSquadra)) {
-            throw new EccezioneGenerica("La squadra specificata non esiste.");
+        //entrerò all'interno di questo else solo se non ho trovato la squadra nel singleton e non sono nella modalità demo
+        else if(!istanza.getDemo()){
+            System.out.println("Richiesta inviata al database");
+            SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
+
+            //ottengo dalla persistenza la squadra da modificare
+            squadra = squadraDAO.getSquadraDaNome(nomeSquadra);
+
+            //modifico la squadra aggiungendo l'utente tra le richieste di ingresso
+            squadra.getRichiesteIngresso().add(utente);
+
+            //aggiorno la squadra in modo da aggiungere la richiesta alla lista
+            squadraDAO.aggiungiRichiestaASquadra(squadra, utente);
         }
 
-        Squadra squadra = squadraDAO.verificaEsistenzaSquadra(nomeSquadra);
-
-        // Invia la richiesta all'allenatore della squadra
-        squadraDAO.inviaRichiestaASquadra(squadra, utente);
     }
 }
 

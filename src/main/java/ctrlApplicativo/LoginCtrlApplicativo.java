@@ -14,11 +14,11 @@ public class LoginCtrlApplicativo {
         //costruttore vuoto di default
     }
 
-    public void setDemo(Boolean demo) {
-        Singleton.getInstance().setDemo(demo);
-    }
 
     public Boolean verificaCredenziali(LoginBean loginBean) {
+
+        //creazione del dao per controllare le credenziali
+        UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
 
         //controllo delle credenziali
 
@@ -28,9 +28,6 @@ public class LoginCtrlApplicativo {
         //vedo se l'utente esiste nel singleton
         Singleton istanza=Singleton.getInstance();
 
-        //creazione del dao per controllare le credenziali
-        UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
-
         //controllo che l'utente esiste nel singleton
         if(istanza.esisteUtenteDaLogin(login)) {return true;}
 
@@ -38,13 +35,10 @@ public class LoginCtrlApplicativo {
         else if(istanza.getDemo()){
         return false;}
 
-
         else {
-
             //recupero l'utente dal login e lo restituisco
             return utenteDao.esisteUtenteDaLogin(login);
         }
-
     }
 
     public UtenteBean recuperoUtente(LoginBean loginBean) {
@@ -54,8 +48,6 @@ public class LoginCtrlApplicativo {
 
         //vedo se l'utente esiste nel singleton
         Singleton istanza=Singleton.getInstance();
-
-
         System.out.println("Valore booleano del singleton demo: " + istanza.getDemo());
 
 
@@ -83,7 +75,7 @@ public class LoginCtrlApplicativo {
         //richiediamo l'utente dalla persistenza
         else {
             //creazione del modello utente
-            System.out.println("Recupero l'utente "+ loginBean.getEmail() +" con password "+ loginBean.getPassword() + "dalla persistenza");
+            System.out.println("Recupero l'utente "+ loginBean.getEmail() +" con password "+ loginBean.getPassword() + " dalla persistenza");
 
             //creo una nuova istanza di utente che contiene l'utente che fa uso del sistema
             Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));

@@ -44,6 +44,7 @@ public class LoginCtrlGrafico {
         String em = email.getText().trim();           //accesso con email
         String pass = password.getText().trim();
 
+
         if (em.isEmpty() || pass.isEmpty()) {
             erroreInserimento.setText("There are empty fields!");
             erroreInserimento.setVisible(true);
@@ -51,7 +52,7 @@ public class LoginCtrlGrafico {
 
         else {
             LoginCtrlApplicativo loginCtrlApplicativo = new LoginCtrlApplicativo();
-            loginCtrlApplicativo.setDemo(false);
+            //loginCtrlApplicativo.setDemo(false);
             try{
                 //istanziazione del bean per il login
                 LoginBean loginBean = new LoginBean(em,pass);
@@ -87,7 +88,6 @@ public class LoginCtrlGrafico {
 
     @FXML
     protected void registrazione(ActionEvent event) throws IOException {
-        System.out.println("registrazione");
         //implemento di cambio di scena all pagina di registrazione
 
 

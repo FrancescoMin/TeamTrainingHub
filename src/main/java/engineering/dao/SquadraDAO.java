@@ -7,6 +7,7 @@ public interface SquadraDAO {
     public void creaSquadraPerAllenatore(Utente utente, Squadra squadra);
     public void IscrizioneUtenteASquadra(Utente utente, Squadra squadra);
     public void visualizzaTutteLeSquadre();
-    public Squadra verificaEsistenzaSquadra(String nomeSquadra);
-    public void inviaRichiestaASquadra(Squadra squadra, Utente utente); //invia richiesta all'allenatore della squadra
+    public Squadra getSquadraDaNome(String nomeSquadra);
+    public Boolean verificaEsistenzaSquadra(String nomeSquadra);
+    public void aggiungiRichiestaASquadra(Squadra squadra, Utente utente); //invia richiesta all'allenatore della squadra
 }
