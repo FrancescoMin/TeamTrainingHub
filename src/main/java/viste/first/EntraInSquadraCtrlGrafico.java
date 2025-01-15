@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.fxml.Initializable;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import viste.first.utils.CambioScena;
 
@@ -16,20 +17,16 @@ import java.util.ResourceBundle;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
-public class EntraInSquadraCtrlGrafico implements Initializable {
+public class EntraInSquadraCtrlGrafico{
 
     @FXML
     private TextField scriviSquadraTextField;
 
     @FXML
+    private Text scriviSquadraText;
+
+    @FXML
     private Label mostraErrore;
-
-    @FXML
-    private Button richiediIngressoButton;
-    @FXML
-    private Button tornaInHomepageGiocatoreButton;
-
-    private EntraInSquadraCtrlApplicativo applicativoController;
 
     @FXML
     protected void richiediIngresso() {
@@ -61,15 +58,14 @@ public class EntraInSquadraCtrlGrafico implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        richiediIngressoButton.setOnAction(event -> richiediIngresso());
-        tornaInHomepageGiocatoreButton.setOnAction(event -> handleTornaInHomepageGiocatoreButtonAction());
+    @FXML
+    public void initialize() {
     }
 
-    private void handleTornaInHomepageGiocatoreButtonAction() {
+    @FXML
+    private void tornaInHomepage() {
         try {
-            Stage stage = (Stage) tornaInHomepageGiocatoreButton.getScene().getWindow();
+            Stage stage = (Stage) scriviSquadraText.getScene().getWindow();
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
         } catch (EccezioneGenerica eccezioneGenerica) {

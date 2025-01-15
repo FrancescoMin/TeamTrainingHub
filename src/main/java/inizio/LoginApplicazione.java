@@ -6,8 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+
 
 public class
 LoginApplicazione extends Application {

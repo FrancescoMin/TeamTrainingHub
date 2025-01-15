@@ -9,6 +9,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 
 
 public class UtenteDAOJSON implements UtenteDAO {
@@ -43,39 +44,34 @@ public class UtenteDAOJSON implements UtenteDAO {
         }
     }
 
-    public void aggiornaUtente(Utente utente) {
+    public void aggiornaUtente(Utente utente) throws EccezioneGenerica {
         //aggiunta dell'utente alla lista degli utenti
+        //Creazione del path
+        String filePath = pathUtenti + utente.getEmail() + json;
+
         try {
-            //Creazione del path
-            String filePath = pathUtenti + utente.getEmail() + json;
+            //controllo che il file sia già esistente
+            Files.readAllBytes(Paths.get(filePath));
 
-            try {
-                //controllo che il file sia già esistente
-                Files.readAllBytes(Paths.get(filePath));
+            // Create a Gson object
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            FileWriter writer = new FileWriter(filePath);
 
-                // Create a Gson object
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                FileWriter writer = new FileWriter(filePath);
+            // Step 1: Serialize the Person object to a JSON string
+            String jsonString = gson.toJson(serializzazioneUtente(utente));
 
-                // Step 1: Serialize the Person object to a JSON string
-                String jsonString = gson.toJson(serializzazioneUtente(utente));
+            // Step 2: Convert the JSON string to a JsonObject
+            JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
 
-                // Step 2: Convert the JSON string to a JsonObject
-                JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
+            //salvataggio dell'oggetto serializzato utente nel file json
+            writer.write(gson.toJson(jsonObject));
+            writer.close();
 
-                //salvataggio dell'oggetto serializzato utente nel file json
-                writer.write(gson.toJson(jsonObject));
-                writer.close();
+            //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
 
-                //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
-
-            } catch (IOException e) {
-                //creazione del file con nome username dell'utente in formato json
-
-                throw new EccezioneGenerica("utente non esistente");
-            }
-        } catch (Exception e) {
-            throw new EccezioneGenerica(e.getMessage());
+        } catch (IOException e) {
+            //creazione del file con nome username dell'utente in formato json
+            throw new EccezioneGenerica("utente non esistente");
         }
     }
 
@@ -181,11 +177,13 @@ public class UtenteDAOJSON implements UtenteDAO {
 
             //ottengo il nome della stringa della squadra
             String nomeSquadra = jsonObject.get(squadra).getAsString();
+            Squadra squad = new Squadra();
 
-            //mi faccio recuperare dal DAO responsabile l'oggetto squadra
-            SquadraDAOJSON squadraDAOJSON = new SquadraDAOJSON();
-            Squadra squad = squadraDAOJSON.getSquadraDaNome(nomeSquadra);
-
+            if(!nomeSquadra.isEmpty()){
+                //mi faccio recuperare dal DAO responsabile l'oggetto squadra
+                SquadraDAOJSON squadraDAOJSON = new SquadraDAOJSON();
+                squad = squadraDAOJSON.getSquadraDaNome(nomeSquadra);
+            }
 
             //faccio il controllo che l'utente sia un allenatore o un giocatore
             if (jsonObject.get(allenatore).getAsBoolean()) {
@@ -228,7 +226,8 @@ public class UtenteDAOJSON implements UtenteDAO {
             jsonObject.add(trainings, jsonArray);
         }
 
-        if (utente.getSquadra() == null) {
+        if (Objects.equals(utente.getSquadra().getNome(), "")) {
+            System.out.println("Squadra vuota");
             jsonObject.addProperty(squadra, "");
         } else {
             jsonObject.addProperty(squadra, utente.getSquadra().getNome());

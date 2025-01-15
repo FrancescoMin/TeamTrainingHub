@@ -2,5 +2,7 @@
   "allenatore": "1",
   "nome": "prova1",
   "allenamenti": [],
-  "richiesteIngresso": []
+  "richiesteIngresso": [
+    "2"
+  ]
 }

@@ -15,6 +15,8 @@ import static engineering.query.QueriesLogin.RecuperaAllenamentiRSPerEmail;
 
 public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
+    private static String descr = "descrizione";
+
     public List<Allenamento> recuperaAllenamentiPerEmail(String email) {
 
         Connection conn=null;
@@ -27,7 +29,7 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
                 rsAll = RecuperaAllenamentiRSPerEmail(conn, email);
                 List<Allenamento> allenamenti = new ArrayList<>();
                 while (rsAll.next()){
-                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString("descrizione")));
+                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(descr)));
                 }
                 return allenamenti;
 
@@ -81,10 +83,10 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
                 rsAll = RecuperaAllenamentiRSPerEmail(conn, utente.getEmail());
                 while (rsAll.next()){
-                    System.out.println("data allenamento: " + rsAll.getString("data") + "   durata: " + rsAll.getInt("durata") + "  descrizione: " + rsAll.getString("descrizione"));
+                    System.out.println("data allenamento: " + rsAll.getString("data") + "   durata: " + rsAll.getInt("durata") + "  descrizione: " + rsAll.getString(descr));
 
                     //metodo per l'aggiunta di un allenamento all'utente
-                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString("descrizione")));
+                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(descr)));
                 }
                 return allenamenti;
 

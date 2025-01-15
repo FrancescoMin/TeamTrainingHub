@@ -83,7 +83,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
         }
     }
 
-    public void creazioneAllenamento(Allenamento allenamento, String filePath) throws Exception{
+    public void creazioneAllenamento(Allenamento allenamento, String filePath) throws IOException{
         try {
             //controllo che il file sia già esistente
             Files.readAllBytes(Paths.get(filePath));

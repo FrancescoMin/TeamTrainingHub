@@ -20,20 +20,6 @@ public class UtenteDAOMySQL implements UtenteDAO {
     public static String username = "username";
 
     public Utente recuperaUtenteDaEmail(String email) throws EccezioneGenerica {
-
-        List<Allenamento> allenamenti = new ArrayList<>();
-        Squadra squadra = new Squadra();
-
-        //recupero prima allenamenti e squadra
-        try {
-
-
-        }
-        catch (EccezioneGenerica e)
-        {
-            throw new EccezioneGenerica(e.getMessage());
-        }
-
         //poi recupero il resto dell'utente
         Connection conn=null;
         ResultSet rs = null;
@@ -55,8 +41,12 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 System.out.println("Descrizione degli allenamenti:");
                 //controllo se un utente ha degli allenamenti
 
+                List<Allenamento> allenamenti = new ArrayList<>();
+
                 AllenamentoDAOMySQL allenamentoDAOMySQL = new AllenamentoDAOMySQL();
                 allenamenti = allenamentoDAOMySQL.recuperaAllenamentiPerEmail(email);
+
+                Squadra squadra = new Squadra();
 
                 SquadraDAOMySQL squadraDAOMySQL = new SquadraDAOMySQL();
                 squadra= squadraDAOMySQL.getSquadraDaEmail(email);
@@ -77,8 +67,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
                 throw new EccezioneGenerica(e.getMessage());
             }
 
-            finally
-            {
+            finally {
                 try
                 {
                     if (rs!=null) {rs.close();}

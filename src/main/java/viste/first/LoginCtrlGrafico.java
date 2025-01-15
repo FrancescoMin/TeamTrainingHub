@@ -37,10 +37,8 @@ public class LoginCtrlGrafico {
         erroreInserimento.setVisible(false);
     }
 
-
-
     @FXML
-    protected void userLogin(ActionEvent event) throws IOException {
+    protected void userLogin() throws IOException {
         String em = email.getText().trim();           //accesso con email
         String pass = password.getText().trim();
 

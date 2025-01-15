@@ -200,7 +200,7 @@ public class SquadraDAOJSON implements SquadraDAO {
 
     }
 
-    public void creazioneSquadra(JsonObject jsonObject, String filePath) throws Exception {
+    public void creazioneSquadra(JsonObject jsonObject, String filePath) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
 

@@ -58,12 +58,13 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
     @FXML
     protected void entraSquadra(){
         try {
-            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            Stage stage = (Stage) EntraInSquadraButton.getScene().getWindow();
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_ENTRAINSQUADRA);
 
         } catch (EccezioneGenerica eccezioneGenerica) {
             System.out.println(eccezioneGenerica.getMessage());
+            throw new EccezioneGenerica(eccezioneGenerica.getMessage());
         }
     }
 
