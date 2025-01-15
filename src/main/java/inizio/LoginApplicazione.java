@@ -23,21 +23,7 @@ LoginApplicazione extends Application {
     public static void main(String[] args) {
         launch();
     }
-    private Properties loadConfigurationProperties() {
-        Properties properties = new Properties();
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
-            if (input != null) {
-                properties.load(input);
-            }
-            else {
-                System.out.println("MainApplication: Impossibile trovare il file di configurazione.");
-            }
 
-        }
-        catch (IOException e) {
-            System.out.println("MainApplication: Errore durante la lettura del file di configurazione %s" + e.getMessage());
-        }
-        return properties;
-    }
+
 }
 

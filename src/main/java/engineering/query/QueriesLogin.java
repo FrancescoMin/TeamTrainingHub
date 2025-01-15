@@ -7,14 +7,17 @@ import java.sql.*;
 
 public class QueriesLogin {
 
-    public static String SELECT_USER_BY_EMAIL_QUERY= "SELECT * FROM utenti where email = ? ";
+    private QueriesLogin() {
+        //Add a private constructor to hide the implicit public one
+    }
 
-    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection, String email) throws EccezioneGenerica {
+
+    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection,String email) throws EccezioneGenerica {
         PreparedStatement statement = null;
 
         try {
             //creazione della query parametrica
-            String query= "SELECT * FROM utenti where email = ? ";
+            String SELECT_USER_BY_EMAIL_QUERY= "SELECT * FROM utenti where email = ? ";
 
             //preparazione dello statement
             statement = connection.prepareStatement(SELECT_USER_BY_EMAIL_QUERY);
@@ -23,9 +26,7 @@ public class QueriesLogin {
             statement.setString(1, email);
 
             //esecuzione della query e restituzione del risultato
-            ResultSet rs;
             return statement.executeQuery();
-
 
         } catch (SQLException e) {
             throw new EccezioneGenerica(e.getMessage());
@@ -34,7 +35,6 @@ public class QueriesLogin {
 
     public static ResultSet RecuperaUtenteRSPerLogin(Connection connection, Login login) throws SQLException {
         ResultSet rs = null;
-
         rs= RecuperaUtenteRSPerEmail(connection, login.getEmail());
 
         if(rs == null) {
@@ -54,7 +54,6 @@ public class QueriesLogin {
     public static ResultSet recuperaAllenamentiPerData(Connection connection, String data) throws EccezioneGenerica {
 
         PreparedStatement statement = null;
-
         try {
             String query = "SELECT * from allenamento where data = ? ;";
             statement = connection.prepareStatement(query);
@@ -72,19 +71,6 @@ public class QueriesLogin {
 
     }
 
-    public static ResultSet RecuperaSquadreRSPerEmail(Connection connection, String email) throws SQLException {
-        PreparedStatement statement = null;
-
-        try {
-            String query= "SELECT * FROM squadra where utenti_email = ? ;";
-            statement = connection.prepareStatement(query);
-
-            statement.setString(1, email);
-
-            return statement.executeQuery();
-
-        } catch (SQLException e) {throw new EccezioneGenerica("Errore di recupera allenamenti per utente");}
-    }
 
     public static ResultSet RecuperaAllenamentiRSPerEmail(Connection connection, String email) throws SQLException {
         PreparedStatement statement = null;

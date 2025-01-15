@@ -58,10 +58,8 @@ public class Singleton {
     }
     public Boolean esisteSquadraDaNome(String nomeSquadra) {
         for (Utente utente : utenti) {
-            if (utente.getAllenatore()) {
-                if (utente.getSquadra().getNome().equals(nomeSquadra)) {
-                    return true;
-                }
+            if (utente.getAllenatore() && utente.getSquadra().getNome().equals(nomeSquadra)) {
+                return true;
             }
         }
         return false;
@@ -79,10 +77,8 @@ public class Singleton {
     }
     public Squadra getSquadraDaNome(String nomeSquadra) throws EccezioneGenerica {
         for (Utente utente : utenti) {
-            if (utente instanceof Allenatore allenatore) {
-                if (allenatore.getSquadra().getNome().equals(nomeSquadra)) {
-                    return allenatore.getSquadra();
-                }
+            if (utente instanceof Allenatore allenatore && allenatore.getSquadra().getNome().equals(nomeSquadra)) {
+                return allenatore.getSquadra();
             }
         }
         throw new EccezioneGenerica("Squadra non esistente");

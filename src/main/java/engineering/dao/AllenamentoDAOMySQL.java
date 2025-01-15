@@ -15,6 +15,37 @@ import static engineering.query.QueriesLogin.RecuperaAllenamentiRSPerEmail;
 
 public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
+    public List<Allenamento> recuperaAllenamentiPerEmail(String email) {
+
+        Connection conn=null;
+        ResultSet rsAll=null;
+        //apriamo la connessione con il DB
+        conn = Connessione.getInstance().getDBConnection();
+        if (conn != null) {
+            try {
+                //invocazione del metodo per la ricerca dell'utente in funzione della email
+                rsAll = RecuperaAllenamentiRSPerEmail(conn, email);
+                List<Allenamento> allenamenti = new ArrayList<>();
+                while (rsAll.next()){
+                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString("descrizione")));
+                }
+                return allenamenti;
+
+            } catch (Exception e) {
+                throw new EccezioneGenerica(e.getMessage());
+            }
+            finally {
+                try {
+                    if(rsAll!=null) {rsAll.close();}
+                }
+                catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+        throw new EccezioneGenerica("Connessione con il DB non riuscita");
+    }
+
     public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) {
 
         Connection conn;

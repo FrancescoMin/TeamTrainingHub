@@ -86,7 +86,6 @@ public class HomepageAllenatoreCtrlGrafico {
             System.out.println("Gestione Squadra");
 
             //passo al controller applicativo il bean dell'utente che sta richiedendo la creazione della squadra codì che possa fare il cambio scena
-            //paginaPrincipaleControllerApplicativo.GestisciSquadra();
 
             //cambio scena alla pagina di gestione della squadra
             try {
@@ -98,21 +97,13 @@ public class HomepageAllenatoreCtrlGrafico {
         } 
         else {
             //Se l'allenatore non ha una squadra allora compiamo il cambio scena alla pagina di creazione della squadra
+            System.out.println("Creazione Squadra");
+
+            //cambio scena alla prima vista dove compiamo la creazione della squadra
             try {
-                System.out.println("Creazione Squadra");
+                Cambio(PAGINA_CREAZIONE_SQUADRA);
 
-                //passo al controller applicativo il bean dell'utente che sta richiedendo la creazione della squadra codì che possa fare il cambio scena
-                //paginaPrincipaleControllerApplicativo.CreaSquadra();
-
-                //cambio scena alla prima vista dove compiamo la creazione della squadra
-                try {
-                    Cambio(PAGINA_CREAZIONE_SQUADRA);
-
-                } catch (EccezioneGenerica e) {
-                    MostraErrore(e.getMessage());
-                }
-            }
-            catch (EccezioneGenerica e) {
+            } catch (EccezioneGenerica e) {
                 MostraErrore(e.getMessage());
             }
         }

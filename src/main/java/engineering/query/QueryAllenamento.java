@@ -10,24 +10,17 @@ import java.sql.SQLException;
 
 public class QueryAllenamento {
 
+    private QueryAllenamento() {
+        //Add a private constructor to hide the implicit public one
+    }
+
     public static String creaAllenamentoQuery = "INSERT INTO allenamento (data,orarioInizio , orarioFine, descrizione, utenti_email) VALUES (?, ?, ? ,? )";
 
     public static int createAllenamento(Connection connection, Allenamento allenamento , String utenti_email) throws EccezioneGenerica {
         try {
 
-            //creazione della query parametrica
-
-
             //preparazione dello statement
-            Connection conn = Connessione.getInstance().getDBConnection();
-            PreparedStatement statement = conn.prepareStatement(creaAllenamentoQuery);
-
-            //setting dei parametri della query
-            statement.setString(1, allenamento.getData());
-            statement.setString(2, String.valueOf(allenamento.getOrarioInizio()));
-            statement.setString(3, String.valueOf(allenamento.getOrarioFine()));
-            statement.setString(3, allenamento.getDescrizione());
-            statement.setString(4, utenti_email);
+            PreparedStatement statement = getPreparedStatement(connection, allenamento, utenti_email);
 
             //esecuzione della query e restituzione del risultato
             int i=0;
@@ -41,6 +34,18 @@ public class QueryAllenamento {
             System.out.println(e.getMessage());
             throw new EccezioneGenerica(e.getMessage());
         }
+    }
+
+    private static PreparedStatement getPreparedStatement(Connection connection, Allenamento allenamento, String utenti_email) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(creaAllenamentoQuery);
+
+        //setting dei parametri della query
+        statement.setString(1, allenamento.getData());
+        statement.setString(2, String.valueOf(allenamento.getOrarioInizio()));
+        statement.setString(3, String.valueOf(allenamento.getOrarioFine()));
+        statement.setString(3, allenamento.getDescrizione());
+        statement.setString(4, utenti_email);
+        return statement;
     }
 
 }

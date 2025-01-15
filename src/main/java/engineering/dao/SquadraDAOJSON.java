@@ -7,7 +7,6 @@ import modelli.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,73 +69,55 @@ public class SquadraDAOJSON implements SquadraDAO {
     public void creaSquadra(Squadra squadra, Utente utente) {
 
         try {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
             //Creazione del path
             String filePath = pathSquadre + squadra.getNome() + json;
 
             //chiamo la funzione per la corretta creazione dell'oggetto json
             JsonObject jsonObject = setUpSquadra(squadra, utente);
-            try {
-                //controllo che il file sia già esistente
-                Files.readAllBytes(Paths.get(filePath));
 
-                //se sono ancora qui vuol dire che il file esiste e lancio un'eccezione
-                throw new EccezioneGenerica("Squadra esistente");
+            creazioneSquadra(jsonObject, filePath);
 
-            } catch (Exception e) {
 
-                //se arrivo qui vuol dire che sto facendo una modifica e il file esiste, quindi posso sovrascriverlo
-                FileWriter writer = new FileWriter(filePath);
-
-                //salvataggio dell'oggetto serializzato utente nel file json
-                writer.write(gson.toJson(jsonObject));
-                writer.close();
-            }
         } catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());
         }
     }
 
-    public void modificaSquadra(Squadra squadra, Utente utente, Allenamento allenamento) {
+    public void modificaSquadra(Squadra squadra, Utente utente, Allenamento allenamento) throws EccezioneGenerica {
         try {
-            try {
-                //Serializziamo l'oggetto in JSON
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            //Serializziamo l'oggetto in JSON
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-                //creazione del path
-                String filePath = pathSquadre + squadra.getNome() + json;
+            //creazione del path
+            String filePath = pathSquadre + squadra.getNome() + json;
 
-                //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
-                String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
+            //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
+            String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
-                //creo l'oggetto JSON corrispondete all'utente con l'email passata
-                JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
+            //creo l'oggetto JSON corrispondete all'utente con l'email passata
+            JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
 
-                //ci sono 3 casi:
-                //caso 1: sto aggiungendo un allenamento
-                if (utente == null && allenamento != null) {
-                    jsonObject.get("allenamenti").getAsJsonArray().add(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
-                } else if (utente != null && allenamento == null) {
-                    jsonObject.get(richieste).getAsJsonArray().add(utente.getEmail());
-                }
-
-                //deserializzo l'oggetto in stringa json
-                String json = gson.toJson(jsonObject);
-
-                //creazione del file con nome username dell'utente in formato json
-                FileWriter writer = new FileWriter(filePath);
-
-                //salvataggio dell'oggetto serializzato utente nel file json
-                writer.write(json);
-                writer.close();
-
-            } catch (Exception e) {
-                //gestione dell'eccezione
-                System.out.println("Errore di stream I/O");
-                throw new EccezioneGenerica(e.getMessage());
+            //ci sono 3 casi:
+            //caso 1: sto aggiungendo un allenamento
+            if (utente == null && allenamento != null) {
+                jsonObject.get("allenamenti").getAsJsonArray().add(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
+            } else if (utente != null && allenamento == null) {
+                jsonObject.get(richieste).getAsJsonArray().add(utente.getEmail());
             }
+
+            //deserializzo l'oggetto in stringa json
+            String json = gson.toJson(jsonObject);
+
+            //creazione del file con nome username dell'utente in formato json
+            FileWriter writer = new FileWriter(filePath);
+
+            //salvataggio dell'oggetto serializzato utente nel file json
+            writer.write(json);
+            writer.close();
+
         } catch (Exception e) {
+            //gestione dell'eccezione
+            System.out.println("Errore di stream I/O");
             throw new EccezioneGenerica(e.getMessage());
         }
     }
@@ -185,7 +166,6 @@ public class SquadraDAOJSON implements SquadraDAO {
         try {
             System.out.println("Iscrizione dell'utente " + utente.getEmail() + "alla squadra: " + squadra.getNome());
             //poiché è il sistema a modificare i modelli e non il dao, non c'è bisogno di fare il setSquadra
-            //utente.setSquadra(squadra);
 
             UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
             utenteDAOJSON.aggiornaUtente(utente);
@@ -219,4 +199,26 @@ public class SquadraDAOJSON implements SquadraDAO {
         }
 
     }
+
+    public void creazioneSquadra(JsonObject jsonObject, String filePath) throws Exception {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try {
+
+            //controllo che il file sia già esistente
+            Files.readAllBytes(Paths.get(filePath));
+
+            //se sono ancora qui vuol dire che il file esiste e lancio un'eccezione
+            throw new EccezioneGenerica("Squadra esistente");
+
+        } catch (Exception e) {
+
+            //se arrivo qui vuol dire che sto facendo una modifica e il file esiste, quindi posso sovrascriverlo
+            FileWriter writer = new FileWriter(filePath);
+
+            //salvataggio dell'oggetto serializzato utente nel file json
+            writer.write(gson.toJson(jsonObject));
+            writer.close();
+        }
+    }
+
 }

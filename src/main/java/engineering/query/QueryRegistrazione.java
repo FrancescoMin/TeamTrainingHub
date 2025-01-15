@@ -11,11 +11,15 @@ import java.sql.SQLException;
 
 public class QueryRegistrazione {
 
-    public static int InserisciUtenteQuery(Connection conn, Registrazione registrazione) throws EccezioneGenerica {
+    private QueryRegistrazione() {
+        // costruttore vuoto di default
+    }
+
+    public static int InserisciUtenteQuery(Connection connection, Registrazione registrazione) throws EccezioneGenerica {
         String sql = "INSERT INTO utenti(username, email, password, allenatore) VALUES (?, ?, ?, ?)";
 
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, registrazione.getUsername());
             ps.setString(2, registrazione.getEmail());
             ps.setString(3, registrazione.getPassword());

@@ -63,23 +63,9 @@ public class EntraInSquadraCtrlGrafico implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*
-        applicativoController = new EntraInSquadraCtrlApplicativo();
-        richiediIngressoButton.setOnAction(event -> handleRichiediIngressoButtonAction());
-
-         */
+        richiediIngressoButton.setOnAction(event -> richiediIngresso());
         tornaInHomepageGiocatoreButton.setOnAction(event -> handleTornaInHomepageGiocatoreButtonAction());
     }
-
-    /*
-    private void mostraMessaggio(String titolo, String messaggio) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(titolo);
-        alert.setHeaderText(null);
-        alert.setContentText(messaggio);
-        alert.showAndWait();
-    }
-     */
 
     private void handleTornaInHomepageGiocatoreButtonAction() {
         try {

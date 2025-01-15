@@ -13,7 +13,7 @@ public class RegistrazioneCtrlApplicativo {
         //costruttore vuoto di default
     }
 
-    public void inserisciUtente(RegistrazioneBean registrazioneBean) throws Exception {
+    public void inserisciUtente(RegistrazioneBean registrazioneBean) throws EccezioneGenerica {
         String username = registrazioneBean.getUsername();
         String email = registrazioneBean.getEmail();
         String password = registrazioneBean.getPassword();
@@ -21,7 +21,7 @@ public class RegistrazioneCtrlApplicativo {
 
         // Verifica che tutti i campi siano compilati
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            throw new Exception("Tutti i campi sono obbligatori!");
+            throw new EccezioneGenerica("Tutti i campi sono obbligatori!");
         }
 
         // Creazione del modello registrazione
@@ -33,7 +33,7 @@ public class RegistrazioneCtrlApplicativo {
         //controllo che l'utente esisti già nel singleton
         Singleton istanza = Singleton.getInstance();
         if (istanza.esisteUtenteDaRegistrazione(registrazione)) {
-            throw new Exception("Utente già registrato!");
+            throw new EccezioneGenerica("Utente già registrato!");
         }
 
         //aggiungo l'utente al singleton
@@ -47,7 +47,7 @@ public class RegistrazioneCtrlApplicativo {
                 UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
 
             } catch (EccezioneGenerica e) {
-                throw new Exception(e.getMessage());
+                throw new EccezioneGenerica(e.getMessage());
             }
         }
     }

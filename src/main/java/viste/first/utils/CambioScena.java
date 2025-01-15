@@ -1,5 +1,6 @@
 package viste.first.utils;
 
+import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,7 +16,7 @@ public class CambioScena {
             stage.show();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            throw new RuntimeException(e);
+            throw new EccezioneGenerica(e.getMessage());
         }
     }
 }

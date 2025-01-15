@@ -51,25 +51,9 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //EntraInSquadraButton.setOnAction(event -> handleEntraInSquadraButtonAction());
         consultaAllenamentiButton.setOnAction(event -> handleConsultaAllenamentiButtonAction());
         welcomeLabel.setText("Ciao " + username);
     }
-
-    /*
-    @FXML
-    private void handleEntraInSquadraButtonAction() {
-        try {
-            Stage stage = (Stage) EntraInSquadraButton.getScene().getWindow();
-            CambioScena cambioScena = new CambioScena();
-            cambioScena.cambioScena(stage, PAGINA_ENTRAINSQUADRA);
-
-        } catch (EccezioneGenerica eccezioneGenerica) {
-            System.out.println(eccezioneGenerica.getMessage());
-        }
-    }
-
-     */
 
     @FXML
     protected void entraSquadra(){

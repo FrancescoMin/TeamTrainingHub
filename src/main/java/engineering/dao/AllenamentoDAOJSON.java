@@ -76,32 +76,37 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
             //Creazione del path
             String filePath = "src/main/resources/persistenza/allenamenti/" + path + json;
 
-            try {
-                //controllo che il file sia già esistente
-                Files.readAllBytes(Paths.get(filePath));
+            creazioneAllenamento(allenamento, filePath);
 
-                //se il file esiste, un allenamento con la stessa data esiste già e lancio un'eccezione
-                throw new EccezioneGenerica("allenamento esistente");
-
-            } catch (IOException e) {
-                //creazione del file con nome username dell'utente in formato json
-
-                // Create a Gson object
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                FileWriter writer = new FileWriter(filePath);
-
-                // Step 1: Convert the Java object to a JSON string
-                String jsonString = gson.toJson(allenamento);
-
-                // Step 2: Convert the JSON string to a JsonObject
-                JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
-
-                //salvataggio dell'oggetto serializzato utente nel file json
-                writer.write(gson.toJson(jsonObject));
-                writer.close();
-            }
         } catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());
+        }
+    }
+
+    public void creazioneAllenamento(Allenamento allenamento, String filePath) throws Exception{
+        try {
+            //controllo che il file sia già esistente
+            Files.readAllBytes(Paths.get(filePath));
+
+            //se il file esiste, un allenamento con la stessa data esiste già e lancio un'eccezione
+            throw new EccezioneGenerica("allenamento esistente");
+
+        } catch (IOException e) {
+            //creazione del file con nome username dell'utente in formato json
+
+            // Create a Gson object
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            FileWriter writer = new FileWriter(filePath);
+
+            // Step 1: Convert the Java object to a JSON string
+            String jsonString = gson.toJson(allenamento);
+
+            // Step 2: Convert the JSON string to a JsonObject
+            JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
+
+            //salvataggio dell'oggetto serializzato utente nel file json
+            writer.write(gson.toJson(jsonObject));
+            writer.close();
         }
     }
 
@@ -175,7 +180,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
             return allenamenti;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            throw new RuntimeException(e);
+            throw new EccezioneGenerica(e.getMessage());
         }
     }
 

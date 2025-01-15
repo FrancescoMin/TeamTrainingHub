@@ -11,14 +11,14 @@ import java.sql.SQLException;
 
 public class QuerySquadra {
 
-
-    //public static String creaSquadraQuery = "insert into squadra (codice, utenti_email) values (?, ?)";
+    private QuerySquadra() {
+        //Add a private constructor to hide the implicit public one
+    }
 
     public static int createSquadra(Connection connection, String nomeSquadra , String utenti_email) throws EccezioneGenerica {
         try {
             //creazione della query parametrica
             String query= "INSERT INTO squadra (codice, utenti_email, allenatore) VALUES (?, ?, ?)";
-
 
             //preparazione dello statement
             PreparedStatement statement = connection.prepareStatement(query);
@@ -46,7 +46,6 @@ public class QuerySquadra {
 
     public static ResultSet getSquadraRSDaNome(Connection connection, String nomeSquadra) throws EccezioneGenerica {
         PreparedStatement statement = null;
-
         try {
             //creazione della query parametrica
             String query = "SELECT * FROM squadra where codice = ? ";
@@ -62,6 +61,19 @@ public class QuerySquadra {
         } catch (SQLException e) {
             throw new EccezioneGenerica(e.getMessage());
         }
+    }
+    public static ResultSet RecuperaSquadreRSPerEmail(Connection connection, String email) throws EccezioneGenerica {
+        PreparedStatement statement = null;
+
+        try {
+            String query= "SELECT * FROM squadra where utenti_email = ? ;";
+            statement = connection.prepareStatement(query);
+
+            statement.setString(1, email);
+
+            return statement.executeQuery();
+
+        } catch (SQLException e) {throw new EccezioneGenerica("Errore di recupera allenamenti per utente");}
     }
 
     public static int inserisciRichiestaIscrizione(Connection connection, Squadra squadra , String utente) throws EccezioneGenerica {
@@ -87,7 +99,7 @@ public class QuerySquadra {
     public static ResultSet getRichiesteIscrizioneRSPerSquadra(Connection connection, Squadra squadra) throws EccezioneGenerica {
         try {
             //creazione della query parametrica
-            String query = "SELECT * FROM richiesteinscrizione where Squadra_codice = ? AND Squadra_utenti_email = ?";
+            String query = "SELECT * FROM richiesteiscrizione where Squadra_codice = ? AND Squadra_utenti_email = ?";
 
             //preparazione dello statement
             PreparedStatement statement = connection.prepareStatement(query);

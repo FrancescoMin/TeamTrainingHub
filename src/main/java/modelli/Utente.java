@@ -12,10 +12,10 @@ public abstract class Utente {
 
     protected boolean allenatore;
 
-    public Utente() {}
+    protected Utente() {}
 
 
-    public Utente(String username, String email, String password) {
+    protected Utente(String username, String email, String password) {
         setUsername(username);
         setEmail(email);
         setPassword(password);
@@ -23,7 +23,7 @@ public abstract class Utente {
         setSquadra(new Squadra());
     }
 
-    public Utente(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
+    protected Utente(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
         setUsername(username);
         setEmail(email);
         setPassword(password);

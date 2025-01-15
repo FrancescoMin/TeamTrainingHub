@@ -42,38 +42,32 @@ public class CreazioneSquadraCtrlGrafico {
 
     @FXML
     public void CreaSquadra(ActionEvent actionEvent) {
-        try {
-            if (nomeSquadra.getText().isEmpty()) {
-                messaggioErrore.setText("There are empty fields!");
-                messaggioErrore.setVisible(true);
-
-            } else {
-                System.out.println("Nome squadra: " + nomeSquadra.getText());
-                //implementazione della logica per la creazione della squadra
-
-                //inizializziamo il controller applicativo
-                CreazioneSquadraCtrlApplicativo creazioneSquadraCtrlApplicativo = new CreazioneSquadraCtrlApplicativo();
-
-                //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean
-                creazioneSquadraCtrlApplicativo.creazioneSquadra(nomeSquadra.getText());
-
-                //finita la logica cambio la scena
-                //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
-                try {
-                    Stage stage = (Stage) nomeSquadra.getScene().getWindow();
-                    CambioScena cambioScena = new CambioScena();
-                    cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
-
-                } catch (EccezioneGenerica EccezioneGenerica) {
-                    System.out.println(EccezioneGenerica.getMessage());
-                }
-            }
-        } catch (EccezioneGenerica e) {
-            messaggioErrore.setText(e.getMessage());
+        if (nomeSquadra.getText().isEmpty()) {
+            messaggioErrore.setText("There are empty fields!");
             messaggioErrore.setVisible(true);
+
         }
+        else {
+            System.out.println("Nome squadra: " + nomeSquadra.getText());
+            //implementazione della logica per la creazione della squadra
 
+            //inizializziamo il controller applicativo
+            CreazioneSquadraCtrlApplicativo creazioneSquadraCtrlApplicativo = new CreazioneSquadraCtrlApplicativo();
 
+            //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean
+            creazioneSquadraCtrlApplicativo.creazioneSquadra(nomeSquadra.getText());
+
+            //finita la logica cambio la scena
+            //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
+            try {
+                Stage stage = (Stage) nomeSquadra.getScene().getWindow();
+                CambioScena cambioScena = new CambioScena();
+                cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
+
+            } catch (EccezioneGenerica EccezioneGenerica) {
+                System.out.println(EccezioneGenerica.getMessage());
+            }
+        }
         //implementazione della logica per il controllo della corretta formattazione del nome della squadra
     }
 
