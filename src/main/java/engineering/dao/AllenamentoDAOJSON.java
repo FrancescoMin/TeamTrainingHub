@@ -186,7 +186,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
 
 
     public List<Allenamento> leggiAllenamentiPerUtente(Utente utente) {
-        return null;
+        return new ArrayList<>();
     }
 
 }
