@@ -1,6 +1,7 @@
 package viste.first;
 
 import engineering.eccezioni.EccezioneGenerica;
+import engineering.pattern.Singleton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import modelli.Giocatore;
+import modelli.Utente;
 import viste.first.utils.CambioScena;
 
 import java.net.URL;
@@ -58,6 +61,11 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
     @FXML
     protected void entraSquadra(){
         try {
+            Utente utente = Singleton.getInstance().getUtenteCorrente();
+            if (!utente.getSquadra().getNome().isEmpty()) {
+                throw new EccezioneGenerica("Sei già in una squadra");
+            }
+            System.out.println(" Utente " + utente.getEmail() + " Squadra " + utente.getSquadra().getNome() + " Allenamenti " + utente.getAllenamenti() + " has been accepted!");
             Stage stage = (Stage) EntraInSquadraButton.getScene().getWindow();
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_ENTRAINSQUADRA);

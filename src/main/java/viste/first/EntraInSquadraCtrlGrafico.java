@@ -42,7 +42,13 @@ public class EntraInSquadraCtrlGrafico{
                 if(entraInSquadraCtrlApplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
 
                     entraInSquadraCtrlApplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
-                    System.out.println("Richiesta inviata");
+                    // Show an alert to indicate refusal
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Invio Richiesta");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Richiesta di partecipazione inviata alla squadra con successo");
+                    alert.showAndWait();
+                    tornaInHomepage();
                 }
                 else {
                     throw new EccezioneGenerica("Squadra inserita non esiste");

@@ -35,7 +35,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
 
             //passo 3: aggiorno la squadra dell'utente in modo che aggiungo alla squadra l'allenamento nella lista di allenamenti della squadra
             SquadraDAOJSON squadraDAOJSON = new SquadraDAOJSON();
-            squadraDAOJSON.aggiungiAllenamentoASquadra(utente.getSquadra(), allenamento);
+            squadraDAOJSON.aggiornaSquadra(utente.getSquadra());
         }
         catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());

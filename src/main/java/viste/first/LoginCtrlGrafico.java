@@ -50,7 +50,6 @@ public class LoginCtrlGrafico {
 
         else {
             LoginCtrlApplicativo loginCtrlApplicativo = new LoginCtrlApplicativo();
-            //loginCtrlApplicativo.setDemo(false);
             try{
                 //istanziazione del bean per il login
                 LoginBean loginBean = new LoginBean(em,pass);

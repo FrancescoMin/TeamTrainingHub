@@ -14,7 +14,7 @@
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
          <Button layoutX="930.0" layoutY="18.0" mnemonicParsing="false" onAction="#Ricarica" text="Ricarica" />
             <Button layoutX="14.0" layoutY="19.0" onAction="#onBackClick" text="Back" AnchorPane.leftAnchor="15.0" />
-            <Label alignment="CENTER" layoutX="570.0" layoutY="40.0" text="MANAGE PLAYLISTS" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="10.0" />
+            <Label alignment="CENTER" layoutX="570.0" layoutY="40.0" text="RICHIESTE PARTECIPAZIONE ALLA SQUADRA" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="10.0" />
         </AnchorPane>
     </top>
 

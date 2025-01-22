@@ -58,6 +58,8 @@ public class LoginCtrlApplicativo {
             //inizializzo il modello all'interno del sistema per l'utilizzo
             Utente utente= istanza.getUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
 
+            System.out.println(" Utente recuperato email " + utente.getEmail() + " password " + utente.getPassword() + " username " + utente.getUsername() + " squadra " + utente.getSquadra().getNome() + " allenamenti " + utente.getAllenamenti());
+
             //salvo all'interno del singleton l'utente con utenteCorrente
             istanza.setUtenteCorrente(utente);
             if (utente.getAllenatore()) {
@@ -68,7 +70,7 @@ public class LoginCtrlApplicativo {
             }
         }
 
-        //se siamo nella modalità demo non dovremmo arrivare a questo punto del codice. Per sicurezza alzo un eccezione
+        //Se siamo nella modalità demo non dovremmo arrivare a questo punto del codice. Per sicurezza alzo un eccezione
         else if(istanza.getDemo()){
             throw new EccezioneGenerica("Impossibile recuperare l'utente dallo stato di persistenza visto che siamo nella modalità demo");}
 

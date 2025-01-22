@@ -9,5 +9,5 @@ public interface SquadraDAO {
     public void visualizzaTutteLeSquadre();
     public Squadra getSquadraDaNome(String nomeSquadra);
     public Boolean verificaEsistenzaSquadra(String nomeSquadra);
-    public void aggiungiRichiestaASquadra(Squadra squadra, Utente utente); //invia richiesta all'allenatore della squadra
+    public void aggiornaSquadra(Squadra squadra);
 }

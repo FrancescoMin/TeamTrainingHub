@@ -16,8 +16,10 @@ public class Singleton {
 
     //variabile privata che contiene l'istanza dell'utente che sta facendo uso del sistema
     private Utente utenteCorrente;
+
     //variabile che indica se il sistema è in modalità demo o meno
     private Boolean demo;
+
 
     private Singleton(){}
 
@@ -65,7 +67,6 @@ public class Singleton {
         return false;
     }
 
-
     public Utente getUtenteDaLogin(Login login) throws EccezioneGenerica {return getUtenteDaEmail(login.getEmail());}
     public Utente getUtenteDaEmail(String email) throws EccezioneGenerica {
         for (Utente utente : utenti) {
@@ -88,14 +89,11 @@ public class Singleton {
         Utente utente;
         if (registrazione.getAllenatore()) {
             utente=new Allenatore(registrazione.getUsername(),registrazione.getEmail(), registrazione.getPassword());
-            utenti.add(utente);
-            setUtenteCorrente(utente);
         } else {
             utente=new Giocatore(registrazione.getUsername(),registrazione.getEmail(), registrazione.getPassword());
-            utenti.add(utente);
-            setUtenteCorrente(utente);
         }
+        utenti.add(utente);
+        setUtenteCorrente(utente);
         System.out.println("Utente " + utente.getEmail() + " aggiunto al sistema");
-        System.out.println("Utente corrente: " + utenteCorrente.getEmail());
     }
 }

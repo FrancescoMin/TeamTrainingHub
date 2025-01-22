@@ -82,7 +82,7 @@ public class EntraInSquadraCtrlApplicativo {
             squadra.getRichiesteIngresso().add(utente);
 
             //aggiorno la squadra in modo da aggiungere la richiesta alla lista
-            squadraDAO.aggiungiRichiestaASquadra(squadra, utente);
+            squadraDAO.aggiornaSquadra(squadra);
         }
 
     }

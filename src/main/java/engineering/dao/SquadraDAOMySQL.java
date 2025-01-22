@@ -155,6 +155,10 @@ public class SquadraDAOMySQL implements SquadraDAO {
 
     }
 
+    public void aggiornaSquadra(Squadra squadra){
+        System.out.println("Aggiornamento della squadra non implementato");
+    }
+
     public void aggiungiRichiestaASquadra(Squadra squadra, Utente utente) {
 
         Connection conn;

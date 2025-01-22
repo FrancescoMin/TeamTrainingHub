@@ -18,6 +18,9 @@ public class UtenteDAOMySQL implements UtenteDAO {
     public static String password = "password";
     public static String email1 = "email";
     public static String username = "username";
+    public void aggiornaUtente(Utente utente) throws EccezioneGenerica {
+        System.out.println("Aggiornamento dell'utente non ancora implementato");
+    }
 
     public Utente recuperaUtenteDaEmail(String email) throws EccezioneGenerica {
         //poi recupero il resto dell'utente

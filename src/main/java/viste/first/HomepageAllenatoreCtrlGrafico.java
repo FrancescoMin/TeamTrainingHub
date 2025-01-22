@@ -32,8 +32,8 @@ public class HomepageAllenatoreCtrlGrafico {
             //cambio scena alla pagina di visualizzazione delle richieste di partecipazione
             try {
                 Cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
-
-            } catch (EccezioneGenerica e) {
+            }
+            catch (EccezioneGenerica e) {
                 MostraErrore(e.getMessage());
             }
         }
@@ -85,8 +85,8 @@ public class HomepageAllenatoreCtrlGrafico {
             //Se l'allenatore ha una squadra allora compiamo il cambio scena alla pagina di gestione della squadra
             System.out.println("Gestione Squadra");
 
-            //passo al controller applicativo il bean dell'utente che sta richiedendo la creazione della squadra codì che possa fare il cambio scena
-
+            throw new EccezioneGenerica("Non implementato");
+/*
             //cambio scena alla pagina di gestione della squadra
             try {
                 Cambio(PAGINA_GESTIONE_SQUADRA);
@@ -94,6 +94,8 @@ public class HomepageAllenatoreCtrlGrafico {
             } catch (EccezioneGenerica e) {
                 MostraErrore(e.getMessage());
             }
+
+ */
         } 
         else {
             //Se l'allenatore non ha una squadra allora compiamo il cambio scena alla pagina di creazione della squadra
