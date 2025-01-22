@@ -33,6 +33,8 @@ public class RegistrazioneCtrlGrafico implements Initializable {
     private Button tornaLoginButton;
     @FXML
     private Label registrazioneAvvenuta;
+    @FXML
+    private Label erroreInserimento;
 
 
     @Override

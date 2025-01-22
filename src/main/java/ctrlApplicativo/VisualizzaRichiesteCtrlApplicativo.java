@@ -5,7 +5,6 @@ import engineering.dao.SquadraDAO;
 import engineering.dao.UtenteDAO;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
-import modelli.Giocatore;
 import modelli.Squadra;
 import modelli.Utente;
 
@@ -19,30 +18,33 @@ public class VisualizzaRichiesteCtrlApplicativo {
     public void accettaRichiesta(UtenteBean utenteBean) {
         //mi occupo di ricreare il modello del giocatore
 
-        Utente utente = istanza.getUtenteDaEmail(utenteBean.getEmail());
-
-
-        //aggiungo la squadra al giocatore
-        utente.setSquadra(squadra);
-
-        update(utente);
+        update(utenteBean, true);
     }
 
     public void rifiutaRichiesta(UtenteBean utenteBean) {
         // Show an alert to indicate refusal
-        Utente utente = istanza.getUtenteDaEmail(utenteBean.getEmail());
 
-        update(utente);
+        update(utenteBean, false);
     }
 
-    public void update(Utente utente) {
+    public void update(UtenteBean utenteBean, Boolean accettato) {
 
-        for(Utente u : squadra.getRichiesteIngresso()) {
-            if(u.getEmail().equals(utente.getEmail())) {
-                squadra.getRichiesteIngresso().remove(u);
+        System.out.println( "banana up");
+        Utente utente = null;
+
+        for(int i=0; i<squadra.getRichiesteIngresso().size(); i++)
+        {
+            if(squadra.getRichiesteIngresso().get(i).getEmail().equals(utenteBean.getEmail()))
+            {
+                utente = squadra.getRichiesteIngresso().get(i);
+                if(accettato) {utente.setSquadra(squadra);}
+                squadra.getRichiesteIngresso().remove(utente);
                 break;
             }
         }
+
+        System.out.println( "Post modifiche Username "+ utente.getUsername() +" Email " + utente.getEmail() + " Password " + utente.getPassword() + " Squadra " + utente.getSquadra().getNome() + " Allenamenti " + utente.getAllenamenti() + " has been accepted!");
+
 
         //adesso, se sto utilizzando il dao, aggiorno la persistenza per poter salvare le modifiche
         if (!istanza.getDemo()) {

@@ -23,6 +23,5 @@ LoginApplicazione extends Application {
         launch();
     }
 
-
 }
 

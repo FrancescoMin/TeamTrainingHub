@@ -86,17 +86,7 @@ public class HomepageAllenatoreCtrlGrafico {
             System.out.println("Gestione Squadra");
 
             throw new EccezioneGenerica("Non implementato");
-/*
-            //cambio scena alla pagina di gestione della squadra
-            try {
-                Cambio(PAGINA_GESTIONE_SQUADRA);
-
-            } catch (EccezioneGenerica e) {
-                MostraErrore(e.getMessage());
-            }
-
- */
-        } 
+        }
         else {
             //Se l'allenatore non ha una squadra allora compiamo il cambio scena alla pagina di creazione della squadra
             System.out.println("Creazione Squadra");

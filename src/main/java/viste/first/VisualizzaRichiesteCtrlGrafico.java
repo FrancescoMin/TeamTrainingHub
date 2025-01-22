@@ -16,7 +16,7 @@ import java.util.*;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
 
-public class VisualizzaRichiesteCtrlGrafico implements Initializable, GestoreTabella.ButtonActionHandler {
+public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActionHandler {
 
     @FXML
     private TableColumn<UtenteBean, String> giocatoreColonna;
@@ -34,8 +34,8 @@ public class VisualizzaRichiesteCtrlGrafico implements Initializable, GestoreTab
         gestoreTabella.refreshTable(tabellaRichieste);
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    public void initialize() {
         gestoreTabella = new GestoreTabella(this);  // 'this' refers to the controller
 
         // Populate the TableView with the list of users (UtenteBean)
@@ -85,6 +85,4 @@ public class VisualizzaRichiesteCtrlGrafico implements Initializable, GestoreTab
         Ricarica();
     }
 
-    /** Public because it must be called by DoubleButtonTableCell, it's the action taken when the Accept or Reject button is clicked */
-    public void handlerButton() {}
 }

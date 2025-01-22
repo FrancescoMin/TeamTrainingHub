@@ -65,7 +65,7 @@ public class EntraInSquadraCtrlApplicativo {
         Squadra squadra = new Squadra();
 
         //controllo se sono in modalità demo
-        if(istanza.getDemo() && istanza.esisteSquadraDaNome(nomeSquadra)){
+        if(istanza.esisteSquadraDaNome(nomeSquadra)){
             squadra = istanza.getSquadraDaNome(nomeSquadra);
             squadra.getRichiesteIngresso().add(utente);
         }
@@ -80,6 +80,8 @@ public class EntraInSquadraCtrlApplicativo {
 
             //modifico la squadra aggiungendo l'utente tra le richieste di ingresso
             squadra.getRichiesteIngresso().add(utente);
+
+
 
             //aggiorno la squadra in modo da aggiungere la richiesta alla lista
             squadraDAO.aggiornaSquadra(squadra);

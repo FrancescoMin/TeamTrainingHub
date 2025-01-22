@@ -47,4 +47,5 @@
          </font>
       </Label>
    </children>
+   <fx:include source="baseViste.fxml"/>
 </AnchorPane>

@@ -27,7 +27,7 @@ public class SquadraDAOJSON implements SquadraDAO {
     public void creaSquadraPerAllenatore(Utente utente, Squadra squadra) {
 
         try {
-            creaSquadra(squadra, utente);
+            creaSquadra(squadra);
             IscrizioneUtenteASquadra(utente, squadra);
         } catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());
@@ -43,12 +43,13 @@ public class SquadraDAOJSON implements SquadraDAO {
             JsonObject jsonObject = setUpSquadra(squadra);
 
             aggiornaSquadraJson(jsonObject, filePath);
+
         } catch (Exception e) {
             throw new EccezioneGenerica(e.getMessage());
         }
     }
 
-    public void aggiornaSquadraJson(JsonObject jsonObject, String filePath) throws IOException {
+    public void aggiornaSquadraJson(JsonObject jsonObject, String filePath) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try {
 
@@ -136,7 +137,9 @@ public class SquadraDAOJSON implements SquadraDAO {
         jsonObject.addProperty("allenatore", squadra.getAllenatore());
         jsonObject.addProperty("nome", squadra.getNome());
 
-        Utente allenatore= Singleton.getInstance().getUtenteDaEmail(squadra.getAllenatore());
+        UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
+        Utente allenatore = utenteDAOJSON.recuperaUtenteDaEmail(squadra.getAllenatore());
+
         JsonArray jsonArrayAllenamenti = new JsonArray();
         for(Allenamento allenamento : allenatore.getAllenamenti()){
             jsonArrayAllenamenti.add(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
@@ -152,7 +155,7 @@ public class SquadraDAOJSON implements SquadraDAO {
         return jsonObject;
     }
 
-    public void creaSquadra(Squadra squadra, Utente utente) {
+    public void creaSquadra(Squadra squadra) {
 
         try {
             //Creazione del path
@@ -227,8 +230,6 @@ public class SquadraDAOJSON implements SquadraDAO {
     }
 
     public Boolean verificaEsistenzaSquadra(String nomeSquadra) {
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         //Creazione del path
         String filePath = pathSquadre + nomeSquadra + json;

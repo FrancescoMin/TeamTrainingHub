@@ -54,13 +54,13 @@ public class GestoreTabella {
         // Modify to retrieve UtenteBean objects instead of Utente
         List<Utente> utenti = istanza.getUtenteCorrente().getSquadra().getRichiesteIngresso();
         for (Utente utente : utenti) {
+            UtenteBean utenteBean;
             if (utente.getAllenatore()) {
-                UtenteBean utenteBean = new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
-                utentiBean.add(utenteBean);
+                utenteBean = new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
             } else {
-                UtenteBean utenteBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
-                utentiBean.add(utenteBean);
+                utenteBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
             }
+            utentiBean.add(utenteBean);
         }
         return utentiBean;
     }

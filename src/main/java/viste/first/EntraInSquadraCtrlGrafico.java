@@ -66,6 +66,7 @@ public class EntraInSquadraCtrlGrafico{
 
     @FXML
     public void initialize() {
+        //inizializzo la pagina
     }
 
     @FXML

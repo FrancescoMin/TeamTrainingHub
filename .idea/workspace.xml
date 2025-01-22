@@ -4,27 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="creazione VisualizzazioneRichiesteCtrlGrafico e applicativo">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="completamento caso d'uso entra squadra">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/EntraInSquadraCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/EntraInSquadraCtrlApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/VisualizzaRichiesteCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/VisualizzaRichiesteCtrlApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOMySQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/LoginCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/LoginCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/prova1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/prova1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/visualizzazioneRichieste.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/visualizzazioneRichieste.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/5.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/5.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +29,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="FxmlFile" />
         <option value="Enum" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -187,7 +181,8 @@
       <workItem from="1737365514661" duration="15917000" />
       <workItem from="1737389936884" duration="4354000" />
       <workItem from="1737449887970" duration="11088000" />
-      <workItem from="1737536884034" duration="74000" />
+      <workItem from="1737536884034" duration="4875000" />
+      <workItem from="1737547137946" duration="3954000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -365,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737388163736</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="completamento caso d'uso entra squadra">
+      <option name="closed" value="true" />
+      <created>1737537159941</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1737537159941</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,7 +408,8 @@
     <MESSAGE value="Sistemazione code Smell" />
     <MESSAGE value="risoluzione problemi json" />
     <MESSAGE value="creazione VisualizzazioneRichiesteCtrlGrafico e applicativo" />
-    <option name="LAST_COMMIT_MESSAGE" value="creazione VisualizzazioneRichiesteCtrlGrafico e applicativo" />
+    <MESSAGE value="completamento caso d'uso entra squadra" />
+    <option name="LAST_COMMIT_MESSAGE" value="completamento caso d'uso entra squadra" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
