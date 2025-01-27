@@ -66,13 +66,12 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
                 throw new EccezioneGenerica("Sei già in una squadra");
             }
             System.out.println(" Utente " + utente.getEmail() + " Squadra " + utente.getSquadra().getNome() + " Allenamenti " + utente.getAllenamenti() + " has been accepted!");
-            Stage stage = (Stage) EntraInSquadraButton.getScene().getWindow();
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_ENTRAINSQUADRA);
 
         } catch (EccezioneGenerica eccezioneGenerica) {
             System.out.println(eccezioneGenerica.getMessage());
-            throw new EccezioneGenerica(eccezioneGenerica.getMessage());
         }
     }
 

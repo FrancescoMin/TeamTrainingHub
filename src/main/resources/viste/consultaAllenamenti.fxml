@@ -21,7 +21,8 @@
        <TableView fx:id="allenamentiTable" layoutX="66.0" layoutY="80.0" prefHeight="262.0" prefWidth="467.0">
            <columns>
                <TableColumn fx:id="dataColumn" prefWidth="100" text="Data" />
-               <TableColumn fx:id="durataColumn" prefWidth="100" text="Durata" />
+               <TableColumn fx:id="orarioInizioColumn"  prefWidth="100" text="Orario inizio" />
+               <TableColumn fx:id="orarioFineColumn"  prefWidth="100" text="Orario fine" />
                <TableColumn fx:id="descrizioneColumn" prefWidth="266.40001220703124" text="Descrizione" />
            </columns>
        </TableView>

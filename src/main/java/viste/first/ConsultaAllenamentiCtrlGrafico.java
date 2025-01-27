@@ -1,15 +1,21 @@
 package viste.first;
 
 import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
+import engineering.eccezioni.EccezioneGenerica;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import modelli.Allenamento;
+import viste.first.utils.CambioScena;
 
 import java.util.List;
+
+import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
 public class ConsultaAllenamentiCtrlGrafico {
 
@@ -20,10 +26,16 @@ public class ConsultaAllenamentiCtrlGrafico {
     private TableColumn<Allenamento, String> dataColumn;
 
     @FXML
-    private TableColumn<Allenamento, Integer> durataColumn;
+    private TableColumn<Allenamento, String> orarioInizioColumn;
+
+    @FXML
+    private TableColumn<Allenamento, String> orarioFineColumn;
 
     @FXML
     private TableColumn<Allenamento, String> descrizioneColumn;
+
+    @FXML
+    private Button tornaInHomepageGiocatoreButton;
 
    // @FXML
     //private javafx.scene.control.Button refreshButton;
@@ -34,9 +46,12 @@ public class ConsultaAllenamentiCtrlGrafico {
         applicativoController = new ConsultaAllenamentiCtrlApplicativo();
 
         // Configurazione le colonne
-        dataColumn.setCellValueFactory(new PropertyValueFactory<>("data"));
-        durataColumn.setCellValueFactory(new PropertyValueFactory<>("durata"));
-        descrizioneColumn.setCellValueFactory(new PropertyValueFactory<>("descrizione"));
+        dataColumn.setCellValueFactory(new PropertyValueFactory<>("Data"));
+        orarioInizioColumn.setCellValueFactory(new PropertyValueFactory<>("Orario Inizio"));
+        orarioFineColumn.setCellValueFactory(new PropertyValueFactory<>("Orario Fine"));
+        descrizioneColumn.setCellValueFactory(new PropertyValueFactory<>("Descrizione"));
+
+        tornaInHomepageGiocatoreButton.setOnAction(event -> handleTornaInHomepageGiocatoreButtonAction());
 
         // Caricam gli allenamenti iniziali
         caricaAllenamenti();
@@ -55,4 +70,13 @@ public class ConsultaAllenamentiCtrlGrafico {
         }
     }
 
+    private void handleTornaInHomepageGiocatoreButtonAction() {
+        try {
+            Stage stage = (Stage) tornaInHomepageGiocatoreButton.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
+        } catch (EccezioneGenerica eccezioneGenerica) {
+            System.out.println(eccezioneGenerica.getMessage());
+        }
+    }
 }
