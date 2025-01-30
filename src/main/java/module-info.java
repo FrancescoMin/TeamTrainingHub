@@ -9,6 +9,12 @@ module com.example.teamtraininghub {
 
     opens modelli to javafx.base, com.fasterxml.jackson.databind, com.google.gson;
 
+
+    exports engineering.dao; // Allow access to engineering.dao package
+    exports modelli; // Allow access to modelli package
+
+
+
     exports inizio to javafx.graphics;
     opens inizio to javafx.fxml;
     exports viste.first to javafx.graphics;

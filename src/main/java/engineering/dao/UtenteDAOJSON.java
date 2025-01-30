@@ -75,7 +75,7 @@ public class UtenteDAOJSON implements UtenteDAO {
         }
     }
 
-    public void inserisciUtenteDaUtente(Utente utente) throws EccezioneGenerica, IOException {
+    public void inserisciUtente(Utente utente) throws EccezioneGenerica, IOException {
 
         //Creazione del path
         String filePath = pathUtenti + utente.getEmail() + json;
@@ -111,9 +111,9 @@ public class UtenteDAOJSON implements UtenteDAO {
     public void inserisciUtenteDaRegistrazione(Registrazione registrazione) {
         try {
             if (registrazione.getAllenatore()) {
-                inserisciUtenteDaUtente(new Allenatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));
+                inserisciUtente(new Allenatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));
             } else {
-                inserisciUtenteDaUtente(new Giocatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));
+                inserisciUtente(new Giocatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));
             }
 
         } catch (Exception e) {
@@ -198,6 +198,13 @@ public class UtenteDAOJSON implements UtenteDAO {
             System.out.println("Errore di stream I/O");
             throw new EccezioneGenerica("Utente non esistente");
         } catch (Exception e) {
+            throw new EccezioneGenerica(e.getMessage());
+        }
+    }
+    public Utente recuperaUtente(Utente utente) {
+        try {
+            return recuperaUtenteDaEmail(utente.getEmail());
+        } catch (EccezioneGenerica e) {
             throw new EccezioneGenerica(e.getMessage());
         }
     }

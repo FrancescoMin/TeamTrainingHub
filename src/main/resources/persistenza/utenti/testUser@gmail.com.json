@@ -1,0 +1,8 @@
+{
+  "username": "testUser",
+  "email": "testUser@gmail.com",
+  "password": "testUser",
+  "allenatore": false,
+  "allenamenti": [],
+  "squadra": ""
+}
