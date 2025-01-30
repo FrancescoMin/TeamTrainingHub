@@ -37,21 +37,6 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
 
     private String username;
 
-    @FXML
-    protected void RitornoAlLogin() {
-        System.out.println("Ritorno al Login");
-
-        //cambio scena alla pagina di login
-        try {
-            Stage stage = (Stage) ciaoText.getScene().getWindow();
-            CambioScena cambioScena = new CambioScena();
-            cambioScena.cambioScena(stage, PAGINA_PRINCIPALE);
-
-        } catch (EccezioneGenerica EccezioneGenerica) {
-            System.out.println(EccezioneGenerica.getMessage());
-        }
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         consultaAllenamentiButton.setOnAction(event -> handleConsultaAllenamentiButtonAction());
@@ -66,9 +51,7 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
                 throw new EccezioneGenerica("Sei già in una squadra");
             }
             System.out.println(" Utente " + utente.getEmail() + " Squadra " + utente.getSquadra().getNome() + " Allenamenti " + utente.getAllenamenti() + " has been accepted!");
-            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
-            CambioScena cambioScena = new CambioScena();
-            cambioScena.cambioScena(stage, PAGINA_ENTRAINSQUADRA);
+            cambio(PAGINA_ENTRAINSQUADRA);
 
         } catch (EccezioneGenerica eccezioneGenerica) {
             System.out.println(eccezioneGenerica.getMessage());
@@ -79,13 +62,17 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
     private void handleConsultaAllenamentiButtonAction() {
         // Logica per il pulsante "Consulta allenamenti"
         try {
-            Stage stage = (Stage) consultaAllenamentiButton.getScene().getWindow();
-            CambioScena cambioScena = new CambioScena();
-            cambioScena.cambioScena(stage, PAGINA_CONSULTA_ALLENAMENTI);
+            cambio(PAGINA_CONSULTA_ALLENAMENTI);
 
         } catch (EccezioneGenerica eccezioneGenerica) {
             System.out.println(eccezioneGenerica.getMessage());
         }
         System.out.println("Consulta allenamenti cliccato");
+    }
+
+    private void cambio(String string){
+        Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+        CambioScena cambioScena = new CambioScena();
+        cambioScena.cambioScena(stage, string);
     }
 }

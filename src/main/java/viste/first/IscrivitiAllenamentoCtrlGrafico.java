@@ -40,6 +40,7 @@ public class IscrivitiAllenamentoCtrlGrafico implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /*
         applicativoController = new IscrivitiAllenamentoCtrlApplicativo();
         tornaInHomepageGiocatoreButton.setOnAction(event -> handleTornaInHomepageGiocatoreButtonAction());
         dataColumn.setCellValueFactory(new PropertyValueFactory<>("data"));
@@ -62,6 +63,8 @@ public class IscrivitiAllenamentoCtrlGrafico implements Initializable {
 
         iscrizioneColumn.setCellFactory(CheckBoxTableCell.forTableColumn((Callback<Integer, ObservableValue<Boolean>>) iscrizioneColumn));
         caricaAllenamenti();
+
+         */
     }
 
     private void caricaAllenamenti() {

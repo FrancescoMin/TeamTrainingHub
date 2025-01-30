@@ -12,10 +12,10 @@ import static viste.first.utils.FxmlFileName.PAGINA_PRINCIPALE;
 public class BaseVisteCtrlGrafico {
 
     @FXML
-    private Button tornaAlLogin;
+    private  Button tornaAlLogin;
 
 
-    public void TornaAlLogin(ActionEvent actionEvent) {
+    public void TornaAlLogin() {
         System.out.println("Torno al login");
         try {
             Stage stage = (Stage) tornaAlLogin.getScene().getWindow();

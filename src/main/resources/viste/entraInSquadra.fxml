@@ -21,7 +21,9 @@
       <Text fx:id="scriviSquadraText" layoutX="178.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scrivi il nome della squadra in cui vuoi entrare" />
       <TextField fx:id="scriviSquadraTextField" layoutX="225.0" layoutY="174.0" promptText="Nome squadra" />
       <Button layoutX="247.0" layoutY="239.0" mnemonicParsing="false" onAction="#richiediIngresso" text="Richiedi ingresso" />
-      <Button layoutX="240.0" layoutY="337.0" mnemonicParsing="false" onAction="#tornaInHomepage" text="Torna in homepage" />
       <Label fx:id="mostraErrore" layoutX="286.0" layoutY="295.0" textFill="RED" />
    </children>
+
+   <fx:include source="baseViste.fxml"/>
+
 </AnchorPane>

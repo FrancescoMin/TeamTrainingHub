@@ -18,8 +18,34 @@ public class UtenteDAOMySQL implements UtenteDAO {
     public static String password = "password";
     public static String email1 = "email";
     public static String username = "username";
+
     public void aggiornaUtente(Utente utente) throws EccezioneGenerica {
-        System.out.println("Aggiornamento dell'utente non ancora implementato");
+        Connection conn = null;
+        //apriamo la connessione con il DB
+        conn = Connessione.getInstance().getDBConnection();
+        if (conn != null) {
+            try {
+
+                //l'aggiornamento dell'utente avverrà sempre controllando se l'utente ha una squadra non di default
+                if (!utente.getSquadra().getNome().isEmpty()) {
+
+                    //se l'utente è iscritto a una squadra, controllo che la squadra esisti e non sia quella di default
+                    SquadraDAOMySQL squadraDAOMySQL = new SquadraDAOMySQL();
+                    Squadra appoggio = squadraDAOMySQL.getSquadraDaUtente(utente);
+
+                    //se la squadra non è quella di default, iscrivo l'utente alla squadra
+                    if (!appoggio.getNome().isEmpty()) {
+                        squadraDAOMySQL.IscrizioneUtenteASquadra(utente, utente.getSquadra());
+                    }
+
+                    //da implementare l'aggiornamento degli allenamenti
+                }
+            } catch (Exception e) {
+                throw new EccezioneGenerica(e.getMessage());
+            }
+        } else {
+            throw new EccezioneGenerica("Connessione con il DB non riuscita mentre si aggiornava l'utente " + utente.getEmail());
+        }
     }
 
     public Utente recuperaUtenteDaEmail(String email) throws EccezioneGenerica {

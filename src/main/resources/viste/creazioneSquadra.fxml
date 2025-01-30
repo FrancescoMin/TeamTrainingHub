@@ -12,4 +12,7 @@
       <Button onAction="#TornaIndietro" layoutX="266.0" layoutY="252.0" mnemonicParsing="false" text="Torna Indietro" />
       <Label fx:id="messaggioErrore" layoutX="272.0" layoutY="277.0" textFill="RED" />
    </children>
+
+   <fx:include source="baseViste.fxml"/>
+
 </AnchorPane>

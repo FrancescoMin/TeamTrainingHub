@@ -4,18 +4,13 @@ import ctrlApplicativo.EntraInSquadraCtrlApplicativo;
 import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import viste.first.utils.CambioScena;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
+import viste.first.BaseVisteCtrlGrafico.*;
 
 public class EntraInSquadraCtrlGrafico{
 
@@ -48,7 +43,10 @@ public class EntraInSquadraCtrlGrafico{
                     alert.setHeaderText(null);
                     alert.setContentText("Richiesta di partecipazione inviata alla squadra con successo");
                     alert.showAndWait();
-                    tornaInHomepage();
+
+                    //torno al login
+                    BaseVisteCtrlGrafico baseVisteCtrlGrafico = new BaseVisteCtrlGrafico();
+                    baseVisteCtrlGrafico.TornaAlLogin();
                 }
                 else {
                     throw new EccezioneGenerica("Squadra inserita non esiste");
@@ -67,17 +65,6 @@ public class EntraInSquadraCtrlGrafico{
     @FXML
     public void initialize() {
         //inizializzo la pagina
-    }
-
-    @FXML
-    private void tornaInHomepage() {
-        try {
-            Stage stage = (Stage) scriviSquadraText.getScene().getWindow();
-            CambioScena cambioScena = new CambioScena();
-            cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
-        } catch (EccezioneGenerica eccezioneGenerica) {
-            System.out.println(eccezioneGenerica.getMessage());
-        }
     }
 
 }
