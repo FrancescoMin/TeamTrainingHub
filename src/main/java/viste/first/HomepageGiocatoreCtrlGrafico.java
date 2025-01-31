@@ -1,5 +1,6 @@
 package viste.first;
 
+import ctrlApplicativo.HomepageGiocatoreCtrlApplicativo;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
 import javafx.fxml.FXML;
@@ -35,22 +36,23 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
     @FXML
     private Label welcomeLabel;
 
-    private String username;
+    HomepageGiocatoreCtrlApplicativo homepageGiocatoreCtrlApplicativo = new HomepageGiocatoreCtrlApplicativo();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         consultaAllenamentiButton.setOnAction(event -> handleConsultaAllenamentiButtonAction());
+        String username;
+        username=homepageGiocatoreCtrlApplicativo.getMessaggioBenvenuto();
         welcomeLabel.setText("Ciao " + username);
     }
 
     @FXML
     protected void entraSquadra(){
         try {
-            Utente utente = Singleton.getInstance().getUtenteCorrente();
-            if (!utente.getSquadra().getNome().isEmpty()) {
+
+            if (homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {
                 throw new EccezioneGenerica("Sei già in una squadra");
             }
-            System.out.println(" Utente " + utente.getEmail() + " Squadra " + utente.getSquadra().getNome() + " Allenamenti " + utente.getAllenamenti() + " has been accepted!");
             cambio(PAGINA_ENTRAINSQUADRA);
 
         } catch (EccezioneGenerica eccezioneGenerica) {
@@ -61,13 +63,19 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
     @FXML
     private void handleConsultaAllenamentiButtonAction() {
         // Logica per il pulsante "Consulta allenamenti"
-        try {
-            cambio(PAGINA_CONSULTA_ALLENAMENTI);
-
-        } catch (EccezioneGenerica eccezioneGenerica) {
-            System.out.println(eccezioneGenerica.getMessage());
-        }
         System.out.println("Consulta allenamenti cliccato");
+
+        if(homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {
+            try {
+                cambio(PAGINA_CONSULTA_ALLENAMENTI);
+
+            } catch (EccezioneGenerica eccezioneGenerica) {
+                System.out.println(eccezioneGenerica.getMessage());
+            }
+        }
+        else {
+            System.out.println("Non sei in una squadra, entrare in una squadra per consultare gli allenamenti");
+        }
     }
 
     private void cambio(String string){

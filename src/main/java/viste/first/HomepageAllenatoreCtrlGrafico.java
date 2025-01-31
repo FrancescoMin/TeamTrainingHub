@@ -42,19 +42,6 @@ public class HomepageAllenatoreCtrlGrafico {
         }
     }
 
-    @FXML
-    protected void RitornoAlLogin() {
-
-        System.out.println("Ritorno al Login");
-
-        //cambio scena alla pagina di login
-        try {
-            Cambio(PAGINA_PRINCIPALE);
-
-        } catch (EccezioneGenerica EccezioneGenerica) {
-            System.out.println(EccezioneGenerica.getMessage());
-        }
-    }
 
     @FXML
     protected void CreaAllenamento() {

@@ -11,8 +11,6 @@ public class HomepageAllenatoreCtrlApplicativo
     }
 
     public Boolean esisteSquadra(){
-
-
         Singleton istanza= Singleton.getInstance();
         Utente utente= istanza.getUtenteCorrente();
 

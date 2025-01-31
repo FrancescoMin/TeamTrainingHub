@@ -8,11 +8,8 @@ import modelli.Utente;
 
 public class HomepageGiocatoreCtrlApplicativo {
 
-    private final UtenteDAO utenteDAO;
-
     public HomepageGiocatoreCtrlApplicativo() {
-        // Inizializza il DAO tramite la factory
-        this.utenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
+        // Costruttore vuoto di default
     }
 
     /**
@@ -31,5 +28,13 @@ public class HomepageGiocatoreCtrlApplicativo {
         }
 
         return utenteCorrente.getUsername() + "!";
+    }
+
+    public boolean isUtenteInSquadra() {
+        // Recupera l'utente corrente dalla sessione
+        Singleton istanza = Singleton.getInstance();
+        Utente utenteCorrente = istanza.getUtenteCorrente();
+
+        return !utenteCorrente.getSquadra().getNome().isEmpty();
     }
 }

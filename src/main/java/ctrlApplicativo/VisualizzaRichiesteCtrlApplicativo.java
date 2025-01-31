@@ -1,11 +1,15 @@
 package ctrlApplicativo;
 
+import engineering.bean.GiocatoreBean;
 import engineering.bean.UtenteBean;
 import engineering.dao.SquadraDAO;
 import engineering.dao.UtenteDAO;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 import modelli.Squadra;
 import modelli.Utente;
 
@@ -14,7 +18,6 @@ public class VisualizzaRichiesteCtrlApplicativo {
     //devo recuperare la squadra dell'utente (allenatore) che sta accettando la richiesta
     Singleton istanza = Singleton.getInstance();
     Squadra squadra = istanza.getUtenteCorrente().getSquadra();
-
 
     public void accettaRichiesta(UtenteBean utenteBean) {
         //mi occupo di ricreare il modello del giocatore
@@ -57,6 +60,7 @@ public class VisualizzaRichiesteCtrlApplicativo {
             }
         }
 
+        assert utente != null;
         System.out.println( "Post modifiche Username "+ utente.getUsername() +" Email " + utente.getEmail() + " Password " + utente.getPassword() + " Squadra " + utente.getSquadra().getNome() + " Allenamenti " + utente.getAllenamenti() + " has been accepted!");
 
 
@@ -71,9 +75,20 @@ public class VisualizzaRichiesteCtrlApplicativo {
             squadraDao.aggiornaSquadra(squadra);
         }
 
-
         //stampiamo tutte le informazioni dell'utente
         System.out.println( "Post modifiche Username "+ utente.getUsername() +" Email " + utente.getEmail() + " Password " + utente.getPassword() + " Squadra " + utente.getSquadra().getNome() + " Allenamenti " + utente.getAllenamenti() + " has been accepted!");
 
+    }
+
+    public List<UtenteBean> getRichiesteIngresso() {
+        Singleton istanza = Singleton.getInstance();
+        Squadra squadra = istanza.getUtenteCorrente().getSquadra();
+
+        List<UtenteBean> richiesteIngresso = new ArrayList<>();
+        for (Utente utente : squadra.getRichiesteIngresso()) {
+            UtenteBean utenteBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti());
+            richiesteIngresso.add(utenteBean);
+        }
+        return richiesteIngresso;
     }
 }

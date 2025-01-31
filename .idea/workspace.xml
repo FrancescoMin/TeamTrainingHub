@@ -4,11 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="modifica dependancy per testing">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Creazione Testing Simone Manisi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/HomepageAllenatoreCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/HomepageAllenatoreCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/HomepageGiocatoreCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/HomepageGiocatoreCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/VisualizzaRichiesteCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/VisualizzaRichiesteCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/GiocatoreBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/bean/UtenteBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/ConsultaAllenamentiCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/ConsultaAllenamentiCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/HomepageAllenatoreCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/HomepageAllenatoreCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/RegistrazioneCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/RegistrazioneCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +29,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -60,33 +71,33 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LoginApplicazione.executor": "Run",
-    "JUnit.TestPerUtente.executor": "Run",
-    "JUnit.TestPerUtente.testInserisciUtenteDaUtenteConDatiValidi.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "ToolWindow.Run.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/PC/AppData/Local/SceneBuilder/SceneBuilder.exe",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.48505747",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestPerUtente.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestPerUtente.testInserisciUtenteDaUtenteConDatiValidi.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;ToolWindow.Run.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="JUnit.TestPerUtente">
+}</component>
+  <component name="RunManager" selected="Application.LoginApplicazione">
     <configuration name="LoginApplicazione" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="inizio.LoginApplicazione" />
       <module name="TeamTrainingHub" />
@@ -134,9 +145,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LoginApplicazione" />
         <item itemvalue="JUnit.TestPerUtente" />
         <item itemvalue="JUnit.TestPerUtente.testInserisciUtenteDaUtenteConDatiValidi" />
-        <item itemvalue="Application.LoginApplicazione" />
       </list>
     </recent_temporary>
   </component>
@@ -229,7 +240,13 @@
       <workItem from="1738227281556" duration="4509000" />
       <workItem from="1738239967073" duration="89000" />
       <workItem from="1738240629856" duration="113000" />
-      <workItem from="1738246014891" duration="7236000" />
+      <workItem from="1738246014891" duration="7551000" />
+      <workItem from="1738256789182" duration="103000" />
+      <workItem from="1738257058684" duration="417000" />
+      <workItem from="1738257796846" duration="1297000" />
+      <workItem from="1738263370895" duration="2211000" />
+      <workItem from="1738273701959" duration="1842000" />
+      <workItem from="1738310698526" duration="11617000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -423,7 +440,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738247478857</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Creazione Testing Simone Manisi">
+      <option name="closed" value="true" />
+      <created>1738255162114</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1738255162114</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,7 +490,8 @@
     <MESSAGE value="creazione VisualizzazioneRichiesteCtrlGrafico e applicativo" />
     <MESSAGE value="completamento caso d'uso entra squadra" />
     <MESSAGE value="modifica dependancy per testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifica dependancy per testing" />
+    <MESSAGE value="Creazione Testing Simone Manisi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creazione Testing Simone Manisi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

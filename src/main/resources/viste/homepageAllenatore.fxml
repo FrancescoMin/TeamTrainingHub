@@ -10,7 +10,6 @@
       <Button fx:id="gestisciSquadra" layoutX="244.0" layoutY="50.0" mnemonicParsing="false" onAction="#GestisciSquadra" text="Gestisci Squadra" />
       <Button layoutX="233.0" layoutY="156.0" mnemonicParsing="false" onAction="#CreaAllenamento" text="Creazione Allenamento" />
       <Label fx:id="mostraErrori" layoutX="286.0" layoutY="246.0" textFill="RED" />
-      <Button layoutX="250.0" layoutY="291.0" mnemonicParsing="false" onAction="#RitornoAlLogin" text="Ritorno Al Login" />
    </children>
 
    <fx:include source="baseViste.fxml"/>

@@ -18,4 +18,9 @@ public class GiocatoreBean  extends UtenteBean {
         super(username, email, password , allenamenti, squadra);
         this.allenatore=false;
     }
+
+    public GiocatoreBean(String username, String email, String password, List<Allenamento> allenamenti) {
+        super(username, email, password , allenamenti);
+        this.allenatore=false;
+    }
 }

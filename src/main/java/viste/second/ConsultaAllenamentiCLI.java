@@ -1,12 +1,13 @@
 package viste.second;
 
-import java.util.Scanner;
+public class ConsultaAllenamentiCLI extends GenericaCLI {
+    public ConsultaAllenamentiCLI() {
+        this.pagina= "Consulta Allenamenti";
+    }
 
-public class ConsultaAllenamentiCLI {
-
-    private final Scanner scanner = new Scanner(System.in);
-
-
+    public void start() {
+        stampaPagina();
+    }
 
 
 }

@@ -34,6 +34,13 @@ public abstract class UtenteBean {
             setSquadra(squadra);
         }
 
+    protected UtenteBean(String username, String email, String password , List<Allenamento> allenamenti) {
+        setUsername(username);
+        setEmail(email);
+        setPassword(password);
+        setAllenamenti(allenamenti);
+    }
+
 
         public void setEmail(String email) {
             //implementare una classe che si occupi di controllare che la mail sia formattata in modo corretto

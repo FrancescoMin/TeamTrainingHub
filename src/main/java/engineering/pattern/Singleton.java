@@ -9,10 +9,10 @@ import java.util.List;
 public class Singleton {
 
     //variabile statica che contiene l'istanza della classe
-    private static Singleton instance;
+    private static final Singleton instance;
 
     //variabili private dove vengono salvate le istanze
-    private List<Utente> utenti = new ArrayList<>();
+    private final List<Utente> utenti = new ArrayList<>();
 
     //variabile privata che contiene l'istanza dell'utente che sta facendo uso del sistema
     private Utente utenteCorrente;

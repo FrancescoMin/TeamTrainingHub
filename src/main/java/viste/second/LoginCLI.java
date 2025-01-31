@@ -1,29 +1,36 @@
 package viste.second;
 
 import ctrlApplicativo.LoginCtrlApplicativo;
-import engineering.bean.AllenatoreBean;
-import engineering.bean.GiocatoreBean;
 import engineering.bean.LoginBean;
 import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneGenerica;
-import java.util.Scanner;
 
-public class LoginCLI {
+public class LoginCLI extends GenericaCLI {
 
-    private final LoginCtrlApplicativo loginCtrl;
-
-    // Costruttore che accetta il controller applicativo
-    public LoginCLI(LoginCtrlApplicativo loginCtrl) {
-        this.loginCtrl = loginCtrl;
+    public LoginCLI () {
+        this.pagina = "Login";
     }
 
+    @Override
     public void start() {
-        Scanner scanner = new Scanner(System.in);
         boolean continua = true;
 
-        System.out.println("\n// ------- Login ------- //");
+        stampaPagina();
+        System.out.println("Per fare il login premere 1\nPer registrarsi premere 2");
 
+        int scelta = scanner.nextInt();
+        while(scelta != 1 && scelta != 2) {
+            System.out.println("Scelta non valida. Riprova.");
+            scelta = scanner.nextInt();
+        }
+        if(scelta == 2) {
+            RegistrazioneCLI registrazioneCLI = new RegistrazioneCLI();
+            registrazioneCLI.start();
+        }
+
+        LoginCtrlApplicativo loginCtrl = new LoginCtrlApplicativo();
         while (continua) {
+
             System.out.print("Inserisci email: ");
             String email = scanner.nextLine();
 
@@ -39,34 +46,24 @@ public class LoginCLI {
 
                     // Recupero utente
                     UtenteBean utente = loginCtrl.recuperoUtente(loginBean);
-
-                    // Passa alla homepage in base al tipo di utente
-                    if (utente instanceof engineering.bean.AllenatoreBean) {
-                        HomepageAllenatoreCLI homepageAllenatore = new HomepageAllenatoreCLI(
-                                (engineering.bean.AllenatoreBean) utente,
-                                loginCtrl,
-                                new ctrlApplicativo.RegistrazioneCtrlApplicativo()
-                        );
-                        homepageAllenatore.start();
-                    } /* --------- DA SISTEMARE -----------
-                    else if (utente instanceof engineering.bean.GiocatoreBean) {
-                        HomepageGiocatoreCLI homepageGiocatore = new HomepageGiocatoreCLI(
-                                (engineering.bean.GiocatoreBean) utente,
-                                loginCtrl,
-                                new ctrlApplicativo.RegistrazioneCtrlApplicativo()
-                        );
-                        homepageGiocatore.start();
-                    }*/
+                    if (utente.getAllenatore())     {prossimaPagina=HomepageAllenatoreCLI.class.getName();}
+                    else                            {prossimaPagina=HomepageGiocatoreCLI.class.getName();}
 
                     // Interrompi il loop di login
                     continua = false;
                 } else {
-                    System.out.println("Credenziali errate. Riprova.");
+                    System.out.println("Credenziali errate. Se non hai un account e vuoi registrarti, premi 1. Altrimenti inserire un numero qualsiasi e riprova.");
+                    scelta = scanner.nextInt();
+                    if(scelta == 1) {
+                        prossimaPagina = RegistrazioneCLI.class.getName();
+                        continua = false;
+                    }
                 }
             } catch (EccezioneGenerica e) {
                 System.err.println("Errore durante il login: " + e.getMessage());
             }
         }
+        spostamento(prossimaPagina);
     }
 }
 
