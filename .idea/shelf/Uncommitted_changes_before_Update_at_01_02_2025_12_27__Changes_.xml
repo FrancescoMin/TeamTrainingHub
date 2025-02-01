@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Update_at_01_02_2025_12_27_[Changes]" date="1738409262423" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2025_12_27_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 01/02/2025 12:27 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="database.mwb" />
+    <option name="AFTER_PATH" value="database.mwb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2025_12_27_[Changes]/database.mwb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="database.mwb.bak" />
+    <option name="AFTER_PATH" value="database.mwb.bak" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2025_12_27_[Changes]/database.mwb.bak" />
+  </binary>
+</changelist>
