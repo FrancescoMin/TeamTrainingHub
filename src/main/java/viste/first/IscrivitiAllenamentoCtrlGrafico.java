@@ -32,7 +32,7 @@ public class IscrivitiAllenamentoCtrlGrafico implements Initializable {
     @FXML
     private TableColumn<Allenamento, String> descrizioneColumn;
     @FXML
-    private TableColumn<Allenamento, Boolean> iscrizioneColumn;
+    private TableColumn<Allenamento, String> iscrizioneColumn;
     @FXML
     private javafx.scene.control.Button tornaInHomepageGiocatoreButton;
 
@@ -40,31 +40,6 @@ public class IscrivitiAllenamentoCtrlGrafico implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        applicativoController = new IscrivitiAllenamentoCtrlApplicativo();
-        tornaInHomepageGiocatoreButton.setOnAction(event -> handleTornaInHomepageGiocatoreButtonAction());
-        dataColumn.setCellValueFactory(new PropertyValueFactory<>("data"));
-        orarioInizioColumn.setCellValueFactory(new PropertyValueFactory<>("orarioInizio"));
-        orarioFineColumn.setCellValueFactory(new PropertyValueFactory<>("orarioFine"));
-        descrizioneColumn.setCellValueFactory(new PropertyValueFactory<>("descrizione"));
-        // Configura la colonna "iscrizione" con checkbox
-        iscrizioneColumn.setCellValueFactory(param -> {
-            Allenamento allenamento = param.getValue();
-            SimpleBooleanProperty property = new SimpleBooleanProperty(allenamento.isIscritto());
-
-            // Aggiorna lo stato di iscrizione quando il checkbox viene selezionato o deselezionato
-            property.addListener((observable, oldValue, newValue) -> {
-                allenamento.setIscritto(newValue);
-                applicativoController.aggiornaIscrizioneAllenamento(allenamento);
-            });
-
-            return property;
-        });
-
-        iscrizioneColumn.setCellFactory(CheckBoxTableCell.forTableColumn((Callback<Integer, ObservableValue<Boolean>>) iscrizioneColumn));
-        caricaAllenamenti();
-
-
     }
 
     private void caricaAllenamenti() {

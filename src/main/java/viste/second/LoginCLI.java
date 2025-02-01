@@ -16,19 +16,18 @@ public class LoginCLI extends GenericaCLI {
         boolean continua = true;
 
         stampaPagina();
-        System.out.println("Per fare il login premere 1\nPer registrarsi premere 2");
+        System.out.println("Per registrarsi premere 1");
+        System.out.println("Per continuare con il login premere un tasto qualsiasi");
 
         int scelta = scanner.nextInt();
-        while(scelta != 1 && scelta != 2) {
-            System.out.println("Scelta non valida. Riprova.");
-            scelta = scanner.nextInt();
-        }
-        if(scelta == 2) {
+
+        if(scelta == 1) {
             RegistrazioneCLI registrazioneCLI = new RegistrazioneCLI();
             registrazioneCLI.start();
         }
 
         LoginCtrlApplicativo loginCtrl = new LoginCtrlApplicativo();
+
         while (continua) {
 
             System.out.print("Inserisci email: ");
@@ -45,8 +44,8 @@ public class LoginCLI extends GenericaCLI {
                     System.out.println("Login effettuato con successo!");
 
                     // Recupero utente
-                    UtenteBean utente = loginCtrl.recuperoUtente(loginBean);
-                    if (utente.getAllenatore())     {prossimaPagina=HomepageAllenatoreCLI.class.getName();}
+                    UtenteBean utenteBean = loginCtrl.recuperoUtente(loginBean);
+                    if (utenteBean.getAllenatore())     {prossimaPagina=HomepageAllenatoreCLI.class.getName();}
                     else                            {prossimaPagina=HomepageGiocatoreCLI.class.getName();}
 
                     // Interrompi il loop di login

@@ -42,14 +42,6 @@ public class IscrivitiAllenamentoCtrlApplicativo {
             throw new RuntimeException("Utente non autenticato. Impossibile aggiornare l'iscrizione.");
         }
 
-        // Aggiorna l'iscrizione nel modello dell'utente
-        if (allenamento.isIscritto()) {
-            // Se l'utente si iscrive
-            utente.aggiungiAllenamento(allenamento);
-        } else {
-            // Se l'utente si disiscrive
-            utente.getAllenamenti().remove(allenamento);
-        }
 
         // Aggiorna i dati nel DAO
         allenamentoDAO.aggiornaIscrizioneUtente(utente, allenamento);

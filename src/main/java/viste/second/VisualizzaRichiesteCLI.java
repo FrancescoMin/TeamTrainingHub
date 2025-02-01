@@ -11,7 +11,7 @@ public class VisualizzaRichiesteCLI extends GenericaCLI{
         this.pagina = "Visualizza Richieste";
     }
 
-     @Override
+    @Override
     public void start() {
 
         stampaPagina();
@@ -25,10 +25,8 @@ public class VisualizzaRichiesteCLI extends GenericaCLI{
             //ottengo dal controller applicativo la lista delle richieste in attesa aggiornata
             utenti = visualizzaRichiesteCtrlApplicativo.getRichiesteIngresso();
 
-            if (utenti.isEmpty()) {
-                System.out.println("Non ci sono richieste in attesa");
-
-            } else {
+            if (!utenti.isEmpty()) {
+                System.out.println("Richieste in attesa:");
                 for (int i = 1; i < (utenti.size()+1); i++) {
                     UtenteBean utente = utenti.get(i);
                     System.out.println("Posizione " + i + ": Username " + utente.getUsername() + " Email " + utente.getEmail());

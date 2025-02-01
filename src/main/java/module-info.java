@@ -12,7 +12,7 @@ module com.example.teamtraininghub {
 
     exports engineering.dao; // Allow access to engineering.dao package
     exports modelli; // Allow access to modelli package
-
+    exports engineering.eccezioni;
 
 
     exports inizio to javafx.graphics;

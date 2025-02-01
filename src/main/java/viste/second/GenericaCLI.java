@@ -6,7 +6,7 @@ public abstract class GenericaCLI {
     protected String pagina="";
     protected String prossimaPagina="";
     protected Scanner scanner = new Scanner(System.in);
-    public GenericaCLI() {
+    protected GenericaCLI() {
         //costruttore vuoto di default
     }
     protected void stampaPagina(){

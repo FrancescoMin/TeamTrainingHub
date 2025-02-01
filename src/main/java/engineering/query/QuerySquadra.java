@@ -1,7 +1,6 @@
 package engineering.query;
 
-import engineering.altro.Connessione;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneSquadraInvalida;
 import modelli.Squadra;
 
 import java.sql.Connection;
@@ -15,7 +14,7 @@ public class QuerySquadra {
         //Add a private constructor to hide the implicit public one
     }
 
-    public static int createSquadra(Connection connection, String nomeSquadra , String utenti_email, String allenatore) throws EccezioneGenerica {
+    public static int createSquadra(Connection connection, String nomeSquadra , String utenti_email, String allenatore) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query= "INSERT INTO squadra (codice, utenti_email, allenatore) VALUES (?, ?, ?)";
@@ -39,12 +38,11 @@ public class QuerySquadra {
 
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            throw new EccezioneGenerica(e.getMessage());
+            throw new EccezioneSquadraInvalida("Errore di creazione della squadra");
         }
     }
 
-    public static ResultSet getSquadraRSDaNome(Connection connection, String nomeSquadra) throws EccezioneGenerica {
+    public static ResultSet getSquadraRSDaNome(Connection connection, String nomeSquadra) throws EccezioneSquadraInvalida {
         PreparedStatement statement = null;
         try {
             //creazione della query parametrica
@@ -59,10 +57,11 @@ public class QuerySquadra {
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();
         } catch (SQLException e) {
-            throw new EccezioneGenerica(e.getMessage());
+            throw new EccezioneSquadraInvalida("Problema con la query di recupero della squadra");
         }
     }
-    public static ResultSet RecuperaSquadreRSPerEmail(Connection connection, String email) throws EccezioneGenerica {
+
+    public static ResultSet RecuperaSquadreRSPerEmail(Connection connection, String email) throws EccezioneSquadraInvalida {
         PreparedStatement statement = null;
 
         try {
@@ -73,10 +72,10 @@ public class QuerySquadra {
 
             return statement.executeQuery();
 
-        } catch (SQLException e) {throw new EccezioneGenerica("Errore di recupera allenamenti per utente");}
+        } catch (SQLException e) {throw new EccezioneSquadraInvalida("Errore di recupera allenamenti per utente");}
     }
 
-    public static int eliminaRichiestaIscrizione(Connection connection, Squadra squadra, String utente_email) throws EccezioneGenerica {
+    public static int eliminaRichiestaIscrizione(Connection connection, Squadra squadra, String utente_email) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query = "DELETE FROM richiesteiscrizione WHERE Squadra_codice = ? AND utenti_email = ?";
@@ -91,11 +90,11 @@ public class QuerySquadra {
             //esecuzione della query
             return statement.executeUpdate();
         } catch (SQLException e) {
-            throw new EccezioneGenerica(e.getMessage());
+            throw new EccezioneSquadraInvalida("Errore di eliminazione della richiesta di iscrizione");
         }
     }
 
-    public static int inserisciRichiestaIscrizione(Connection connection, Squadra squadra , String utente_email) throws EccezioneGenerica {
+    public static int inserisciRichiestaIscrizione(Connection connection, Squadra squadra , String utente_email) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query = "INSERT INTO richiesteiscrizione (utenti_email, Squadra_codice, Squadra_utenti_email) VALUES ( ? , ? , ? )";
@@ -111,11 +110,11 @@ public class QuerySquadra {
             //esecuzione della query e restituzione del risultato
             return statement.executeUpdate();
         } catch (SQLException e) {
-            throw new EccezioneGenerica(e.getMessage());
+            throw new EccezioneSquadraInvalida("Errore di inserimento della richiesta di iscrizione");
         }
     }
 
-    public static ResultSet getRichiestaIscrizioneRSPerEmail(Connection connection, Squadra squadra, String utente_email) throws EccezioneGenerica {
+    public static ResultSet getRichiestaIscrizioneRSPerEmail(Connection connection, Squadra squadra, String utente_email) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query = "SELECT * FROM richiesteiscrizione where Squadra_codice = ? AND utenti_email = ?";
@@ -130,11 +129,11 @@ public class QuerySquadra {
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();
         } catch (SQLException e) {
-            throw new EccezioneGenerica(e.getMessage());
+            throw new EccezioneSquadraInvalida("Errore di recupero della richiesta di iscrizione");
         }
     }
 
-    public static ResultSet getRichiesteIscrizioneRSPerSquadra(Connection connection, Squadra squadra) throws EccezioneGenerica {
+    public static ResultSet getRichiesteIscrizioneRSPerSquadra(Connection connection, Squadra squadra) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query = "SELECT * FROM richiesteiscrizione where Squadra_codice = ?";
@@ -148,7 +147,7 @@ public class QuerySquadra {
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();
         } catch (SQLException e) {
-            throw new EccezioneGenerica(e.getMessage());
+            throw new EccezioneSquadraInvalida("Errore di recupero delle richieste di iscrizione");
         }
     }
 }

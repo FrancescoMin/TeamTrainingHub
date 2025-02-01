@@ -1,6 +1,7 @@
 package engineering.query;
 
 import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneUtenteInvalido;
 import modelli.Login;
 import modelli.Registrazione;
 import modelli.Utente;
@@ -15,7 +16,7 @@ public class QueryRegistrazione {
         // costruttore vuoto di default
     }
 
-    public static int InserisciUtenteQuery(Connection connection, Registrazione registrazione) throws EccezioneGenerica {
+    public static int InserisciUtenteQuery(Connection connection, Registrazione registrazione) throws EccezioneUtenteInvalido {
         String sql = "INSERT INTO utenti(username, email, password, allenatore) VALUES (?, ?, ?, ?)";
 
         try {
@@ -27,8 +28,7 @@ public class QueryRegistrazione {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("Errore nell'inserimento dell'utente");
-            throw new EccezioneGenerica(e.getMessage());
+            throw new EccezioneUtenteInvalido("Errore nell'inserimento dell'utente");
         }
     }
 }

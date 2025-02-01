@@ -1,6 +1,8 @@
 package engineering.query;
 
 import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneSquadraInvalida;
+import engineering.eccezioni.EccezioneUtenteInvalido;
 import modelli.Login;
 
 import java.sql.*;
@@ -12,7 +14,7 @@ public class QueriesLogin {
     }
 
 
-    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection,String email) throws EccezioneGenerica {
+    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection,String email) throws EccezioneUtenteInvalido {
         PreparedStatement statement = null;
 
         try {
@@ -29,7 +31,7 @@ public class QueriesLogin {
             return statement.executeQuery();
 
         } catch (SQLException e) {
-            throw new EccezioneGenerica(e.getMessage());
+            throw new EccezioneUtenteInvalido(e.getMessage());
         }
     }
 
@@ -72,7 +74,7 @@ public class QueriesLogin {
     }
 
 
-    public static ResultSet RecuperaAllenamentiRSPerEmail(Connection connection, String email) throws SQLException {
+    public static ResultSet RecuperaAllenamentiRSPerEmail(Connection connection, String email) throws EccezioneGenerica {
         PreparedStatement statement = null;
 
         try {
@@ -86,7 +88,7 @@ public class QueriesLogin {
         } catch (SQLException e) {throw new EccezioneGenerica("Errore di recupera allenamenti per utente");}
     }
 
-    public static int modificaSquadraPerEmail(Connection connection, String squadra, String email) throws SQLException {
+    public static int modificaSquadraPerEmail(Connection connection, String squadra, String email) throws EccezioneSquadraInvalida {
         PreparedStatement statement = null;
 
         try {
@@ -98,7 +100,7 @@ public class QueriesLogin {
 
             return statement.executeUpdate();
 
-        } catch (SQLException e) {throw new EccezioneGenerica("Errore di modifica squadra per utente");}
+        } catch (SQLException e) {throw new EccezioneSquadraInvalida("Errore di modifica squadra per utente");}
     }
 }
 

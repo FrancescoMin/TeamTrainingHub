@@ -25,7 +25,6 @@ public class Allenamento{
     }
 
 
-    private boolean iscritto;
     public void setData(String data) {this.data = data;}
     public String getData() {return data;}
 
@@ -38,11 +37,4 @@ public class Allenamento{
     public void setOrarioFine(String orarioFine) {this.orarioFine = orarioFine;}
     public String getOrarioFine() {return this.orarioFine;}
 
-    public boolean setIscritto(boolean iscritto) {
-        return iscritto;
-    }
-
-    public boolean isIscritto() {
-        return iscritto;
-    }
 }

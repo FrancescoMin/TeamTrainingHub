@@ -1,8 +1,8 @@
 package engineering.dao;
 
 import com.google.gson.*;
-import engineering.eccezioni.EccezioneGenerica;
-import engineering.eccezioni.UtenteNonEsistenteEccezione;
+import engineering.eccezioni.EccezioneSquadraInvalida;
+import engineering.eccezioni.EccezioneUtenteInvalido;
 import modelli.*;
 
 import java.io.*;
@@ -19,19 +19,21 @@ public class UtenteDAOJSON implements UtenteDAO {
     public static String password = "password";
     public static String email1 = "email";
     public static String user = "username";
-    
+
     public static String trainings = "allenamenti";
     public static String squadra = "squadra";
     public static String allenatore = "allenatore";
 
-    public void handleDAOException(Exception e) throws EccezioneGenerica {
-        throw new EccezioneGenerica(e.getMessage());
-    }
 
-    public Boolean esisteUtenteDaLogin(Login login) {
-        return esisteUtenteDaEmail(login.getEmail());
+    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
+        try {
+            return esisteUtenteDaEmail(login.getEmail());
+        }
+        catch (EccezioneUtenteInvalido e) {
+            throw new EccezioneUtenteInvalido(e.getMessage());
+        }
     }
-    public Boolean esisteUtenteDaEmail(String email) {
+    public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido {
         try {
             //creazione del path
             String filePath = pathUtenti + email + json;
@@ -39,12 +41,13 @@ public class UtenteDAOJSON implements UtenteDAO {
             //controllo se il file esiste
             Files.readAllBytes(Paths.get(filePath));
             return true;
+
         } catch (IOException e) {
-            return false;
+            throw new EccezioneUtenteInvalido("Utente non esistente");
         }
     }
 
-    public void aggiornaUtente(Utente utente) throws EccezioneGenerica {
+    public void aggiornaUtente(Utente utente) throws EccezioneUtenteInvalido{
         //aggiunta dell'utente alla lista degli utenti
         //Creazione del path
         String filePath = pathUtenti + utente.getEmail() + json;
@@ -67,15 +70,13 @@ public class UtenteDAOJSON implements UtenteDAO {
             writer.write(gson.toJson(jsonObject));
             writer.close();
 
-            //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
-
         } catch (IOException e) {
             //creazione del file con nome username dell'utente in formato json
-            throw new EccezioneGenerica("utente non esistente");
+            throw new EccezioneUtenteInvalido("utente non esistente");
         }
     }
 
-    public void inserisciUtente(Utente utente) throws EccezioneGenerica, IOException {
+    public void inserisciUtente(Utente utente) throws EccezioneUtenteInvalido {
 
         //Creazione del path
         String filePath = pathUtenti + utente.getEmail() + json;
@@ -85,44 +86,58 @@ public class UtenteDAOJSON implements UtenteDAO {
             Files.readAllBytes(Paths.get(filePath));
 
             //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
-            throw new EccezioneGenerica("utente esistente");
+            throw new EccezioneUtenteInvalido("utente esistente");
 
-        } catch (IOException e) {
-            //creazione del file con nome username dell'utente in formato json
+        }
+        catch (IOException e) {
+            try {
+                //creazione del file con nome username dell'utente in formato json
 
-            // Create a Gson object
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                // Create a Gson object
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-            //serializzo l'oggetto java in un oggetto json
-            JsonObject jsonObject = serializzazioneUtente(utente);
+                //serializzo l'oggetto java in un oggetto json
+                JsonObject jsonObject = serializzazioneUtente(utente);
 
-            //parso l'oggetto json in una stringa
-            String serial = gson.toJson(jsonObject);
+                //parso l'oggetto json in una stringa
+                String serial = gson.toJson(jsonObject);
 
-            //creazione del file con nome username dell'utente in formato json
-            FileWriter writer = new FileWriter(filePath);
+                //creazione del file con nome username dell'utente in formato json
+                FileWriter writer = new FileWriter(filePath);
 
-            //salvataggio dell'oggetto serializzato utente nel file json
-            writer.write(serial);
-            writer.close();
+                //salvataggio dell'oggetto serializzato utente nel file json
+                writer.write(serial);
+                writer.close();
+            }
+            catch (IOException e1) {
+                throw new EccezioneUtenteInvalido(e1.getMessage());
+            }
+        }
+        catch (EccezioneUtenteInvalido e) {
+            throw new EccezioneUtenteInvalido(e.getMessage());
         }
     }
     //creazione del file json con i dati dell'utente registrato
-    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) {
+    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) throws EccezioneUtenteInvalido {
         try {
-            if (registrazione.getAllenatore()) {
-                inserisciUtente(new Allenatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));
-            } else {
-                inserisciUtente(new Giocatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));
-            }
+            if (registrazione.getAllenatore()) {inserisciUtente(new Allenatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));}
 
-        } catch (Exception e) {
-            throw new EccezioneGenerica(e.getMessage());
+            else {inserisciUtente(new Giocatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));}
         }
-
+        catch (EccezioneUtenteInvalido e) {
+            throw new EccezioneUtenteInvalido(e.getMessage());
+        }
     }
 
-    public Utente recuperaUtenteDaLogin(Login login) throws UtenteNonEsistenteEccezione {
+    public Utente recuperaUtente(Utente utente) throws EccezioneUtenteInvalido{
+        try {
+            return recuperaUtenteDaEmail(utente.getEmail());
+        }
+        catch (EccezioneUtenteInvalido e) {
+            throw new EccezioneUtenteInvalido(e.getMessage());
+        }
+    }
+    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
         try {
             //Serializziamo l'oggetto in JSON
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -130,7 +145,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             //creazione del path
             String filePath = pathUtenti + login.getEmail() + json;
 
-            //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
+            //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
             //creo un oggetto JSON per il controllo delle credenziali
@@ -148,16 +163,21 @@ public class UtenteDAOJSON implements UtenteDAO {
 
             } else {
                 System.out.println("Password errata: lancio eccezione di password errata");
-                throw new UtenteNonEsistenteEccezione("Password errata: lancio eccezione di password errata");
+                throw new EccezioneUtenteInvalido("Password errata: lancio eccezione di password errata");
             }
-        } catch (UtenteNonEsistenteEccezione e) {
-            throw new EccezioneGenerica(e.getMessage());
-        } catch (IOException e) {
-            throw new EccezioneGenerica("Utente non esistente");
+        }
+        catch (EccezioneUtenteInvalido e) {
+            throw new EccezioneUtenteInvalido(e.getMessage());
+        }
+        catch (IOException e) {
+            throw new EccezioneUtenteInvalido("Utente non esistente");
+        }
+        catch(EccezioneSquadraInvalida e) {
+            throw new EccezioneSquadraInvalida(e.getMessage());
         }
 
     }
-    public Utente recuperaUtenteDaEmail(String email) throws EccezioneGenerica {
+    public Utente recuperaUtenteDaEmail(String email) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida {
         try {
             //Serializziamo l'oggetto in JSON
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -165,7 +185,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             //creazione del path
             String filePath = pathUtenti + email + json;
 
-            //dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
+            //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
             //creo l'oggetto JSON corrispondete all'utente con l'email passata
@@ -194,24 +214,16 @@ public class UtenteDAOJSON implements UtenteDAO {
             }
 
         } catch (IOException e) {
-            //gestione dell'eccezione
-            System.out.println("Errore di stream I/O");
-            throw new EccezioneGenerica("Utente non esistente");
-        } catch (Exception e) {
-            throw new EccezioneGenerica(e.getMessage());
+            //gestione dell'eccezione nel caso in cui non troviamo l'utente
+            throw new EccezioneUtenteInvalido("Utente non esistente");
         }
-    }
-    public Utente recuperaUtente(Utente utente) {
-        try {
-            return recuperaUtenteDaEmail(utente.getEmail());
-        } catch (EccezioneGenerica e) {
-            throw new EccezioneGenerica(e.getMessage());
+        catch (EccezioneSquadraInvalida e){
+            throw new EccezioneSquadraInvalida(e.getMessage());
         }
+
     }
 
     public static JsonObject serializzazioneUtente(Utente utente) {
-
-        System.out.println("Sono nell'adapter");
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(user, utente.getUsername());

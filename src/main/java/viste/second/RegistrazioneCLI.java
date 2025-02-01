@@ -25,12 +25,13 @@ public class RegistrazioneCLI extends GenericaCLI {
         int scelta;
         RegistrazioneBean registrazioneBean = null;
 
-        System.out.println("Per continuare la registrazione premere 1\nPer tornare al Login premere 2");
+        System.out.println("Per tornare al Login premere 1");
+        System.out.println("Per continuare la registrazione premere un tasto qualsiasi");
         scelta = scanner.nextInt();
-        if(scelta == 2){
+
+        if(scelta == 1){
             spostamento(LoginCLI.class.getName());
         }
-
 
         while (continua) {
             try {
@@ -46,10 +47,10 @@ public class RegistrazioneCLI extends GenericaCLI {
                 System.out.print("Vuoi registrarti come allenatore? (s/n): ");
                 String risposta = scanner.nextLine().toLowerCase();
 
-                boolean allenatore = true;
-                while(allenatore){
+
+                while(true){
                     if(risposta.equals("s") || risposta.equals("n")){
-                        allenatore = false;
+                        break;
                     } else {
                         System.out.print("Inserisci una risposta valida (s/n): ");
                         risposta = scanner.nextLine().toLowerCase();
@@ -81,8 +82,7 @@ public class RegistrazioneCLI extends GenericaCLI {
         assert registrazioneBean != null;
         if (registrazioneBean.getAllenatore()) {
             spostamento(HomepageAllenatoreCLI.class.getName());
-        } else {
-            spostamento(HomepageGiocatoreCLI.class.getName());
         }
+        spostamento(HomepageGiocatoreCLI.class.getName());
     }
 }

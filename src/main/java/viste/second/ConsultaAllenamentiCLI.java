@@ -5,9 +5,9 @@ public class ConsultaAllenamentiCLI extends GenericaCLI {
         this.pagina= "Consulta Allenamenti";
     }
 
+    @Override
     public void start() {
         stampaPagina();
     }
-
 
 }

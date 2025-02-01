@@ -22,25 +22,14 @@ import java.util.ResourceBundle;
 import static viste.first.utils.FxmlFileName.*;
 
 
-public class HomepageGiocatoreCtrlGrafico implements  Initializable{
-
-    @FXML
-    private Button EntraInSquadraButton;
-
-    @FXML
-    private Button consultaAllenamentiButton;
-
-    @FXML
-    private Text ciaoText;
+public class HomepageGiocatoreCtrlGrafico {
 
     @FXML
     private Label welcomeLabel;
 
     HomepageGiocatoreCtrlApplicativo homepageGiocatoreCtrlApplicativo = new HomepageGiocatoreCtrlApplicativo();
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        consultaAllenamentiButton.setOnAction(event -> handleConsultaAllenamentiButtonAction());
+    public void initialize() {
         String username;
         username=homepageGiocatoreCtrlApplicativo.getMessaggioBenvenuto();
         welcomeLabel.setText("Ciao " + username);
@@ -49,7 +38,6 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
     @FXML
     protected void entraSquadra(){
         try {
-
             if (homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {
                 throw new EccezioneGenerica("Sei già in una squadra");
             }
@@ -61,7 +49,7 @@ public class HomepageGiocatoreCtrlGrafico implements  Initializable{
     }
 
     @FXML
-    private void handleConsultaAllenamentiButtonAction() {
+    private void consultaAllenamenti() {
         // Logica per il pulsante "Consulta allenamenti"
         System.out.println("Consulta allenamenti cliccato");
 

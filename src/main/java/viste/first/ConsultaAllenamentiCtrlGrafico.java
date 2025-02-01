@@ -1,82 +1,43 @@
 package viste.first;
 
-import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
-import engineering.eccezioni.EccezioneGenerica;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import modelli.Allenamento;
-import viste.first.utils.CambioScena;
-
-import java.util.List;
-
-import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
+import javafx.scene.layout.HBox;
+import javafx.util.Callback;
+import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
+import engineering.bean.AllenamentoBean;
 
 public class ConsultaAllenamentiCtrlGrafico {
 
     @FXML
-    private TableView<Allenamento> allenamentiTable;
-
+    private TableView<AllenamentoBean> tableView;
     @FXML
-    private TableColumn<Allenamento, String> dataColumn;
-
+    private TableColumn<AllenamentoBean, String> dataColumn;
     @FXML
-    private TableColumn<Allenamento, String> orarioInizioColumn;
-
+    private TableColumn<AllenamentoBean, String> orarioInizioColumn;
     @FXML
-    private TableColumn<Allenamento, String> orarioFineColumn;
-
+    private TableColumn<AllenamentoBean, String> orarioFineColumn;
     @FXML
-    private TableColumn<Allenamento, String> descrizioneColumn;
+    private TableColumn<AllenamentoBean, String> descrizioneColumn;
 
-    @FXML
-    private Button tornaInHomepageGiocatoreButton;
-
-   // @FXML
-    //private javafx.scene.control.Button refreshButton;
-
-    private ConsultaAllenamentiCtrlApplicativo applicativoController;
+    private ConsultaAllenamentiCtrlApplicativo applicativoController;  // Controller applicativo
 
     public void initialize() {
-        applicativoController = new ConsultaAllenamentiCtrlApplicativo();
+        applicativoController = new ConsultaAllenamentiCtrlApplicativo();  // Creiamo il controller applicativo
 
-        // Configurazione le colonne
-        dataColumn.setCellValueFactory(new PropertyValueFactory<>("Data"));
-        orarioInizioColumn.setCellValueFactory(new PropertyValueFactory<>("Orario Inizio"));
-        orarioFineColumn.setCellValueFactory(new PropertyValueFactory<>("Orario Fine"));
-        descrizioneColumn.setCellValueFactory(new PropertyValueFactory<>("Descrizione"));
-
-        tornaInHomepageGiocatoreButton.setOnAction(event -> handleTornaInHomepageGiocatoreButtonAction());
-
-        // Caricam gli allenamenti iniziali
-        caricaAllenamenti();
-
-        //listener per il pulsante di aggiornamento (TASTO OPZIONALE)
-       // refreshButton.setOnAction(event -> caricaAllenamenti());
+        // Configurazione delle colonne della TableView
+        dataColumn.setCellValueFactory(new PropertyValueFactory<>("data"));
+        orarioInizioColumn.setCellValueFactory(new PropertyValueFactory<>("orarioInizio"));
+        orarioFineColumn.setCellValueFactory(new PropertyValueFactory<>("orarioFine"));
+        descrizioneColumn.setCellValueFactory(new PropertyValueFactory<>("descrizione"));
     }
 
-    private void caricaAllenamenti() { //carica gli allenamenti dal controller applicativo
-        List<Allenamento> allenamenti = applicativoController.leggiAllenamenti();
-        if (allenamenti != null && !allenamenti.isEmpty()) {
-            ObservableList<Allenamento> allenamentiObservable = FXCollections.observableArrayList(allenamenti);
-            allenamentiTable.setItems(allenamentiObservable);
-        } else {
-            System.out.println("Nessun allenamento trovato.");
-        }
-    }
-
-    private void handleTornaInHomepageGiocatoreButtonAction() {
-        try {
-            Stage stage = (Stage) tornaInHomepageGiocatoreButton.getScene().getWindow();
-            CambioScena cambioScena = new CambioScena();
-            cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
-        } catch (EccezioneGenerica eccezioneGenerica) {
-            System.out.println(eccezioneGenerica.getMessage());
-        }
+    // Metodo per aggiornare i dati nella TableView
+    public void aggiornaTableView() {
+        tableView.setItems(applicativoController.getAllenamenti());
     }
 }

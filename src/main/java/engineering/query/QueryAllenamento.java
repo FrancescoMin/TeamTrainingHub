@@ -14,7 +14,7 @@ public class QueryAllenamento {
         //Add a private constructor to hide the implicit public one
     }
 
-    public static String creaAllenamentoQuery = "INSERT INTO allenamento (data,orarioInizio , orarioFine, descrizione, utenti_email) VALUES (?, ?, ? ,? )";
+    public static String creaAllenamentoQuery = "INSERT INTO allenamento (data, descrizione , utenti_email,orarioInizio , orarioFine ) VALUES (?, ?, ? ,?, ?)";
 
     public static int createAllenamento(Connection connection, Allenamento allenamento , String utenti_email) throws EccezioneGenerica {
         try {
@@ -41,10 +41,10 @@ public class QueryAllenamento {
 
         //setting dei parametri della query
         statement.setString(1, allenamento.getData());
-        statement.setString(2, String.valueOf(allenamento.getOrarioInizio()));
-        statement.setString(3, String.valueOf(allenamento.getOrarioFine()));
-        statement.setString(3, allenamento.getDescrizione());
-        statement.setString(4, utenti_email);
+        statement.setString(2, allenamento.getDescrizione());
+        statement.setString(3, utenti_email);
+        statement.setString(4, allenamento.getOrarioInizio());
+        statement.setString(5, allenamento.getOrarioFine());
         return statement;
     }
 

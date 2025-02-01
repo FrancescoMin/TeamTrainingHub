@@ -19,14 +19,14 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
     public List<Allenamento> recuperaAllenamentiPerEmail(String email) {
 
-        Connection conn=null;
-        ResultSet rsAll=null;
         //apriamo la connessione con il DB
+        Connection conn=null;
         conn = Connessione.getInstance().getDBConnection();
+
         if (conn != null) {
-            try {
+            try (ResultSet rsAll = RecuperaAllenamentiRSPerEmail(conn, email);){
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
-                rsAll = RecuperaAllenamentiRSPerEmail(conn, email);
+
                 List<Allenamento> allenamenti = new ArrayList<>();
                 while (rsAll.next()){
                     allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(descr)));
@@ -35,14 +35,6 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
             } catch (Exception e) {
                 throw new EccezioneGenerica(e.getMessage());
-            }
-            finally {
-                try {
-                    if(rsAll!=null) {rsAll.close();}
-                }
-                catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
             }
         }
         throw new EccezioneGenerica("Connessione con il DB non riuscita");
@@ -104,7 +96,4 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
         }
         throw new EccezioneGenerica("Connessione con il DB non riuscita");
     }
-
-
-    public void aggiornaIscrizioneUtente(Utente utente, Allenamento allenamento){}
 }
