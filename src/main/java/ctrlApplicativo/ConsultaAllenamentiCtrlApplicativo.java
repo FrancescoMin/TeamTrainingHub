@@ -57,13 +57,13 @@ public class ConsultaAllenamentiCtrlApplicativo {
                             allenamenti.add(allenamento);
                         } catch (IOException e) {
                             System.err.println("Errore durante la lettura del file: " + file.getName());
-                            e.printStackTrace();
+                            //e.printStackTrace();
                         }
                     }
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         return allenamenti;

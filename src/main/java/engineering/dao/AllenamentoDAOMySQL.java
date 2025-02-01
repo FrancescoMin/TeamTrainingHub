@@ -104,4 +104,7 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
         }
         throw new EccezioneGenerica("Connessione con il DB non riuscita");
     }
+
+
+    public void aggiornaIscrizioneUtente(Utente utente, Allenamento allenamento){}
 }
