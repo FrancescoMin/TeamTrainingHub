@@ -15,4 +15,8 @@ public class Giocatore extends Utente{
         super(username, email, password , allenamenti, squadra);
         this.allenatore = false;
     }
+
+    public String getMessaggioBenvenuto() {
+        return "Benvenuto " + this.getUsername();
+    }
 }

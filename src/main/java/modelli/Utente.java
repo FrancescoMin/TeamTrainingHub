@@ -53,4 +53,10 @@ public abstract class Utente {
     public boolean getAllenatore() {
         return this.allenatore;
     }
+
+    public void aggiungiAllenamento(Allenamento allenamento) {
+        if (!allenamenti.contains(allenamento)) {
+            allenamenti.add(allenamento);
+        }
+    }
 }
