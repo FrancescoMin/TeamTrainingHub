@@ -1,55 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="viste.first.ConsultaAllenamentiCtrlGrafico">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.ConsultaAllenamentiCtrlGrafico">
 
-    <!-- Sezione top: Aggiungi qui eventuali titoli o altre componenti in alto -->
     <top>
-        <AnchorPane minHeight="50.0" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <Label alignment="CENTER" layoutX="570.0" layoutY="20.0" text="CONSULTA ALLENAMENTI" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="10.0" />
+        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+            <Button layoutX="930.0" layoutY="18.0" mnemonicParsing="false" onAction="#Ricarica" text="Ricarica" />
+            <Button layoutX="14.0" layoutY="19.0" onAction="#onBackClick" text="Back" AnchorPane.leftAnchor="15.0" />
+            <Label alignment="CENTER" layoutX="570.0" layoutY="40.0" text="ALLENAMENTI" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="10.0" />
         </AnchorPane>
     </top>
 
-    <!-- Sezione centrale: La TableView con allenamenti -->
     <center>
-        <AnchorPane AnchorPane.topAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
-            <TableView fx:id="tableView" fixedCellSize="0.0" layoutX="151.0" layoutY="52.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+        <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <TableView fx:id="tabellaAllenamenti" fixedCellSize="0.0" layoutX="151.0" layoutY="52.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                 <columns>
-                    <!-- Colonna Data -->
-                    <TableColumn fx:id="dataColumn" text="Data" prefWidth="150.0">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="data"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-                    <!-- Colonna Orario Inizio -->
-                    <TableColumn fx:id="orarioInizioColumn" text="Orario Inizio" prefWidth="150.0">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="orarioInizio"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-                    <!-- Colonna Orario Fine -->
-                    <TableColumn fx:id="orarioFineColumn" text="Orario Fine" prefWidth="150.0">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="orarioFine"/>
-                        </cellValueFactory>
-                    </TableColumn>
-
-                    <!-- Colonna Descrizione -->
-                    <TableColumn fx:id="descrizioneColumn" text="Descrizione" prefWidth="200.0">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="descrizione"/>
-                        </cellValueFactory>
-                    </TableColumn>
+                    <TableColumn fx:id="dataColonna" prefWidth="150.0" text="Data" />
+                    <TableColumn fx:id="orarioInizioColonna" prefWidth="150.0" text="Orario Inizio" />
+                    <TableColumn fx:id="orarioFineColonna" prefWidth="150.0" text="Orario Fine" />
+                    <TableColumn fx:id="descrizioneColonna" prefWidth="150.0" text="Descrizione" />
                 </columns>
-                <!-- Adatta la TableView alla dimensione della finestra -->
                 <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
@@ -57,10 +33,8 @@
         </AnchorPane>
     </center>
 
-    <!-- Sezione bottom: Puoi aggiungere altre componenti qui, se necessario -->
     <bottom>
-        <AnchorPane minHeight="50.0" minWidth="-Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
-            <!-- Puoi aggiungere altre componenti nel fondo -->
+        <AnchorPane>
         </AnchorPane>
     </bottom>
 

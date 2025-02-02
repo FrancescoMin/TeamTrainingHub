@@ -1,28 +1,48 @@
 package viste.first.utils;
 
+import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
 import engineering.bean.AllenamentoBean;
-import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConsultaAllenamentiTabella {
 
-    // Metodo per configurare le colonne della TableView
-    public void configureTableColumns(TableView<AllenamentoBean> tableView) {
-        // Configurazione delle colonne di base (queste dovrebbero essere già definite nella TableView)
+
+    // Costruttore per inizializzare l'handler
+    public ConsultaAllenamentiTabella() {
+    }
+
+    // Popola la Tabella con i dati
+    public void populateTable(TableView<AllenamentoBean> tableView) {
+        // Ottieni le colonne e configura la visualizzazione
         TableColumn<AllenamentoBean, String> dataColumn = (TableColumn<AllenamentoBean, String>) tableView.getColumns().get(0);
         TableColumn<AllenamentoBean, String> orarioInizioColumn = (TableColumn<AllenamentoBean, String>) tableView.getColumns().get(1);
         TableColumn<AllenamentoBean, String> orarioFineColumn = (TableColumn<AllenamentoBean, String>) tableView.getColumns().get(2);
         TableColumn<AllenamentoBean, String> descrizioneColumn = (TableColumn<AllenamentoBean, String>) tableView.getColumns().get(3);
 
-        // Imposta la cellValueFactory per le colonne di allenamento
+        // Impostazioni delle value factory per le colonne
         dataColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getData()));
         orarioInizioColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getOrarioInizio()));
         orarioFineColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getOrarioFine()));
         descrizioneColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDescrizione()));
+
+        // Imposta i dati nella tabella
+        tableView.getItems().setAll(recuperaAllenamenti());
     }
 
-    // Metodo per aggiornare i dati nella TableView
-    public void updateTableView(TableView<AllenamentoBean> tableView, ObservableList<AllenamentoBean> allenamenti) {
-        tableView.setItems(allenamenti);  // Imposta gli allenamenti nella TableView
+    // Metodo per ricaricare i dati nella tabella
+    public void refreshTable(TableView<AllenamentoBean> tableView) {
+        tableView.getItems().setAll(recuperaAllenamenti());
+    }
+
+    private List<AllenamentoBean> recuperaAllenamenti() {
+        List<AllenamentoBean> allenamentiBean = new ArrayList<>();
+        // Recupera gli allenamenti tramite il controller applicativo
+        ConsultaAllenamentiCtrlApplicativo ctrlApplicativo = new ConsultaAllenamentiCtrlApplicativo();
+        List<AllenamentoBean> allenamenti = ctrlApplicativo.getAllAllenamenti();
+        allenamentiBean.addAll(allenamenti);
+        return allenamentiBean;
     }
 }

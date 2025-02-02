@@ -1,55 +1,54 @@
 package viste.first;
 
-import engineering.pattern.observer.Observer;
+import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
+import engineering.bean.AllenamentoBean;
+import javafx.event.ActionEvent;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import viste.first.utils.ConsultaAllenamentiTabella;
 
-public class ConsultaAllenamentiCtrlGrafico implements Observer {
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet.");
+import java.util.List;
+
+public class ConsultaAllenamentiCtrlGrafico {
+
+    @FXML
+    private TableColumn<AllenamentoBean, String> dataColonna;
+
+    @FXML
+    private TableColumn<AllenamentoBean, String> orarioInizioColonna;
+
+    @FXML
+    private TableColumn<AllenamentoBean, String> orarioFineColonna;
+
+    @FXML
+    private TableColumn<AllenamentoBean, String> descrizioneColonna;
+
+    @FXML
+    private TableView<AllenamentoBean> tabellaAllenamenti;
+
+    private ConsultaAllenamentiTabella gestoreTabella;
+
+    @FXML
+    protected void Ricarica() {
+        gestoreTabella.refreshTable(tabellaAllenamenti);
     }
-/*
-    @FXML
-    private TableView<AllenamentoBean> tableView;
-    @FXML
-    private TableColumn<AllenamentoBean, String> dataColumn;
-    @FXML
-    private TableColumn<AllenamentoBean, String> orarioInizioColumn;
-    @FXML
-    private TableColumn<AllenamentoBean, String> orarioFineColumn;
-    @FXML
-    private TableColumn<AllenamentoBean, String> descrizioneColumn;
 
-    private ConsultaAllenamentiCtrlApplicativo applicativoController;
-    private CollezioneAllenamenti collezioneAllenamenti;
-    private TableManager tableManager;
-
+    @FXML
     public void initialize() {
-        applicativoController = new ConsultaAllenamentiCtrlApplicativo();
-        collezioneAllenamenti = CollezioneAllenamenti.getInstance();
+        gestoreTabella = new ConsultaAllenamentiTabella();
 
-        // Iscrizione come osservatore
-        collezioneAllenamenti.attach(this);
-
-        // Inizializzazione del TableManager
-        tableManager = new TableManager();
-
-        // Impostazione delle colonne con il TableManager
-        List<TableColumn<AllenamentoBean, ?>> columns = List.of(dataColumn, orarioInizioColumn, orarioFineColumn, descrizioneColumn);
-        List<String> nameColumns = List.of("data", "orarioInizio", "orarioFine", "descrizione");
-        tableManager.setColumnsTableView(columns, nameColumns);
-
-        // Aggiorna la TableView inizialmente
-        aggiornaTableView();
+        // Popola la Tabella
+        gestoreTabella.populateTable(tabellaAllenamenti);
     }
 
-    // Metodo per aggiornare i dati nella TableView
-    public void aggiornaTableView() {
-        tableManager.updateTable(tableView, applicativoController.getAllenamenti());
-    }
-
-    // Metodo dell'Observer che viene chiamato quando lo stato del Subject cambia
-    @Override
-    public void update() {
-        aggiornaTableView(); // Aggiorna la TableView quando viene notificato un cambiamento
+    @FXML
+    protected void onBackClick(ActionEvent event) {
+        try {
+            Stage stage = (Stage) tabellaAllenamenti.getScene().getWindow();
+            // Logica per il ritorno a una pagina precedente
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
- */
+    }
 }

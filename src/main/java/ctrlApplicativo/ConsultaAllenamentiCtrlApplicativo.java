@@ -1,26 +1,37 @@
 package ctrlApplicativo;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import engineering.bean.AllenamentoBean;
-import engineering.pattern.observer.CollezioneAllenamenti;
+import engineering.dao.AllenamentoDAO;
+import engineering.pattern.Singleton;
+import engineering.pattern.abstract_factory.DAOFactory;
+import modelli.Allenamento;
+import modelli.Utente;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConsultaAllenamentiCtrlApplicativo {
 
-    private ObservableList<AllenamentoBean> allenamentiList;
+    // Metodo per recuperare allenamenti dal sistema
+    public List<AllenamentoBean> getAllAllenamenti() {
+        // Recupero la lista di allenamenti dalla logica applicativa
+        List<AllenamentoBean> allenamenti = new ArrayList<>();
 
+        Utente utente = Singleton.getInstance().getUtenteCorrente();
 
-    public ConsultaAllenamentiCtrlApplicativo() {
+        AllenamentoDAO allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
+        List<Allenamento> allenamentiModel = allenamentoDAO.getAllenamentiPerUtente(utente);
 
-        allenamentiList = FXCollections.observableArrayList(
-                new AllenamentoBean("2025-02-01", "10:00", "11:00", "Allenamento di preparazione"),
-                new AllenamentoBean("2025-02-02", "15:00", "16:00", "Allenamento di recupero"),
-                new AllenamentoBean("2025-02-03", "18:00", "19:00", "Allenamento tecnico")
-        );
+        return trasformazione(allenamentiModel);
+
     }
 
-    // Metodo per ottenere la lista degli allenamenti (per aggiornare la TableView)
-    public ObservableList<AllenamentoBean> getAllenamenti() {
-        return allenamentiList;  // Restituisce gli allenamenti aggiornati
+    private List<AllenamentoBean> trasformazione(List<Allenamento> allenamenti) {
+        List<AllenamentoBean> allenamentiBean = new ArrayList<>();
+        for(Allenamento a : allenamenti) {
+            allenamentiBean.add(new AllenamentoBean(a.getData(), a.getOrarioInizio(), a.getOrarioFine(), a.getDescrizione()));
+        }
+        return allenamentiBean;
     }
 }
