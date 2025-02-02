@@ -248,7 +248,6 @@ public class UtenteDAOJSON implements UtenteDAO {
         }
 
         if (Objects.equals(utente.getSquadra().getNome(), "")) {
-            System.out.println("Squadra vuota");
             jsonObject.addProperty(squadra, "");
         } else {
             jsonObject.addProperty(squadra, utente.getSquadra().getNome());

@@ -3,14 +3,12 @@ package engineering.dao;
 import com.google.gson.*;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
-import engineering.pattern.Singleton;
 import modelli.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -199,8 +197,9 @@ public class SquadraDAOJSON implements SquadraDAO {
     public void IscrizioneUtenteASquadra(Utente utente, Squadra squadra) throws EccezioneUtenteInvalido {
 
         try {
-            System.out.println("Iscrizione dell'utente " + utente.getEmail() + "alla squadra: " + squadra.getNome());
             //poiché è il sistema a modificare i modelli e non il dao, non c'è bisogno di fare il setSquadra
+
+            utente.setSquadra(squadra);
 
             UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
             utenteDAOJSON.aggiornaUtente(utente);
@@ -209,10 +208,6 @@ public class SquadraDAOJSON implements SquadraDAO {
         catch (EccezioneUtenteInvalido e) {
             throw new EccezioneUtenteInvalido(e.getMessage());
         }
-    }
-
-    public void visualizzaTutteLeSquadre() {
-        System.out.println("Visualizzazione di tutte le squadre");
     }
 
     public Boolean verificaEsistenzaSquadra(String nomeSquadra) {

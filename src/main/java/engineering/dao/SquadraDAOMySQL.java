@@ -248,9 +248,6 @@ public class SquadraDAOMySQL implements SquadraDAO {
             throw new EccezioneGenerica("Connessione con il DB non riuscita nella ricerca della squadra per l'eliminazione della richiesta di iscrizione");
         }
     }
-    public void visualizzaTutteLeSquadre() {
-        System.out.println("Visualizzazione di tutte le squadre non implementato");
-    }
 
     public Boolean verificaEsistenzaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {
         try

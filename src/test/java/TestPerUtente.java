@@ -91,11 +91,11 @@ public class TestPerUtente {
     }
 
     private String generateRandomUsername() {
-        return "testUsername" + System.currentTimeMillis();
+        return USERNAME + System.currentTimeMillis();
     }
 
-    private Boolean generateRandomAllenamento() {
-        return Math.random() < 0.5;
+    private String generateRandomEmail() {
+        return "testEmail" + System.currentTimeMillis() + "@test.com";
     }
 
     private Utente assegnaUtente(String USERNAME, String EMAIL, Boolean ALLENATORE){
@@ -103,8 +103,8 @@ public class TestPerUtente {
         else{return new Giocatore(USERNAME, EMAIL, USERNAME);}
     }
 
-    private String generateRandomEmail() {
-        return "testEmail" + System.currentTimeMillis() + "@test.com";
+    private Boolean generateRandomAllenamento() {
+        return Math.random() < 0.5;
     }
 }
 

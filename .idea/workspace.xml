@@ -7,13 +7,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Sistemazione Viste e controller grafici">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Creazione EccezioneAllenamento">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOMySQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueryAllenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueryAllenamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOMySQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/allenatore.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/testEmail1738254868685@test.com.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/testEmail1738258151289@test.com.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/testEmail1738258168354@test.com.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/testUser@gmail.com.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestPerUtente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestPerUtente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestVari.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestPerSquadra.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,37 +62,41 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.IscrivitiAllenamentoCtrlGrafico.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestVari.testMessaggioBenvenutoGiocatore.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/max/IdeaProjects/TeamTrainingHub/src/main/resources/persistenza/utenti&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.IscrivitiAllenamentoCtrlGrafico.executor": "Run",
+    "Application.LoginApplicazione.executor": "Run",
+    "JUnit.TestPerSquadra.executor": "Run",
+    "JUnit.TestPerSquadra.testCreaSquadraPerAllenatoreConSquadraValida.executor": "Run",
+    "JUnit.TestPerSquadra.testGetSquadraDaNomeConSquadraEsistente.executor": "Run",
+    "JUnit.TestPerSquadra.testIscrizioneUtenteASquadraConSquadraValida.executor": "Run",
+    "JUnit.TestVari.testMessaggioBenvenutoGiocatore.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/max/IdeaProjects/TeamTrainingHub/src/main/resources/persistenza/utenti",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.48505747",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\max\IdeaProjects\TeamTrainingHub\src\main\resources\persistenza\utenti" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LoginApplicazione">
+  <component name="RunManager" selected="JUnit.TestPerSquadra">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="OLDteamtraininghub" />
       <method v="2">
@@ -96,19 +106,6 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="OLDteamtraininghub" />
       <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="IscrivitiAllenamentoCtrlGrafico" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="viste.first.IscrivitiAllenamentoCtrlGrafico" />
-      <module name="TeamTrainingHub" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="viste.first.basi.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -126,11 +123,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestVari.testMessaggioBenvenutoGiocatore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPerSquadra" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TeamTrainingHub" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestVari" />
-      <option name="METHOD_NAME" value="testMessaggioBenvenutoGiocatore" />
+      <option name="MAIN_CLASS_NAME" value="TestPerSquadra" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPerSquadra.testCreaSquadraPerAllenatoreConSquadraValida" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TeamTrainingHub" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPerSquadra" />
+      <option name="METHOD_NAME" value="testCreaSquadraPerAllenatoreConSquadraValida" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPerSquadra.testGetSquadraDaNomeConSquadraEsistente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TeamTrainingHub" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPerSquadra" />
+      <option name="METHOD_NAME" value="testGetSquadraDaNomeConSquadraEsistente" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPerSquadra.testIscrizioneUtenteASquadraConSquadraValida" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TeamTrainingHub" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPerSquadra" />
+      <option name="METHOD_NAME" value="testIscrizioneUtenteASquadraConSquadraValida" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -151,9 +177,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestPerSquadra" />
+        <item itemvalue="JUnit.TestPerSquadra.testIscrizioneUtenteASquadraConSquadraValida" />
+        <item itemvalue="JUnit.TestPerSquadra.testGetSquadraDaNomeConSquadraEsistente" />
+        <item itemvalue="JUnit.TestPerSquadra.testCreaSquadraPerAllenatoreConSquadraValida" />
         <item itemvalue="Application.LoginApplicazione" />
-        <item itemvalue="Application.IscrivitiAllenamentoCtrlGrafico" />
-        <item itemvalue="JUnit.TestVari.testMessaggioBenvenutoGiocatore" />
       </list>
     </recent_temporary>
   </component>
@@ -234,7 +262,7 @@
       <workItem from="1738332646947" duration="8051000" />
       <workItem from="1738413851468" duration="15796000" />
       <workItem from="1738485749767" duration="12542000" />
-      <workItem from="1738507452223" duration="9998000" />
+      <workItem from="1738507452223" duration="14342000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -420,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738516077520</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Creazione EccezioneAllenamento">
+      <option name="closed" value="true" />
+      <created>1738517571134</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1738517571134</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,6 +497,7 @@
     <MESSAGE value="Implementazione caso d'uso Iscrizione allenamento" />
     <MESSAGE value="Sistemazione Consulta Allenamenti" />
     <MESSAGE value="Sistemazione Viste e controller grafici" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sistemazione Viste e controller grafici" />
+    <MESSAGE value="Creazione EccezioneAllenamento" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creazione EccezioneAllenamento" />
   </component>
 </project>
