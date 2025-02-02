@@ -1,7 +1,6 @@
 package viste.first;
 
 import ctrlApplicativo.CreazioneSquadraCtrlApplicativo;
-import engineering.eccezioni.EccezioneGenerica;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,8 +30,10 @@ public class CreazioneSquadraCtrlGrafico {
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
 
-        } catch (EccezioneGenerica EccezioneGenerica) {
-            System.out.println(EccezioneGenerica.getMessage());
+        } catch (Exception e) {
+            messaggioErrore.setText("Errore nel cambio scena");
+            messaggioErrore.setVisible(true);
+
         }
     }
 
@@ -64,8 +65,9 @@ public class CreazioneSquadraCtrlGrafico {
                 CambioScena cambioScena = new CambioScena();
                 cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
 
-            } catch (EccezioneGenerica EccezioneGenerica) {
-                System.out.println(EccezioneGenerica.getMessage());
+            } catch (Exception e) {
+                messaggioErrore.setText("Errore nel cambio scena");
+                messaggioErrore.setVisible(true);
             }
         }
         //implementazione della logica per il controllo della corretta formattazione del nome della squadra

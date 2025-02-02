@@ -2,7 +2,6 @@ package engineering.dao;
 
 
 import engineering.altro.Connessione;
-import engineering.eccezioni.EccezioneGenerica;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import engineering.query.QueryRegistrazione;

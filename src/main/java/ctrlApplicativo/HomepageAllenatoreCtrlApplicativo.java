@@ -14,9 +14,6 @@ public class HomepageAllenatoreCtrlApplicativo
         Singleton istanza= Singleton.getInstance();
         Utente utente= istanza.getUtenteCorrente();
 
-        System.out.println("utente corrente " + istanza.getUtenteCorrente().getEmail());
-        System.out.println("la squadra è " + istanza.getUtenteCorrente().getSquadra());
-
         if (utente.getSquadra().getNome().isEmpty()) {
             System.out.println("L'allenatore non ha una squadra");
             return false;

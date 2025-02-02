@@ -2,6 +2,7 @@ package ctrlApplicativo;
 
 import engineering.bean.AllenamentoBean;
 import engineering.dao.AllenamentoDAO;
+import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
 import engineering.pattern.observer.CollezioneAllenamenti;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class IscrivitiAllenamentoCtrlApplicativo {
 
-    private CollezioneAllenamenti collezioneAllenamenti;
+    private CollezioneAllenamenti collezioneAllenamenti ;
     private AllenamentoDAO allenamentoDAO; // DAO per interagire con la persistenza
 
     public IscrivitiAllenamentoCtrlApplicativo() {
@@ -24,31 +25,32 @@ public class IscrivitiAllenamentoCtrlApplicativo {
     }
 
     // Carica gli allenamenti dalla persistenza
-    private void caricaAllenamenti() {
-        // Recupera gli allenamenti dal DAO e aggiungili alla collezione
-        allenamentoDAO= DAOFactory.getDAOFactory().createAllenamentoDAO();
-        Singleton singleton = Singleton.getInstance();
-        Utente utente= singleton.getUtenteCorrente();
+    private void caricaAllenamenti() throws EccezioneAllenamentoInvalido {
+        try {
+            // Recupera gli allenamenti dal DAO e aggiungili alla collezione
+            allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
+            Singleton singleton = Singleton.getInstance();
+            Utente utente = singleton.getUtenteCorrente();
 
-        //carico gli allenamenti per l'utente corrente così da sapere a quali è già iscritto
-        List<Allenamento> allenamentiGiocatore = allenamentoDAO.getAllenamentiPerUtente(utente);
-        System.out.println("Allenamenti del giocatore: ");
-        stampaAllenamenti(allenamentiGiocatore);
+            //carico gli allenamenti per l'utente corrente così da sapere a quali è già iscritto
+            List<Allenamento> allenamentiGiocatore = allenamentoDAO.getAllenamentiPerUtente(utente);
 
-        //carico gli allenamenti per la squadra dell'utente corrente partendo dall'ottenere la squadra
-        Squadra squadra = utente.getSquadra();
+            //carico gli allenamenti per la squadra dell'utente corrente partendo dall'ottenere la squadra
+            Squadra squadra = utente.getSquadra();
 
-        //a partire dalla squadra ottengo l'allenatore
-        String nomeAllenatore = squadra.getAllenatore();
+            //a partire dalla squadra ottengo l'allenatore
+            String nomeAllenatore = squadra.getAllenatore();
 
-        List<Allenamento> allenamentiAllenatore = allenamentoDAO.getAllenamentiPerEmail(nomeAllenatore);
-        System.out.println("Allenamenti dell'allenatore: ");
-        stampaAllenamenti(allenamentiAllenatore);
+            List<Allenamento> allenamentiAllenatore = allenamentoDAO.getAllenamentiPerEmail(nomeAllenatore);
 
-        //eliminiamo dalla lista degli allenamenti dell'allenatore quelli che sono già presenti nella lista degli allenamenti del giocatore
-        List<Allenamento> allenamentiFinali= eliminaAllenamenti(allenamentiAllenatore, allenamentiGiocatore);
+            //eliminiamo dalla lista degli allenamenti dell'allenatore quelli che sono già presenti nella lista degli allenamenti del giocatore
+            List<Allenamento> allenamentiFinali = eliminaAllenamenti(allenamentiAllenatore, allenamentiGiocatore);
 
-        collezioneAllenamenti.popolaTabella(trasformazione(allenamentiFinali));
+            collezioneAllenamenti.popolaTabella(trasformazione(allenamentiFinali));
+        }
+        catch (EccezioneAllenamentoInvalido e) {
+            throw new EccezioneAllenamentoInvalido(e.getMessage());
+        }
     }
 
     // Restituisce la collezione di allenamenti
@@ -57,11 +59,16 @@ public class IscrivitiAllenamentoCtrlApplicativo {
     }
 
     // Accetta un allenamento
-    public void accettaAllenamento(AllenamentoBean allenamento) {
-        // Logica per accettare l'allenamento
+    public void accettaAllenamento(AllenamentoBean allenamento) throws EccezioneAllenamentoInvalido {
+        try {
+            // Logica per accettare l'allenamento
 
-        allenamentoDAO.inserisciAllenamentoAdUtente(new Allenamento(allenamento.getData(), allenamento.getOrarioInizio(), allenamento.getOrarioFine(), allenamento.getDescrizione()), Singleton.getInstance().getUtenteCorrente()); // Approva l'allenamento nel DAO
-        collezioneAllenamenti.removeAllenamento(allenamento); // Rimuovi l'allenamento dalla collezione
+            allenamentoDAO.inserisciAllenamentoAdUtente(new Allenamento(allenamento.getData(), allenamento.getOrarioInizio(), allenamento.getOrarioFine(), allenamento.getDescrizione()), Singleton.getInstance().getUtenteCorrente()); // Approva l'allenamento nel DAO
+            collezioneAllenamenti.removeAllenamento(allenamento); // Rimuovi l'allenamento dalla collezione
+        }
+        catch (EccezioneAllenamentoInvalido e) {
+            throw new EccezioneAllenamentoInvalido(e.getMessage());
+        }
     }
 
     private List<AllenamentoBean> trasformazione(List<Allenamento> allenamenti){
@@ -85,9 +92,4 @@ public class IscrivitiAllenamentoCtrlApplicativo {
         return allenamentiRimanenti;
     }
 
-    private void stampaAllenamenti(List<Allenamento> allenamenti){
-        for(Allenamento allenamento : allenamenti){
-            System.out.println("Allenamento: " + allenamento.getData());
-        }
-    }
 }

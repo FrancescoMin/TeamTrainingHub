@@ -1,8 +1,6 @@
 package engineering.query;
 
-import engineering.altro.Connessione;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
-import engineering.eccezioni.EccezioneGenerica;
 import modelli.Allenamento;
 
 import java.sql.Connection;

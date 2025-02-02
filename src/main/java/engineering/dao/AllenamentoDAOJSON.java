@@ -2,7 +2,6 @@ package engineering.dao;
 
 import com.google.gson.*;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
-import engineering.eccezioni.EccezioneGenerica;
 import modelli.Allenamento;
 import modelli.Utente;
 
@@ -74,15 +73,12 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
             //creo l'oggetto JSON corrispondete all'utente con l'email passata
             JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
 
-            AllenamentoDAOJSON allenamentoDAOJSON = new AllenamentoDAOJSON();
-            //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
-            List<Allenamento> allenamenti = new ArrayList<>();
             return recuperaAllenamentiPerJsonArray(jsonObject.get(trainings).getAsJsonArray());
 
         } catch (IOException e) {
             throw new EccezioneAllenamentoInvalido("Allenamenti non esistenti");
         }
-        catch (EccezioneGenerica e) {
+        catch (EccezioneAllenamentoInvalido e) {
             throw new EccezioneAllenamentoInvalido(e.getMessage());
         }
     }

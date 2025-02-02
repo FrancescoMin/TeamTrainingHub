@@ -1,7 +1,7 @@
 package ctrlApplicativo;
 
 import engineering.dao.AllenamentoDAO;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Allenamento;
@@ -18,7 +18,7 @@ public class CreazioneAllenamentoCtrlApplicativo {
         // Costruttore vuoto
     }
 
-    public void creaAllenamento(AllenamentoBean allenamentoBean) {
+    public void creaAllenamento(AllenamentoBean allenamentoBean) throws EccezioneAllenamentoInvalido {
 
         try {
             Singleton istanza = Singleton.getInstance();
@@ -31,9 +31,8 @@ public class CreazioneAllenamentoCtrlApplicativo {
 
             //devo controllare che l'allenamento non sia in una fascia oraria già occupata
             if (sovrapposizioneAllenamenti(utente.getAllenamenti(), allenamento)) {
-                throw new EccezioneGenerica("Fascia oraria già occupata");
+                throw new EccezioneAllenamentoInvalido("Fascia oraria già occupata");
             }
-
             //aggiungo l'allenamento all'utente
             utente.getAllenamenti().add(allenamento);
 
@@ -45,10 +44,9 @@ public class CreazioneAllenamentoCtrlApplicativo {
                 //assegniamo l'allenamento all'allenatore che lo ha creato
                 allenamentoDAO.inserisciAllenamentoAdUtente(allenamento, utente);
             }
-
-            
-        } catch (Exception e) {
-            throw new EccezioneGenerica(e.getMessage());
+        }
+        catch (EccezioneAllenamentoInvalido e) {
+            throw new EccezioneAllenamentoInvalido(e.getMessage());
         }
     }
 

@@ -1,10 +1,7 @@
 package engineering.query;
 
-import engineering.eccezioni.EccezioneGenerica;
 import engineering.eccezioni.EccezioneUtenteInvalido;
-import modelli.Login;
 import modelli.Registrazione;
-import modelli.Utente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -2,7 +2,8 @@ package ctrlApplicativo;
 
 import engineering.bean.*;
 import engineering.dao.UtenteDAO;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezionePasswordErrata;
+import engineering.eccezioni.EccezioneUtenteInvalido;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Login;
@@ -41,8 +42,8 @@ public class LoginCtrlApplicativo {
         }
     }
 
-    public UtenteBean recuperoUtente(LoginBean loginBean) {
-
+    public UtenteBean recuperoUtente(LoginBean loginBean) throws EccezionePasswordErrata {
+        try {
         UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
 
 
@@ -72,12 +73,12 @@ public class LoginCtrlApplicativo {
 
         //Se siamo nella modalità demo non dovremmo arrivare a questo punto del codice. Per sicurezza alzo un eccezione
         else if(istanza.getDemo()){
-            throw new EccezioneGenerica("Impossibile recuperare l'utente dallo stato di persistenza visto che siamo nella modalità demo");}
+            throw new EccezioneUtenteInvalido("Impossibile recuperare l'utente dallo stato di persistenza visto che siamo nella modalità demo");}
 
         //richiediamo l'utente dalla persistenza
         else {
             //creazione del modello utente
-            System.out.println("Recupero l'utente "+ loginBean.getEmail() +" con password "+ loginBean.getPassword() + " dalla persistenza");
+            System.out.println("Recupero l'utente " + loginBean.getEmail() + " con password " + loginBean.getPassword() + " dalla persistenza");
 
             //creo una nuova istanza di utente che contiene l'utente che fa uso del sistema
             Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
@@ -92,14 +93,16 @@ public class LoginCtrlApplicativo {
             if (utente.getAllenatore()) {
 
                 //restituzione del bean dell'allenatore creato
-                return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
-            }
-
-            else {
+                return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
+            } else {
 
                 //restituzione del bean del giocatore creato
                 return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
             }
+        }
+        }
+        catch (EccezioneUtenteInvalido e) {
+            throw new EccezionePasswordErrata(e.getMessage());
         }
     }
 

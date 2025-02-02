@@ -1,7 +1,7 @@
 package viste.first;
 
 import ctrlApplicativo.EntraInSquadraCtrlApplicativo;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneSquadraInvalida;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -46,10 +46,10 @@ public class EntraInSquadraCtrlGrafico{
                     baseHomePageCtrlGrafico.TornaAlLogin();
                 }
                 else {
-                    throw new EccezioneGenerica("Squadra inserita non esiste");
+                    throw new EccezioneSquadraInvalida("Squadra inserita non esiste");
                 }
 
-            } catch (EccezioneGenerica e) {
+            } catch (EccezioneSquadraInvalida e) {
                 mostraErrore.setText(e.getMessage());
                 mostraErrore.setVisible(true);
             }

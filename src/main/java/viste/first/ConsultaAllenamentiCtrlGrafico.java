@@ -46,14 +46,4 @@ public class ConsultaAllenamentiCtrlGrafico {
         // Popola la Tabella
         gestoreTabella.populateTable(tabellaAllenamenti);
     }
-
-    @FXML
-    protected void onBackClick(ActionEvent event) {
-        try {
-            Stage stage = (Stage) tabellaAllenamenti.getScene().getWindow();
-            // Logica per il ritorno a una pagina precedente
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
 }

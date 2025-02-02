@@ -2,7 +2,7 @@ package ctrlApplicativo;
 
 import engineering.bean.RegistrazioneBean;
 import engineering.dao.UtenteDAO;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneUtenteInvalido;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Registrazione;
@@ -13,7 +13,7 @@ public class RegistrazioneCtrlApplicativo {
         //costruttore vuoto di default
     }
 
-    public void inserisciUtente(RegistrazioneBean registrazioneBean) throws EccezioneGenerica {
+    public void inserisciUtente(RegistrazioneBean registrazioneBean) throws EccezioneUtenteInvalido {
         String username = registrazioneBean.getUsername();
         String email = registrazioneBean.getEmail();
         String password = registrazioneBean.getPassword();
@@ -21,7 +21,7 @@ public class RegistrazioneCtrlApplicativo {
 
         // Verifica che tutti i campi siano compilati
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            throw new EccezioneGenerica("Tutti i campi sono obbligatori!");
+            throw new EccezioneUtenteInvalido("Tutti i campi sono obbligatori!");
         }
 
         // Creazione del modello registrazione
@@ -33,7 +33,7 @@ public class RegistrazioneCtrlApplicativo {
         //controllo che l'utente esisti già nel singleton
         Singleton istanza = Singleton.getInstance();
         if (istanza.esisteUtenteDaRegistrazione(registrazione)) {
-            throw new EccezioneGenerica("Utente già registrato!");
+            throw new EccezioneUtenteInvalido("Utente già registrato!");
         }
 
         //aggiungo l'utente al singleton
@@ -46,8 +46,8 @@ public class RegistrazioneCtrlApplicativo {
                 //compio l'inserimento dell'utente nella persistenza
                 UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
 
-            } catch (EccezioneGenerica e) {
-                throw new EccezioneGenerica(e.getMessage());
+            } catch (EccezioneUtenteInvalido e) {
+                throw new EccezioneUtenteInvalido(e.getMessage());
             }
         }
     }

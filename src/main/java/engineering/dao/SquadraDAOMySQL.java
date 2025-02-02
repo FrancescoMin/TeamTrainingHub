@@ -1,7 +1,6 @@
 package engineering.dao;
 
 import engineering.altro.Connessione;
-import engineering.eccezioni.EccezioneGenerica;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import engineering.query.QuerySquadra;
@@ -241,11 +240,11 @@ public class SquadraDAOMySQL implements SquadraDAO {
                 //se l'operazione è andata a buon fine non faccio nulla
             }
             catch(EccezioneSquadraInvalida e) {
-                throw new EccezioneGenerica(e.getMessage());
+                throw new EccezioneSquadraInvalida(e.getMessage());
             }
         }
         else {
-            throw new EccezioneGenerica("Connessione con il DB non riuscita nella ricerca della squadra per l'eliminazione della richiesta di iscrizione");
+            throw new EccezioneSquadraInvalida("Connessione con il DB non riuscita nella ricerca della squadra per l'eliminazione della richiesta di iscrizione");
         }
     }
 

@@ -1,6 +1,7 @@
 package engineering.pattern;
 
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneSquadraInvalida;
+import engineering.eccezioni.EccezioneUtenteInvalido;
 import modelli.*;
 
 import java.util.ArrayList;
@@ -27,8 +28,8 @@ public class Singleton {
     static {
         try {
             instance = new Singleton();
-        } catch (EccezioneGenerica e) {
-            throw new EccezioneGenerica("Exception occurred in creating singleton instance");
+        } catch (Exception e) {
+            throw new RuntimeException("Exception occurred in creating singleton instance");
         }
     }
 
@@ -47,7 +48,6 @@ public class Singleton {
 
     public List<Utente> getUtenti() {return utenti;}
 
-    public Boolean esisteUtenteDaUtente(Utente utente) {return esisteUtenteDaEmail(utente.getEmail());}
     public Boolean esisteUtenteDaLogin(Login login) {return esisteUtenteDaEmail(login.getEmail());}
     public Boolean esisteUtenteDaRegistrazione(Registrazione registrazione) {return esisteUtenteDaEmail(registrazione.getEmail());}
     public Boolean esisteUtenteDaEmail(String email) {
@@ -67,22 +67,28 @@ public class Singleton {
         return false;
     }
 
-    public Utente getUtenteDaLogin(Login login) throws EccezioneGenerica {return getUtenteDaEmail(login.getEmail());}
-    public Utente getUtenteDaEmail(String email) throws EccezioneGenerica {
+    public Utente getUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
+        try {
+            return getUtenteDaEmail(login.getEmail());
+        } catch (EccezioneUtenteInvalido e) {
+            throw new EccezioneUtenteInvalido("Utente non esistente");
+        }
+    }
+    public Utente getUtenteDaEmail(String email) throws EccezioneUtenteInvalido {
         for (Utente utente : utenti) {
             if (utente.getEmail().equals(email)) {
                 return utente;
             }
         }
-        throw new EccezioneGenerica("Utente non esistente");
+        throw new EccezioneUtenteInvalido("Utente non esistente");
     }
-    public Squadra getSquadraDaNome(String nomeSquadra) throws EccezioneGenerica {
+    public Squadra getSquadraDaNome(String nomeSquadra) throws EccezioneSquadraInvalida {
         for (Utente utente : utenti) {
             if (utente instanceof Allenatore allenatore && allenatore.getSquadra().getNome().equals(nomeSquadra)) {
                 return allenatore.getSquadra();
             }
         }
-        throw new EccezioneGenerica("Squadra non esistente");
+        throw new EccezioneUtenteInvalido("Squadra non esistente");
     }
 
     public void aggiungiRegistrazione(Registrazione registrazione){
@@ -94,6 +100,5 @@ public class Singleton {
         }
         utenti.add(utente);
         setUtenteCorrente(utente);
-        System.out.println("Utente " + utente.getEmail() + " aggiunto al sistema");
     }
 }

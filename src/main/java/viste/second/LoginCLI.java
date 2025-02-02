@@ -3,7 +3,7 @@ package viste.second;
 import ctrlApplicativo.LoginCtrlApplicativo;
 import engineering.bean.LoginBean;
 import engineering.bean.UtenteBean;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneCambioScena;
 
 public class LoginCLI extends GenericaCLI {
 
@@ -58,7 +58,7 @@ public class LoginCLI extends GenericaCLI {
                         continua = false;
                     }
                 }
-            } catch (EccezioneGenerica e) {
+            } catch (EccezioneCambioScena e) {
                 System.err.println("Errore durante il login: " + e.getMessage());
             }
         }

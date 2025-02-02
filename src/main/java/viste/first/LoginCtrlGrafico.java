@@ -2,7 +2,8 @@ package viste.first;
 
 import engineering.bean.UtenteBean;
 import engineering.bean.LoginBean;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneCambioScena;
+import engineering.eccezioni.EccezionePasswordErrata;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
@@ -58,7 +59,7 @@ public class LoginCtrlGrafico {
 
                 //passaggio del bean al controller applicativo per il controllo delle credenziali
                 if(!loginCtrlApplicativo.verificaCredenziali(loginBean)){
-                    throw new EccezioneGenerica("Credenziali errate");
+                    throw new EccezionePasswordErrata("Credenziali errate");
                 }
 
                 //creazione del bean utente generico in funzione dei dati del bean di login
@@ -75,10 +76,13 @@ public class LoginCtrlGrafico {
                 }
 
 
-            } catch (Exception e){
+            } catch (EccezionePasswordErrata e){
                 erroreInserimento.setText(e.getMessage());
                 erroreInserimento.setVisible(true);
-
+            }
+            catch (EccezioneCambioScena e) {
+                erroreInserimento.setText("Errore di cambio scena");
+                erroreInserimento.setVisible(true);
             }
         }
     }
@@ -94,10 +98,11 @@ public class LoginCtrlGrafico {
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_REGISTRAZIONE);
 
-        } catch (EccezioneGenerica eccezioneGenerica) {
-            System.out.println(eccezioneGenerica.getMessage());
-        }
+        } catch (Exception e) {
+            erroreInserimento.setText("Errore di cambio scena");
+            erroreInserimento.setVisible(true);        }
     }
+
     public static class CreazioneAllenamentoControllerGrafico {
     }
 }

@@ -1,7 +1,7 @@
 package ctrlApplicativo;
 
 import engineering.dao.*;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Squadra;
@@ -13,7 +13,7 @@ public class CreazioneSquadraCtrlApplicativo {
         // Costruttore vuoto di default
     }
 
-    public void creazioneSquadra(String nomeSquadra) throws EccezioneGenerica {
+    public void creazioneSquadra(String nomeSquadra) throws EccezioneSquadraInvalida{
         try {
 
             System.out.println("Tento di creare la squadra: " + nomeSquadra);
@@ -23,7 +23,7 @@ public class CreazioneSquadraCtrlApplicativo {
             Utente utente = istanza.getUtenteCorrente();
 
             if (istanza.esisteSquadraDaNome(nomeSquadra) ){
-                throw new EccezioneGenerica("squadra esistente");
+                throw new EccezioneSquadraInvalida("squadra esistente");
             }
 
             //modifico il modello Utente con la squadra che stiamo creando
@@ -37,13 +37,8 @@ public class CreazioneSquadraCtrlApplicativo {
                 squadraDAO.creaSquadraPerAllenatore(utente, utente.getSquadra());
             }
 
-            //completata l'applicazione della logica, posso mostrare qualche tipo di feedback
-            System.out.println("completato con successo");
-
-            //cambio di scena tornando alla pagina principale implementato nel controller grafico in questo caso in modo temporaneo
-
         }
-        catch (EccezioneGenerica e)
+        catch (EccezioneSquadraInvalida e)
         {
             //ottengo il singleton per ricavare l'utente che sta creando la squadra
             Singleton istanza = Singleton.getInstance();
@@ -51,8 +46,7 @@ public class CreazioneSquadraCtrlApplicativo {
 
             //modifico il modello Utente con la squadra che stiamo creando
             utente.setSquadra(new Squadra());
-            System.out.println("Errore nella creazione della squadra");
-            throw new EccezioneGenerica(e.getMessage());
+            throw new EccezioneSquadraInvalida(e.getMessage());
         }
     }
 }

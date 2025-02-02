@@ -2,7 +2,7 @@ package viste.second;
 
 import ctrlApplicativo.RegistrazioneCtrlApplicativo;
 import engineering.bean.RegistrazioneBean;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneUtenteInvalido;
 
 
 /**
@@ -67,7 +67,7 @@ public class RegistrazioneCLI extends GenericaCLI {
                 System.out.println("Registrazione effettuata con successo!");
                 continua = false; // Fine registrazione
 
-            } catch (EccezioneGenerica e) {
+            } catch (EccezioneUtenteInvalido e) {
                 System.err.println("Errore durante la registrazione: " + e.getMessage());
                 System.out.println("Riprova la registrazione.");
                 System.out.println("Se hai un account e vuoi fare il login, premi 1. Altrimenti inserire un numero qualsiasi e riprova.");

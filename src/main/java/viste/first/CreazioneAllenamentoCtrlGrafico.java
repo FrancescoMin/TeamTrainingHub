@@ -1,7 +1,8 @@
 package viste.first;
 
 import ctrlApplicativo.CreazioneAllenamentoCtrlApplicativo;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneAllenamentoInvalido;
+import engineering.eccezioni.EccezioneUtenteInvalido;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -62,13 +63,13 @@ public class CreazioneAllenamentoCtrlGrafico {
 
             String descrizione = descrizioneAllenamento.getText();
 
-            if(giorno < 1 || giorno > 31)       {throw new EccezioneGenerica("Giorno non valido");}
-            if (mese < 1 || mese > 12)          {throw new EccezioneGenerica("Mese non valido");}
-            if (anno < 2025 )                   {throw new EccezioneGenerica("Anno non valido");}
-            if (oraIn < 0 || oraIn > 23)        {throw new EccezioneGenerica("Ora di inizio non valida");}
-            if (minutoIn < 0 || minutoIn > 59)  {throw new EccezioneGenerica("Minuto di inizio non valido");}
-            if (oraFin < 0 || oraFin > 23)      {throw new EccezioneGenerica("Ora di fine non valida");}
-            if (minutoFin < 0 || minutoFin > 59){throw new EccezioneGenerica("Minuto di fine non valido");}
+            if(giorno < 1 || giorno > 31)       {throw new EccezioneUtenteInvalido("Giorno non valido");}
+            if (mese < 1 || mese > 12)          {throw new EccezioneUtenteInvalido("Mese non valido");}
+            if (anno < 2025 )                   {throw new EccezioneUtenteInvalido("Anno non valido");}
+            if (oraIn < 0 || oraIn > 23)        {throw new EccezioneUtenteInvalido("Ora di inizio non valida");}
+            if (minutoIn < 0 || minutoIn > 59)  {throw new EccezioneUtenteInvalido("Minuto di inizio non valido");}
+            if (oraFin < 0 || oraFin > 23)      {throw new EccezioneUtenteInvalido("Ora di fine non valida");}
+            if (minutoFin < 0 || minutoFin > 59){throw new EccezioneUtenteInvalido("Minuto di fine non valido");}
 
             String orarioInizio = String.format("%02d-%02d", oraIn, minutoIn);
             String orarioFine = String.format("%02d-%02d", oraFin, minutoFin);
@@ -92,8 +93,8 @@ public class CreazioneAllenamentoCtrlGrafico {
                 CambioScena cambioScena = new CambioScena();
                 cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
 
-            } catch (EccezioneGenerica EccezioneGenerica) {
-                System.out.println(EccezioneGenerica.getMessage());
+            } catch (EccezioneAllenamentoInvalido e) {
+                throw new EccezioneAllenamentoInvalido(e.getMessage());
             }
 
         } catch (Exception e) {

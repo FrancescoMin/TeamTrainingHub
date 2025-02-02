@@ -1,7 +1,9 @@
 package viste.first;
 
 import ctrlApplicativo.HomepageGiocatoreCtrlApplicativo;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneCambioScena;
+import engineering.eccezioni.EccezioneSquadraInvalida;
+import engineering.eccezioni.EccezioneUtenteInvalido;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -15,6 +17,9 @@ public class HomepageGiocatoreCtrlGrafico {
     @FXML
     private Label welcomeLabel;
 
+    @FXML
+    private Label mostraErrori;
+
     HomepageGiocatoreCtrlApplicativo homepageGiocatoreCtrlApplicativo = new HomepageGiocatoreCtrlApplicativo();
 
     public void initialize() {
@@ -27,47 +32,54 @@ public class HomepageGiocatoreCtrlGrafico {
     protected void entraSquadra(){
         try {
             if (homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {
-                throw new EccezioneGenerica("Sei già in una squadra");
+                throw new EccezioneUtenteInvalido("Sei già in una squadra");
             }
             cambio(PAGINA_ENTRAINSQUADRA);
-
-        } catch (EccezioneGenerica eccezioneGenerica) {
-            System.out.println(eccezioneGenerica.getMessage());
+        }
+        catch (EccezioneUtenteInvalido | EccezioneCambioScena e) {
+            mostra(e);
         }
     }
 
     @FXML
     protected void IscrizioneAllenamento(){
         try {
-
             cambio(PAGINA_ISCRIZIONE_ALLENAMENTO);
-
-        } catch (EccezioneGenerica eccezioneGenerica) {
-            System.out.println(eccezioneGenerica.getMessage());
+        }
+        catch (EccezioneCambioScena e) {
+            mostra(e);
         }
     }
 
     @FXML
     private void consultaAllenamenti() {
         // Logica per il pulsante "Consulta allenamenti"
-        System.out.println("Consulta allenamenti cliccato");
-
         if(homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {
             try {
                 cambio(PAGINA_CONSULTA_ALLENAMENTI);
 
-            } catch (EccezioneGenerica eccezioneGenerica) {
-                System.out.println(eccezioneGenerica.getMessage());
+            } catch (EccezioneCambioScena e) {
+                mostra(e);
             }
         }
         else {
-            System.out.println("Non sei in una squadra, entrare in una squadra per consultare gli allenamenti");
+            mostra(new EccezioneUtenteInvalido("Non sei in una squadra, non puoi consultare gli allenamenti"));
         }
     }
 
+    public void mostra(Exception e){
+        mostraErrori.setText(e.getMessage());
+        mostraErrori.setVisible(true);
+    }
+
     private void cambio(String string){
-        Stage stage = (Stage) welcomeLabel.getScene().getWindow();
-        CambioScena cambioScena = new CambioScena();
-        cambioScena.cambioScena(stage, string);
+        try {
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, string);
+        }
+        catch (EccezioneCambioScena e){
+            throw new EccezioneCambioScena(e.getMessage());
+        }
     }
 }

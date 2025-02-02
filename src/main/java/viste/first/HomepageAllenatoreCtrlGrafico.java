@@ -1,8 +1,8 @@
 package viste.first;
 
 import ctrlApplicativo.HomepageAllenatoreCtrlApplicativo;
-import engineering.eccezioni.EccezioneGenerica;
-import javafx.event.ActionEvent;
+import engineering.eccezioni.EccezioneCambioScena;
+import engineering.eccezioni.EccezioneSquadraInvalida;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,7 +33,7 @@ public class HomepageAllenatoreCtrlGrafico {
             try {
                 Cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
             }
-            catch (EccezioneGenerica e) {
+            catch (EccezioneCambioScena e) {
                 MostraErrore(e.getMessage());
             }
         }
@@ -54,7 +54,7 @@ public class HomepageAllenatoreCtrlGrafico {
             try {
                 Cambio(PAGINA_CREAZIONE_ALLENAMENTO);
 
-            } catch (EccezioneGenerica e) {
+            } catch (EccezioneCambioScena e) {
                 MostraErrore(e.getMessage());
             }
         }
@@ -72,7 +72,7 @@ public class HomepageAllenatoreCtrlGrafico {
             //Se l'allenatore ha una squadra allora compiamo il cambio scena alla pagina di gestione della squadra
             System.out.println("Gestione Squadra");
 
-            throw new EccezioneGenerica("Non implementato");
+            throw new EccezioneSquadraInvalida("Non implementato");
         }
         else {
             //Se l'allenatore non ha una squadra allora compiamo il cambio scena alla pagina di creazione della squadra
@@ -82,7 +82,7 @@ public class HomepageAllenatoreCtrlGrafico {
             try {
                 Cambio(PAGINA_CREAZIONE_SQUADRA);
 
-            } catch (EccezioneGenerica e) {
+            } catch (EccezioneCambioScena e) {
                 MostraErrore(e.getMessage());
             }
         }
@@ -94,7 +94,7 @@ public class HomepageAllenatoreCtrlGrafico {
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, paginaDiCambioScena);
 
-        } catch (EccezioneGenerica e) {
+        } catch (EccezioneCambioScena e) {
             MostraErrore(e.getMessage());
         }
     }

@@ -1,6 +1,5 @@
 package viste.first.basi;
 
-import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -20,7 +19,7 @@ public class BaseTabelleCtrlGrafico {
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, paginaPrecedente);
 
-        } catch (EccezioneGenerica e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

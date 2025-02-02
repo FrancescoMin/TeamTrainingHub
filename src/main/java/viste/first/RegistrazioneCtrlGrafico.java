@@ -2,7 +2,6 @@ package viste.first;
 
 import ctrlApplicativo.RegistrazioneCtrlApplicativo;
 import engineering.bean.RegistrazioneBean;
-import engineering.eccezioni.EccezioneGenerica;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
