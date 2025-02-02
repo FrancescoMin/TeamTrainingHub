@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import viste.first.basi.BaseTabelleCtrlGrafico;
 import viste.first.utils.ConsultaAllenamentiTabella;
 
-import java.util.List;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
@@ -37,10 +36,13 @@ public class ConsultaAllenamentiCtrlGrafico {
         gestoreTabella.refreshTable(tabellaAllenamenti);
     }
 
+    private static void setupCambio(){
+        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_GIOCATORE;
+    }
+
     @FXML
     public void initialize() {
-        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_GIOCATORE;
-
+        setupCambio();
         gestoreTabella = new ConsultaAllenamentiTabella();
 
         // Popola la Tabella

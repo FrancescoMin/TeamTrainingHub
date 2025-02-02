@@ -94,8 +94,6 @@ public class VisualizzaRichiesteCtrlApplicativo {
     }
 
     public List<UtenteBean> getRichiesteIngresso() {
-        Singleton istanza = Singleton.getInstance();
-        Squadra squadra = istanza.getUtenteCorrente().getSquadra();
 
         List<UtenteBean> richiesteIngresso = new ArrayList<>();
         for (Utente utente : squadra.getRichiesteIngresso()) {

@@ -15,18 +15,6 @@ import java.util.Properties;
 public class
 LoginApplicazione extends Application {
 
-    /*
-    @Override
-    public void start(Stage stage) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginApplicazione.class.getResource(PAGINA_PRINCIPALE));
-        Scene scene = new Scene(fxmlLoader.load(),1024 , 640);
-        stage.setTitle("Team Training Hub");
-        stage.setScene(scene);
-        stage.show();
-    }
-     */
-
     @Override
     public void start(Stage stage) throws IOException {
         // Carica le proprietà dal file di configurazione
@@ -42,7 +30,7 @@ LoginApplicazione extends Application {
             // Interfaccia a riga di comando
             startCommandLineInterface();
         } else {
-            //Printer.errorPrint("Tipo di interfaccia specificata nel file di configurazione non valida: Default interfaccia grafica");
+            System.out.println("Tipo di interfaccia non valido. Utilizzo l'interfaccia grafica di default");
             // Interfaccia grafica
             loadGraphicalInterface(stage);
         }
@@ -68,10 +56,10 @@ LoginApplicazione extends Application {
             if (input != null) {
                 properties.load(input);
             } else {
-                //Printer.errorPrint("MainApplication: Impossibile trovare il file di configurazione.");
+                System.out.println("Errore durante la lettura del file di configurazione");
             }
         } catch (IOException e) {
-            //Printer.errorPrint(String.format("MainApplication: Errore durante la lettura del file di configurazione %s", e.getMessage()));
+            System.out.println("Errore durante la lettura del file di configurazione");
         }
         return properties;
     }

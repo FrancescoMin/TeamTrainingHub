@@ -1,5 +1,7 @@
 package engineering.pattern;
 
+import engineering.eccezioni.EccezioneCambioScena;
+import engineering.eccezioni.EccezioneIstanza;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import modelli.*;
@@ -29,7 +31,7 @@ public class Singleton {
         try {
             instance = new Singleton();
         } catch (Exception e) {
-            throw new RuntimeException("Exception occurred in creating singleton instance");
+            throw new EccezioneIstanza("Exception occurred in creating singleton instance");
         }
     }
 

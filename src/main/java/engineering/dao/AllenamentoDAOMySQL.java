@@ -15,7 +15,7 @@ import static engineering.query.QueriesLogin.RecuperaAllenamentiRSPerEmail;
 
 public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
-    private static final String desc = "descrizione";
+    private static final String DESC = "descrizione";
 
     public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido{
 
@@ -53,7 +53,7 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
                 List<Allenamento> allenamenti = new ArrayList<>();
                 while (rsAll.next()){
-                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(desc)));
+                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(DESC)));
                 }
                 return allenamenti;
 
@@ -74,10 +74,10 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
             {
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
                 while (rsAll.next()){
-                    System.out.println("data allenamento: " + rsAll.getString("data") + "   durata: " + rsAll.getInt("durata") + "  descrizione: " + rsAll.getString(desc));
+                    System.out.println("data allenamento: " + rsAll.getString("data") + "   durata: " + rsAll.getInt("durata") + "  descrizione: " + rsAll.getString(DESC));
 
                     //metodo per l'aggiunta di un allenamento all'utente
-                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(desc)));
+                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(DESC)));
                 }
                 return allenamenti;
 

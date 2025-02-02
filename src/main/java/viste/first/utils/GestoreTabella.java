@@ -71,8 +71,7 @@ public class GestoreTabella {
             private final Button acceptButton = new Button("Accept");
             private final Button refuseButton = new Button("Refuse");
 
-            {
-                // Set button actions that delegate to the controller's methods via the callback
+            {// Set button actions that delegate to the controller's methods via the callback
                 acceptButton.setOnAction(event -> {
                     UtenteBean utenteBean = getTableView().getItems().get(getIndex());
                     buttonActionHandler.handleAccept(utenteBean);

@@ -2,6 +2,7 @@ package viste.first;
 
 import ctrlApplicativo.CreazioneAllenamentoCtrlApplicativo;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
+import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -87,21 +88,24 @@ public class CreazioneAllenamentoCtrlGrafico {
             //abbiamo completato il salvataggio e lo facciamo vedere con una stampa a schermo
             System.out.println("giorno: " + giorno + " mese: " + mese + " anno: " + anno + "orario inizio " + orarioInizio + " orario fine "+ orarioFine + " descrizione: " + descrizione);
 
-            //facciamo il cambio scena per tornare alla home dell'allenatore
-            try {
-                Stage stage = (Stage) labelErrori.getScene().getWindow();
-                CambioScena cambioScena = new CambioScena();
-                cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
+            cambiaScena();
 
-            } catch (EccezioneAllenamentoInvalido e) {
-                throw new EccezioneAllenamentoInvalido(e.getMessage());
-            }
-
-        } catch (Exception e) {
+        } catch (EccezioneCambioScena | EccezioneUtenteInvalido e) {
             System.out.println(e.getMessage());
             labelErrori.setText(e.getMessage());
             labelErrori.setVisible(true);
         }
     }
 
+    private void cambiaScena() throws EccezioneCambioScena {
+        //facciamo il cambio scena per tornare alla home dell'allenatore
+        try {
+            Stage stage = (Stage) labelErrori.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
+
+        } catch (EccezioneCambioScena e) {
+            throw new EccezioneCambioScena(e.getMessage());
+        }
+    }
 }

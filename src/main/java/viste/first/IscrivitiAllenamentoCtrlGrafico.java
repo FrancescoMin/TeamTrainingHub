@@ -36,10 +36,14 @@ public class IscrivitiAllenamentoCtrlGrafico {
     private IscrizioneAllenamentiTabella iscrizioneAllenamentiTabella;
     private IscrivitiAllenamentoCtrlApplicativo controllerApplicativo;
 
+    private static void setupCambio(){
+        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_GIOCATORE;
+    }
+
     @FXML
     public void initialize() {
 
-        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_GIOCATORE;
+        setupCambio();
 
         // Inizializza le colonne della TableView
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));

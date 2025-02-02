@@ -29,9 +29,13 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
         gestoreTabella.refreshTable(tabellaRichieste);
     }
 
+    private static void setupCambio(){
+        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_ALLENATORE;
+    }
+
     @FXML
     public void initialize() {
-        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_ALLENATORE;
+        setupCambio();
         gestoreTabella = new GestoreTabella(this);  // 'this' refers to the controller
 
         // Populate the TableView with the list of users (UtenteBean)

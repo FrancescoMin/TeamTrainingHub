@@ -3,7 +3,6 @@ package viste.first.utils;
 import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
 import engineering.bean.AllenamentoBean;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ public class ConsultaAllenamentiTabella {
 
     // Costruttore per inizializzare l'handler
     public ConsultaAllenamentiTabella() {
+        // Costruttore default
     }
 
     // Popola la Tabella con i dati

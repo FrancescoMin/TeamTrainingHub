@@ -73,7 +73,7 @@ public class UtenteDAOJSON implements UtenteDAO {
 
         } catch (IOException e) {
             //creazione del file con nome username dell'utente in formato json
-            throw new EccezioneUtenteInvalido("utente non esistente");
+            throw new EccezioneUtenteInvalido("Impossibile aggiornare l'utente perché non esistente");
         }
     }
 
@@ -87,7 +87,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             Files.readAllBytes(Paths.get(filePath));
 
             //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
-            throw new EccezioneUtenteInvalido("utente esistente");
+            throw new EccezioneUtenteInvalido("Impossibile inserire l'utente perché esistente");
 
         }
         catch (IOException e) {
@@ -171,7 +171,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             throw new EccezioneUtenteInvalido(e.getMessage());
         }
         catch (IOException e) {
-            throw new EccezioneUtenteInvalido("Utente non esistente");
+            throw new EccezioneUtenteInvalido("Impossibile trovare l'utente");
         }
         catch(EccezioneSquadraInvalida e) {
             throw new EccezioneSquadraInvalida(e.getMessage());
@@ -217,7 +217,7 @@ public class UtenteDAOJSON implements UtenteDAO {
 
         } catch (IOException e) {
             //gestione dell'eccezione nel caso in cui non troviamo l'utente
-            throw new EccezioneUtenteInvalido("Utente non esistente");
+            throw new EccezioneUtenteInvalido("Impossibile recuperare l'utente perché non esistente");
         }
         catch (EccezioneSquadraInvalida e){
             throw new EccezioneSquadraInvalida(e.getMessage());

@@ -8,6 +8,8 @@ public class ConsultaAllenamentiCLI extends GenericaCLI {
     @Override
     public void start() {
         stampaPagina();
+
+
     }
 
 }

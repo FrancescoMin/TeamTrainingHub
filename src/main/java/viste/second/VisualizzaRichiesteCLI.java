@@ -16,7 +16,7 @@ public class VisualizzaRichiesteCLI extends GenericaCLI{
 
         stampaPagina();
 
-        Boolean ciclo = true;
+        boolean ciclo = true;
         List<UtenteBean> utenti;
 
         VisualizzaRichiesteCtrlApplicativo visualizzaRichiesteCtrlApplicativo = new VisualizzaRichiesteCtrlApplicativo();
@@ -51,27 +51,15 @@ public class VisualizzaRichiesteCLI extends GenericaCLI{
             //caso in cui si vuole accettare o rifiutare la richiesta
             else {
 
-                //3 possibilità di scelta se no si esce dal ciclo
-                int ind=1;
-                while(ind<3){
-                    {
-                        System.out.println("Vuoi accettare o rifiutare la richiesta? (accetta/rifiuta)");
-                        String risposta = scanner.next().toLowerCase();
+                System.out.println("Vuoi accettare o rifiutare la richiesta? (accetta/rifiuta)");
+                String risposta = scanner.next().toLowerCase();
 
-                        if (risposta.equals("accetta")) {
-                            ind=3;
-                            visualizzaRichiesteCtrlApplicativo.accettaRichiesta(utenti.get(scelta));
-                        }
-                        else if (risposta.equals("rifiuta")) {
-                            visualizzaRichiesteCtrlApplicativo.rifiutaRichiesta(utenti.get(scelta));
-                            ind=3;
-
-                        }
-                        else {
-                            ind++;
-                            System.out.println("Scelta non valida, tentativo " + ind + " dei 3 possibili");
-                        }
-                    }
+                if (risposta.equals("accetta")) {
+                    visualizzaRichiesteCtrlApplicativo.accettaRichiesta(utenti.get(scelta));
+                } else if (risposta.equals("rifiuta")) {
+                    visualizzaRichiesteCtrlApplicativo.rifiutaRichiesta(utenti.get(scelta));
+                } else {
+                    System.out.println("Scelta non valida");
                 }
             }
         }
