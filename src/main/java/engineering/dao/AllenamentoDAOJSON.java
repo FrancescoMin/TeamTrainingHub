@@ -22,10 +22,6 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
 
     public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) {
         try {
-            //passo 1: creo l'allenamento facendo i controlli se la squadra ha già un allenamento sovrapposto
-            creaAllenamentoPerSquadra(allenamento, utente.getSquadra());
-
-            System.out.println("creAllenamentoPerSquadra eseguito con successo inizio aggiornaUtente");
 
             //passo 2: aggiorno l'utente con l'allenamento nella lista degli allenamenti a cui è iscritto
             UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
@@ -184,9 +180,20 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
         }
     }
 
+    public List<Allenamento> getAllenamentiPerEmail(String email) {
+        UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
+        return getAllenamentiPerUtente(utenteDAOJSON.recuperaUtenteDaEmail(email));
+    }
 
-    public List<Allenamento> leggiAllenamentiPerUtente(Utente utente) {
-        return new ArrayList<>();
+    public List<Allenamento> getAllenamentiPerUtente(Utente utente) {
+        List<Allenamento> allenamenti= new ArrayList<>();
+
+        UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
+        Utente utenteCorrente = utenteDAOJSON.recuperaUtente(utente);
+
+        allenamenti = utenteCorrente.getAllenamenti();
+
+        return allenamenti;
     }
 
 }

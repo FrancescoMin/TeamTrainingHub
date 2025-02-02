@@ -2,22 +2,10 @@ package viste.first;
 
 import ctrlApplicativo.HomepageGiocatoreCtrlApplicativo;
 import engineering.eccezioni.EccezioneGenerica;
-import engineering.pattern.Singleton;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import modelli.Giocatore;
-import modelli.Utente;
 import viste.first.utils.CambioScena;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import static viste.first.utils.FxmlFileName.*;
 
@@ -42,6 +30,17 @@ public class HomepageGiocatoreCtrlGrafico {
                 throw new EccezioneGenerica("Sei già in una squadra");
             }
             cambio(PAGINA_ENTRAINSQUADRA);
+
+        } catch (EccezioneGenerica eccezioneGenerica) {
+            System.out.println(eccezioneGenerica.getMessage());
+        }
+    }
+
+    @FXML
+    protected void IscrizioneAllenamento(){
+        try {
+
+            cambio(PAGINA_ISCRIZIONE_ALLENAMENTO);
 
         } catch (EccezioneGenerica eccezioneGenerica) {
             System.out.println(eccezioneGenerica.getMessage());

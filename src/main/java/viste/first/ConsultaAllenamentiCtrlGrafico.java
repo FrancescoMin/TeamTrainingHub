@@ -1,18 +1,12 @@
 package viste.first;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.Button;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
-import javafx.util.Callback;
-import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
-import engineering.bean.AllenamentoBean;
+import engineering.pattern.observer.Observer;
 
-public class ConsultaAllenamentiCtrlGrafico {
-
+public class ConsultaAllenamentiCtrlGrafico implements Observer {
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+/*
     @FXML
     private TableView<AllenamentoBean> tableView;
     @FXML
@@ -24,20 +18,38 @@ public class ConsultaAllenamentiCtrlGrafico {
     @FXML
     private TableColumn<AllenamentoBean, String> descrizioneColumn;
 
-    private ConsultaAllenamentiCtrlApplicativo applicativoController;  // Controller applicativo
+    private ConsultaAllenamentiCtrlApplicativo applicativoController;
+    private CollezioneAllenamenti collezioneAllenamenti;
+    private TableManager tableManager;
 
     public void initialize() {
-        applicativoController = new ConsultaAllenamentiCtrlApplicativo();  // Creiamo il controller applicativo
+        applicativoController = new ConsultaAllenamentiCtrlApplicativo();
+        collezioneAllenamenti = CollezioneAllenamenti.getInstance();
 
-        // Configurazione delle colonne della TableView
-        dataColumn.setCellValueFactory(new PropertyValueFactory<>("data"));
-        orarioInizioColumn.setCellValueFactory(new PropertyValueFactory<>("orarioInizio"));
-        orarioFineColumn.setCellValueFactory(new PropertyValueFactory<>("orarioFine"));
-        descrizioneColumn.setCellValueFactory(new PropertyValueFactory<>("descrizione"));
+        // Iscrizione come osservatore
+        collezioneAllenamenti.attach(this);
+
+        // Inizializzazione del TableManager
+        tableManager = new TableManager();
+
+        // Impostazione delle colonne con il TableManager
+        List<TableColumn<AllenamentoBean, ?>> columns = List.of(dataColumn, orarioInizioColumn, orarioFineColumn, descrizioneColumn);
+        List<String> nameColumns = List.of("data", "orarioInizio", "orarioFine", "descrizione");
+        tableManager.setColumnsTableView(columns, nameColumns);
+
+        // Aggiorna la TableView inizialmente
+        aggiornaTableView();
     }
 
     // Metodo per aggiornare i dati nella TableView
     public void aggiornaTableView() {
-        tableView.setItems(applicativoController.getAllenamenti());
+        tableManager.updateTable(tableView, applicativoController.getAllenamenti());
     }
+
+    // Metodo dell'Observer che viene chiamato quando lo stato del Subject cambia
+    @Override
+    public void update() {
+        aggiornaTableView(); // Aggiorna la TableView quando viene notificato un cambiamento
+        }
+ */
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
+
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="viste.first.ConsultaAllenamentiCtrlGrafico">
 
     <!-- Sezione top: Aggiungi qui eventuali titoli o altre componenti in alto -->

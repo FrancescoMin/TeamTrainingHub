@@ -8,6 +8,7 @@ import modelli.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -193,7 +194,8 @@ public class UtenteDAOJSON implements UtenteDAO {
 
             AllenamentoDAOJSON allenamentoDAOJSON = new AllenamentoDAOJSON();
             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
-            List<Allenamento> allenamenti = allenamentoDAOJSON.recuperaAllenamentiPerJsonArray(jsonObject.get(trainings).getAsJsonArray());
+            List<Allenamento> allenamenti = new ArrayList<>();
+            allenamenti = allenamentoDAOJSON.recuperaAllenamentiPerJsonArray(jsonObject.get(trainings).getAsJsonArray());
 
             //ottengo il nome della stringa della squadra
             String nomeSquadra = jsonObject.get(squadra).getAsString();

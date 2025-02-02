@@ -3,6 +3,8 @@
   "email": "2",
   "password": "2",
   "allenatore": false,
-  "allenamenti": [],
+  "allenamenti": [
+    "12-12-200000-10-10-12-12"
+  ],
   "squadra": "prova1"
 }

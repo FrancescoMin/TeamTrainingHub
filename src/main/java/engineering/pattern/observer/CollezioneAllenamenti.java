@@ -1,42 +1,31 @@
 package engineering.pattern.observer;
 
 import engineering.bean.AllenamentoBean;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import engineering.pattern.observer.Subject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CollezioneAllenamenti extends Subject {
+    private final List<AllenamentoBean> allenamenti = new ArrayList<>();
 
-    private ObservableList<AllenamentoBean> allenamenti;
-
-    private static CollezioneAllenamenti instance;
-
-    // Singleton: restituisce l'unica istanza della collezione
-    public static CollezioneAllenamenti getInstance() {
-        if (instance == null) {
-            instance = new CollezioneAllenamenti();
-        }
-        return instance;
-    }
-
-    // Costruttore privato per impedire istanze multiple
-    private CollezioneAllenamenti() {
-        allenamenti = FXCollections.observableArrayList();
-    }
-
-    // Aggiungi un allenamento alla lista
-    public void aggiungiAllenamento(AllenamentoBean allenamento) {
+    public void addAllenamento(AllenamentoBean allenamento) {
         allenamenti.add(allenamento);
-        notifyObservers();  // Notifica gli observer
+        notifyObservers(); // Notifica gli osservatori
     }
 
-    // Rimuovi un allenamento dalla lista
-    public void rimuoviAllenamento(AllenamentoBean allenamento) {
+    public void removeAllenamento(AllenamentoBean allenamento) {
         allenamenti.remove(allenamento);
-        notifyObservers();  // Notifica gli observer
+        notifyObservers(); // Notifica gli osservatori
     }
 
-    // Restituisce la lista degli allenamenti
-    public ObservableList<AllenamentoBean> getState() {
+    public List<AllenamentoBean> getAllenamenti() {
         return allenamenti;
+    }
+
+    public void popolaTabella(List<AllenamentoBean> allenamenti) {
+        this.allenamenti.clear();
+        this.allenamenti.addAll(allenamenti);
+        notifyObservers(); // Notifica gli osservatori
     }
 }

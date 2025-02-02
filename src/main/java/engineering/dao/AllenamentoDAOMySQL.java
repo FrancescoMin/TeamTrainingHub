@@ -15,7 +15,7 @@ import static engineering.query.QueriesLogin.RecuperaAllenamentiRSPerEmail;
 
 public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
-    private static String descr = "descrizione";
+    private static final String desc = "descrizione";
 
     public List<Allenamento> recuperaAllenamentiPerEmail(String email) {
 
@@ -29,7 +29,7 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
                 List<Allenamento> allenamenti = new ArrayList<>();
                 while (rsAll.next()){
-                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(descr)));
+                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(desc)));
                 }
                 return allenamenti;
 
@@ -64,7 +64,12 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
     }
 
-    public List<Allenamento> leggiAllenamentiPerUtente(Utente utente) {
+    public List<Allenamento> getAllenamentiPerEmail(String email) {
+        UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
+        return getAllenamentiPerUtente(utenteDAOJSON.recuperaUtenteDaEmail(email));
+    }
+
+    public List<Allenamento> getAllenamentiPerUtente(Utente utente) {
         ResultSet rsAll=null;
         Connection conn;
         List<Allenamento> allenamenti = new ArrayList<>();
@@ -75,10 +80,10 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
                 rsAll = RecuperaAllenamentiRSPerEmail(conn, utente.getEmail());
                 while (rsAll.next()){
-                    System.out.println("data allenamento: " + rsAll.getString("data") + "   durata: " + rsAll.getInt("durata") + "  descrizione: " + rsAll.getString(descr));
+                    System.out.println("data allenamento: " + rsAll.getString("data") + "   durata: " + rsAll.getInt("durata") + "  descrizione: " + rsAll.getString(desc));
 
                     //metodo per l'aggiunta di un allenamento all'utente
-                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(descr)));
+                    allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(desc)));
                 }
                 return allenamenti;
 
