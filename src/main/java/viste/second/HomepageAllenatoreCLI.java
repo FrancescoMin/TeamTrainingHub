@@ -17,6 +17,7 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
         System.out.println("3. Creazione allenamento");
         System.out.println("4. Torna al Login");
         int scelta = scanner.nextInt();
+        scanner.nextLine();
         boolean ciclo = true;
 
         while (ciclo) {

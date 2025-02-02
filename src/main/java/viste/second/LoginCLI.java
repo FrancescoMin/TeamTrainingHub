@@ -13,13 +13,15 @@ public class LoginCLI extends GenericaCLI {
 
     @Override
     public void start() {
+
         boolean continua = true;
 
         stampaPagina();
         System.out.println("Per registrarsi premere 1");
-        System.out.println("Per continuare con il login premere un tasto qualsiasi");
+        System.out.println("Per continuare con il login premere un numero qualsiasi");
 
         int scelta = scanner.nextInt();
+        scanner.nextLine();
 
         if(scelta == 1) {
             RegistrazioneCLI registrazioneCLI = new RegistrazioneCLI();
@@ -45,8 +47,8 @@ public class LoginCLI extends GenericaCLI {
 
                     // Recupero utente
                     UtenteBean utenteBean = loginCtrl.recuperoUtente(loginBean);
-                    if (utenteBean.getAllenatore())     {prossimaPagina=HomepageAllenatoreCLI.class.getName();}
-                    else                            {prossimaPagina=HomepageGiocatoreCLI.class.getName();}
+                    if (utenteBean.getAllenatore())     {prossimaPagina="viste.second.HomepageAllenatoreCLI";}
+                    else                            {prossimaPagina= "viste.second.HomePageGiocatoreCLI" ;}
 
                     // Interrompi il loop di login
                     continua = false;

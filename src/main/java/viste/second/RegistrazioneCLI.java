@@ -28,6 +28,7 @@ public class RegistrazioneCLI extends GenericaCLI {
         System.out.println("Per tornare al Login premere 1");
         System.out.println("Per continuare la registrazione premere un tasto qualsiasi");
         scelta = scanner.nextInt();
+        scanner.nextLine();
 
         if(scelta == 1){
             spostamento(LoginCLI.class.getName());
@@ -37,6 +38,7 @@ public class RegistrazioneCLI extends GenericaCLI {
             try {
                 System.out.print("Inserisci username: ");
                 String username = scanner.nextLine();
+                System.out.println(username);
 
                 System.out.print("Inserisci email: ");
                 String email = scanner.nextLine();
@@ -72,14 +74,13 @@ public class RegistrazioneCLI extends GenericaCLI {
                 System.out.println("Riprova la registrazione.");
                 System.out.println("Se hai un account e vuoi fare il login, premi 1. Altrimenti inserire un numero qualsiasi e riprova.");
                 scelta = scanner.nextInt();
+                scanner.nextLine();
                 if(scelta == 1) {
                     prossimaPagina = LoginCLI.class.getName();
                     continua = false;
                 }
             }
         }
-
-        assert registrazioneBean != null;
         if (registrazioneBean.getAllenatore()) {
             spostamento(HomepageAllenatoreCLI.class.getName());
         }

@@ -17,7 +17,6 @@ public abstract class GenericaCLI {
 
     protected void spostamento(String nomeClasse){
         try {
-            scanner.close();
             // Ottieni la classe a partire dal nome della classe (assicurati che il nome completo della classe sia passato)
             Class<?> clazz = Class.forName(nomeClasse);
 

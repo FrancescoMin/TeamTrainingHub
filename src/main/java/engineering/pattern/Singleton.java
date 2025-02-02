@@ -50,7 +50,14 @@ public class Singleton {
 
     public List<Utente> getUtenti() {return utenti;}
 
-    public Boolean esisteUtenteDaLogin(Login login) {return esisteUtenteDaEmail(login.getEmail());}
+    public Boolean esisteUtenteDaLogin(Login login) {
+        for (Utente utente : utenti) {
+            if (utente.getEmail().equals(login.getEmail()) && utente.getPassword().equals(login.getPassword())) {
+                return true;
+            }
+        }
+        return false;
+    }
     public Boolean esisteUtenteDaRegistrazione(Registrazione registrazione) {return esisteUtenteDaEmail(registrazione.getEmail());}
     public Boolean esisteUtenteDaEmail(String email) {
         for (Utente utente : utenti) {
@@ -71,10 +78,13 @@ public class Singleton {
 
     public Utente getUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
         try {
-            return getUtenteDaEmail(login.getEmail());
+            if (getUtenteDaEmail(login.getEmail()).getPassword().equals(login.getPassword())) {
+                return getUtenteDaEmail(login.getEmail());
+            }
         } catch (EccezioneUtenteInvalido e) {
             throw new EccezioneUtenteInvalido("Utente non esistente");
         }
+        return null;
     }
     public Utente getUtenteDaEmail(String email) throws EccezioneUtenteInvalido {
         for (Utente utente : utenti) {
