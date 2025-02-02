@@ -6,9 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import viste.first.basi.BaseTabelleCtrlGrafico;
 import viste.first.utils.ConsultaAllenamentiTabella;
 
 import java.util.List;
+
+import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
 public class ConsultaAllenamentiCtrlGrafico {
 
@@ -36,6 +39,8 @@ public class ConsultaAllenamentiCtrlGrafico {
 
     @FXML
     public void initialize() {
+        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_GIOCATORE;
+
         gestoreTabella = new ConsultaAllenamentiTabella();
 
         // Popola la Tabella

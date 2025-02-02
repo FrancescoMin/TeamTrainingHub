@@ -12,16 +12,17 @@
     <top>
         <!-- Barra del titolo TopPage -->
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
-         <Button layoutX="930.0" layoutY="18.0" mnemonicParsing="false" onAction="#Ricarica" text="Ricarica" />
-            <Button layoutX="14.0" layoutY="19.0" onAction="#onBackClick" text="Back" AnchorPane.leftAnchor="15.0" />
-            <Label alignment="CENTER" layoutX="570.0" layoutY="40.0" text="RICHIESTE PARTECIPAZIONE ALLA SQUADRA" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="10.0" />
+         <Button layoutX="930.0" layoutY="18.0" mnemonicParsing="false" onAction="#Ricarica" text="Ricarica" AnchorPane.topAnchor="40.0" />
+            <fx:include source="baseTabelle.fxml" />
+         <Label layoutX="479.0" layoutY="44.0" text="di visualizzazione di richieste di ingresso alla squadra" AnchorPane.topAnchor="44.0" />
+
         </AnchorPane>
     </top>
 
     <center>
         <!-- Tabella playlist -->
         <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <TableView fx:id="tabellaRichieste" fixedCellSize="0.0" layoutX="151.0" layoutY="52.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+            <TableView fx:id="tabellaRichieste" fixedCellSize="0.0" layoutX="151.0" layoutY="52.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
                 <columns>
                     <TableColumn fx:id="giocatoreColonna" prefWidth="150.0" text="Giocatore" />
                     <TableColumn fx:id="approveColumn" prefWidth="150.0" text="Approve or Reject" />
@@ -33,15 +34,4 @@
             </TableView>
         </AnchorPane>
     </center>
-
-    <bottom>
-        <AnchorPane>
-
-        </AnchorPane>
-    </bottom>
-
-
-
-
-
 </BorderPane>

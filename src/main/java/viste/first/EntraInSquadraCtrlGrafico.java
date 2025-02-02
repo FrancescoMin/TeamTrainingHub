@@ -7,10 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-
-
-import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
-import viste.first.BaseVisteCtrlGrafico.*;
+import viste.first.basi.BaseHomePageCtrlGrafico;
 
 public class EntraInSquadraCtrlGrafico{
 
@@ -45,8 +42,8 @@ public class EntraInSquadraCtrlGrafico{
                     alert.showAndWait();
 
                     //torno al login
-                    BaseVisteCtrlGrafico baseVisteCtrlGrafico = new BaseVisteCtrlGrafico();
-                    baseVisteCtrlGrafico.TornaAlLogin();
+                    BaseHomePageCtrlGrafico baseHomePageCtrlGrafico = new BaseHomePageCtrlGrafico();
+                    baseHomePageCtrlGrafico.TornaAlLogin();
                 }
                 else {
                     throw new EccezioneGenerica("Squadra inserita non esiste");

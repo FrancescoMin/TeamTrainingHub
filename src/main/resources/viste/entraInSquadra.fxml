@@ -8,22 +8,17 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.EntraInSquadraCtrlGrafico">
-   <children>
-      <AnchorPane prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #0f9200;">
-         <children>
-            <Label layoutX="192.0" layoutY="25.0" text="Entra in una squadra" textFill="WHITE">
-               <font>
-                  <Font name="MS Outlook" size="25.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <Text fx:id="scriviSquadraText" layoutX="178.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scrivi il nome della squadra in cui vuoi entrare" />
-      <TextField fx:id="scriviSquadraTextField" layoutX="225.0" layoutY="174.0" promptText="Nome squadra" />
-      <Button layoutX="247.0" layoutY="239.0" mnemonicParsing="false" onAction="#richiediIngresso" text="Richiedi ingresso" />
-      <Label fx:id="mostraErrore" layoutX="286.0" layoutY="295.0" textFill="RED" />
-   </children>
 
-   <fx:include source="baseViste.fxml"/>
-
+   <AnchorPane prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #0f9200;">
+      <Label layoutX="192.0" layoutY="25.0" text="Entra in una squadra" textFill="WHITE">
+         <font>
+            <Font name="MS Outlook" size="25.0" />
+         </font>
+      </Label>
+   </AnchorPane>
+   <Text fx:id="scriviSquadraText" layoutX="178.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scrivi il nome della squadra in cui vuoi entrare" />
+   <TextField fx:id="scriviSquadraTextField" layoutX="225.0" layoutY="174.0" promptText="Nome squadra" />
+   <Button layoutX="247.0" layoutY="239.0" mnemonicParsing="false" onAction="#richiediIngresso" text="Richiedi ingresso" />
+   <Label fx:id="mostraErrore" layoutX="286.0" layoutY="295.0" textFill="RED" />
+   <Button layoutX="254.0" layoutY="291.0" mnemonicParsing="false" onAction="#tornaIndietro" text="Torna Indietro" />
 </AnchorPane>

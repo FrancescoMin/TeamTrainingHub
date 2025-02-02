@@ -1,22 +1,17 @@
-package viste.first;
+package viste.first.basi;
 
 import engineering.eccezioni.EccezioneGenerica;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import viste.first.utils.CambioScena;
 
 import static viste.first.utils.FxmlFileName.PAGINA_PRINCIPALE;
 
-public class BaseVisteCtrlGrafico {
+public class BaseHomePageCtrlGrafico {
 
     @FXML
     private  Button tornaAlLogin;
-
-
-
 
     public void TornaAlLogin() {
         System.out.println("Torno al login");

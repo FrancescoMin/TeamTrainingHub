@@ -2,21 +2,16 @@ package viste.first;
 
 import ctrlApplicativo.VisualizzaRichiesteCtrlApplicativo;
 import engineering.bean.UtenteBean;
-import engineering.eccezioni.EccezioneGenerica;
-import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
-import modelli.Utente;
-import viste.first.utils.CambioScena;
+import javafx.scene.layout.AnchorPane;
+import viste.first.basi.BaseTabelleCtrlGrafico;
 import viste.first.utils.GestoreTabella;
-
-import java.net.URL;
-import java.util.*;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
 
 public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActionHandler {
+
 
     @FXML
     private TableColumn<UtenteBean, String> giocatoreColonna;
@@ -36,23 +31,14 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
 
     @FXML
     public void initialize() {
+        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_ALLENATORE;
         gestoreTabella = new GestoreTabella(this);  // 'this' refers to the controller
 
         // Populate the TableView with the list of users (UtenteBean)
         gestoreTabella.populateTable(tabellaRichieste);
     }
 
-    @FXML
-    protected void onBackClick(ActionEvent event) {
-        try {
-            Stage stage = (Stage) tabellaRichieste.getScene().getWindow();
-            CambioScena cambioScena = new CambioScena();
-            cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
 
-        } catch (EccezioneGenerica e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     @Override
     public void handleAccept(UtenteBean utenteBean) {

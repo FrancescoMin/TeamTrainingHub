@@ -19,7 +19,9 @@ module com.example.teamtraininghub {
     opens inizio to javafx.fxml;
     exports viste.first to javafx.graphics;
     opens viste.first to javafx.fxml;
-    opens engineering.bean to com.google.gson, javafx.base; // Aggiungi questa riga
+    opens engineering.bean to com.google.gson, javafx.base;
+    exports viste.first.basi to javafx.graphics;
+    opens viste.first.basi to javafx.fxml; // Aggiungi questa riga
 
 }
     

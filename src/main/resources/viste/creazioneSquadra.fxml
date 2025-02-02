@@ -5,14 +5,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.CreazioneSquadraCtrlGrafico">
-   <children>
-      <TextField fx:id="nomeSquadra" layoutX="217.0" layoutY="123.0" promptText="Squadra" />
-      <Button fx:id="creaSquadra" layoutX="266.0" layoutY="213.0" mnemonicParsing="false" onAction="#CreaSquadra" text="Crea" />
-      <Button onAction="#TornaIndietro" layoutX="266.0" layoutY="252.0" mnemonicParsing="false" text="Torna Indietro" />
-      <Label fx:id="messaggioErrore" layoutX="272.0" layoutY="277.0" textFill="RED" />
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="viste.first.CreazioneSquadraCtrlGrafico">
 
-   <fx:include source="baseViste.fxml"/>
 
+   <TextField fx:id="nomeSquadra" layoutX="217.0" layoutY="123.0" promptText="Squadra"/>
+   <Button fx:id="creaSquadra" layoutX="266.0" layoutY="213.0" mnemonicParsing="false" onAction="#CreaSquadra"
+           text="Crea"/>
+   <Button onAction="#TornaIndietro" layoutX="266.0" layoutY="252.0" mnemonicParsing="false" text="Torna Indietro"/>
+   <Label fx:id="messaggioErrore" layoutX="272.0" layoutY="277.0" textFill="RED"/>
 </AnchorPane>

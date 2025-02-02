@@ -8,7 +8,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import ctrlApplicativo.IscrivitiAllenamentoCtrlApplicativo;
+import viste.first.basi.BaseTabelleCtrlGrafico;
 import viste.first.utils.IscrizioneAllenamentiTabella;
+
+import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
 public class IscrivitiAllenamentoCtrlGrafico {
 
@@ -35,6 +38,9 @@ public class IscrivitiAllenamentoCtrlGrafico {
 
     @FXML
     public void initialize() {
+
+        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_GIOCATORE;
+
         // Inizializza le colonne della TableView
         colData.setCellValueFactory(new PropertyValueFactory<>("data"));
         colOrarioInizio.setCellValueFactory(new PropertyValueFactory<>("orarioInizio"));
@@ -51,12 +57,6 @@ public class IscrivitiAllenamentoCtrlGrafico {
         // Inizializza il controller applicativo
         controllerApplicativo = new IscrivitiAllenamentoCtrlApplicativo();
         iscrizioneAllenamentiTabella = new IscrizioneAllenamentiTabella(tableViewAllenamenti, controllerApplicativo.getCollezioneAllenamenti());
-    }
-
-    // Metodo per gestire il click sul pulsante "Back"
-    @FXML
-    public void onBackClick() {
-        // Logica per tornare alla vista precedente
     }
 
     private class ButtonCell extends TableCell<AllenamentoBean, Button> {

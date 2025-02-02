@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,15 +11,15 @@
     <top>
         <!-- Barra del titolo -->
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
-            <Button layoutX="14.0" layoutY="19.0" text="Back" AnchorPane.leftAnchor="15.0" />
-            <Label alignment="CENTER" layoutX="570.0" layoutY="40.0" text="ISCRIZIONE ALLENAMENTI" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="10.0" />
+            <fx:include source="baseTabelle.fxml" />
+         <Label layoutX="478.0" layoutY="42.0" text="di iscrizione agli allenamenti della squadra" AnchorPane.topAnchor="44.0" />
         </AnchorPane>
     </top>
 
     <center>
         <!-- Tabella allenamenti -->
         <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <TableView fx:id="tableViewAllenamenti" fixedCellSize="0.0" layoutX="151.0" layoutY="52.0" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+            <TableView fx:id="tableViewAllenamenti" fixedCellSize="0.0" layoutX="151.0" layoutY="52.0" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
                 <columns>
                     <TableColumn fx:id="colData" prefWidth="150.0" text="Data" />
                     <TableColumn fx:id="colOrarioInizio" prefWidth="150.0" text="Orario Inizio" />
@@ -34,11 +33,5 @@
             </TableView>
         </AnchorPane>
     </center>
-
-    <bottom>
-        <AnchorPane>
-            <!-- Puoi aggiungere ulteriori controlli qui se necessario -->
-        </AnchorPane>
-    </bottom>
 
 </BorderPane>

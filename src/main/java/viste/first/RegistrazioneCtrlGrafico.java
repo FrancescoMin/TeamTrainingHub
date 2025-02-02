@@ -40,7 +40,6 @@ public class RegistrazioneCtrlGrafico implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         registratiButton.setOnAction(event -> handleRegistratiButton());
-        tornaLoginButton.setOnAction(event -> handleTornaLoginButton());
     }
 
     public void initialize()
@@ -92,18 +91,4 @@ public class RegistrazioneCtrlGrafico implements Initializable {
         }
     }
 
-    private void handleTornaLoginButton() {
-        // Logica per tornare alla schermata di login
-        System.out.println("Torno alla schermata di login");
-
-        //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
-        try {
-            Stage stage = (Stage) tornaLoginButton.getScene().getWindow();
-            CambioScena cambioScena = new CambioScena();
-            cambioScena.cambioScena(stage, PAGINA_PRINCIPALE);
-
-        } catch (EccezioneGenerica eccezioneGenerica) {
-            System.out.println(eccezioneGenerica.getMessage());
-        }
-    }
 }

@@ -38,16 +38,6 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
         }
     }
 
-    /*
-
-    //creazione dell'allenamento consulta in:
-    1) ottieni i parametri dell'allenamento dal controller applicativo
-    2) recupero gli allenamenti della squadra dal file JSON
-    3) creo una lista di classi a partire dal file JSON
-    4) controllo che non ci siano allenamenti sovrapposti
-    */
-
-
     public void creaAllenamentoPerSquadra(Allenamento allenamento, Squadra squadra) {
 
         //processo di ottenimento degli allenamenti relativi a una squadra
