@@ -7,28 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Sistemazione Consulta Allenamenti">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/viste/baseHomePage.fxml" afterDir="false" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Sistemazione Viste e controller grafici">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/BaseVisteCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/basi/BaseHomePageCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/ConsultaAllenamentiCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/ConsultaAllenamentiCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/baseViste.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/consultaAllenamenti.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/consultaAllenamenti.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneSquadra.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneSquadra.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/entraInSquadra.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/entraInSquadra.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/gestioneSquadra.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/gestioneSquadra.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/iscrivitiAllenamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/iscrivitiAllenamento.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/paginaLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/paginaLogin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/visualizzazioneRichieste.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/visualizzazioneRichieste.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOMySQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueryAllenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueryAllenamento.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +26,7 @@
         <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -248,7 +234,7 @@
       <workItem from="1738332646947" duration="8051000" />
       <workItem from="1738413851468" duration="15796000" />
       <workItem from="1738485749767" duration="12542000" />
-      <workItem from="1738507452223" duration="8015000" />
+      <workItem from="1738507452223" duration="9998000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -426,7 +412,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738508787632</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Sistemazione Viste e controller grafici">
+      <option name="closed" value="true" />
+      <created>1738516077520</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1738516077520</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -466,6 +460,7 @@
     <MESSAGE value="correzioni varie e codesmell" />
     <MESSAGE value="Implementazione caso d'uso Iscrizione allenamento" />
     <MESSAGE value="Sistemazione Consulta Allenamenti" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sistemazione Consulta Allenamenti" />
+    <MESSAGE value="Sistemazione Viste e controller grafici" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sistemazione Viste e controller grafici" />
   </component>
 </project>

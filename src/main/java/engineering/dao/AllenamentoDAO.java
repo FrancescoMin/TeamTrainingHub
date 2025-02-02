@@ -1,5 +1,6 @@
 package engineering.dao;
 
+import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import modelli.Allenamento;
 import modelli.Utente;
 
@@ -7,9 +8,10 @@ import java.util.List;
 
 public interface AllenamentoDAO {
 
-    public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente);
+    public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido;
 
-    public List<Allenamento> getAllenamentiPerUtente(Utente utente);
-    public List<Allenamento> getAllenamentiPerEmail(String email);
+    public List<Allenamento> getAllenamentiPerUtente(Utente utente) throws EccezioneAllenamentoInvalido;
+    
+    public List<Allenamento> getAllenamentiPerEmail(String email) throws EccezioneAllenamentoInvalido;
 
 }

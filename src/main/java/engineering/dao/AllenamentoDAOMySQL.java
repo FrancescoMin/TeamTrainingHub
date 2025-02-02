@@ -1,7 +1,7 @@
 package engineering.dao;
 
 import engineering.altro.Connessione;
-import engineering.eccezioni.EccezioneGenerica;
+import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.query.QueryAllenamento;
 import modelli.Allenamento;
 import modelli.Utente;
@@ -17,7 +17,31 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
     private static final String desc = "descrizione";
 
-    public List<Allenamento> recuperaAllenamentiPerEmail(String email) {
+    public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido{
+
+        Connection conn;
+        int righeModificate = 0;
+
+        //apriamo la connessione con il DB
+
+        conn = Connessione.getInstance().getDBConnection();
+        if (conn != null) {
+            try {
+                //invocazione del metodo per la ricerca dell'utente in funzione della email
+                righeModificate = QueryAllenamento.createAllenamento(conn, allenamento, utente.getEmail());
+
+                //controllo di aver modificato 1 riga nel DB prima di completare il codice
+                if (righeModificate == 0) {
+                    throw new EccezioneAllenamentoInvalido("Errore nella creazione dell'allenamento per l'utente " + utente.getEmail());
+                }
+            } catch (EccezioneAllenamentoInvalido e) {
+                throw new EccezioneAllenamentoInvalido(e.getMessage());
+            }
+        }
+
+    }
+
+    public List<Allenamento> recuperaAllenamentiPerEmail(String email) throws EccezioneAllenamentoInvalido{
 
         //apriamo la connessione con il DB
         Connection conn=null;
@@ -34,51 +58,21 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
                 return allenamenti;
 
             } catch (Exception e) {
-                throw new EccezioneGenerica(e.getMessage());
+                throw new EccezioneAllenamentoInvalido(e.getMessage());
             }
         }
-        throw new EccezioneGenerica("Connessione con il DB non riuscita");
+        throw new EccezioneAllenamentoInvalido("Connessione con il DB per il recupero degli allenamenti non riuscita");
     }
 
-    public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) {
-
-        Connection conn;
-        int righeModificate = 0;
-
-        //apriamo la connessione con il DB
-
-        conn = Connessione.getInstance().getDBConnection();
-        if (conn != null) {
-            try {
-                //invocazione del metodo per la ricerca dell'utente in funzione della email
-                righeModificate = QueryAllenamento.createAllenamento(conn, allenamento, utente.getEmail());
-
-                //controllo di aver modificato 1 riga nel DB prima di completare il codice
-                if (righeModificate == 0) {
-                    throw new EccezioneGenerica("Errore nella creazione della squadra");
-                }
-            } catch (EccezioneGenerica e) {
-                throw new EccezioneGenerica(e.getMessage());
-            }
-        }
-
-    }
-
-    public List<Allenamento> getAllenamentiPerEmail(String email) {
-        UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
-        return getAllenamentiPerUtente(utenteDAOJSON.recuperaUtenteDaEmail(email));
-    }
-
-    public List<Allenamento> getAllenamentiPerUtente(Utente utente) {
-        ResultSet rsAll=null;
-        Connection conn;
+    public List<Allenamento> getAllenamentiPerEmail(String email) throws EccezioneAllenamentoInvalido {
+        Connection conn=null;
         List<Allenamento> allenamenti = new ArrayList<>();
         //apriamo la connessione con il DB
         conn = Connessione.getInstance().getDBConnection();
         if (conn != null) {
-            try {
+            try(ResultSet rsAll = RecuperaAllenamentiRSPerEmail(conn, email))
+            {
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
-                rsAll = RecuperaAllenamentiRSPerEmail(conn, utente.getEmail());
                 while (rsAll.next()){
                     System.out.println("data allenamento: " + rsAll.getString("data") + "   durata: " + rsAll.getInt("durata") + "  descrizione: " + rsAll.getString(desc));
 
@@ -88,17 +82,17 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
                 return allenamenti;
 
             } catch (Exception e) {
-                throw new EccezioneGenerica(e.getMessage());
-            }
-            finally {
-                try {
-                    if(rsAll!=null) {rsAll.close();}
-                }
-                catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
+                throw new EccezioneAllenamentoInvalido(e.getMessage());
             }
         }
-        throw new EccezioneGenerica("Connessione con il DB non riuscita");
+        throw new EccezioneAllenamentoInvalido("Connessione con il DB non riuscita nel recupero degli allenamenti per l'utente " + email);
+    }
+
+    public List<Allenamento> getAllenamentiPerUtente(Utente utente) throws EccezioneAllenamentoInvalido {
+        try{
+            return recuperaAllenamentiPerEmail(utente.getEmail());
+        } catch (EccezioneAllenamentoInvalido e) {
+            throw new EccezioneAllenamentoInvalido(e.getMessage());
+        }
     }
 }

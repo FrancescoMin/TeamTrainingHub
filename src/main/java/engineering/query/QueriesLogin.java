@@ -1,5 +1,6 @@
 package engineering.query;
 
+import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.eccezioni.EccezioneGenerica;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
@@ -74,7 +75,7 @@ public class QueriesLogin {
     }
 
 
-    public static ResultSet RecuperaAllenamentiRSPerEmail(Connection connection, String email) throws EccezioneGenerica {
+    public static ResultSet RecuperaAllenamentiRSPerEmail(Connection connection, String email) throws EccezioneAllenamentoInvalido {
         PreparedStatement statement = null;
 
         try {
@@ -85,7 +86,7 @@ public class QueriesLogin {
 
             return statement.executeQuery();
 
-        } catch (SQLException e) {throw new EccezioneGenerica("Errore di recupera allenamenti per utente");}
+        } catch (SQLException e) {throw new EccezioneAllenamentoInvalido("Errore di recupera allenamenti per utente");}
     }
 
     public static int modificaSquadraPerEmail(Connection connection, String squadra, String email) throws EccezioneSquadraInvalida {

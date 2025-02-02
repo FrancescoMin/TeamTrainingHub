@@ -1,6 +1,7 @@
 package engineering.query;
 
 import engineering.altro.Connessione;
+import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.eccezioni.EccezioneGenerica;
 import modelli.Allenamento;
 
@@ -16,7 +17,7 @@ public class QueryAllenamento {
 
     public static String creaAllenamentoQuery = "INSERT INTO allenamento (data, descrizione , utenti_email,orarioInizio , orarioFine ) VALUES (?, ?, ? ,?, ?)";
 
-    public static int createAllenamento(Connection connection, Allenamento allenamento , String utenti_email) throws EccezioneGenerica {
+    public static int createAllenamento(Connection connection, Allenamento allenamento , String utenti_email) throws EccezioneAllenamentoInvalido {
         try {
 
             //preparazione dello statement
@@ -31,8 +32,7 @@ public class QueryAllenamento {
 
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            throw new EccezioneGenerica(e.getMessage());
+            throw new EccezioneAllenamentoInvalido("Errore nella creazione dell'allenamento nel DB");
         }
     }
 
