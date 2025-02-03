@@ -14,21 +14,8 @@ public class RegistrazioneCtrlApplicativo {
     }
 
     public void inserisciUtente(RegistrazioneBean registrazioneBean) throws EccezioneUtenteInvalido {
-        String username = registrazioneBean.getUsername();
-        String email = registrazioneBean.getEmail();
-        String password = registrazioneBean.getPassword();
-        boolean isAllenatore = registrazioneBean.getAllenatore();
+        Registrazione registrazione = getRegistrazione(registrazioneBean);
 
-        // Verifica che tutti i campi siano compilati
-        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            throw new EccezioneUtenteInvalido("Tutti i campi sono obbligatori!");
-        }
-
-        // Creazione del modello registrazione
-        Registrazione registrazione = new Registrazione(username, email, password, isAllenatore);
-
-        //creo il DAO per l'inserimento dell'utente
-        UtenteDAO UtenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
 
         //controllo che l'utente esisti già nel singleton
         Singleton istanza = Singleton.getInstance();
@@ -42,6 +29,8 @@ public class RegistrazioneCtrlApplicativo {
         //se non siamo nella modalità demo, inserisco l'utente nella persistenza
         if(!istanza.getDemo()) {
             try {
+                //creo il DAO per l'inserimento dell'utente
+                UtenteDAO UtenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
 
                 //compio l'inserimento dell'utente nella persistenza
                 UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
@@ -50,5 +39,20 @@ public class RegistrazioneCtrlApplicativo {
                 throw new EccezioneUtenteInvalido(e.getMessage());
             }
         }
+    }
+
+    private Registrazione getRegistrazione(RegistrazioneBean registrazioneBean) {
+        String username = registrazioneBean.getUsername();
+        String email = registrazioneBean.getEmail();
+        String password = registrazioneBean.getPassword();
+        boolean isAllenatore = registrazioneBean.getAllenatore();
+
+        // Verifica che tutti i campi siano compilati
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            throw new EccezioneUtenteInvalido("Tutti i campi sono obbligatori!");
+        }
+
+        // Creazione del modello registrazione
+        return new Registrazione(username, email, password, isAllenatore);
     }
 }

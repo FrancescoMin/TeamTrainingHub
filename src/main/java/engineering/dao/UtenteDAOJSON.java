@@ -1,6 +1,7 @@
 package engineering.dao;
 
 import com.google.gson.*;
+import engineering.eccezioni.EccezionePasswordErrata;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import modelli.*;
@@ -26,14 +27,6 @@ public class UtenteDAOJSON implements UtenteDAO {
     public static String allenatore = "allenatore";
 
 
-    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
-        try {
-            return esisteUtenteDaEmail(login.getEmail());
-        }
-        catch (EccezioneUtenteInvalido e) {
-            throw new EccezioneUtenteInvalido(e.getMessage());
-        }
-    }
     public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido {
         try {
             //creazione del path
@@ -138,7 +131,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             throw new EccezioneUtenteInvalido(e.getMessage());
         }
     }
-    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
+    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida, EccezionePasswordErrata {
         try {
             //Serializziamo l'oggetto in JSON
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -163,7 +156,7 @@ public class UtenteDAOJSON implements UtenteDAO {
                 return recuperaUtenteDaEmail(login.getEmail());
 
             } else {
-                throw new EccezioneUtenteInvalido("Password errata: lancio eccezione di password errata");
+                throw new EccezionePasswordErrata("Credenziali errate: assicurarvi di aver inserito correttamente username password");
             }
         }
         catch (EccezioneUtenteInvalido e) {
@@ -175,7 +168,9 @@ public class UtenteDAOJSON implements UtenteDAO {
         catch(EccezioneSquadraInvalida e) {
             throw new EccezioneSquadraInvalida(e.getMessage());
         }
-
+        catch (EccezionePasswordErrata e) {
+            throw new EccezionePasswordErrata(e.getMessage());
+        }
     }
     public Utente recuperaUtenteDaEmail(String email) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida {
         try {

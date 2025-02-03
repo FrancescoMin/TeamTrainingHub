@@ -2,6 +2,7 @@ package engineering.dao;
 
 
 import engineering.altro.Connessione;
+import engineering.eccezioni.EccezionePasswordErrata;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import engineering.query.QueryRegistrazione;
@@ -104,9 +105,15 @@ public class UtenteDAOMySQL implements UtenteDAO {
         }
         throw new EccezioneUtenteInvalido("Connessione con il DB non riuscita");
     }
-    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida {
+    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida, EccezionePasswordErrata {
         try {
-            return recuperaUtenteDaEmail(login.getEmail());
+            Utente utente = recuperaUtenteDaEmail(login.getEmail());
+            if(utente.getPassword().equals(login.getPassword())) {
+                return utente;
+            }
+            else {
+                throw new EccezionePasswordErrata("Credenziali errate, assicurati di aver inserito correttamente email e password");
+            }
         }
         catch (EccezioneUtenteInvalido e) {
             throw new EccezioneUtenteInvalido(e.getMessage());
@@ -114,18 +121,11 @@ public class UtenteDAOMySQL implements UtenteDAO {
         catch(EccezioneSquadraInvalida e) {
             throw new EccezioneSquadraInvalida(e.getMessage());
         }
+        catch (EccezionePasswordErrata e) {
+            throw new EccezionePasswordErrata(e.getMessage());
+        }
     }
 
-    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
-        try
-        {
-            return esisteUtenteDaEmail(login.getEmail());
-        }
-        catch (EccezioneUtenteInvalido e)
-        {
-            throw new EccezioneUtenteInvalido(e.getMessage());
-        }
-    }
     public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido{
         try{
             return recuperaUtenteDaEmail(email) != null;

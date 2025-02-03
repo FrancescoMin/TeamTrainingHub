@@ -30,7 +30,7 @@ public class EntraInSquadraCtrlApplicativo {
         }
 
         //se l'utente è in modalità demo e non ho trovato nulla nel singleton, restituisco false
-        if (istanza.getDemo()){
+        else if (istanza.getDemo()){
             return false;
         }
 
@@ -82,7 +82,6 @@ public class EntraInSquadraCtrlApplicativo {
         catch (EccezioneSquadraInvalida e) {
             throw new EccezioneSquadraInvalida(e.getMessage());
         }
-
     }
 }
 

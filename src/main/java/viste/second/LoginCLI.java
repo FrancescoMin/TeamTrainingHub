@@ -5,6 +5,7 @@ import engineering.bean.LoginBean;
 import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezionePasswordErrata;
+import modelli.Login;
 
 public class LoginCLI extends GenericaCLI {
 
@@ -15,12 +16,8 @@ public class LoginCLI extends GenericaCLI {
     @Override
     public void start() {
 
-        boolean continua = true;
-
         stampaPagina();
 
-
-        LoginCtrlApplicativo loginCtrl = new LoginCtrlApplicativo();
 
         while (continua) {
 
@@ -43,37 +40,45 @@ public class LoginCLI extends GenericaCLI {
 
                 LoginBean loginBean = new LoginBean(email, password);
 
-                try {
-                    // Verifica credenziali
-                    if (loginCtrl.verificaCredenziali(loginBean)) {
-                        System.out.println("Login effettuato con successo!");
-
-                        // Recupero utente
-                        UtenteBean utenteBean = loginCtrl.recuperoUtente(loginBean);
-                        if (utenteBean.getAllenatore()) {
-                            prossimaPagina = HomepageAllenatoreCLI.class.getName();
-                        } else {
-                            prossimaPagina = HomepageGiocatoreCLI.class.getName();
-                        }
-
-                        // Interrompi il loop di login
-                        continua = false;
-                    } else {
-                        System.out.println("Credenziali errate. Riprova.");
-                    }
-
-                } catch (EccezioneCambioScena e) {
-                    System.err.println(e.getMessage());
-                }
-                catch (EccezionePasswordErrata e) {
-                    System.err.println("Username o password errate, riprovare.");
-                }
+                boh(loginBean);
             }
             catch (Exception e) {
                 System.err.println("Errore durante il login: " + e.getMessage());
             }
         }
-        spostamento(prossimaPagina);
+        spostamento(this.prossimaPagina);
+    }
+
+    private void boh(LoginBean loginBean) {
+        try {
+
+            LoginCtrlApplicativo loginCtrl = new LoginCtrlApplicativo();
+
+            // Verifica credenziali
+            if (loginCtrl.verificaCredenziali(loginBean)) {
+                System.out.println("Login effettuato con successo!");
+
+                // Recupero utente
+                UtenteBean utenteBean = loginCtrl.recuperoUtente(loginBean);
+                assegnazionePagina(utenteBean);
+
+                // Interrompi il loop di login
+                this.continua = false;
+            } else {
+                System.out.println("Credenziali errate.");
+            }
+
+        } catch (EccezioneCambioScena | EccezionePasswordErrata e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    private void assegnazionePagina(UtenteBean utenteBean) {
+        if (utenteBean.getAllenatore()) {
+            this.prossimaPagina = HomepageAllenatoreCLI.class.getName();
+        } else {
+            this.prossimaPagina = HomepageGiocatoreCLI.class.getName();
+        }
     }
 }
 

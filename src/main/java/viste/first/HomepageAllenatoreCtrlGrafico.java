@@ -27,8 +27,9 @@ public class HomepageAllenatoreCtrlGrafico {
     @FXML
     private void VisualizzaRichiestePartecipazione(){
         System.out.println("Visualizza Richieste Partecipazione");
+        HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();
 
-        if(new HomepageAllenatoreCtrlApplicativo().esisteSquadra()) {
+        if(homepageAllenatoreCtrlApplicativo.esisteSquadra()) {
             //cambio scena alla pagina di visualizzazione delle richieste di partecipazione
             try {
                 Cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
@@ -68,15 +69,12 @@ public class HomepageAllenatoreCtrlGrafico {
         //controlliamo che l'allenatore abbia o meno una squadra chiedendolo al controllore applicativo
         HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();
 
-        if(homepageAllenatoreCtrlApplicativo.esisteSquadra()){
+        if (homepageAllenatoreCtrlApplicativo.esisteSquadra()) {
             //Se l'allenatore ha una squadra allora compiamo il cambio scena alla pagina di gestione della squadra
-            System.out.println("Gestione Squadra");
-
-            throw new EccezioneSquadraInvalida("Non implementato");
+            MostraErrore("Sei già in possesso di una squadra");
         }
         else {
             //Se l'allenatore non ha una squadra allora compiamo il cambio scena alla pagina di creazione della squadra
-            System.out.println("Creazione Squadra");
 
             //cambio scena alla prima vista dove compiamo la creazione della squadra
             try {
@@ -95,7 +93,7 @@ public class HomepageAllenatoreCtrlGrafico {
             cambioScena.cambioScena(stage, paginaDiCambioScena);
 
         } catch (EccezioneCambioScena e) {
-            MostraErrore(e.getMessage());
+            throw new EccezioneCambioScena(e.getMessage());
         }
     }
 

@@ -10,12 +10,6 @@ public class HomepageGiocatoreCtrlApplicativo {
         // Costruttore vuoto di default
     }
 
-    /**
-     * Recupera il messaggio di benvenuto per l'utente corrente.
-     *
-     * @return Messaggio di benvenuto con il nome utente.
-     * @throws  Se l'utente corrente non è disponibile.
-     */
     public String getMessaggioBenvenuto() throws EccezioneUtenteInvalido {
         // Recupera l'utente corrente dalla sessione
         Singleton istanza = Singleton.getInstance();

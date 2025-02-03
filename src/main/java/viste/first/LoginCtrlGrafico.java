@@ -98,11 +98,14 @@ public class LoginCtrlGrafico {
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_REGISTRAZIONE);
 
-        } catch (Exception e) {
+        }
+        catch (EccezioneCambioScena e) {
             erroreInserimento.setText("Errore di cambio scena");
-            erroreInserimento.setVisible(true);        }
+            erroreInserimento.setVisible(true);
+        }
     }
 
     public static class CreazioneAllenamentoControllerGrafico {
+        //costruttore vuoto di default
     }
 }

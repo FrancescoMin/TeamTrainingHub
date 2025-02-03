@@ -10,17 +10,10 @@ public class HomepageAllenatoreCtrlApplicativo
         //costruttore vuoto di default del controllore applicativo
     }
 
-    public Boolean esisteSquadra(){
+    public boolean esisteSquadra(){
         Singleton istanza= Singleton.getInstance();
         Utente utente= istanza.getUtenteCorrente();
 
-        if (utente.getSquadra().getNome().isEmpty()) {
-            System.out.println("L'allenatore non ha una squadra");
-            return false;
-        }
-        else {
-            System.out.println("L'allenatore ha una squadra");
-            return true;
-        }
+        return !utente.getSquadra().getNome().isEmpty();
     }
 }

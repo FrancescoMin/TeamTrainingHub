@@ -2,6 +2,7 @@ package viste.second;
 
 import ctrlApplicativo.RegistrazioneCtrlApplicativo;
 import engineering.bean.RegistrazioneBean;
+import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 
 
@@ -21,7 +22,6 @@ public class RegistrazioneCLI extends GenericaCLI {
 
         stampaPagina();
 
-        boolean continua = true;
         String scelta;
         RegistrazioneBean registrazioneBean = null;
 
@@ -34,7 +34,7 @@ public class RegistrazioneCLI extends GenericaCLI {
                 scelta = scanner.nextLine();
 
                 if(scelta.equals("1")) {
-                    spostamento(LoginCLI.class.getName());
+                    prossimaPagina = LoginCLI.class.getName();
                     break;
                 }
 
@@ -63,6 +63,13 @@ public class RegistrazioneCLI extends GenericaCLI {
                 RegistrazioneCtrlApplicativo registrazioneCtrlApplicativo = new RegistrazioneCtrlApplicativo();
                 registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);
 
+                if (registrazioneBean.getAllenatore()) {
+                    prossimaPagina = HomepageAllenatoreCLI.class.getName();
+                }
+                else {
+                    prossimaPagina = HomepageGiocatoreCLI.class.getName();
+                }
+
                 System.out.println("Registrazione effettuata con successo!");
                 continua = false; // Fine registrazione
 
@@ -70,16 +77,8 @@ public class RegistrazioneCLI extends GenericaCLI {
                 System.err.println("Errore durante la registrazione: " + e.getMessage());
                 System.out.println("Riprova la registrazione.");
                 System.out.println("Se hai un account e vuoi fare il login, premi 1. Altrimenti inserire un numero qualsiasi e riprova.");
-                scelta = scanner.nextLine();
-                if(scelta.equals("1")) {
-                    prossimaPagina = LoginCLI.class.getName();
-                    continua = false;
-                }
             }
         }
-        if (registrazioneBean.getAllenatore()) {
-            spostamento(HomepageAllenatoreCLI.class.getName());
-        }
-        spostamento(HomepageGiocatoreCLI.class.getName());
+        spostamento(prossimaPagina);
     }
 }

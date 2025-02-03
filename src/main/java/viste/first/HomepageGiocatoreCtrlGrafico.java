@@ -37,7 +37,7 @@ public class HomepageGiocatoreCtrlGrafico {
             cambio(PAGINA_ENTRAINSQUADRA);
         }
         catch (EccezioneUtenteInvalido | EccezioneCambioScena e) {
-            mostra(e);
+            mostra(e.getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ public class HomepageGiocatoreCtrlGrafico {
             cambio(PAGINA_ISCRIZIONE_ALLENAMENTO);
         }
         catch (EccezioneCambioScena e) {
-            mostra(e);
+            mostra(e.getMessage());
         }
     }
 
@@ -59,16 +59,16 @@ public class HomepageGiocatoreCtrlGrafico {
                 cambio(PAGINA_CONSULTA_ALLENAMENTI);
 
             } catch (EccezioneCambioScena e) {
-                mostra(e);
+                mostra(e.getMessage());
             }
         }
         else {
-            mostra(new EccezioneUtenteInvalido("Non sei in una squadra, non puoi consultare gli allenamenti"));
+            mostra("Non sei in una squadra, non puoi consultare gli allenamenti");
         }
     }
 
-    public void mostra(Exception e){
-        mostraErrori.setText(e.getMessage());
+    public void mostra(String messaggio){
+        mostraErrori.setText(messaggio);
         mostraErrori.setVisible(true);
     }
 

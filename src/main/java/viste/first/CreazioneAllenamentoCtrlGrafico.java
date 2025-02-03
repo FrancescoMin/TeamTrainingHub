@@ -47,7 +47,7 @@ public class CreazioneAllenamentoCtrlGrafico {
     private Button creaAllenamento;
 
     public void initialize() {
-        System.out.println("Inizializzazione Temporanea della Pagina di Creazione Allenamento");
+        labelErrori.setVisible(false);
     }
 
     @FXML
@@ -65,7 +65,6 @@ public class CreazioneAllenamentoCtrlGrafico {
     @FXML
     public void CreaAllenamento() {
         try {
-            System.out.println("Creazione Allenamento");
             int giorno = Integer.parseInt(giornoAllenamento.getText());
             int mese = Integer.parseInt(meseAllenamento.getText());
             int anno = Integer.parseInt(annoAllenamento.getText());
@@ -102,9 +101,12 @@ public class CreazioneAllenamentoCtrlGrafico {
 
             cambiaScena();
 
-        } catch (EccezioneCambioScena | EccezioneUtenteInvalido e) {
-            System.out.println(e.getMessage());
+        } catch (EccezioneCambioScena | EccezioneAllenamentoInvalido e) {
             labelErrori.setText(e.getMessage());
+            labelErrori.setVisible(true);
+        }
+        catch (Exception e) {
+            labelErrori.setText("Errore con il format delle date");
             labelErrori.setVisible(true);
         }
     }

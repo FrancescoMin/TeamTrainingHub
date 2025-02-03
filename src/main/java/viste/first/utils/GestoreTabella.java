@@ -13,7 +13,8 @@ import java.util.List;
 
 public class GestoreTabella {
 
-    Singleton istanza = Singleton.getInstance();
+    private final Singleton istanza;
+    private final ButtonActionHandler buttonActionHandler;
 
     // Callback interface for handling button actions in the controller
     public interface ButtonActionHandler {
@@ -21,11 +22,10 @@ public class GestoreTabella {
         void handleRefuse(UtenteBean utenteBean);
     }
 
-    private ButtonActionHandler buttonActionHandler;
-
-    // Constructor to set the ButtonActionHandler
+    // Constructor to set the ButtonActionHandler and initialize Singleton
     public GestoreTabella(ButtonActionHandler buttonActionHandler) {
         this.buttonActionHandler = buttonActionHandler;
+        this.istanza = Singleton.getInstance(); // Initialize Singleton here
     }
 
     // Method to populate the TableView with a list of UtenteBean objects
@@ -71,7 +71,8 @@ public class GestoreTabella {
             private final Button acceptButton = new Button("Accept");
             private final Button refuseButton = new Button("Refuse");
 
-            {// Set button actions that delegate to the controller's methods via the callback
+            {
+                // Initialize button actions in the constructor of the cell
                 acceptButton.setOnAction(event -> {
                     UtenteBean utenteBean = getTableView().getItems().get(getIndex());
                     buttonActionHandler.handleAccept(utenteBean);

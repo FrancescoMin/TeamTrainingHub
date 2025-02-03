@@ -2,6 +2,8 @@ package viste.first;
 
 import ctrlApplicativo.RegistrazioneCtrlApplicativo;
 import engineering.bean.RegistrazioneBean;
+import engineering.eccezioni.EccezioneCambioScena;
+import engineering.eccezioni.EccezioneUtenteInvalido;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -79,15 +81,20 @@ public class RegistrazioneCtrlGrafico implements Initializable {
                     cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
                 }
 
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                registrazioneAvvenuta.setText(e.getMessage());
-                registrazioneAvvenuta.setVisible(true);
+            } catch (EccezioneUtenteInvalido e) {
+                mostra(e.getMessage());
+            }
+            catch (EccezioneCambioScena e) {
+                mostra("Errore di cambio scena, riprovare");
             }
         } else {
-            registrazioneAvvenuta.setText("Le password non coincidono!");
-            registrazioneAvvenuta.setVisible(true);
+            mostra("Le password non coincidono");
         }
+    }
+
+    private void mostra(String messaggio) {
+        erroreInserimento.setText(messaggio);
+        erroreInserimento.setVisible(true);
     }
 
 }

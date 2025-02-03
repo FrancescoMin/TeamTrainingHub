@@ -1,6 +1,8 @@
 package viste.first;
 
 import ctrlApplicativo.CreazioneSquadraCtrlApplicativo;
+import engineering.eccezioni.EccezioneCambioScena;
+import engineering.eccezioni.EccezioneSquadraInvalida;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,7 +32,7 @@ public class CreazioneSquadraCtrlGrafico {
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
 
-        } catch (Exception e) {
+        } catch (EccezioneCambioScena e) {
             messaggioErrore.setText("Errore nel cambio scena");
             messaggioErrore.setVisible(true);
 
@@ -43,34 +45,37 @@ public class CreazioneSquadraCtrlGrafico {
 
     @FXML
     public void CreaSquadra(ActionEvent actionEvent) {
-        if (nomeSquadra.getText().isEmpty()) {
-            messaggioErrore.setText("There are empty fields!");
-            messaggioErrore.setVisible(true);
+        try {
+            if (nomeSquadra.getText().isEmpty()) {
+                messaggioErrore.setText("There are empty fields!");
+                messaggioErrore.setVisible(true);
 
-        }
-        else {
-            System.out.println("Nome squadra: " + nomeSquadra.getText());
-            //implementazione della logica per la creazione della squadra
+            } else {
+                System.out.println("Nome squadra: " + nomeSquadra.getText());
+                //implementazione della logica per la creazione della squadra
 
-            //inizializziamo il controller applicativo
-            CreazioneSquadraCtrlApplicativo creazioneSquadraCtrlApplicativo = new CreazioneSquadraCtrlApplicativo();
+                //inizializziamo il controller applicativo
+                CreazioneSquadraCtrlApplicativo creazioneSquadraCtrlApplicativo = new CreazioneSquadraCtrlApplicativo();
 
-            //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean
-            creazioneSquadraCtrlApplicativo.creazioneSquadra(nomeSquadra.getText());
+                //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean
+                creazioneSquadraCtrlApplicativo.creazioneSquadra(nomeSquadra.getText());
 
-            //finita la logica cambio la scena
-            //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
-            try {
+                //finita la logica cambio la scena
+
                 Stage stage = (Stage) nomeSquadra.getScene().getWindow();
                 CambioScena cambioScena = new CambioScena();
                 cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
-
-            } catch (Exception e) {
-                messaggioErrore.setText("Errore nel cambio scena");
-                messaggioErrore.setVisible(true);
             }
+            //implementazione della logica per il controllo della corretta formattazione del nome della squadra
         }
-        //implementazione della logica per il controllo della corretta formattazione del nome della squadra
+        catch (EccezioneSquadraInvalida e) {
+            messaggioErrore.setText(e.getMessage());
+            messaggioErrore.setVisible(true);
+        }
+        catch (EccezioneCambioScena e) {
+            messaggioErrore.setText("Errore nel cambio scena");
+            messaggioErrore.setVisible(true);
+        }
     }
 
 
