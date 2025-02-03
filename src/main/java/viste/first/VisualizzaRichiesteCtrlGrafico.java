@@ -27,7 +27,7 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
     private Label mostraErrori;
 
     @FXML
-    protected void Ricarica() {
+    protected void ricarica() {
         gestoreTabella.refreshTable(tabellaRichieste);
     }
 
@@ -79,7 +79,7 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-        Ricarica();
+        ricarica();
     }
 
 }

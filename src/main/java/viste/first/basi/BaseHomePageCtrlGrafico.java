@@ -12,7 +12,7 @@ public class BaseHomePageCtrlGrafico {
     @FXML
     private  Button tornaAlLogin;
 
-    public void TornaAlLogin() {
+    public void tornaAlLogin() {
         System.out.println("Torno al login");
         try {
             Stage stage = (Stage) tornaAlLogin.getScene().getWindow();

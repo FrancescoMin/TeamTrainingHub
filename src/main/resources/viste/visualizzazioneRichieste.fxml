@@ -13,7 +13,7 @@
     <top>
         <!-- Barra del titolo TopPage -->
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
-         <Button layoutX="930.0" layoutY="18.0" mnemonicParsing="false" onAction="#Ricarica" text="Ricarica" AnchorPane.topAnchor="40.0" />
+         <Button layoutX="930.0" layoutY="18.0" mnemonicParsing="false" onAction="#ricarica" text="Ricarica" AnchorPane.topAnchor="40.0" />
             <fx:include source="baseTabelle.fxml" />
          <Label layoutX="500.0" layoutY="44.0" text="di visualizzazione di richieste di ingresso alla squadra" textFill="WHITE">
             <font>

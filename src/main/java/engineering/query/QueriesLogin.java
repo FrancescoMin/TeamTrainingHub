@@ -17,10 +17,10 @@ public class QueriesLogin {
 
         try {
             //creazione della query parametrica
-            String SELECT_USER_BY_EMAIL_QUERY= "SELECT * FROM utenti where email = ? ";
+            String string= "SELECT * FROM utenti where email = ? ";
 
             //preparazione dello statement
-            statement = connection.prepareStatement(SELECT_USER_BY_EMAIL_QUERY);
+            statement = connection.prepareStatement(string);
 
             //setting dei parametri della query
             statement.setString(1, email);

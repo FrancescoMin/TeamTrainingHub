@@ -41,7 +41,7 @@ public class HomepageGiocatoreCtrlGrafico {
     }
 
     @FXML
-    protected void IscrizioneAllenamento(){
+    protected void iscrizioneAllenamento(){
         try {
             cambio(PAGINA_ISCRIZIONE_ALLENAMENTO);
         }

@@ -43,7 +43,7 @@ public class EntraInSquadraCtrlGrafico{
 
                     //torno al login
                     BaseHomePageCtrlGrafico baseHomePageCtrlGrafico = new BaseHomePageCtrlGrafico();
-                    baseHomePageCtrlGrafico.TornaAlLogin();
+                    baseHomePageCtrlGrafico.tornaAlLogin();
                 }
                 else {
                     throw new EccezioneSquadraInvalida("Squadra inserita non esiste");

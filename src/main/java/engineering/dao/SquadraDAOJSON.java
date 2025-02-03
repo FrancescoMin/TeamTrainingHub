@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static engineering.dao.UtenteDAOJSON.json;
+import static engineering.dao.UtenteDAOJSON.JSON;
 
 public class SquadraDAOJSON implements SquadraDAO {
 
@@ -42,7 +42,7 @@ public class SquadraDAOJSON implements SquadraDAO {
 
         try {
             //Creazione del path
-            String filePath = PATH_SQUADRE + squadra.getNome() + json;
+            String filePath = PATH_SQUADRE + squadra.getNome() + JSON;
 
             //chiamo la funzione per la corretta creazione dell'oggetto json
             JsonObject jsonObject = setUpSquadra(squadra);
@@ -122,7 +122,7 @@ public class SquadraDAOJSON implements SquadraDAO {
     public void aggiornaSquadra(Squadra squadra) throws EccezioneSquadraInvalida {
         try {
             //Creazione del path
-            String filePath = PATH_SQUADRE + squadra.getNome() + json;
+            String filePath = PATH_SQUADRE + squadra.getNome() + JSON;
 
             //chiamo la funzione per la corretta creazione dell'oggetto json
             JsonObject jsonObject = setUpSquadra(squadra);
@@ -162,7 +162,7 @@ public class SquadraDAOJSON implements SquadraDAO {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             //creazione del path
-            String filePath = PATH_SQUADRE + nomeSquadra + json;
+            String filePath = PATH_SQUADRE + nomeSquadra + JSON;
 
             System.out.println("SquadraDAOJSON: getSquadraDaNome: filePath: " + filePath);
 
@@ -226,7 +226,7 @@ public class SquadraDAOJSON implements SquadraDAO {
     public boolean verificaEsistenzaSquadra(String nomeSquadra) {
 
         //Creazione del path
-        String filePath = PATH_SQUADRE + nomeSquadra + json;
+        String filePath = PATH_SQUADRE + nomeSquadra + JSON;
 
         try {
             //controllo che il file sia già esistente

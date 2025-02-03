@@ -11,9 +11,9 @@ import org.junit.Test;
 
 public class TestPerSquadra {
 
-    private final String USERNAME = "testUser";
-    private final String EMAIL = "testUser@gmail.com";
-    private final String SQUADRA = "squadraTest";
+    private final String testUser = "testUser";
+    private final String email = "testUser@gmail.com";
+    private final String squadraTest = "squadraTest";
 
     /**
      * Test che verifica la corretta creazione di una nuova squadra
@@ -48,7 +48,7 @@ public class TestPerSquadra {
     public void testGetSquadraDaNomeConSquadraEsistente() {
         int res = -1;
         Allenatore allenatore = new Allenatore(generateRandomUsername(), generateRandomEmail(), generateRandomEmail());
-        Squadra squadra = new Squadra(SQUADRA, allenatore.getEmail());
+        Squadra squadra = new Squadra(squadraTest, allenatore.getEmail());
 
         UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
         utenteDAOJSON.inserisciUtente(allenatore);
@@ -60,7 +60,7 @@ public class TestPerSquadra {
             e.fillInStackTrace(); // Ignoro
         }
         try {
-            if (squadraDAOJSON.getSquadraDaNome(SQUADRA) != null) {
+            if (squadraDAOJSON.getSquadraDaNome(squadraTest) != null) {
                 res = 1;
             }
         } catch (Exception e) {
@@ -75,7 +75,7 @@ public class TestPerSquadra {
 
     Allenatore allenatore = new Allenatore(generateRandomUsername(), generateRandomEmail(), generateRandomEmail());
     Squadra squadra = new Squadra(generateRandomTeam(), allenatore.getEmail());
-    Giocatore giocatore = new Giocatore(USERNAME, EMAIL, EMAIL);
+    Giocatore giocatore = new Giocatore(testUser, email, email);
 
     UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
     SquadraDAOJSON squadraDAOJSON = new SquadraDAOJSON();
@@ -108,7 +108,7 @@ public class TestPerSquadra {
     }
 
     private String generateRandomUsername() {
-        return USERNAME + System.currentTimeMillis();
+        return testUser + System.currentTimeMillis();
     }
 
     private String generateRandomEmail() {
@@ -116,7 +116,7 @@ public class TestPerSquadra {
     }
 
     private String generateRandomTeam() {
-        return SQUADRA + System.currentTimeMillis();
+        return squadraTest + System.currentTimeMillis();
     }
 
 }

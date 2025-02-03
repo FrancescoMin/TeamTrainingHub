@@ -42,7 +42,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
         //Creazione del path
         String path = "src/main/resources/persistenza/allenamenti/";
 
-        String filePath = path + allenamento.getData()+"-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine() + json;
+        String filePath = path + allenamento.getData()+"-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine() + JSON;
 
         try {
             //controllo che il file sia già esistente
@@ -93,7 +93,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
 
                 String path = jsonArray.get(i).getAsString();
 
-                String filePath = "src/main/resources/persistenza/allenamenti/" + path + json;
+                String filePath = "src/main/resources/persistenza/allenamenti/" + path + JSON;
 
                 System.out.println(filePath);
 
@@ -121,14 +121,14 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             //creazione del path
-            String filePath = pathUtenti + email + json;
+            String filePath = PATH_UTENTI + email + JSON;
             //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
             //creo l'oggetto JSON corrispondete all'utente con l'email passata
             JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
 
-            return recuperaAllenamentiPerJsonArray(jsonObject.get(trainings).getAsJsonArray());
+            return recuperaAllenamentiPerJsonArray(jsonObject.get(ALLENAMENTI).getAsJsonArray());
 
         } catch (IOException e) {
             throw new EccezioneAllenamentoInvalido("Allenamenti non esistenti");

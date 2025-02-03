@@ -15,7 +15,7 @@ public class LoginCtrlApplicativo {
         //costruttore vuoto di default
     }
 
-    public Boolean verificaCredenziali(LoginBean loginbean) {
+    public boolean verificaCredenziali(LoginBean loginbean) {
         try {
 
             //controllo delle credenziali

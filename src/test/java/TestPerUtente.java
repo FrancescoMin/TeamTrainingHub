@@ -8,9 +8,9 @@ import org.junit.Test;
  * Matricola: 0307584*/
 
 public class TestPerUtente {
-    private final String USERNAME = "testUser";
-    private final String EMAIL = "testUser@gmail.com";
-    private final Boolean ALLENATORE = false;
+    private final String testUser = "testUser";
+    private final String email = "testUser@gmail.com";
+    private final Boolean allenatore = false;
 
     /**
      * Testo che l'inserimento di un utente avvenga con successo se tutti i valori sono validi (email e username generati random)
@@ -48,12 +48,12 @@ public class TestPerUtente {
         UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
         int res;
         try {
-            utenteDAOJSON.inserisciUtente(assegnaUtente(USERNAME, EMAIL, ALLENATORE ));
+            utenteDAOJSON.inserisciUtente(assegnaUtente(testUser, email, allenatore));
         } catch (Exception e) {
             e.fillInStackTrace(); // Ignoro
         }
         try {
-            utenteDAOJSON.recuperaUtenteDaEmail(EMAIL);
+            utenteDAOJSON.recuperaUtenteDaEmail(email);
             res = 1; // Se la registrazione riesce, il test fallisce
 
         } catch (Exception e) {
@@ -74,14 +74,14 @@ public class TestPerUtente {
         int res;
         try {
             Utente utente;
-            utente = assegnaUtente(USERNAME, EMAIL, ALLENATORE);
+            utente = assegnaUtente(testUser, email, allenatore);
             utenteDAOJSON.inserisciUtente(utente);
         } catch (Exception e) {
             e.fillInStackTrace(); // Ignoro
         }
 
 
-        if(utenteDAOJSON.esisteUtenteDaEmail(EMAIL)){
+        if(utenteDAOJSON.esisteUtenteDaEmail(email)){
             res = 1;
         }
         else{
@@ -91,7 +91,7 @@ public class TestPerUtente {
     }
 
     private String generateRandomUsername() {
-        return USERNAME + System.currentTimeMillis();
+        return testUser + System.currentTimeMillis();
     }
 
     private String generateRandomEmail() {

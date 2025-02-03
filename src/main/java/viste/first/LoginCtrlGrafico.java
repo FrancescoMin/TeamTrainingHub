@@ -104,8 +104,4 @@ public class LoginCtrlGrafico {
             erroreInserimento.setVisible(true);
         }
     }
-
-    public static class CreazioneAllenamentoControllerGrafico {
-        //costruttore vuoto di default
-    }
 }

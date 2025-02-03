@@ -17,9 +17,9 @@ import static engineering.query.QueriesLogin.*;
 
 public class UtenteDAOMySQL implements UtenteDAO {
 
-    public static final String password = "password";
-    public static final String email1 = "email";
-    public static final String username = "username";
+    public static final String PASSWORD = "password";
+    public static final String EMAIL = "email";
+    public static final String USERNAME = "username";
 
     public void aggiornaUtente(Utente utente) throws EccezioneUtenteInvalido {
         Connection conn = null;
@@ -83,11 +83,11 @@ public class UtenteDAOMySQL implements UtenteDAO {
 
                 if (rs.getBoolean("allenatore")) {
                     System.out.println("Utente allenatore");
-                    utente = new Allenatore(rs.getString(username), rs.getString(email1), rs.getString(password) , allenamenti, squadra );
+                    utente = new Allenatore(rs.getString(USERNAME), rs.getString(EMAIL), rs.getString(PASSWORD) , allenamenti, squadra );
 
                 } else {
                     System.out.println("Utente non allenatore");
-                    utente = new Giocatore(rs.getString(username), rs.getString(email1), rs.getString(password) , allenamenti , squadra );
+                    utente = new Giocatore(rs.getString(USERNAME), rs.getString(EMAIL), rs.getString(PASSWORD) , allenamenti , squadra );
                 }
                 return utente;
             }

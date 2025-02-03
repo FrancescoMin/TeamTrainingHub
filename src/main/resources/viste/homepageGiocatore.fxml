@@ -28,7 +28,7 @@
       <font>
          <Font size="15.0" />
       </font></Label>
-    <Button layoutX="383.0" layoutY="373.0" mnemonicParsing="false" onAction="#IscrizioneAllenamento" prefHeight="60.0" prefWidth="258.0" text="Iscrizione ad un nuovo Allenamento">
+    <Button layoutX="383.0" layoutY="373.0" mnemonicParsing="false" onAction="#iscrizioneAllenamento" prefHeight="60.0" prefWidth="258.0" text="Iscrizione ad un nuovo Allenamento">
       <font>
          <Font size="15.0" />
       </font></Button>

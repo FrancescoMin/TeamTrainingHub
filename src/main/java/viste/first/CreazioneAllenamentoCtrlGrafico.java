@@ -63,7 +63,7 @@ public class CreazioneAllenamentoCtrlGrafico {
     }
 
     @FXML
-    public void CreaAllenamento() {
+    public void creaAllenamento() {
         try {
             int giorno = Integer.parseInt(giornoAllenamento.getText());
             int mese = Integer.parseInt(meseAllenamento.getText());

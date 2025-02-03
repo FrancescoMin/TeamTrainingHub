@@ -31,20 +31,20 @@ public class HomepageAllenatoreCtrlGrafico {
         if(homepageallenatorectrlapplicativo.esisteSquadra()) {
             //cambio scena alla pagina di visualizzazione delle richieste di partecipazione
             try {
-                Cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
+                cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
             }
             catch (EccezioneCambioScena e) {
-                MostraErrore(e.getMessage());
+                mostraErrore(e.getMessage());
             }
         }
         else {
-            MostraErrore("Non hai una squadra, non puoi visualizzare le richieste di partecipazione");
+            mostraErrore("Non hai una squadra, non puoi visualizzare le richieste di partecipazione");
         }
     }
 
 
     @FXML
-    protected void CreaAllenamento() {
+    protected void creaAllenamento() {
 
         System.out.println("Creazione Allenamento");
 
@@ -52,40 +52,40 @@ public class HomepageAllenatoreCtrlGrafico {
         if(homepageallenatorectrlapplicativo.esisteSquadra()) {
             //cambio scena alla pagina di creazione dell'allenamento
             try {
-                Cambio(PAGINA_CREAZIONE_ALLENAMENTO);
+                cambio(PAGINA_CREAZIONE_ALLENAMENTO);
 
             } catch (EccezioneCambioScena e) {
-                MostraErrore(e.getMessage());
+                mostraErrore(e.getMessage());
             }
         }
         else {
-            MostraErrore("Non hai una squadra, non puoi creare un allenamento");
+            mostraErrore("Non hai una squadra, non puoi creare un allenamento");
         }
     }
 
     @FXML
-    protected void GestisciSquadra() {
+    protected void gestisciSquadra() {
         //controlliamo che l'allenatore abbia o meno una squadra chiedendolo al controllore applicativo
         HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
 
         if (homepageallenatorectrlapplicativo.esisteSquadra()) {
             //Se l'allenatore ha una squadra allora compiamo il cambio scena alla pagina di gestione della squadra
-            MostraErrore("Sei già in possesso di una squadra");
+            mostraErrore("Sei già in possesso di una squadra");
         }
         else {
             //Se l'allenatore non ha una squadra allora compiamo il cambio scena alla pagina di creazione della squadra
 
             //cambio scena alla prima vista dove compiamo la creazione della squadra
             try {
-                Cambio(PAGINA_CREAZIONE_SQUADRA);
+                cambio(PAGINA_CREAZIONE_SQUADRA);
 
             } catch (EccezioneCambioScena e) {
-                MostraErrore(e.getMessage());
+                mostraErrore(e.getMessage());
             }
         }
     }
 
-    private void Cambio(String paginaDiCambioScena) {
+    private void cambio(String paginaDiCambioScena) {
         try {
             Stage stage = (Stage) gestisciSquadra.getScene().getWindow();
             CambioScena cambioScena = new CambioScena();
@@ -96,7 +96,7 @@ public class HomepageAllenatoreCtrlGrafico {
         }
     }
 
-    private void MostraErrore(String messaggio) {
+    private void mostraErrore(String messaggio) {
         mostraErrori.setText(messaggio);
         mostraErrori.setVisible(true);
     }

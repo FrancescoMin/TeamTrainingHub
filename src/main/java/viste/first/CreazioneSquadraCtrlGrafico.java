@@ -25,7 +25,7 @@ public class CreazioneSquadraCtrlGrafico {
     private Label messaggioErrore;
 
     @FXML
-    protected void TornaIndietro(ActionEvent event) {
+    protected void tornaIndietro(ActionEvent event) {
         //cambio scena alla pagina di login
         try {
             Stage stage = (Stage) nomeSquadra.getScene().getWindow();
@@ -44,7 +44,7 @@ public class CreazioneSquadraCtrlGrafico {
     }
 
     @FXML
-    public void CreaSquadra(ActionEvent actionEvent) {
+    public void creaSquadra(ActionEvent actionEvent) {
         try {
             if (nomeSquadra.getText().isEmpty()) {
                 messaggioErrore.setText("There are empty fields!");

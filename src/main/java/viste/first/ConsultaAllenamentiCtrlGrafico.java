@@ -29,7 +29,7 @@ public class ConsultaAllenamentiCtrlGrafico {
     private ConsultaAllenamentiTabella gestoreTabella;
 
     @FXML
-    protected void Ricarica() {
+    protected void ricarica() {
         gestoreTabella.refreshTable(tabellaAllenamenti);
     }
 
