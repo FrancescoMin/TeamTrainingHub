@@ -89,7 +89,7 @@ public class TestPerSquadra {
     }
     try {
         squadraDAOJSON.creaSquadraPerAllenatore(allenatore, squadra);
-        squadraDAOJSON.IscrizioneUtenteASquadra(giocatore, squadra);
+        squadraDAOJSON.iscrizioneUtenteASquadra(giocatore, squadra);
     }
     catch (Exception e) {
         e.fillInStackTrace(); // Ignoro
