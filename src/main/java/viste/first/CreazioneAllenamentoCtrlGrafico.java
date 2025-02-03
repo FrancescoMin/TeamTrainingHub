@@ -48,7 +48,19 @@ public class CreazioneAllenamentoCtrlGrafico {
 
     public void initialize() {
         System.out.println("Inizializzazione Temporanea della Pagina di Creazione Allenamento");
+    }
+
+    @FXML
+    private void tornaIndietro() throws EccezioneCambioScena {
+        try {
+            Stage stage = (Stage) labelErrori.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
+
+        } catch (EccezioneCambioScena e) {
+            throw new EccezioneCambioScena(e.getMessage());
         }
+    }
 
     @FXML
     public void CreaAllenamento() {

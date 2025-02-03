@@ -7,14 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="modifiche CLI Login, registrazione e creazione allenamento">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Sistemazione Iscriviti AllenamentoCLI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/IscrivitiAllenamentoCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/IscrivitiAllenamentoCtrlApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/EntraInSquadraCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/EntraInSquadraCLI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/IscrivitiAllenamentoCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/IscrivitiAllenamentoCLI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +222,7 @@
       <workItem from="1738485749767" duration="12542000" />
       <workItem from="1738507452223" duration="17643000" />
       <workItem from="1738530990714" duration="9176000" />
-      <workItem from="1738573161156" duration="2592000" />
+      <workItem from="1738573161156" duration="3373000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -452,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738540113089</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Sistemazione Iscriviti AllenamentoCLI">
+      <option name="closed" value="true" />
+      <created>1738575837067</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1738575837067</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +474,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="view della registrazione (senza controller)" />
     <MESSAGE value="Modifica di controller applicativo, grafico della registrazione e fxml della registrazione" />
     <MESSAGE value="Typo nel package, aggiunta string password" />
     <MESSAGE value="rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;" />
@@ -495,6 +498,7 @@
     <MESSAGE value="Eliminazione Eccezione generica" />
     <MESSAGE value="Sistemazione imperfezioni" />
     <MESSAGE value="modifiche CLI Login, registrazione e creazione allenamento" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifiche CLI Login, registrazione e creazione allenamento" />
+    <MESSAGE value="Sistemazione Iscriviti AllenamentoCLI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sistemazione Iscriviti AllenamentoCLI" />
   </component>
 </project>
