@@ -68,18 +68,17 @@
             </PasswordField>
          </GridPane>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="38.0">
+      <HBox alignment="CENTER" prefHeight="60.0">
          <VBox.margin>
             <Insets top="50.0" />
          </VBox.margin>
-         <Button mnemonicParsing="false" onAction="#userLogin" prefHeight="32.0" prefWidth="123.0" text="Login">
-            <font>
-               <Font size="15.0" />
-            </font>
-            <HBox.margin>
-               <Insets left="230.0" />
-            </HBox.margin>
-         </Button>
+         <children>
+            <Button mnemonicParsing="false" onAction="#userLogin" prefHeight="59.0" prefWidth="192.0" text="Login">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
       </HBox>
       <Label fx:id="erroreInserimento" alignment="CENTER" prefHeight="18.0" prefWidth="1024.0" textFill="RED">
          <font>
@@ -89,13 +88,13 @@
             <Insets top="20.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="103.0" prefWidth="1024.0">
+      <HBox prefHeight="96.0" prefWidth="939.0">
          <VBox.margin>
             <Insets top="30.0" />
          </VBox.margin>
          <Button mnemonicParsing="false" text="Facebook Sign In">
             <HBox.margin>
-               <Insets left="150.0" />
+               <Insets left="110.0" />
             </HBox.margin>
             <font>
                <Font size="16.0" />

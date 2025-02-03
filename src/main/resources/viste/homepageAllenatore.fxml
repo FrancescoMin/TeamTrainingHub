@@ -19,7 +19,7 @@
       <font>
          <Font size="15.0" />
       </font></Button>
-   <Button layoutX="436.0" layoutY="328.0" mnemonicParsing="false" onAction="#CreaAllenamento" prefHeight="60.0" prefWidth="150.0" text="Creazione Allenamento">
+   <Button layoutX="420.0" layoutY="320.0" mnemonicParsing="false" onAction="#CreaAllenamento" prefHeight="60.0" prefWidth="183.0" text="Creazione Allenamento">
       <font>
          <Font size="15.0" />
       </font></Button>
