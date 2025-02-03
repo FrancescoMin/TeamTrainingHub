@@ -1,6 +1,6 @@
 package viste.second;
 
-import ctrlApplicativo.CreazioneAllenamentoCtrlApplicativo;
+import ctrl_applicativo.CreazioneAllenamentoCtrlApplicativo;
 import engineering.bean.AllenamentoBean;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
 
@@ -34,11 +34,11 @@ public class CreazioneAllenamentoCLI extends GenericaCLI{
                 String data = String.format("%02d-%02d-%04d", giorno, mese, anno);
 
                 //creazione del ben dell'allenamento da far salvare al sistema
-                AllenamentoBean allenamentoBean = new AllenamentoBean(data, orarioInizio, orarioFine, descrizione);
+                AllenamentoBean allenamentobean = new AllenamentoBean(data, orarioInizio, orarioFine, descrizione);
 
                 //richiediamo al sistema di salvare il bean dell'allenamento
-                CreazioneAllenamentoCtrlApplicativo creazioneAllenamentoCtrlApplicativo = new CreazioneAllenamentoCtrlApplicativo();
-                creazioneAllenamentoCtrlApplicativo.creaAllenamento(allenamentoBean);
+                CreazioneAllenamentoCtrlApplicativo creazioneallenamentoctrlapplicativo = new CreazioneAllenamentoCtrlApplicativo();
+                creazioneallenamentoctrlapplicativo.creaAllenamento(allenamentobean);
 
                 System.out.println("Allenamento creato con successo! Adesso se si vuole creare un altro allenamento premere 1, altrimenti premere un tasto qualsiasi");
                 int scelta = scanner.nextInt();

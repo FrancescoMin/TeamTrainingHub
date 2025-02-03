@@ -1,6 +1,6 @@
 package viste.second;
 
-import ctrlApplicativo.EntraInSquadraCtrlApplicativo;
+import ctrl_applicativo.EntraInSquadraCtrlApplicativo;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 
 public class EntraInSquadraCLI extends GenericaCLI {
@@ -42,11 +42,11 @@ public class EntraInSquadraCLI extends GenericaCLI {
 
     private void verificaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {
         try {
-            EntraInSquadraCtrlApplicativo entraInSquadraCtrlApplicativo = new EntraInSquadraCtrlApplicativo();
+            EntraInSquadraCtrlApplicativo entrainsquadractrlapplicativo = new EntraInSquadraCtrlApplicativo();
 
             //entriamo se la squadra esiste
-            if (entraInSquadraCtrlApplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
-                entraInSquadraCtrlApplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
+            if (entrainsquadractrlapplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
+                entrainsquadractrlapplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
                 System.out.println("Richiesta inviata con successo.");
                 this.prossimaPagina = HomepageGiocatoreCLI.class.getName();
             }

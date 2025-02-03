@@ -1,8 +1,7 @@
 package viste.first;
 
-import ctrlApplicativo.HomepageGiocatoreCtrlApplicativo;
+import ctrl_applicativo.HomepageGiocatoreCtrlApplicativo;
 import engineering.eccezioni.EccezioneCambioScena;
-import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,18 +19,18 @@ public class HomepageGiocatoreCtrlGrafico {
     @FXML
     private Label mostraErrori;
 
-    HomepageGiocatoreCtrlApplicativo homepageGiocatoreCtrlApplicativo = new HomepageGiocatoreCtrlApplicativo();
+    HomepageGiocatoreCtrlApplicativo homepagegiocatorectrlapplicativo = new HomepageGiocatoreCtrlApplicativo();
 
     public void initialize() {
         String username;
-        username=homepageGiocatoreCtrlApplicativo.getMessaggioBenvenuto();
+        username= homepagegiocatorectrlapplicativo.getMessaggioBenvenuto();
         welcomeLabel.setText("Ciao " + username);
     }
 
     @FXML
     protected void entraSquadra(){
         try {
-            if (homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {
+            if (homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
                 throw new EccezioneUtenteInvalido("Sei già in una squadra");
             }
             cambio(PAGINA_ENTRAINSQUADRA);
@@ -54,7 +53,7 @@ public class HomepageGiocatoreCtrlGrafico {
     @FXML
     private void consultaAllenamenti() {
         // Logica per il pulsante "Consulta allenamenti"
-        if(homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {
+        if(homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
             try {
                 cambio(PAGINA_CONSULTA_ALLENAMENTI);
 

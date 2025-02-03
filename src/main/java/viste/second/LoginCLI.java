@@ -1,11 +1,10 @@
 package viste.second;
 
-import ctrlApplicativo.LoginCtrlApplicativo;
+import ctrl_applicativo.LoginCtrlApplicativo;
 import engineering.bean.LoginBean;
 import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezionePasswordErrata;
-import modelli.Login;
 
 public class LoginCLI extends GenericaCLI {
 
@@ -38,9 +37,9 @@ public class LoginCLI extends GenericaCLI {
                 System.out.print("Inserisci password: ");
                 String password = scanner.nextLine();
 
-                LoginBean loginBean = new LoginBean(email, password);
+                LoginBean loginbean = new LoginBean(email, password);
 
-                boh(loginBean);
+                boh(loginbean);
             }
             catch (Exception e) {
                 System.err.println("Errore durante il login: " + e.getMessage());
@@ -49,17 +48,17 @@ public class LoginCLI extends GenericaCLI {
         spostamento(this.prossimaPagina);
     }
 
-    private void boh(LoginBean loginBean) {
+    private void boh(LoginBean loginbean) {
         try {
 
             LoginCtrlApplicativo loginCtrl = new LoginCtrlApplicativo();
 
             // Verifica credenziali
-            if (loginCtrl.verificaCredenziali(loginBean)) {
+            if (loginCtrl.verificaCredenziali(loginbean)) {
                 System.out.println("Login effettuato con successo!");
 
                 // Recupero utente
-                UtenteBean utenteBean = loginCtrl.recuperoUtente(loginBean);
+                UtenteBean utenteBean = loginCtrl.recuperoUtente(loginbean);
                 assegnazionePagina(utenteBean);
 
                 // Interrompi il loop di login

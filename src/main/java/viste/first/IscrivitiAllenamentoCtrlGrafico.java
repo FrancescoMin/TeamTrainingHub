@@ -4,7 +4,7 @@ import engineering.bean.AllenamentoBean;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import ctrlApplicativo.IscrivitiAllenamentoCtrlApplicativo;
+import ctrl_applicativo.IscrivitiAllenamentoCtrlApplicativo;
 import viste.first.basi.BaseTabelleCtrlGrafico;
 import viste.first.utils.IscrizioneAllenamentiTabella;
 

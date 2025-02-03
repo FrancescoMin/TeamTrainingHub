@@ -1,6 +1,6 @@
 package viste.second;
 
-import ctrlApplicativo.HomepageAllenatoreCtrlApplicativo;
+import ctrl_applicativo.HomepageAllenatoreCtrlApplicativo;
 
 public class HomepageAllenatoreCLI extends GenericaCLI {
     public HomepageAllenatoreCLI() {
@@ -10,7 +10,7 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
     @Override
     public void start() {
         stampaPagina();
-        HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();
+        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
         System.out.println("Cosa vuoi fare?");
         System.out.println("1. Creazione squadra");
         System.out.println("2. Visualizza le richieste di partecipazione alla squadra");
@@ -23,7 +23,7 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
         while (ciclo) {
             switch (scelta) {
                 case 1:
-                    if(homepageAllenatoreCtrlApplicativo.esisteSquadra()){
+                    if(homepageallenatorectrlapplicativo.esisteSquadra()){
                         System.out.println("L'utente ha già una squadra");
                         scelta = scanner.nextInt();
                     }
@@ -33,7 +33,7 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
                     }
                     break;
                 case 2:
-                    if(!homepageAllenatoreCtrlApplicativo.esisteSquadra()){
+                    if(!homepageallenatorectrlapplicativo.esisteSquadra()){
                         System.out.println("L'allenatore non ha una squadra");
                         scelta = scanner.nextInt();
                     }
@@ -43,7 +43,7 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
                     }
                     break;
                 case 3:
-                    if(!homepageAllenatoreCtrlApplicativo.esisteSquadra()){
+                    if(!homepageallenatorectrlapplicativo.esisteSquadra()){
                         System.out.println("L'allenatore non ha una squadra");
                         scelta = scanner.nextInt();
                     }

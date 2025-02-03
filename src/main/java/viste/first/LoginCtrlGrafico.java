@@ -10,7 +10,7 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
-import ctrlApplicativo.LoginCtrlApplicativo;
+import ctrl_applicativo.LoginCtrlApplicativo;
 import javafx.stage.Stage;
 import viste.first.utils.CambioScena;
 
@@ -50,20 +50,20 @@ public class LoginCtrlGrafico {
         }
 
         else {
-            LoginCtrlApplicativo loginCtrlApplicativo = new LoginCtrlApplicativo();
+            LoginCtrlApplicativo loginctrlapplicativo = new LoginCtrlApplicativo();
             try{
                 //istanziazione del bean per il login
-                LoginBean loginBean = new LoginBean(em,pass);
+                LoginBean loginbean = new LoginBean(em,pass);
 
                 //creazione del controler applicativo per il login
 
                 //passaggio del bean al controller applicativo per il controllo delle credenziali
-                if(!loginCtrlApplicativo.verificaCredenziali(loginBean)){
+                if(!loginctrlapplicativo.verificaCredenziali(loginbean)){
                     throw new EccezionePasswordErrata("Credenziali errate");
                 }
 
                 //creazione del bean utente generico in funzione dei dati del bean di login
-                UtenteBean utenteBean = loginCtrlApplicativo.recuperoUtente(loginBean);
+                UtenteBean utenteBean = loginctrlapplicativo.recuperoUtente(loginbean);
 
                 Stage stage = (Stage) email.getScene().getWindow();
                 CambioScena cambioScena = new CambioScena();

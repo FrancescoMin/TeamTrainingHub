@@ -1,4 +1,4 @@
-package ctrlApplicativo;
+package ctrl_applicativo;
 
 import engineering.dao.SquadraDAO;
 import engineering.eccezioni.EccezioneSquadraInvalida;

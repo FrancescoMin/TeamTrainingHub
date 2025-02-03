@@ -1,6 +1,6 @@
 package viste.second;
 
-import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
+import ctrl_applicativo.ConsultaAllenamentiCtrlApplicativo;
 import engineering.bean.AllenamentoBean;
 
 import java.util.ArrayList;
@@ -18,12 +18,12 @@ public class ConsultaAllenamentiCLI extends GenericaCLI {
         boolean ciclo = true;
         List<AllenamentoBean> allenamenti = new ArrayList<>();
 
-        ConsultaAllenamentiCtrlApplicativo consultaAllenamentiCtrlApplicativo = new ConsultaAllenamentiCtrlApplicativo();
+        ConsultaAllenamentiCtrlApplicativo consultaallenamentictrlapplicativo = new ConsultaAllenamentiCtrlApplicativo();
 
         while(ciclo) {
             try {
                 //ottengo dal controller applicativo la lista delle richieste in attesa aggiornata
-                allenamenti = consultaAllenamentiCtrlApplicativo.getAllAllenamenti();
+                allenamenti = consultaallenamentictrlapplicativo.getAllAllenamenti();
 
                 if (allenamenti.isEmpty()) {
                     System.out.println("Non ci sono allenamenti disponibili");

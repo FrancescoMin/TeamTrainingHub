@@ -1,4 +1,4 @@
-package ctrlApplicativo;
+package ctrl_applicativo;
 
 import engineering.pattern.Singleton;
 import modelli.Utente;

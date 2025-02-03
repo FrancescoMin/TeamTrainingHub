@@ -1,8 +1,7 @@
 package viste.second;
 
 
-import ctrlApplicativo.HomepageAllenatoreCtrlApplicativo;
-import ctrlApplicativo.HomepageGiocatoreCtrlApplicativo;
+import ctrl_applicativo.HomepageGiocatoreCtrlApplicativo;
 
 public class HomepageGiocatoreCLI extends GenericaCLI {
 
@@ -16,7 +15,7 @@ public class HomepageGiocatoreCLI extends GenericaCLI {
         stampaPagina();
 
 
-        HomepageGiocatoreCtrlApplicativo homepageGiocatoreCtrlApplicativo = new HomepageGiocatoreCtrlApplicativo();
+        HomepageGiocatoreCtrlApplicativo homepagegiocatorectrlapplicativo = new HomepageGiocatoreCtrlApplicativo();
 
         boolean continua = true;
         while(continua) {
@@ -30,7 +29,7 @@ public class HomepageGiocatoreCLI extends GenericaCLI {
 
             switch(scelta) {
                 case 1:
-                    if(homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()){
+                    if(homepagegiocatorectrlapplicativo.isUtenteInSquadra()){
                         System.out.println("Sei già iscritto ad una squadra\n");
                     } else {
                         prossimaPagina = EntraInSquadraCLI.class.getName();
@@ -38,7 +37,7 @@ public class HomepageGiocatoreCLI extends GenericaCLI {
                     }
                     break;
                 case 2:
-                    if (homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {
+                    if (homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
                         prossimaPagina = IscrivitiAllenamentoCLI.class.getName();
                         continua = false;
                     } else {
@@ -46,7 +45,7 @@ public class HomepageGiocatoreCLI extends GenericaCLI {
                     }
                     break;
                 case 3:
-                    if (homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {
+                    if (homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
                         prossimaPagina = ConsultaAllenamentiCLI.class.getName();
                         continua = false;
                     } else {

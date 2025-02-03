@@ -1,6 +1,6 @@
 package viste.second;
 
-import ctrlApplicativo.VisualizzaRichiesteCtrlApplicativo;
+import ctrl_applicativo.VisualizzaRichiesteCtrlApplicativo;
 import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
@@ -20,12 +20,12 @@ public class VisualizzaRichiesteCLI extends GenericaCLI{
 
         List<UtenteBean> utenti;
 
-        VisualizzaRichiesteCtrlApplicativo visualizzaRichiesteCtrlApplicativo = new VisualizzaRichiesteCtrlApplicativo();
+        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
 
         while(continua) {
             try {
                 //ottengo dal controller applicativo la lista delle richieste in attesa aggiornata
-                utenti = visualizzaRichiesteCtrlApplicativo.getRichiesteIngresso();
+                utenti = visualizzarichiestectrlapplicativo.getRichiesteIngresso();
 
                 controlloUtenti(utenti);
 
@@ -57,7 +57,7 @@ public class VisualizzaRichiesteCLI extends GenericaCLI{
     }
 
     private void controlloScelta(List<UtenteBean> utenti, int scelta) throws EccezioneSquadraInvalida, EccezioneUtenteInvalido {
-        VisualizzaRichiesteCtrlApplicativo visualizzaRichiesteCtrlApplicativo = new VisualizzaRichiesteCtrlApplicativo();
+        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
 
         if (scelta < 1 || scelta > utenti.size()) {
             System.out.println("Scelta non valida, se si desidera uscire premere 0 se no premere un numero qualsiasi");
@@ -75,9 +75,9 @@ public class VisualizzaRichiesteCLI extends GenericaCLI{
             String risposta = scanner.next().toLowerCase();
 
             if (risposta.equals("accetta")) {
-                visualizzaRichiesteCtrlApplicativo.accettaRichiesta(utenti.get(scelta));
+                visualizzarichiestectrlapplicativo.accettaRichiesta(utenti.get(scelta));
             } else if (risposta.equals("rifiuta")) {
-                visualizzaRichiesteCtrlApplicativo.rifiutaRichiesta(utenti.get(scelta));
+                visualizzarichiestectrlapplicativo.rifiutaRichiesta(utenti.get(scelta));
             } else {
                 System.out.println("Scelta non valida");
             }

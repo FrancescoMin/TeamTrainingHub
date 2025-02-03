@@ -1,6 +1,6 @@
 package viste.first;
 
-import ctrlApplicativo.EntraInSquadraCtrlApplicativo;
+import ctrl_applicativo.EntraInSquadraCtrlApplicativo;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -29,11 +29,11 @@ public class EntraInSquadraCtrlGrafico{
         if (nomeSquadra != null && !nomeSquadra.trim().isEmpty()) {
             try {
                 // Invio della richiesta alla squadra tramite il controller applicativo
-                EntraInSquadraCtrlApplicativo entraInSquadraCtrlApplicativo = new EntraInSquadraCtrlApplicativo();
+                EntraInSquadraCtrlApplicativo entrainsquadractrlapplicativo = new EntraInSquadraCtrlApplicativo();
 
-                if(entraInSquadraCtrlApplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
+                if(entrainsquadractrlapplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
 
-                    entraInSquadraCtrlApplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
+                    entrainsquadractrlapplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
                     // Show an alert to indicate refusal
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Invio Richiesta");

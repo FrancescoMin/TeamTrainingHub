@@ -1,4 +1,4 @@
-package ctrlApplicativo;
+package ctrl_applicativo;
 
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import engineering.pattern.Singleton;

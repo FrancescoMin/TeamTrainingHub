@@ -1,6 +1,6 @@
 package viste.second;
 
-import ctrlApplicativo.CreazioneSquadraCtrlApplicativo;
+import ctrl_applicativo.CreazioneSquadraCtrlApplicativo;
 
 import java.util.Objects;
 
@@ -50,9 +50,9 @@ public class CreazioneSquadraCLI extends GenericaCLI{
             String nomeSquadra = scanner.next();
 
             // Creazione squadra
-            CreazioneSquadraCtrlApplicativo creazioneSquadraCtrlApplicativo = new CreazioneSquadraCtrlApplicativo();
+            CreazioneSquadraCtrlApplicativo creazionesquadractrlapplicativo = new CreazioneSquadraCtrlApplicativo();
             try {
-                creazioneSquadraCtrlApplicativo.creazioneSquadra(nomeSquadra);
+                creazionesquadractrlapplicativo.creazioneSquadra(nomeSquadra);
             }
             catch (Exception e) {
                 System.out.println("Errore durante la creazione della squadra: " + e.getMessage());

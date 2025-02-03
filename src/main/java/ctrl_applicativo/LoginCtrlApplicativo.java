@@ -1,9 +1,8 @@
-package ctrlApplicativo;
+package ctrl_applicativo;
 
 import engineering.bean.*;
 import engineering.dao.UtenteDAO;
 import engineering.eccezioni.EccezionePasswordErrata;
-import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
@@ -16,12 +15,12 @@ public class LoginCtrlApplicativo {
         //costruttore vuoto di default
     }
 
-    public Boolean verificaCredenziali(LoginBean loginBean) {
+    public Boolean verificaCredenziali(LoginBean loginbean) {
         try {
 
             //controllo delle credenziali
             //creo un utente da passare all'interno del sistema
-            Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
+            Login login = new Login(loginbean.getEmail(), loginbean.getPassword());
 
             //vedo se l'utente esiste nel singleton
             Singleton istanza = Singleton.getInstance();
@@ -47,7 +46,7 @@ public class LoginCtrlApplicativo {
         }
     }
 
-    public UtenteBean recuperoUtente(LoginBean loginBean) throws EccezionePasswordErrata {
+    public UtenteBean recuperoUtente(LoginBean loginbean) throws EccezionePasswordErrata {
         try {
             UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
 
@@ -56,12 +55,12 @@ public class LoginCtrlApplicativo {
             Singleton istanza=Singleton.getInstance();
 
 
-            Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
+            Login login = new Login(loginbean.getEmail(), loginbean.getPassword());
             //se esiste nel singleton, lo recupero e lo restituisco
             if(istanza.esisteUtenteDaLogin(login)) {
 
                 //inizializzo il modello all'interno del sistema per l'utilizzo
-                Utente utente= istanza.getUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
+                Utente utente= istanza.getUtenteDaLogin(new Login(loginbean.getEmail(), loginbean.getPassword()));
 
                 System.out.println(" Utente recuperato email " + utente.getEmail() + " password " + utente.getPassword() + " username " + utente.getUsername() + " squadra " + utente.getSquadra().getNome() + " allenamenti " + utente.getAllenamenti());
 
@@ -84,7 +83,7 @@ public class LoginCtrlApplicativo {
                 //creazione del modello utente
 
                 //creo una nuova istanza di utente che contiene l'utente che fa uso del sistema
-                Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
+                Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginbean.getEmail(), loginbean.getPassword()));
 
                 //salvo all'interno del singleton l'utente come utenteCorrente
                 istanza.setUtenteCorrente(utente);

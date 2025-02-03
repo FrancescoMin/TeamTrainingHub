@@ -1,8 +1,7 @@
 package viste.second;
 
-import ctrlApplicativo.RegistrazioneCtrlApplicativo;
+import ctrl_applicativo.RegistrazioneCtrlApplicativo;
 import engineering.bean.RegistrazioneBean;
-import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 
 
@@ -23,7 +22,7 @@ public class RegistrazioneCLI extends GenericaCLI {
         stampaPagina();
 
         String scelta;
-        RegistrazioneBean registrazioneBean = null;
+        RegistrazioneBean registrazionebean = null;
 
 
         while (continua) {
@@ -58,12 +57,12 @@ public class RegistrazioneCLI extends GenericaCLI {
                 boolean isAllenatore = risposta.equals("s");
 
                 // Creazione del bean di registrazione
-                registrazioneBean = new RegistrazioneBean(username, email, password, isAllenatore);
+                registrazionebean = new RegistrazioneBean(username, email, password, isAllenatore);
 
-                RegistrazioneCtrlApplicativo registrazioneCtrlApplicativo = new RegistrazioneCtrlApplicativo();
-                registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);
+                RegistrazioneCtrlApplicativo registrazionectrlapplicativo = new RegistrazioneCtrlApplicativo();
+                registrazionectrlapplicativo.inserisciUtente(registrazionebean);
 
-                if (registrazioneBean.getAllenatore()) {
+                if (registrazionebean.getAllenatore()) {
                     prossimaPagina = HomepageAllenatoreCLI.class.getName();
                 }
                 else {

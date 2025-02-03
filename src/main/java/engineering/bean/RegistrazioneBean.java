@@ -1,6 +1,6 @@
 package engineering.bean;
 
-public class RegistrazioneBean extends LoginBean{
+public class RegistrazioneBean extends LoginBean {
 
     private String email;
     private boolean allenatore;

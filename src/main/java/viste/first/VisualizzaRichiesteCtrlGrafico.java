@@ -1,6 +1,6 @@
 package viste.first;
 
-import ctrlApplicativo.VisualizzaRichiesteCtrlApplicativo;
+import ctrl_applicativo.VisualizzaRichiesteCtrlApplicativo;
 import engineering.bean.UtenteBean;
 import javafx.fxml.*;
 import javafx.scene.control.*;
@@ -48,8 +48,8 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
 
     @Override
     public void handleAccept(UtenteBean utenteBean) {
-        VisualizzaRichiesteCtrlApplicativo visualizzaRichiesteCtrlApplicativo = new VisualizzaRichiesteCtrlApplicativo();
-        visualizzaRichiesteCtrlApplicativo.accettaRichiesta(utenteBean);
+        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
+        visualizzarichiestectrlapplicativo.accettaRichiesta(utenteBean);
 
         // Show an alert to indicate acceptance
         popup("Accept User", "User " + utenteBean.getEmail() + " has been accepted!");
@@ -60,8 +60,8 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
     @Override
     public void handleRefuse(UtenteBean utenteBean) {
         try {
-            VisualizzaRichiesteCtrlApplicativo visualizzaRichiesteCtrlApplicativo = new VisualizzaRichiesteCtrlApplicativo();
-            visualizzaRichiesteCtrlApplicativo.rifiutaRichiesta(utenteBean);
+            VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
+            visualizzarichiestectrlapplicativo.rifiutaRichiesta(utenteBean);
 
             // Show an alert to indicate refusal
             popup("Refuse User", "User " + utenteBean.getEmail() + " has been refused!");

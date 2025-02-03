@@ -1,4 +1,4 @@
-package ctrlApplicativo;
+package ctrl_applicativo;
 
 import engineering.dao.AllenamentoDAO;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
@@ -18,7 +18,7 @@ public class CreazioneAllenamentoCtrlApplicativo {
         // Costruttore vuoto
     }
 
-    public void creaAllenamento(AllenamentoBean allenamentoBean) throws EccezioneAllenamentoInvalido {
+    public void creaAllenamento(AllenamentoBean allenamentobean) throws EccezioneAllenamentoInvalido {
 
         try {
             Singleton istanza = Singleton.getInstance();
@@ -27,7 +27,7 @@ public class CreazioneAllenamentoCtrlApplicativo {
             Utente utente = istanza.getUtenteCorrente();
 
             //creo il modello allenamento che verrà inserito nel database
-            Allenamento allenamento = new Allenamento(allenamentoBean.getData(), allenamentoBean.getOrarioInizio(), allenamentoBean.getOrarioFine(), allenamentoBean.getDescrizione());
+            Allenamento allenamento = new Allenamento(allenamentobean.getData(), allenamentobean.getOrarioInizio(), allenamentobean.getOrarioFine(), allenamentobean.getDescrizione());
 
             //devo controllare che l'allenamento non sia in una fascia oraria già occupata
             if (sovrapposizioneAllenamenti(utente.getAllenamenti(), allenamento)) {

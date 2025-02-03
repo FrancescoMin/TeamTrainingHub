@@ -1,6 +1,6 @@
 package viste.first.utils;
 
-import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
+import ctrl_applicativo.ConsultaAllenamentiCtrlApplicativo;
 import engineering.bean.AllenamentoBean;
 import javafx.scene.control.*;
 import java.util.ArrayList;

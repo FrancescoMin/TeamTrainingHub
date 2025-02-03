@@ -1,9 +1,7 @@
 package viste.second;
 
-import ctrlApplicativo.IscrivitiAllenamentoCtrlApplicativo;
-import ctrlApplicativo.VisualizzaRichiesteCtrlApplicativo;
+import ctrl_applicativo.IscrivitiAllenamentoCtrlApplicativo;
 import engineering.bean.AllenamentoBean;
-import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
 
 import java.util.List;
@@ -21,9 +19,9 @@ public class IscrivitiAllenamentoCLI extends GenericaCLI{
 
             while(continua) {
                 try {
-                    IscrivitiAllenamentoCtrlApplicativo iscrivitiAllenamentoCtrlApplicativo = new IscrivitiAllenamentoCtrlApplicativo();
+                    IscrivitiAllenamentoCtrlApplicativo iscrivitiallenamentoctrlapplicativo = new IscrivitiAllenamentoCtrlApplicativo();
                     //ottengo dal controller applicativo la lista delle richieste in attesa aggiornata
-                    allenamenti = iscrivitiAllenamentoCtrlApplicativo.caricaAllenamenti();
+                    allenamenti = iscrivitiallenamentoctrlapplicativo.caricaAllenamenti();
                     stampa(allenamenti);
                     System.out.println("Inserire il numero dell'allenamento da accettare oppure 0 per uscire");
 
@@ -74,9 +72,9 @@ public class IscrivitiAllenamentoCLI extends GenericaCLI{
         System.out.println("Inserire 'accetta' per accettare, un'altra stringa per rifiutare");
         String risposta = scanner.next().toLowerCase();
 
-        IscrivitiAllenamentoCtrlApplicativo iscrivitiAllenamentoCtrlApplicativo = new IscrivitiAllenamentoCtrlApplicativo();
+        IscrivitiAllenamentoCtrlApplicativo iscrivitiallenamentoctrlapplicativo = new IscrivitiAllenamentoCtrlApplicativo();
         if (risposta.equals("accetta")) {
-            iscrivitiAllenamentoCtrlApplicativo.accettaAllenamento(allenamenti.get(scelta));
+            iscrivitiallenamentoctrlapplicativo.accettaAllenamento(allenamenti.get(scelta));
         } else {
             System.out.println("Scelta non valida");
         }

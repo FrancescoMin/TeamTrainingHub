@@ -1,8 +1,7 @@
 package viste.first;
 
-import ctrlApplicativo.HomepageAllenatoreCtrlApplicativo;
+import ctrl_applicativo.HomepageAllenatoreCtrlApplicativo;
 import engineering.eccezioni.EccezioneCambioScena;
-import engineering.eccezioni.EccezioneSquadraInvalida;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,9 +26,9 @@ public class HomepageAllenatoreCtrlGrafico {
     @FXML
     private void VisualizzaRichiestePartecipazione(){
         System.out.println("Visualizza Richieste Partecipazione");
-        HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();
+        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
 
-        if(homepageAllenatoreCtrlApplicativo.esisteSquadra()) {
+        if(homepageallenatorectrlapplicativo.esisteSquadra()) {
             //cambio scena alla pagina di visualizzazione delle richieste di partecipazione
             try {
                 Cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
@@ -49,8 +48,8 @@ public class HomepageAllenatoreCtrlGrafico {
 
         System.out.println("Creazione Allenamento");
 
-        HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();
-        if(homepageAllenatoreCtrlApplicativo.esisteSquadra()) {
+        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
+        if(homepageallenatorectrlapplicativo.esisteSquadra()) {
             //cambio scena alla pagina di creazione dell'allenamento
             try {
                 Cambio(PAGINA_CREAZIONE_ALLENAMENTO);
@@ -67,9 +66,9 @@ public class HomepageAllenatoreCtrlGrafico {
     @FXML
     protected void GestisciSquadra() {
         //controlliamo che l'allenatore abbia o meno una squadra chiedendolo al controllore applicativo
-        HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();
+        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
 
-        if (homepageAllenatoreCtrlApplicativo.esisteSquadra()) {
+        if (homepageallenatorectrlapplicativo.esisteSquadra()) {
             //Se l'allenatore ha una squadra allora compiamo il cambio scena alla pagina di gestione della squadra
             MostraErrore("Sei già in possesso di una squadra");
         }

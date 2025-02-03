@@ -1,6 +1,6 @@
 package viste.first;
 
-import ctrlApplicativo.RegistrazioneCtrlApplicativo;
+import ctrl_applicativo.RegistrazioneCtrlApplicativo;
 import engineering.bean.RegistrazioneBean;
 import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezioneUtenteInvalido;
@@ -59,15 +59,15 @@ public class RegistrazioneCtrlGrafico implements Initializable {
         if (password.equals(confermaPassword)) {
 
             //creiamo il bean per la registrazione
-            RegistrazioneBean registrazioneBean = new RegistrazioneBean(username, email, password, isAllenatore);
+            RegistrazioneBean registrazionebean = new RegistrazioneBean(username, email, password, isAllenatore);
 
             //creiamo il controller applicativo per la registrazione
-            RegistrazioneCtrlApplicativo registrazioneCtrlApplicativo = new RegistrazioneCtrlApplicativo();
+            RegistrazioneCtrlApplicativo registrazionectrlapplicativo = new RegistrazioneCtrlApplicativo();
 
             try {
 
                 //tentiamo di registrare l'utente
-                registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);
+                registrazionectrlapplicativo.inserisciUtente(registrazionebean);
                 System.out.println("Registrazione avvenuta con successo!");
 
                 //a registrazione avvenuta, cambiamo scena
@@ -75,7 +75,7 @@ public class RegistrazioneCtrlGrafico implements Initializable {
                 CambioScena cambioScena = new CambioScena();
 
                 //codice temporaneo per il cambio di scena alla home page del giocatore o allenatore
-                if (registrazioneBean.getAllenatore()) {
+                if (registrazionebean.getAllenatore()) {
                     cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
                 } else {
                     cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);

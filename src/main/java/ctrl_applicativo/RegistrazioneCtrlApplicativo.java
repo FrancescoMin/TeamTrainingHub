@@ -1,4 +1,4 @@
-package ctrlApplicativo;
+package ctrl_applicativo;
 
 import engineering.bean.RegistrazioneBean;
 import engineering.dao.UtenteDAO;
@@ -13,8 +13,8 @@ public class RegistrazioneCtrlApplicativo {
         //costruttore vuoto di default
     }
 
-    public void inserisciUtente(RegistrazioneBean registrazioneBean) throws EccezioneUtenteInvalido {
-        Registrazione registrazione = getRegistrazione(registrazioneBean);
+    public void inserisciUtente(RegistrazioneBean registrazionebean) throws EccezioneUtenteInvalido {
+        Registrazione registrazione = getRegistrazione(registrazionebean);
 
 
         //controllo che l'utente esisti già nel singleton
@@ -41,11 +41,11 @@ public class RegistrazioneCtrlApplicativo {
         }
     }
 
-    private Registrazione getRegistrazione(RegistrazioneBean registrazioneBean) {
-        String username = registrazioneBean.getUsername();
-        String email = registrazioneBean.getEmail();
-        String password = registrazioneBean.getPassword();
-        boolean isAllenatore = registrazioneBean.getAllenatore();
+    private Registrazione getRegistrazione(RegistrazioneBean registrazionebean) {
+        String username = registrazionebean.getUsername();
+        String email = registrazionebean.getEmail();
+        String password = registrazionebean.getPassword();
+        boolean isAllenatore = registrazionebean.getAllenatore();
 
         // Verifica che tutti i campi siano compilati
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {

@@ -1,6 +1,6 @@
 package viste.first;
 
-import ctrlApplicativo.CreazioneSquadraCtrlApplicativo;
+import ctrl_applicativo.CreazioneSquadraCtrlApplicativo;
 import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import javafx.event.ActionEvent;
@@ -55,10 +55,10 @@ public class CreazioneSquadraCtrlGrafico {
                 //implementazione della logica per la creazione della squadra
 
                 //inizializziamo il controller applicativo
-                CreazioneSquadraCtrlApplicativo creazioneSquadraCtrlApplicativo = new CreazioneSquadraCtrlApplicativo();
+                CreazioneSquadraCtrlApplicativo creazionesquadractrlapplicativo = new CreazioneSquadraCtrlApplicativo();
 
                 //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean
-                creazioneSquadraCtrlApplicativo.creazioneSquadra(nomeSquadra.getText());
+                creazionesquadractrlapplicativo.creazioneSquadra(nomeSquadra.getText());
 
                 //finita la logica cambio la scena
 

@@ -1,7 +1,6 @@
 package engineering.pattern.observer;
 
 import engineering.bean.AllenamentoBean;
-import engineering.pattern.observer.Subject;
 
 import java.util.ArrayList;
 import java.util.List;

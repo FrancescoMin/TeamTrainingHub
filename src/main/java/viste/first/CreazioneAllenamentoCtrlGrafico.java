@@ -1,6 +1,6 @@
 package viste.first;
 
-import ctrlApplicativo.CreazioneAllenamentoCtrlApplicativo;
+import ctrl_applicativo.CreazioneAllenamentoCtrlApplicativo;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezioneUtenteInvalido;
@@ -90,11 +90,11 @@ public class CreazioneAllenamentoCtrlGrafico {
             String data = String.format("%02d-%02d-%04d", giorno, mese, anno);
 
             //creazione del ben dell'allenamento da far salvare al sistema
-            AllenamentoBean allenamentoBean = new AllenamentoBean(data, orarioInizio, orarioFine, descrizione);
+            AllenamentoBean allenamentobean = new AllenamentoBean(data, orarioInizio, orarioFine, descrizione);
 
             //richiediamo al sistema di salvare il bean dell'allenamento
-            CreazioneAllenamentoCtrlApplicativo creazioneAllenamentoCtrlApplicativo = new CreazioneAllenamentoCtrlApplicativo();
-            creazioneAllenamentoCtrlApplicativo.creaAllenamento(allenamentoBean);
+            CreazioneAllenamentoCtrlApplicativo creazioneallenamentoctrlapplicativo = new CreazioneAllenamentoCtrlApplicativo();
+            creazioneallenamentoctrlapplicativo.creaAllenamento(allenamentobean);
 
             //abbiamo completato il salvataggio e lo facciamo vedere con una stampa a schermo
             System.out.println("giorno: " + giorno + " mese: " + mese + " anno: " + anno + "orario inizio " + orarioInizio + " orario fine "+ orarioFine + " descrizione: " + descrizione);
