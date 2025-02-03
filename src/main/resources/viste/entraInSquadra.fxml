@@ -7,18 +7,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.EntraInSquadraCtrlGrafico">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.EntraInSquadraCtrlGrafico">
 
-   <AnchorPane prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #0f9200;">
-      <Label layoutX="192.0" layoutY="25.0" text="Entra in una squadra" textFill="WHITE">
-         <font>
-            <Font name="MS Outlook" size="25.0" />
-         </font>
-      </Label>
-   </AnchorPane>
-   <Text fx:id="scriviSquadraText" layoutX="178.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scrivi il nome della squadra in cui vuoi entrare" />
-   <TextField fx:id="scriviSquadraTextField" layoutX="225.0" layoutY="174.0" promptText="Nome squadra" />
-   <Button layoutX="247.0" layoutY="239.0" mnemonicParsing="false" onAction="#richiediIngresso" text="Richiedi ingresso" />
-   <Label fx:id="mostraErrore" layoutX="286.0" layoutY="295.0" textFill="RED" />
-   <Button layoutX="254.0" layoutY="291.0" mnemonicParsing="false" onAction="#tornaIndietro" text="Torna Indietro" />
+    <fx:include source="baseColori.fxml" />
+   <Text fx:id="scriviSquadraText" layoutX="323.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scrivi il nome della squadra in cui vuoi entrare">
+      <font>
+         <Font size="18.0" />
+      </font></Text>
+   <Label layoutX="396.0" layoutY="26.0" text="Entra in una squadra" textFill="WHITE">
+      <font>
+         <Font name="MS Outlook" size="27.0" />
+      </font>
+   </Label>
+   <TextField fx:id="scriviSquadraTextField" layoutX="410.0" layoutY="165.0" prefHeight="60.0" prefWidth="200.0" promptText="Nome squadra">
+      <font>
+         <Font size="17.0" />
+      </font></TextField>
+   <Button layoutX="434.0" layoutY="275.0" mnemonicParsing="false" onAction="#richiediIngresso" prefHeight="60.0" prefWidth="150.0" text="Richiedi ingresso">
+      <font>
+         <Font size="15.0" />
+      </font></Button>
+   <Label fx:id="mostraErrore" layoutX="286.0" layoutY="400.0" textFill="RED" />
+   <Button layoutX="738.0" layoutY="532.0" mnemonicParsing="false" onAction="#tornaIndietro" prefHeight="60.0" prefWidth="150.0" text="Torna Indietro">
+      <font>
+         <Font size="15.0" />
+      </font></Button>
 </AnchorPane>

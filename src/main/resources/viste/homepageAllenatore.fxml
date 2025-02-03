@@ -3,16 +3,29 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="viste.first.HomepageAllenatoreCtrlGrafico">
+<AnchorPane prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.HomepageAllenatoreCtrlGrafico">
 
-   <fx:include source="baseHomePage.fxml"/>
+   <fx:include source="baseHomePage.fxml" />
+   <fx:include source="baseColori.fxml" />
 
-   <Button layoutX="244.0" layoutY="100.0" mnemonicParsing="false" onAction="#VisualizzaRichiestePartecipazione" text="Visualizza Le Richieste di Partecipazione alle Squadra"/>
-   <Button fx:id="gestisciSquadra" layoutX="244.0" layoutY="50.0" mnemonicParsing="false" onAction="#GestisciSquadra"
-           text="Gestisci Squadra"/>
-   <Button layoutX="233.0" layoutY="156.0" mnemonicParsing="false" onAction="#CreaAllenamento"
-           text="Creazione Allenamento"/>
-   <Label fx:id="mostraErrori" layoutX="286.0" layoutY="246.0" textFill="RED"/>
+   <Button layoutX="317.0" layoutY="221.0" mnemonicParsing="false" onAction="#VisualizzaRichiestePartecipazione" prefHeight="60.0" prefWidth="389.0" text="Visualizza Le Richieste di Partecipazione alle Squadra">
+      <font>
+         <Font size="15.0" />
+      </font></Button>
+   <Button fx:id="gestisciSquadra" layoutX="437.0" layoutY="115.0" mnemonicParsing="false" onAction="#GestisciSquadra" prefHeight="60.0" prefWidth="150.0" text="Gestisci Squadra">
+      <font>
+         <Font size="15.0" />
+      </font></Button>
+   <Button layoutX="436.0" layoutY="328.0" mnemonicParsing="false" onAction="#CreaAllenamento" prefHeight="60.0" prefWidth="150.0" text="Creazione Allenamento">
+      <font>
+         <Font size="15.0" />
+      </font></Button>
+   <Label fx:id="mostraErrori" layoutX="286.0" layoutY="500.0" textFill="RED" />
+   <Label layoutX="420.0" layoutY="26.0" text="Menu Allenatore" textFill="WHITE">
+      <font>
+         <Font name="MS Outlook" size="27.0" />
+      </font>
+   </Label>
 </AnchorPane>
