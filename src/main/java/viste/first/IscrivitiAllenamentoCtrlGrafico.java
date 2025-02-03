@@ -60,6 +60,8 @@ public class IscrivitiAllenamentoCtrlGrafico {
 
         // Inizializza il controller applicativo
         controllerApplicativo = new IscrivitiAllenamentoCtrlApplicativo();
+        controllerApplicativo.popola();
+
         iscrizioneAllenamentiTabella = new IscrizioneAllenamentiTabella(tableViewAllenamenti, controllerApplicativo.getCollezioneAllenamenti());
     }
 

@@ -47,8 +47,8 @@ public class LoginCLI extends GenericaCLI {
 
                     // Recupero utente
                     UtenteBean utenteBean = loginCtrl.recuperoUtente(loginBean);
-                    if (utenteBean.getAllenatore())     {prossimaPagina="viste.second.HomepageAllenatoreCLI";}
-                    else                            {prossimaPagina= "viste.second.HomePageGiocatoreCLI" ;}
+                    if (utenteBean.getAllenatore())     {prossimaPagina=HomepageAllenatoreCLI.class.getName();}
+                    else                            {prossimaPagina= HomepageGiocatoreCLI.class.getName() ;}
 
                     // Interrompi il loop di login
                     continua = false;

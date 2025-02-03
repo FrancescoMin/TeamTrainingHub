@@ -20,12 +20,10 @@ public class IscrivitiAllenamentoCtrlApplicativo {
 
     public IscrivitiAllenamentoCtrlApplicativo() {
         collezioneAllenamenti = new CollezioneAllenamenti();
-        //allenamentoDAO = new AllenamentoDAO(); // Inizializza il DAO
-        caricaAllenamenti(); // Carica gli allenamenti dalla persistenza
     }
 
     // Carica gli allenamenti dalla persistenza
-    private void caricaAllenamenti() throws EccezioneAllenamentoInvalido {
+    public List<AllenamentoBean> caricaAllenamenti() throws EccezioneAllenamentoInvalido {
         try {
             // Recupera gli allenamenti dal DAO e aggiungili alla collezione
             allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
@@ -44,13 +42,17 @@ public class IscrivitiAllenamentoCtrlApplicativo {
             List<Allenamento> allenamentiAllenatore = allenamentoDAO.getAllenamentiPerEmail(nomeAllenatore);
 
             //eliminiamo dalla lista degli allenamenti dell'allenatore quelli che sono già presenti nella lista degli allenamenti del giocatore
-            List<Allenamento> allenamentiFinali = eliminaAllenamenti(allenamentiAllenatore, allenamentiGiocatore);
 
-            collezioneAllenamenti.popolaTabella(trasformazione(allenamentiFinali));
+            return trasformazione(eliminaAllenamenti(allenamentiAllenatore, allenamentiGiocatore));
         }
         catch (EccezioneAllenamentoInvalido e) {
             throw new EccezioneAllenamentoInvalido(e.getMessage());
         }
+    }
+
+    public void popola(){
+        List<AllenamentoBean> allenamentiFinali = caricaAllenamenti();
+        collezioneAllenamenti.popolaTabella(allenamentiFinali);
     }
 
     // Restituisce la collezione di allenamenti
