@@ -23,7 +23,7 @@
     <center>
         <!-- Tabella allenamenti -->
         <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <TableView fx:id="tableViewAllenamenti" fixedCellSize="0.0" layoutX="151.0" layoutY="52.0" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tableViewAllenamenti" fixedCellSize="0.0" layoutX="51.2" layoutY="52.8" prefHeight="462.0" prefWidth="922.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="53.0">
                 <columns>
                     <TableColumn fx:id="colData" prefWidth="150.0" text="Data" />
                     <TableColumn fx:id="colOrarioInizio" prefWidth="150.0" text="Orario Inizio" />
@@ -35,6 +35,11 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
+         <Label fx:id="mostraErrori" layoutX="508.0" layoutY="15.0" textFill="RED">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Label>
         </AnchorPane>
     </center>
 

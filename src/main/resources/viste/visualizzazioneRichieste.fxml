@@ -26,7 +26,7 @@
     <center>
         <!-- Tabella playlist -->
         <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <TableView fx:id="tabellaRichieste" fixedCellSize="0.0" layoutX="151.0" layoutY="52.0" prefHeight="200.0" prefWidth="500.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tabellaRichieste" fixedCellSize="0.0" layoutX="51.2" layoutY="54.4" prefHeight="461.0" prefWidth="923.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="54.0">
                 <columns>
                     <TableColumn fx:id="giocatoreColonna" prefWidth="150.0" text="Giocatore" />
                     <TableColumn fx:id="approveColumn" prefWidth="150.0" text="Approve or Reject" />
@@ -36,6 +36,11 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
+         <Label fx:id="mostraErrori" layoutX="508.0" layoutY="15.0" textFill="RED">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Label>
         </AnchorPane>
     </center>
 </BorderPane>
