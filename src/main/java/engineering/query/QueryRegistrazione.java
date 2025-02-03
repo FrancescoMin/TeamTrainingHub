@@ -13,7 +13,7 @@ public class QueryRegistrazione {
         // costruttore vuoto di default
     }
 
-    public static int InserisciUtenteQuery(Connection connection, Registrazione registrazione) throws EccezioneUtenteInvalido {
+    public static int inserisciUtenteQuery(Connection connection, Registrazione registrazione) throws EccezioneUtenteInvalido {
         String sql = "INSERT INTO utenti(username, email, password, allenatore) VALUES (?, ?, ?, ?)";
 
         try {

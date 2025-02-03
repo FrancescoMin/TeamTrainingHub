@@ -17,9 +17,9 @@ import static engineering.query.QueriesLogin.*;
 
 public class UtenteDAOMySQL implements UtenteDAO {
 
-    public static String password = "password";
-    public static String email1 = "email";
-    public static String username = "username";
+    public static final String password = "password";
+    public static final String email1 = "email";
+    public static final String username = "username";
 
     public void aggiornaUtente(Utente utente) throws EccezioneUtenteInvalido {
         Connection conn = null;
@@ -57,7 +57,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
         //apriamo la connessione con il DB
         conn = Connessione.getInstance().getDBConnection();
         if (conn != null) {
-            try(ResultSet rs = RecuperaUtenteRSPerEmail(conn, email)) {
+            try(ResultSet rs = recuperautentersperemail(conn, email)) {
 
                 System.out.println("Inizio lavoro dell'utenteDAOMySQL");
                 //invocazione del metodo per la ricerca dell'utente in funzione della variabile di ricerca
@@ -144,7 +144,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
         if(conn!=null)
         {
             try {
-                result = QueryRegistrazione.InserisciUtenteQuery(conn, registrazione);
+                result = QueryRegistrazione.inserisciUtenteQuery(conn, registrazione);
                 if (result > 0) {
                     System.out.println("A new user was inserted successfully!");
                 }

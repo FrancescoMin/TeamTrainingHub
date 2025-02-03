@@ -3,7 +3,7 @@ package modelli;
 public class Registrazione extends Login{
 
     private String username;
-    private Boolean allenatore;
+    private boolean allenatore;
 
     Registrazione(){}
 

@@ -42,7 +42,7 @@ public class QuerySquadra {
         }
     }
 
-    public static ResultSet getSquadraRSDaNome(Connection connection, String nomeSquadra) throws EccezioneSquadraInvalida {
+    public static ResultSet getsquadrarsdanome(Connection connection, String nomeSquadra) throws EccezioneSquadraInvalida {
         PreparedStatement statement = null;
         try {
             //creazione della query parametrica
@@ -61,7 +61,7 @@ public class QuerySquadra {
         }
     }
 
-    public static ResultSet RecuperaSquadreRSPerEmail(Connection connection, String email) throws EccezioneSquadraInvalida {
+    public static ResultSet recuperasquadrersperemail(Connection connection, String email) throws EccezioneSquadraInvalida {
         PreparedStatement statement = null;
 
         try {
@@ -114,7 +114,7 @@ public class QuerySquadra {
         }
     }
 
-    public static ResultSet getRichiestaIscrizioneRSPerEmail(Connection connection, Squadra squadra, String utente_email) throws EccezioneSquadraInvalida {
+    public static ResultSet getrichiestaiscrizionersperemail(Connection connection, Squadra squadra, String utente_email) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query = "SELECT * FROM richiesteiscrizione where Squadra_codice = ? AND utenti_email = ?";
@@ -133,7 +133,7 @@ public class QuerySquadra {
         }
     }
 
-    public static ResultSet getRichiesteIscrizioneRSPerSquadra(Connection connection, Squadra squadra) throws EccezioneSquadraInvalida {
+    public static ResultSet getrichiesteiscrizionerspersquadra(Connection connection, Squadra squadra) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query = "SELECT * FROM richiesteiscrizione where Squadra_codice = ?";

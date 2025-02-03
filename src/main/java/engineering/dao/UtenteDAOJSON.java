@@ -16,15 +16,15 @@ import java.util.Objects;
 
 public class UtenteDAOJSON implements UtenteDAO {
 
-    public static String json = ".json";
-    public static String pathUtenti = "src/main/resources/persistenza/utenti/";
-    public static String password = "password";
-    public static String email1 = "email";
-    public static String user = "username";
+    public static final String json = ".json";
+    public static final String pathUtenti = "src/main/resources/persistenza/utenti/";
+    public static final String password = "password";
+    public static final String email1 = "email";
+    public static final String user = "username";
 
-    public static String trainings = "allenamenti";
-    public static String squadra = "squadra";
-    public static String allenatore = "allenatore";
+    public static final String trainings = "allenamenti";
+    public static final String squadra = "squadra";
+    public static final String allenatore = "allenatore";
 
 
     public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido {

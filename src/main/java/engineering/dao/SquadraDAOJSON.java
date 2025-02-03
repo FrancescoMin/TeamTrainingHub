@@ -16,9 +16,9 @@ import static engineering.dao.UtenteDAOJSON.json;
 
 public class SquadraDAOJSON implements SquadraDAO {
 
-    public final static String allen = "allenamenti";
-    public final static String richieste = "richiesteIngresso";
-    public final static String pathSquadre = "src/main/resources/persistenza/squadre/";
+    public static final  String ALLEN = "allenamenti";
+    public static final  String RICHIESTE = "richiesteIngresso";
+    public static final  String PATH_SQUADRE = "src/main/resources/persistenza/squadre/";
 
     public SquadraDAOJSON() {
         //costruttore vuoto di default
@@ -42,7 +42,7 @@ public class SquadraDAOJSON implements SquadraDAO {
 
         try {
             //Creazione del path
-            String filePath = pathSquadre + squadra.getNome() + json;
+            String filePath = PATH_SQUADRE + squadra.getNome() + json;
 
             //chiamo la funzione per la corretta creazione dell'oggetto json
             JsonObject jsonObject = setUpSquadra(squadra);
@@ -79,13 +79,13 @@ public class SquadraDAOJSON implements SquadraDAO {
                 System.out.println(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
                 jsonArrayAllenamenti.add(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
             }
-            jsonObject.add(allen, jsonArrayAllenamenti);
+            jsonObject.add(ALLEN, jsonArrayAllenamenti);
 
             JsonArray jsonArrayRichiesteIscrizione = new JsonArray();
             for (Utente utente1 : squadra.getRichiesteIngresso()) {
                 jsonArrayRichiesteIscrizione.add(utente1.getEmail());
             }
-            jsonObject.add(richieste, jsonArrayRichiesteIscrizione);
+            jsonObject.add(RICHIESTE, jsonArrayRichiesteIscrizione);
             return jsonObject;
         }
         catch (EccezioneUtenteInvalido e) {
@@ -122,7 +122,7 @@ public class SquadraDAOJSON implements SquadraDAO {
     public void aggiornaSquadra(Squadra squadra) throws EccezioneSquadraInvalida {
         try {
             //Creazione del path
-            String filePath = pathSquadre + squadra.getNome() + json;
+            String filePath = PATH_SQUADRE + squadra.getNome() + json;
 
             //chiamo la funzione per la corretta creazione dell'oggetto json
             JsonObject jsonObject = setUpSquadra(squadra);
@@ -162,7 +162,7 @@ public class SquadraDAOJSON implements SquadraDAO {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             //creazione del path
-            String filePath = pathSquadre + nomeSquadra + json;
+            String filePath = PATH_SQUADRE + nomeSquadra + json;
 
             System.out.println("SquadraDAOJSON: getSquadraDaNome: filePath: " + filePath);
 
@@ -173,7 +173,7 @@ public class SquadraDAOJSON implements SquadraDAO {
             JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
 
             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
-            List<Utente> richiesteIngresso = recuperaUtentiPerJsonArray(jsonObject.get(richieste).getAsJsonArray());
+            List<Utente> richiesteIngresso = recuperaUtentiPerJsonArray(jsonObject.get(RICHIESTE).getAsJsonArray());
 
             System.out.println("SquadraDAOJSON: getSquadraDaNome: richiesteIngresso: " + richiesteIngresso);
 
@@ -226,7 +226,7 @@ public class SquadraDAOJSON implements SquadraDAO {
     public boolean verificaEsistenzaSquadra(String nomeSquadra) {
 
         //Creazione del path
-        String filePath = pathSquadre + nomeSquadra + json;
+        String filePath = PATH_SQUADRE + nomeSquadra + json;
 
         try {
             //controllo che il file sia già esistente

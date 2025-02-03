@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import static engineering.query.QueriesLogin.RecuperaAllenamentiRSPerEmail;
+import static engineering.query.QueriesLogin.recuperaallenamentirsperemail;
 
 public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
@@ -48,7 +48,7 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
         conn = Connessione.getInstance().getDBConnection();
 
         if (conn != null) {
-            try (ResultSet rsAll = RecuperaAllenamentiRSPerEmail(conn, email);){
+            try (ResultSet rsAll = recuperaallenamentirsperemail(conn, email);){
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
 
                 List<Allenamento> allenamenti = new ArrayList<>();
@@ -70,7 +70,7 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
         //apriamo la connessione con il DB
         conn = Connessione.getInstance().getDBConnection();
         if (conn != null) {
-            try(ResultSet rsAll = RecuperaAllenamentiRSPerEmail(conn, email))
+            try(ResultSet rsAll = recuperaallenamentirsperemail(conn, email))
             {
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
                 while (rsAll.next()){

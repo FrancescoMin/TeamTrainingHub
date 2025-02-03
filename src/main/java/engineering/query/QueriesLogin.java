@@ -12,7 +12,7 @@ public class QueriesLogin {
     }
 
 
-    public static ResultSet RecuperaUtenteRSPerEmail(Connection connection,String email) throws EccezioneUtenteInvalido {
+    public static ResultSet recuperautentersperemail(Connection connection, String email) throws EccezioneUtenteInvalido {
         PreparedStatement statement = null;
 
         try {
@@ -33,7 +33,7 @@ public class QueriesLogin {
         }
     }
 
-    public static ResultSet RecuperaAllenamentiRSPerEmail(Connection connection, String email) throws EccezioneAllenamentoInvalido {
+    public static ResultSet recuperaallenamentirsperemail(Connection connection, String email) throws EccezioneAllenamentoInvalido {
         PreparedStatement statement = null;
 
         try {

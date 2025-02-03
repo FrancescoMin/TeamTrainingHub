@@ -17,8 +17,6 @@ import static engineering.dao.UtenteDAOJSON.*;
 
 public class AllenamentoDAOJSON implements AllenamentoDAO {
 
-    private final String path = "src/main/resources/persistenza/allenamenti/";
-
     public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido{
         try {
 
@@ -42,6 +40,8 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
     public void inserisciAllenamento(Allenamento allenamento) throws EccezioneAllenamentoInvalido {
 
         //Creazione del path
+        String path = "src/main/resources/persistenza/allenamenti/";
+
         String filePath = path + allenamento.getData()+"-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine() + json;
 
         try {

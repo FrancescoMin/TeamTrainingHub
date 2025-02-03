@@ -1,6 +1,5 @@
 package engineering.pattern.abstract_factory;
 import engineering.dao.*;
-import engineering.pattern.Singleton;
 
 import java.io.IOException;
 import java.io.InputStream;

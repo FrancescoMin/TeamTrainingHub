@@ -25,7 +25,7 @@ public class SquadraDAOMySQL implements SquadraDAO {
         //apriamo la connessione con il DB
         conn = Connessione.getInstance().getDBConnection();
         if (conn != null) {
-            try(ResultSet rs = QuerySquadra.getSquadraRSDaNome(conn,nomeSquadra)) {
+            try(ResultSet rs = QuerySquadra.getsquadrarsdanome(conn,nomeSquadra)) {
                 //invocazione del metodo per la ricerca della squadra in funzione del nome
 
                 if(rs.next()) {
@@ -51,7 +51,7 @@ public class SquadraDAOMySQL implements SquadraDAO {
         //apriamo la connessione con il DB
         conn = Connessione.getInstance().getDBConnection();
         if (conn != null) {
-            try(ResultSet rs = QuerySquadra.RecuperaSquadreRSPerEmail(conn, email)) {
+            try(ResultSet rs = QuerySquadra.recuperasquadrersperemail(conn, email)) {
                 //invocazione del metodo per la ricerca della squadra in funzione del nome
                 if(rs.next()) {
                     squadra = new Squadra(rs.getString("codice"), rs.getString("allenatore"));
@@ -87,7 +87,7 @@ public class SquadraDAOMySQL implements SquadraDAO {
         //apriamo la connessione con il DB
         conn = Connessione.getInstance().getDBConnection();
         if (conn != null) {
-            try(ResultSet rs = QuerySquadra.getRichiesteIscrizioneRSPerSquadra(conn, squadra))
+            try(ResultSet rs = QuerySquadra.getrichiesteiscrizionerspersquadra(conn, squadra))
             {
                 //invocazione del metodo per la ricerca delle richieste di iscrizione in funzione della squadra
                 while(rs.next()) {
@@ -162,7 +162,7 @@ public class SquadraDAOMySQL implements SquadraDAO {
             try {
                 for (Utente utente : squadra.getRichiesteIngresso()) {
                     ResultSet rs = null;
-                    rs = QuerySquadra.getRichiestaIscrizioneRSPerEmail(conn, squadra ,utente.getEmail());
+                    rs = QuerySquadra.getrichiestaiscrizionersperemail(conn, squadra ,utente.getEmail());
                     if(!rs.next()) {
                         aggiungiRichiestaASquadra(squadra, utente);
                     }
