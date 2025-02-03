@@ -7,8 +7,9 @@
 
 <AnchorPane prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.HomepageAllenatoreCtrlGrafico">
 
-   <fx:include source="baseHomePage.fxml" />
    <fx:include source="baseColori.fxml" />
+   <fx:include source="baseHomePage.fxml" />
+
 
    <Button layoutX="317.0" layoutY="221.0" mnemonicParsing="false" onAction="#VisualizzaRichiestePartecipazione" prefHeight="60.0" prefWidth="389.0" text="Visualizza Le Richieste di Partecipazione alle Squadra">
       <font>

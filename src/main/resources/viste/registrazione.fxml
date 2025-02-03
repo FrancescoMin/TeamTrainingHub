@@ -11,17 +11,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.RegistrazioneCtrlGrafico">
 
-
+   <fx:include source="baseColori.fxml" />
    <fx:include source="baseHomePage.fxml" />
-
-
-   <AnchorPane prefHeight="80.0" prefWidth="1024.0" style="-fx-background-color: #0f9200;">
-      <Label layoutX="442.0" layoutY="25.0" text="Registrazione" textFill="WHITE">
-         <font>
-            <Font name="MS Outlook" size="25.0" />
-         </font>
-      </Label>
-   </AnchorPane>
+   <Label layoutX="442.0" layoutY="26.0" text="Registrazione" textFill="WHITE">
+      <font>
+         <Font name="MS Outlook" size="25.0" />
+      </font>
+   </Label>
    <Label layoutX="42.0" layoutY="134.0" text="Username">
       <font>
          <Font size="15.0" />
@@ -49,7 +45,7 @@
       <font>
          <Font size="15.0" />
       </font></CheckBox>
-   <Button fx:id="registratiButton" layoutX="387.0" layoutY="524.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #0f9200;" text="Registrati" textFill="WHITE">
+   <Button fx:id="registratiButton" layoutX="387.0" layoutY="524.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: #078d53;" text="Registrati" textFill="WHITE">
       <font>
          <Font size="20.0" />
       </font>
