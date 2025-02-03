@@ -5,12 +5,13 @@ import java.util.Scanner;
 public abstract class GenericaCLI {
     protected String pagina="";
     protected String prossimaPagina="";
+    protected boolean continua=true;
     protected Scanner scanner = new Scanner(System.in);
     protected GenericaCLI() {
         //costruttore vuoto di default
     }
     protected void stampaPagina(){
-        System.out.println("Benvenuto nella pagina " + pagina);
+        System.out.println("\nBenvenuto nella pagina " + pagina);
     }
 
     public void start() {}

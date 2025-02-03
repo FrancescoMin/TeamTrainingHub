@@ -22,23 +22,24 @@ public class RegistrazioneCLI extends GenericaCLI {
         stampaPagina();
 
         boolean continua = true;
-        int scelta;
+        String scelta;
         RegistrazioneBean registrazioneBean = null;
 
-        System.out.println("Per tornare al Login premere 1");
-        System.out.println("Per continuare la registrazione premere un tasto qualsiasi");
-        scelta = scanner.nextInt();
-        scanner.nextLine();
-
-        if(scelta == 1){
-            spostamento(LoginCLI.class.getName());
-        }
 
         while (continua) {
+
             try {
+                System.out.println("Per tornare al Login premere 1");
+                System.out.println("Per continuare la registrazione premere un tasto qualsiasi");
+                scelta = scanner.nextLine();
+
+                if(scelta.equals("1")) {
+                    spostamento(LoginCLI.class.getName());
+                    break;
+                }
+
                 System.out.print("Inserisci username: ");
                 String username = scanner.nextLine();
-                System.out.println(username);
 
                 System.out.print("Inserisci email: ");
                 String email = scanner.nextLine();
@@ -49,15 +50,11 @@ public class RegistrazioneCLI extends GenericaCLI {
                 System.out.print("Vuoi registrarti come allenatore? (s/n): ");
                 String risposta = scanner.nextLine().toLowerCase();
 
-
-                while(true){
-                    if(risposta.equals("s") || risposta.equals("n")){
-                        break;
-                    } else {
-                        System.out.print("Inserisci una risposta valida (s/n): ");
-                        risposta = scanner.nextLine().toLowerCase();
-                    }
+                while(!risposta.equals("s") && !risposta.equals("n")){
+                    System.out.print("Inserisci una risposta valida (s/n): ");
+                    risposta = scanner.nextLine().toLowerCase();
                 }
+
                 boolean isAllenatore = risposta.equals("s");
 
                 // Creazione del bean di registrazione
@@ -73,9 +70,8 @@ public class RegistrazioneCLI extends GenericaCLI {
                 System.err.println("Errore durante la registrazione: " + e.getMessage());
                 System.out.println("Riprova la registrazione.");
                 System.out.println("Se hai un account e vuoi fare il login, premi 1. Altrimenti inserire un numero qualsiasi e riprova.");
-                scelta = scanner.nextInt();
-                scanner.nextLine();
-                if(scelta == 1) {
+                scelta = scanner.nextLine();
+                if(scelta.equals("1")) {
                     prossimaPagina = LoginCLI.class.getName();
                     continua = false;
                 }

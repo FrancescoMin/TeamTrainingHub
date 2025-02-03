@@ -163,7 +163,6 @@ public class UtenteDAOJSON implements UtenteDAO {
                 return recuperaUtenteDaEmail(login.getEmail());
 
             } else {
-                System.out.println("Password errata: lancio eccezione di password errata");
                 throw new EccezioneUtenteInvalido("Password errata: lancio eccezione di password errata");
             }
         }

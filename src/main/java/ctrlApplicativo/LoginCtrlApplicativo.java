@@ -49,7 +49,6 @@ public class LoginCtrlApplicativo {
 
         //vedo se l'utente esiste nel singleton
         Singleton istanza=Singleton.getInstance();
-        System.out.println("Valore booleano del singleton demo: " + istanza.getDemo());
 
 
         Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
@@ -78,7 +77,6 @@ public class LoginCtrlApplicativo {
         //richiediamo l'utente dalla persistenza
         else {
             //creazione del modello utente
-            System.out.println("Recupero l'utente " + loginBean.getEmail() + " con password " + loginBean.getPassword() + " dalla persistenza");
 
             //creo una nuova istanza di utente che contiene l'utente che fa uso del sistema
             Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
