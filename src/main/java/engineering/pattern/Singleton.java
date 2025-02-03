@@ -6,8 +6,10 @@ import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import modelli.*;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class Singleton {
 
@@ -28,11 +30,36 @@ public class Singleton {
 
     // static block initialization for exception handling
     static {
+        Singleton tempInstance = null;
         try {
-            instance = new Singleton();
+            // Creazione dell'istanza singleton
+            tempInstance = new Singleton();
+
+            // Caricamento delle proprietà dal file demo.properties
+            try (InputStream input = Singleton.class.getClassLoader().getResourceAsStream("demo.properties")) {
+                if (input != null) {
+                    Properties properties = new Properties();
+                    properties.load(input);
+
+                    // Lettura del valore dalla chiave del file demo
+                    String parameter = properties.getProperty("mode.type", "false");
+
+                    // Converte il valore in booleano
+                    Boolean boo = Boolean.valueOf(parameter);
+
+                    // Imposta il valore alla variabile demo dell'istanza singleton
+                    tempInstance.setDemo(boo);
+                } else {
+                    System.out.println("File demo.properties non trovato.");
+                }
+            } catch (Exception e) {
+                System.out.println("Errore durante la lettura del file demo.properties: " + e.getMessage());
+            }
+
         } catch (Exception e) {
-            throw new EccezioneIstanza("Exception occurred in creating singleton instance");
+            throw new EccezioneIstanza("Exception occurred in creating singleton instance: " + e.getMessage());
         }
+        instance = tempInstance;
     }
 
     public static Singleton getInstance() {
