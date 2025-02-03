@@ -46,7 +46,7 @@ public class VisualizzaRichiesteCtrlApplicativo {
         }
     }
 
-    public void update(UtenteBean utenteBean, Boolean accettato) throws EccezioneSquadraInvalida, EccezioneUtenteInvalido {
+    public void update(UtenteBean utenteBean, boolean accettato) throws EccezioneSquadraInvalida, EccezioneUtenteInvalido {
         try {
             Utente utente = null;
 

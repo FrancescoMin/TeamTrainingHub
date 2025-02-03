@@ -30,7 +30,6 @@ public class IscrizioneAllenamentiTabella implements Observer {
     public void popolaTabella() {
         allenamentiList.clear();
         allenamentiList.addAll(collezioneAllenamenti.getAllenamenti());
-        System.out.println("Numero di allenamenti nella lista: " + allenamentiList.size());
     }
 
     // Aggiungi un allenamento alla collezione

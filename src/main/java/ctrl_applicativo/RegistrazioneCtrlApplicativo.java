@@ -30,10 +30,10 @@ public class RegistrazioneCtrlApplicativo {
         if(!istanza.getDemo()) {
             try {
                 //creo il DAO per l'inserimento dell'utente
-                UtenteDAO UtenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
+                UtenteDAO utenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
 
                 //compio l'inserimento dell'utente nella persistenza
-                UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
+                utenteDAO.inserisciUtenteDaRegistrazione(registrazione);
 
             } catch (EccezioneUtenteInvalido e) {
                 throw new EccezioneUtenteInvalido(e.getMessage());

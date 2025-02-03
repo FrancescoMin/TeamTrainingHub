@@ -36,7 +36,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
 
                     //se la squadra non è quella di default, iscrivo l'utente alla squadra
                     if (!appoggio.getNome().isEmpty()) {
-                        squadraDAOMySQL.IscrizioneUtenteASquadra(utente, utente.getSquadra());
+                        squadraDAOMySQL.iscrizioneUtenteASquadra(utente, utente.getSquadra());
                     }
 
                     //da implementare l'aggiornamento degli allenamenti

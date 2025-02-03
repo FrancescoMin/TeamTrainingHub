@@ -36,7 +36,8 @@ public class EntraInSquadraCtrlApplicativo {
 
         //se non è in modalità demo, controllo nel database
         else {
-            return DAOFactory.getDAOFactory().createSquadraDAO().verificaEsistenzaSquadra(nomeSquadra);
+            SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
+            return squadraDAO.verificaEsistenzaSquadra(nomeSquadra);
         }
     }
 

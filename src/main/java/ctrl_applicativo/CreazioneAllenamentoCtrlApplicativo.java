@@ -33,6 +33,7 @@ public class CreazioneAllenamentoCtrlApplicativo {
             if (sovrapposizioneAllenamenti(utente.getAllenamenti(), allenamento)) {
                 throw new EccezioneAllenamentoInvalido("Fascia oraria già occupata");
             }
+
             //aggiungo l'allenamento all'utente
             utente.getAllenamenti().add(allenamento);
 
@@ -43,6 +44,7 @@ public class CreazioneAllenamentoCtrlApplicativo {
 
                 //assegniamo l'allenamento all'allenatore che lo ha creato
                 allenamentoDAO.inserisciAllenamentoAdUtente(allenamento, utente);
+                System.out.println("pesca 3");
             }
         }
         catch (EccezioneAllenamentoInvalido e) {

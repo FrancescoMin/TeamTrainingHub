@@ -53,7 +53,6 @@ public class SquadraDAOMySQL implements SquadraDAO {
         if (conn != null) {
             try(ResultSet rs = QuerySquadra.RecuperaSquadreRSPerEmail(conn, email)) {
                 //invocazione del metodo per la ricerca della squadra in funzione del nome
-                ;
                 if(rs.next()) {
                     squadra = new Squadra(rs.getString("codice"), rs.getString("allenatore"));
                     System.out.println("Squadra trovata da getSquadraDaEmail: " + squadra.getNome());
@@ -91,7 +90,6 @@ public class SquadraDAOMySQL implements SquadraDAO {
             try(ResultSet rs = QuerySquadra.getRichiesteIscrizioneRSPerSquadra(conn, squadra))
             {
                 //invocazione del metodo per la ricerca delle richieste di iscrizione in funzione della squadra
-                ;
                 while(rs.next()) {
                     System.out.println("Richiesta di iscrizione per la squadra: " + squadra.getNome());
                     UtenteDAOMySQL utenteDAO = new UtenteDAOMySQL();
@@ -208,7 +206,7 @@ public class SquadraDAOMySQL implements SquadraDAO {
         }
     }
 
-    public void IscrizioneUtenteASquadra(Utente utente, Squadra squadra) throws EccezioneSquadraInvalida{
+    public void iscrizioneUtenteASquadra(Utente utente, Squadra squadra) throws EccezioneSquadraInvalida{
         try {
             //Prima di compiere l'iscrizione devo controllare se la relazione esiste già
             if (!verificaEsistenzaSquadra(utente.getEmail())) {
@@ -248,7 +246,7 @@ public class SquadraDAOMySQL implements SquadraDAO {
         }
     }
 
-    public Boolean verificaEsistenzaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {
+    public boolean verificaEsistenzaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {
         try
         {
             //utilizzo il metodo già implementato per verificare l'esistenza della squadra

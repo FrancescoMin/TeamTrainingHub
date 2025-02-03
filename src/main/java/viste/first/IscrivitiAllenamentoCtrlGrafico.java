@@ -85,7 +85,7 @@ public class IscrivitiAllenamentoCtrlGrafico {
         @Override
         protected void updateItem(Button item, boolean empty) {
             super.updateItem(item, empty);
-            if (empty) {
+            if (empty || item == null) {
                 setGraphic(null); // Nascondi il pulsante se la cella è vuota
             }
             else {

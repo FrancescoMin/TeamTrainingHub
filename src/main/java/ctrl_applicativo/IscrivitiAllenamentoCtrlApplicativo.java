@@ -25,6 +25,7 @@ public class IscrivitiAllenamentoCtrlApplicativo {
     // Carica gli allenamenti dalla persistenza
     public List<AllenamentoBean> caricaAllenamenti() throws EccezioneAllenamentoInvalido {
         try {
+
             // Recupera gli allenamenti dal DAO e aggiungili alla collezione
             allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
             Singleton singleton = Singleton.getInstance();
@@ -40,6 +41,7 @@ public class IscrivitiAllenamentoCtrlApplicativo {
             String nomeAllenatore = squadra.getAllenatore();
 
             List<Allenamento> allenamentiAllenatore = allenamentoDAO.getAllenamentiPerEmail(nomeAllenatore);
+
 
             //eliminiamo dalla lista degli allenamenti dell'allenatore quelli che sono già presenti nella lista degli allenamenti del giocatore
 
