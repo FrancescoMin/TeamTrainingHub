@@ -20,7 +20,7 @@ public class Singleton {
     private Utente utenteCorrente;
 
     //variabile che indica se il sistema è in modalità demo o meno
-    private Boolean demo;
+    private boolean demo;
 
 
     private Singleton(){}
@@ -65,12 +65,12 @@ public class Singleton {
     public Utente getUtenteCorrente() {return utenteCorrente;}
     public void setUtenteCorrente(Utente utente) {utenteCorrente = utente;}
 
-    public Boolean getDemo() {return demo;}
+    public boolean getDemo() {return demo;}
     public void setDemo(Boolean demo) {this.demo = demo;}
 
     public List<Utente> getUtenti() {return utenti;}
 
-    public Boolean esisteUtenteDaLogin(Login login) {
+    public boolean esisteUtenteDaLogin(Login login) {
         for (Utente utente : utenti) {
             if (utente.getEmail().equals(login.getEmail()) && utente.getPassword().equals(login.getPassword())) {
                 return true;
@@ -78,8 +78,8 @@ public class Singleton {
         }
         return false;
     }
-    public Boolean esisteUtenteDaRegistrazione(Registrazione registrazione) {return esisteUtenteDaEmail(registrazione.getEmail());}
-    public Boolean esisteUtenteDaEmail(String email) {
+    public boolean esisteUtenteDaRegistrazione(Registrazione registrazione) {return esisteUtenteDaEmail(registrazione.getEmail());}
+    public boolean esisteUtenteDaEmail(String email) {
         for (Utente utente : utenti) {
             if (utente.getEmail().equals(email)) {
                 return true;
@@ -87,7 +87,7 @@ public class Singleton {
         }
         return false;
     }
-    public Boolean esisteSquadraDaNome(String nomeSquadra) {
+    public boolean esisteSquadraDaNome(String nomeSquadra) {
         for (Utente utente : utenti) {
             if (utente.getAllenatore() && utente.getSquadra().getNome().equals(nomeSquadra)) {
                 return true;

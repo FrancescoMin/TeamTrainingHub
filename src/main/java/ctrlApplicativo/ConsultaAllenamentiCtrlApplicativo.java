@@ -16,8 +16,6 @@ public class ConsultaAllenamentiCtrlApplicativo {
     // Metodo per recuperare allenamenti dal sistema
     public List<AllenamentoBean> getAllAllenamenti() throws EccezioneAllenamentoInvalido {
         try {
-            // Recupero la lista di allenamenti dalla logica applicativa
-            List<AllenamentoBean> allenamenti = new ArrayList<>();
 
             Utente utente = Singleton.getInstance().getUtenteCorrente();
 

@@ -4,7 +4,6 @@ import ctrlApplicativo.VisualizzaRichiesteCtrlApplicativo;
 import engineering.bean.UtenteBean;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import viste.first.basi.BaseTabelleCtrlGrafico;
 import viste.first.utils.GestoreTabella;
 
@@ -23,6 +22,9 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
 
     @FXML
     private TableView<UtenteBean> tabellaRichieste;
+
+    @FXML
+    private Label mostraErrori;
 
     @FXML
     protected void Ricarica() {
@@ -65,7 +67,8 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
             popup("Refuse User", "User " + utenteBean.getEmail() + " has been refused!");
         }
         catch (Exception e) {
-
+            mostraErrori.setText(e.getMessage());
+            mostraErrori.setVisible(true);
         }
     }
 

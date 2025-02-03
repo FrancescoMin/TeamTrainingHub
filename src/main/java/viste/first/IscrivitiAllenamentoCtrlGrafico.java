@@ -2,11 +2,8 @@ package viste.first;
 
 import engineering.bean.AllenamentoBean;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.Button;
 import ctrlApplicativo.IscrivitiAllenamentoCtrlApplicativo;
 import viste.first.basi.BaseTabelleCtrlGrafico;
 import viste.first.utils.IscrizioneAllenamentiTabella;
@@ -32,6 +29,9 @@ public class IscrivitiAllenamentoCtrlGrafico {
 
     @FXML
     private TableColumn<AllenamentoBean, Button> colAccetta;
+
+    @FXML
+    private Label mostraErrori;
 
     private IscrizioneAllenamentiTabella iscrizioneAllenamentiTabella;
     private IscrivitiAllenamentoCtrlApplicativo controllerApplicativo;

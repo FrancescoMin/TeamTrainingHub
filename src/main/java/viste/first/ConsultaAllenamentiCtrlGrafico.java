@@ -1,11 +1,8 @@
 package viste.first;
 
-import ctrlApplicativo.ConsultaAllenamentiCtrlApplicativo;
 import engineering.bean.AllenamentoBean;
-import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import viste.first.basi.BaseTabelleCtrlGrafico;
 import viste.first.utils.ConsultaAllenamentiTabella;
 

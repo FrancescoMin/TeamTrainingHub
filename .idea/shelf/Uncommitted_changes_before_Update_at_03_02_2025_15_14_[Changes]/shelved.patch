@@ -1,0 +1,1284 @@
+Index: src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport ctrlApplicativo.VisualizzaRichiesteCtrlApplicativo;\r\nimport engineering.bean.UtenteBean;\r\nimport javafx.fxml.*;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.layout.AnchorPane;\r\nimport viste.first.basi.BaseTabelleCtrlGrafico;\r\nimport viste.first.utils.GestoreTabella;\r\n\r\nimport static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;\r\n\r\npublic class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActionHandler {\r\n\r\n\r\n    @FXML\r\n    private TableColumn<UtenteBean, String> giocatoreColonna;\r\n\r\n    @FXML\r\n    private TableColumn<UtenteBean, Void> approveColumn;\r\n\r\n    private GestoreTabella gestoreTabella;\r\n\r\n    @FXML\r\n    private TableView<UtenteBean> tabellaRichieste;\r\n\r\n    @FXML\r\n    protected void Ricarica() {\r\n        gestoreTabella.refreshTable(tabellaRichieste);\r\n    }\r\n\r\n    private static void setupCambio(){\r\n        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_ALLENATORE;\r\n    }\r\n\r\n    @FXML\r\n    public void initialize() {\r\n        setupCambio();\r\n        gestoreTabella = new GestoreTabella(this);  // 'this' refers to the controller\r\n\r\n        // Populate the TableView with the list of users (UtenteBean)\r\n        gestoreTabella.populateTable(tabellaRichieste);\r\n    }\r\n\r\n\r\n\r\n    @Override\r\n    public void handleAccept(UtenteBean utenteBean) {\r\n        VisualizzaRichiesteCtrlApplicativo visualizzaRichiesteCtrlApplicativo = new VisualizzaRichiesteCtrlApplicativo();\r\n        visualizzaRichiesteCtrlApplicativo.accettaRichiesta(utenteBean);\r\n\r\n        // Show an alert to indicate acceptance\r\n        popup(\"Accept User\", \"User \" + utenteBean.getEmail() + \" has been accepted!\");\r\n\r\n    }\r\n\r\n    // Implementation of the handleRefuse method from ButtonActionHandler\r\n    @Override\r\n    public void handleRefuse(UtenteBean utenteBean) {\r\n        VisualizzaRichiesteCtrlApplicativo visualizzaRichiesteCtrlApplicativo = new VisualizzaRichiesteCtrlApplicativo();\r\n        visualizzaRichiesteCtrlApplicativo.rifiutaRichiesta(utenteBean);\r\n\r\n        // Show an alert to indicate refusal\r\n        popup(\"Refuse User\", \"User \" + utenteBean.getEmail() + \" has been refused!\");\r\n\r\n    }\r\n\r\n    private void popup(String title, String message) {\r\n        // Show an alert to indicate refusal\r\n        Alert alert = new Alert(Alert.AlertType.INFORMATION);\r\n        alert.setTitle(title);\r\n        alert.setHeaderText(null);\r\n        alert.setContentText(message);\r\n        alert.showAndWait();\r\n        Ricarica();\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java b/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java
+--- a/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java	(date 1738590933496)
+@@ -57,12 +57,16 @@
+     // Implementation of the handleRefuse method from ButtonActionHandler
+     @Override
+     public void handleRefuse(UtenteBean utenteBean) {
+-        VisualizzaRichiesteCtrlApplicativo visualizzaRichiesteCtrlApplicativo = new VisualizzaRichiesteCtrlApplicativo();
+-        visualizzaRichiesteCtrlApplicativo.rifiutaRichiesta(utenteBean);
++        try {
++            VisualizzaRichiesteCtrlApplicativo visualizzaRichiesteCtrlApplicativo = new VisualizzaRichiesteCtrlApplicativo();
++            visualizzaRichiesteCtrlApplicativo.rifiutaRichiesta(utenteBean);
+ 
+-        // Show an alert to indicate refusal
+-        popup("Refuse User", "User " + utenteBean.getEmail() + " has been refused!");
++            // Show an alert to indicate refusal
++            popup("Refuse User", "User " + utenteBean.getEmail() + " has been refused!");
++        }
++        catch (Exception e) {
+ 
++        }
+     }
+ 
+     private void popup(String title, String message) {
+Index: src/main/java/viste/first/utils/FxmlFileName.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first.utils;\r\n\r\npublic class FxmlFileName {\r\n    private FxmlFileName(){}\r\n\r\n    public static final String PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE = \"/viste/visualizzazioneRichieste.fxml\";\r\n    public static final String PAGINA_PRINCIPALE = \"/viste/paginaLogin.fxml\";\r\n    public static final String PAGINA_REGISTRAZIONE = \"/viste/registrazione.fxml\";\r\n    public static final String PAGINA_HOME_ALLENATORE = \"/viste/homepageAllenatore.fxml\";\r\n    public static final String PAGINA_HOME_GIOCATORE = \"/viste/homepageGiocatore.fxml\";\r\n    public static final String PAGINA_CREAZIONE_SQUADRA = \"/viste/creazioneSquadra.fxml\";\r\n    public static final String PAGINA_CREAZIONE_ALLENAMENTO = \"/viste/creazioneAllenamento.fxml\";\r\n    public static final String PAGINA_ENTRAINSQUADRA = \"/viste/entraInSquadra.fxml\";\r\n    public static final String PAGINA_GESTIONE_SQUADRA = \"/viste/gestioneSquadra.fxml\";\r\n    public static final String PAGINA_CONSULTA_ALLENAMENTI = \"/viste/consultaAllenamenti.fxml\";\r\n    public static final String PAGINA_ISCRIZIONE_ALLENAMENTO = \"/viste/iscrivitiAllenamento.fxml\";\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/utils/FxmlFileName.java b/src/main/java/viste/first/utils/FxmlFileName.java
+--- a/src/main/java/viste/first/utils/FxmlFileName.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/first/utils/FxmlFileName.java	(date 1738588802080)
+@@ -11,7 +11,6 @@
+     public static final String PAGINA_CREAZIONE_SQUADRA = "/viste/creazioneSquadra.fxml";
+     public static final String PAGINA_CREAZIONE_ALLENAMENTO = "/viste/creazioneAllenamento.fxml";
+     public static final String PAGINA_ENTRAINSQUADRA = "/viste/entraInSquadra.fxml";
+-    public static final String PAGINA_GESTIONE_SQUADRA = "/viste/gestioneSquadra.fxml";
+     public static final String PAGINA_CONSULTA_ALLENAMENTI = "/viste/consultaAllenamenti.fxml";
+     public static final String PAGINA_ISCRIZIONE_ALLENAMENTO = "/viste/iscrivitiAllenamento.fxml";
+ }
+Index: src/main/java/viste/first/GestioneSquadraCtrlGrafico.java
+===================================================================
+diff --git a/src/main/java/viste/first/GestioneSquadraCtrlGrafico.java b/src/main/java/viste/first/GestioneSquadraCtrlGrafico.java
+deleted file mode 100644
+--- a/src/main/java/viste/first/GestioneSquadraCtrlGrafico.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ /dev/null	(revision 0d3edde6bf94c2274a29d607920594589485c014)
+@@ -1,7 +0,0 @@
+-package viste.first;
+-
+-public class GestioneSquadraCtrlGrafico {
+-    public GestioneSquadraCtrlGrafico(){
+-        //costruttore vuoto di default del controllore grafico
+-    }
+-}
+Index: src/main/resources/viste/gestioneSquadra.fxml
+===================================================================
+diff --git a/src/main/resources/viste/gestioneSquadra.fxml b/src/main/resources/viste/gestioneSquadra.fxml
+deleted file mode 100644
+--- a/src/main/resources/viste/gestioneSquadra.fxml	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ /dev/null	(revision 0d3edde6bf94c2274a29d607920594589485c014)
+@@ -1,14 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<?import java.lang.*?>
+-<?import java.util.*?>
+-<?import javafx.scene.*?>
+-<?import javafx.scene.control.*?>
+-<?import javafx.scene.layout.*?>
+-
+-<AnchorPane xmlns="http://javafx.com/javafx"
+-            xmlns:fx="http://javafx.com/fxml"
+-            fx:controller="viste.first.GestioneSquadraCtrlGrafico"
+-            prefHeight="400.0" prefWidth="600.0">
+-
+-</AnchorPane>
+Index: src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ctrlApplicativo;\r\n\r\nimport engineering.bean.*;\r\nimport engineering.dao.UtenteDAO;\r\nimport engineering.eccezioni.EccezionePasswordErrata;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport engineering.pattern.Singleton;\r\nimport engineering.pattern.abstract_factory.DAOFactory;\r\nimport modelli.Login;\r\nimport modelli.Utente;\r\n\r\npublic class LoginCtrlApplicativo {\r\n\r\n    public LoginCtrlApplicativo() {\r\n        //costruttore vuoto di default\r\n    }\r\n\r\n\r\n    public Boolean verificaCredenziali(LoginBean loginBean) {\r\n\r\n        //creazione del dao per controllare le credenziali\r\n        UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();\r\n\r\n        //controllo delle credenziali\r\n\r\n        //creo un utente da passare all'interno del sistema\r\n        Login login = new Login(loginBean.getEmail(), loginBean.getPassword());\r\n\r\n        //vedo se l'utente esiste nel singleton\r\n        Singleton istanza=Singleton.getInstance();\r\n\r\n        //controllo che l'utente esiste nel singleton\r\n        if(istanza.esisteUtenteDaLogin(login)) {return true;}\r\n\r\n        //se siamo nella modalità demo, non devo controllare le credenziali dalla persistenza\r\n        else if(istanza.getDemo()){\r\n        return false;}\r\n\r\n        else {\r\n            //recupero l'utente dal login e lo restituisco\r\n            return utenteDao.esisteUtenteDaLogin(login);\r\n        }\r\n    }\r\n\r\n    public UtenteBean recuperoUtente(LoginBean loginBean) throws EccezionePasswordErrata {\r\n        try {\r\n        UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();\r\n\r\n\r\n        //vedo se l'utente esiste nel singleton\r\n        Singleton istanza=Singleton.getInstance();\r\n\r\n\r\n        Login login = new Login(loginBean.getEmail(), loginBean.getPassword());\r\n        //se esiste nel singleton, lo recupero e lo restituisco\r\n        if(istanza.esisteUtenteDaLogin(login)) {\r\n\r\n            //inizializzo il modello all'interno del sistema per l'utilizzo\r\n            Utente utente= istanza.getUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));\r\n\r\n            System.out.println(\" Utente recuperato email \" + utente.getEmail() + \" password \" + utente.getPassword() + \" username \" + utente.getUsername() + \" squadra \" + utente.getSquadra().getNome() + \" allenamenti \" + utente.getAllenamenti());\r\n\r\n            //salvo all'interno del singleton l'utente con utenteCorrente\r\n            istanza.setUtenteCorrente(utente);\r\n            if (utente.getAllenatore()) {\r\n                return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());\r\n            }\r\n            else {\r\n                return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());\r\n            }\r\n        }\r\n\r\n        //Se siamo nella modalità demo non dovremmo arrivare a questo punto del codice. Per sicurezza alzo un eccezione\r\n        else if(istanza.getDemo()){\r\n            throw new EccezioneUtenteInvalido(\"Impossibile recuperare l'utente dallo stato di persistenza visto che siamo nella modalità demo\");}\r\n\r\n        //richiediamo l'utente dalla persistenza\r\n        else {\r\n            //creazione del modello utente\r\n\r\n            //creo una nuova istanza di utente che contiene l'utente che fa uso del sistema\r\n            Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));\r\n\r\n            //salvo all'interno del singleton l'utente come utenteCorrente\r\n            istanza.setUtenteCorrente(utente);\r\n\r\n            //salvo l'utente all'interno del singleton nella lista di utenti che hanno fatto uso del sistema\r\n            istanza.aggiungiUtente(utente);\r\n\r\n            //creazione del bean utente in funzioni che sia un allenatore o un giocatore\r\n            if (utente.getAllenatore()) {\r\n\r\n                //restituzione del bean dell'allenatore creato\r\n                return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());\r\n            } else {\r\n\r\n                //restituzione del bean del giocatore creato\r\n                return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());\r\n            }\r\n        }\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezionePasswordErrata(e.getMessage());\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java b/src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java
+--- a/src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java	(date 1738590303771)
+@@ -3,6 +3,7 @@
+ import engineering.bean.*;
+ import engineering.dao.UtenteDAO;
+ import engineering.eccezioni.EccezionePasswordErrata;
++import engineering.eccezioni.EccezioneSquadraInvalida;
+ import engineering.eccezioni.EccezioneUtenteInvalido;
+ import engineering.pattern.Singleton;
+ import engineering.pattern.abstract_factory.DAOFactory;
+@@ -15,91 +16,95 @@
+         //costruttore vuoto di default
+     }
+ 
+-
+     public Boolean verificaCredenziali(LoginBean loginBean) {
+-
+-        //creazione del dao per controllare le credenziali
+-        UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
++        try {
+ 
+-        //controllo delle credenziali
+-
+-        //creo un utente da passare all'interno del sistema
+-        Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
++            //controllo delle credenziali
++            //creo un utente da passare all'interno del sistema
++            Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
+ 
+-        //vedo se l'utente esiste nel singleton
+-        Singleton istanza=Singleton.getInstance();
++            //vedo se l'utente esiste nel singleton
++            Singleton istanza = Singleton.getInstance();
+ 
+-        //controllo che l'utente esiste nel singleton
+-        if(istanza.esisteUtenteDaLogin(login)) {return true;}
++            //controllo che l'utente esiste nel singleton
++            if (istanza.esisteUtenteDaEmail(login.getEmail())) {
++                return true;
++            }
+ 
+-        //se siamo nella modalità demo, non devo controllare le credenziali dalla persistenza
+-        else if(istanza.getDemo()){
+-        return false;}
++            //se siamo nella modalità demo, non devo controllare le credenziali dalla persistenza
++            else if (istanza.getDemo()) {
++                return false;
++            } else {
++                //creazione del dao per controllare le credenziali
++                UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
+ 
+-        else {
+-            //recupero l'utente dal login e lo restituisco
+-            return utenteDao.esisteUtenteDaLogin(login);
++                //recupero l'utente dal login e lo restituisco
++                return utenteDao.esisteUtenteDaEmail(login.getEmail());
++            }
++        }
++        catch (EccezioneUtenteInvalido e) {
++            return false;
+         }
+     }
+ 
+     public UtenteBean recuperoUtente(LoginBean loginBean) throws EccezionePasswordErrata {
+         try {
+-        UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
++            UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
+ 
+ 
+-        //vedo se l'utente esiste nel singleton
+-        Singleton istanza=Singleton.getInstance();
++            //vedo se l'utente esiste nel singleton
++            Singleton istanza=Singleton.getInstance();
+ 
+ 
+-        Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
+-        //se esiste nel singleton, lo recupero e lo restituisco
+-        if(istanza.esisteUtenteDaLogin(login)) {
++            Login login = new Login(loginBean.getEmail(), loginBean.getPassword());
++            //se esiste nel singleton, lo recupero e lo restituisco
++            if(istanza.esisteUtenteDaLogin(login)) {
+ 
+-            //inizializzo il modello all'interno del sistema per l'utilizzo
+-            Utente utente= istanza.getUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
++                //inizializzo il modello all'interno del sistema per l'utilizzo
++                Utente utente= istanza.getUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
+ 
+-            System.out.println(" Utente recuperato email " + utente.getEmail() + " password " + utente.getPassword() + " username " + utente.getUsername() + " squadra " + utente.getSquadra().getNome() + " allenamenti " + utente.getAllenamenti());
++                System.out.println(" Utente recuperato email " + utente.getEmail() + " password " + utente.getPassword() + " username " + utente.getUsername() + " squadra " + utente.getSquadra().getNome() + " allenamenti " + utente.getAllenamenti());
+ 
+-            //salvo all'interno del singleton l'utente con utenteCorrente
+-            istanza.setUtenteCorrente(utente);
+-            if (utente.getAllenatore()) {
+-                return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
+-            }
+-            else {
+-                return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
+-            }
+-        }
++                //salvo all'interno del singleton l'utente con utenteCorrente
++                istanza.setUtenteCorrente(utente);
++                if (utente.getAllenatore()) {
++                    return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
++                }
++                else {
++                    return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
++                }
++            }
+ 
+-        //Se siamo nella modalità demo non dovremmo arrivare a questo punto del codice. Per sicurezza alzo un eccezione
+-        else if(istanza.getDemo()){
+-            throw new EccezioneUtenteInvalido("Impossibile recuperare l'utente dallo stato di persistenza visto che siamo nella modalità demo");}
++            //Se siamo nella modalità demo non dovremmo arrivare a questo punto del codice. Per sicurezza alzo un eccezione
++            else if(istanza.getDemo()){
++                throw new EccezioneUtenteInvalido("Impossibile recuperare l'utente dallo stato di persistenza visto che siamo nella modalità demo");}
+ 
+-        //richiediamo l'utente dalla persistenza
+-        else {
+-            //creazione del modello utente
++            //richiediamo l'utente dalla persistenza
++            else {
++                //creazione del modello utente
+ 
+-            //creo una nuova istanza di utente che contiene l'utente che fa uso del sistema
+-            Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
++                //creo una nuova istanza di utente che contiene l'utente che fa uso del sistema
++                Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginBean.getEmail(), loginBean.getPassword()));
+ 
+-            //salvo all'interno del singleton l'utente come utenteCorrente
+-            istanza.setUtenteCorrente(utente);
++                //salvo all'interno del singleton l'utente come utenteCorrente
++                istanza.setUtenteCorrente(utente);
+ 
+-            //salvo l'utente all'interno del singleton nella lista di utenti che hanno fatto uso del sistema
+-            istanza.aggiungiUtente(utente);
++                //salvo l'utente all'interno del singleton nella lista di utenti che hanno fatto uso del sistema
++                istanza.aggiungiUtente(utente);
+ 
+-            //creazione del bean utente in funzioni che sia un allenatore o un giocatore
+-            if (utente.getAllenatore()) {
++                //creazione del bean utente in funzioni che sia un allenatore o un giocatore
++                if (utente.getAllenatore()) {
+ 
+-                //restituzione del bean dell'allenatore creato
+-                return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
+-            } else {
++                    //restituzione del bean dell'allenatore creato
++                    return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
++                } else {
+ 
+-                //restituzione del bean del giocatore creato
+-                return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
+-            }
+-        }
++                    //restituzione del bean del giocatore creato
++                    return new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
++                }
++            }
+         }
+-        catch (EccezioneUtenteInvalido e) {
++        catch (Exception e) {
+             throw new EccezionePasswordErrata(e.getMessage());
+         }
+     }
+Index: src/main/java/ctrlApplicativo/RegistrazioneCtrlApplicativo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ctrlApplicativo;\r\n\r\nimport engineering.bean.RegistrazioneBean;\r\nimport engineering.dao.UtenteDAO;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport engineering.pattern.Singleton;\r\nimport engineering.pattern.abstract_factory.DAOFactory;\r\nimport modelli.Registrazione;\r\n\r\npublic class RegistrazioneCtrlApplicativo {\r\n\r\n    public RegistrazioneCtrlApplicativo() {\r\n        //costruttore vuoto di default\r\n    }\r\n\r\n    public void inserisciUtente(RegistrazioneBean registrazioneBean) throws EccezioneUtenteInvalido {\r\n        String username = registrazioneBean.getUsername();\r\n        String email = registrazioneBean.getEmail();\r\n        String password = registrazioneBean.getPassword();\r\n        boolean isAllenatore = registrazioneBean.getAllenatore();\r\n\r\n        // Verifica che tutti i campi siano compilati\r\n        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {\r\n            throw new EccezioneUtenteInvalido(\"Tutti i campi sono obbligatori!\");\r\n        }\r\n\r\n        // Creazione del modello registrazione\r\n        Registrazione registrazione = new Registrazione(username, email, password, isAllenatore);\r\n\r\n        //creo il DAO per l'inserimento dell'utente\r\n        UtenteDAO UtenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();\r\n\r\n        //controllo che l'utente esisti già nel singleton\r\n        Singleton istanza = Singleton.getInstance();\r\n        if (istanza.esisteUtenteDaRegistrazione(registrazione)) {\r\n            throw new EccezioneUtenteInvalido(\"Utente già registrato!\");\r\n        }\r\n\r\n        //aggiungo l'utente al singleton\r\n        istanza.aggiungiRegistrazione(registrazione);\r\n\r\n        //se non siamo nella modalità demo, inserisco l'utente nella persistenza\r\n        if(!istanza.getDemo()) {\r\n            try {\r\n\r\n                //compio l'inserimento dell'utente nella persistenza\r\n                UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);\r\n\r\n            } catch (EccezioneUtenteInvalido e) {\r\n                throw new EccezioneUtenteInvalido(e.getMessage());\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ctrlApplicativo/RegistrazioneCtrlApplicativo.java b/src/main/java/ctrlApplicativo/RegistrazioneCtrlApplicativo.java
+--- a/src/main/java/ctrlApplicativo/RegistrazioneCtrlApplicativo.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/ctrlApplicativo/RegistrazioneCtrlApplicativo.java	(date 1738589656186)
+@@ -14,21 +14,8 @@
+     }
+ 
+     public void inserisciUtente(RegistrazioneBean registrazioneBean) throws EccezioneUtenteInvalido {
+-        String username = registrazioneBean.getUsername();
+-        String email = registrazioneBean.getEmail();
+-        String password = registrazioneBean.getPassword();
+-        boolean isAllenatore = registrazioneBean.getAllenatore();
+-
+-        // Verifica che tutti i campi siano compilati
+-        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+-            throw new EccezioneUtenteInvalido("Tutti i campi sono obbligatori!");
+-        }
++        Registrazione registrazione = getRegistrazione(registrazioneBean);
+ 
+-        // Creazione del modello registrazione
+-        Registrazione registrazione = new Registrazione(username, email, password, isAllenatore);
+-
+-        //creo il DAO per l'inserimento dell'utente
+-        UtenteDAO UtenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
+ 
+         //controllo che l'utente esisti già nel singleton
+         Singleton istanza = Singleton.getInstance();
+@@ -42,6 +29,8 @@
+         //se non siamo nella modalità demo, inserisco l'utente nella persistenza
+         if(!istanza.getDemo()) {
+             try {
++                //creo il DAO per l'inserimento dell'utente
++                UtenteDAO UtenteDAO = DAOFactory.getDAOFactory().createUtenteDAO();
+ 
+                 //compio l'inserimento dell'utente nella persistenza
+                 UtenteDAO.inserisciUtenteDaRegistrazione(registrazione);
+@@ -51,4 +40,19 @@
+             }
+         }
+     }
++
++    private Registrazione getRegistrazione(RegistrazioneBean registrazioneBean) {
++        String username = registrazioneBean.getUsername();
++        String email = registrazioneBean.getEmail();
++        String password = registrazioneBean.getPassword();
++        boolean isAllenatore = registrazioneBean.getAllenatore();
++
++        // Verifica che tutti i campi siano compilati
++        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
++            throw new EccezioneUtenteInvalido("Tutti i campi sono obbligatori!");
++        }
++
++        // Creazione del modello registrazione
++        return new Registrazione(username, email, password, isAllenatore);
++    }
+ }
+\ No newline at end of file
+Index: src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport ctrlApplicativo.HomepageGiocatoreCtrlApplicativo;\r\nimport engineering.eccezioni.EccezioneCambioScena;\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.Label;\r\nimport javafx.stage.Stage;\r\nimport viste.first.utils.CambioScena;\r\n\r\nimport static viste.first.utils.FxmlFileName.*;\r\n\r\n\r\npublic class HomepageGiocatoreCtrlGrafico {\r\n\r\n    @FXML\r\n    private Label welcomeLabel;\r\n\r\n    @FXML\r\n    private Label mostraErrori;\r\n\r\n    HomepageGiocatoreCtrlApplicativo homepageGiocatoreCtrlApplicativo = new HomepageGiocatoreCtrlApplicativo();\r\n\r\n    public void initialize() {\r\n        String username;\r\n        username=homepageGiocatoreCtrlApplicativo.getMessaggioBenvenuto();\r\n        welcomeLabel.setText(\"Ciao \" + username);\r\n    }\r\n\r\n    @FXML\r\n    protected void entraSquadra(){\r\n        try {\r\n            if (homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {\r\n                throw new EccezioneUtenteInvalido(\"Sei già in una squadra\");\r\n            }\r\n            cambio(PAGINA_ENTRAINSQUADRA);\r\n        }\r\n        catch (EccezioneUtenteInvalido | EccezioneCambioScena e) {\r\n            mostra(e);\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    protected void IscrizioneAllenamento(){\r\n        try {\r\n            cambio(PAGINA_ISCRIZIONE_ALLENAMENTO);\r\n        }\r\n        catch (EccezioneCambioScena e) {\r\n            mostra(e);\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    private void consultaAllenamenti() {\r\n        // Logica per il pulsante \"Consulta allenamenti\"\r\n        if(homepageGiocatoreCtrlApplicativo.isUtenteInSquadra()) {\r\n            try {\r\n                cambio(PAGINA_CONSULTA_ALLENAMENTI);\r\n\r\n            } catch (EccezioneCambioScena e) {\r\n                mostra(e);\r\n            }\r\n        }\r\n        else {\r\n            mostra(new EccezioneUtenteInvalido(\"Non sei in una squadra, non puoi consultare gli allenamenti\"));\r\n        }\r\n    }\r\n\r\n    public void mostra(Exception e){\r\n        mostraErrori.setText(e.getMessage());\r\n        mostraErrori.setVisible(true);\r\n    }\r\n\r\n    private void cambio(String string){\r\n        try {\r\n            Stage stage = (Stage) welcomeLabel.getScene().getWindow();\r\n            CambioScena cambioScena = new CambioScena();\r\n            cambioScena.cambioScena(stage, string);\r\n        }\r\n        catch (EccezioneCambioScena e){\r\n            throw new EccezioneCambioScena(e.getMessage());\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java b/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java
+--- a/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java	(date 1738591970692)
+@@ -37,7 +37,7 @@
+             cambio(PAGINA_ENTRAINSQUADRA);
+         }
+         catch (EccezioneUtenteInvalido | EccezioneCambioScena e) {
+-            mostra(e);
++            mostra(e.getMessage());
+         }
+     }
+ 
+@@ -47,7 +47,7 @@
+             cambio(PAGINA_ISCRIZIONE_ALLENAMENTO);
+         }
+         catch (EccezioneCambioScena e) {
+-            mostra(e);
++            mostra(e.getMessage());
+         }
+     }
+ 
+@@ -59,16 +59,16 @@
+                 cambio(PAGINA_CONSULTA_ALLENAMENTI);
+ 
+             } catch (EccezioneCambioScena e) {
+-                mostra(e);
++                mostra(e.getMessage());
+             }
+         }
+         else {
+-            mostra(new EccezioneUtenteInvalido("Non sei in una squadra, non puoi consultare gli allenamenti"));
++            mostra("Non sei in una squadra, non puoi consultare gli allenamenti");
+         }
+     }
+ 
+-    public void mostra(Exception e){
+-        mostraErrori.setText(e.getMessage());
++    public void mostra(String messaggio){
++        mostraErrori.setText(messaggio);
+         mostraErrori.setVisible(true);
+     }
+ 
+Index: src/main/java/viste/first/RegistrazioneCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport ctrlApplicativo.RegistrazioneCtrlApplicativo;\r\nimport engineering.bean.RegistrazioneBean;\r\nimport javafx.fxml.FXML;\r\nimport javafx.fxml.Initializable;\r\nimport javafx.scene.control.*;\r\nimport javafx.stage.Stage;\r\nimport viste.first.utils.CambioScena;\r\n\r\nimport java.net.URL;\r\nimport java.util.ResourceBundle;\r\n\r\nimport static viste.first.utils.FxmlFileName.*;\r\nimport static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;\r\n\r\npublic class RegistrazioneCtrlGrafico implements Initializable {\r\n\r\n    @FXML\r\n    private TextField usernameTextField;\r\n    @FXML\r\n    private TextField emailTextField;\r\n    @FXML\r\n    private PasswordField passwordTextField;\r\n    @FXML\r\n    private PasswordField confermaPasswordTextField;\r\n    @FXML\r\n    private CheckBox allenatoreCheckBox;\r\n    @FXML\r\n    private Button registratiButton;\r\n    @FXML\r\n    private Button tornaLoginButton;\r\n    @FXML\r\n    private Label registrazioneAvvenuta;\r\n    @FXML\r\n    private Label erroreInserimento;\r\n\r\n\r\n    @Override\r\n    public void initialize(URL location, ResourceBundle resources) {\r\n        registratiButton.setOnAction(event -> handleRegistratiButton());\r\n    }\r\n\r\n    public void initialize()\r\n    {\r\n        System.out.println(\"Inizializzazione Temporanea\");\r\n    }\r\n\r\n    private void handleRegistratiButton() {\r\n        String username = usernameTextField.getText();\r\n        String email = emailTextField.getText();\r\n        String password = passwordTextField.getText();\r\n        String confermaPassword = confermaPasswordTextField.getText();\r\n        boolean isAllenatore = allenatoreCheckBox.isSelected();\r\n\r\n        //se le password coincidono continuiamo con il salvataggio nel sistema della registrazione\r\n        if (password.equals(confermaPassword)) {\r\n\r\n            //creiamo il bean per la registrazione\r\n            RegistrazioneBean registrazioneBean = new RegistrazioneBean(username, email, password, isAllenatore);\r\n\r\n            //creiamo il controller applicativo per la registrazione\r\n            RegistrazioneCtrlApplicativo registrazioneCtrlApplicativo = new RegistrazioneCtrlApplicativo();\r\n\r\n            try {\r\n\r\n                //tentiamo di registrare l'utente\r\n                registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);\r\n                System.out.println(\"Registrazione avvenuta con successo!\");\r\n\r\n                //a registrazione avvenuta, cambiamo scena\r\n                Stage stage = (Stage) registrazioneAvvenuta.getScene().getWindow();\r\n                CambioScena cambioScena = new CambioScena();\r\n\r\n                //codice temporaneo per il cambio di scena alla home page del giocatore o allenatore\r\n                if (registrazioneBean.getAllenatore()) {\r\n                    cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);\r\n                } else {\r\n                    cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);\r\n                }\r\n\r\n            } catch (Exception e) {\r\n                System.out.println(e.getMessage());\r\n                registrazioneAvvenuta.setText(e.getMessage());\r\n                registrazioneAvvenuta.setVisible(true);\r\n            }\r\n        } else {\r\n            registrazioneAvvenuta.setText(\"Le password non coincidono!\");\r\n            registrazioneAvvenuta.setVisible(true);\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/RegistrazioneCtrlGrafico.java b/src/main/java/viste/first/RegistrazioneCtrlGrafico.java
+--- a/src/main/java/viste/first/RegistrazioneCtrlGrafico.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/first/RegistrazioneCtrlGrafico.java	(date 1738590955457)
+@@ -2,6 +2,8 @@
+ 
+ import ctrlApplicativo.RegistrazioneCtrlApplicativo;
+ import engineering.bean.RegistrazioneBean;
++import engineering.eccezioni.EccezioneCambioScena;
++import engineering.eccezioni.EccezioneUtenteInvalido;
+ import javafx.fxml.FXML;
+ import javafx.fxml.Initializable;
+ import javafx.scene.control.*;
+@@ -79,15 +81,20 @@
+                     cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
+                 }
+ 
+-            } catch (Exception e) {
+-                System.out.println(e.getMessage());
+-                registrazioneAvvenuta.setText(e.getMessage());
+-                registrazioneAvvenuta.setVisible(true);
++            } catch (EccezioneUtenteInvalido e) {
++                mostra(e.getMessage());
++            }
++            catch (EccezioneCambioScena e) {
++                mostra("Errore di cambio scena, riprovare");
+             }
+         } else {
+-            registrazioneAvvenuta.setText("Le password non coincidono!");
+-            registrazioneAvvenuta.setVisible(true);
++            mostra("Le password non coincidono");
+         }
+     }
+ 
++    private void mostra(String messaggio) {
++        erroreInserimento.setText(messaggio);
++        erroreInserimento.setVisible(true);
++    }
++
+ }
+\ No newline at end of file
+Index: src/main/java/viste/first/LoginCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport engineering.bean.UtenteBean;\r\nimport engineering.bean.LoginBean;\r\nimport engineering.eccezioni.EccezioneCambioScena;\r\nimport engineering.eccezioni.EccezionePasswordErrata;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.*;\r\nimport javafx.event.ActionEvent;\r\n\r\nimport java.io.IOException;\r\n\r\nimport ctrlApplicativo.LoginCtrlApplicativo;\r\nimport javafx.stage.Stage;\r\nimport viste.first.utils.CambioScena;\r\n\r\nimport static viste.first.utils.FxmlFileName.*;\r\n\r\npublic class LoginCtrlGrafico {\r\n\r\n    @FXML\r\n    private Button login;\r\n\r\n    @FXML\r\n    private TextField email;\r\n\r\n    @FXML\r\n    private PasswordField password;\r\n\r\n    @FXML\r\n    private Button registr;\r\n\r\n    @FXML\r\n    private Label erroreInserimento;\r\n\r\n    @FXML\r\n    private void initialize() {\r\n        erroreInserimento.setVisible(false);\r\n    }\r\n\r\n    @FXML\r\n    protected void userLogin() throws IOException {\r\n        String em = email.getText().trim();           //accesso con email\r\n        String pass = password.getText().trim();\r\n\r\n\r\n        if (em.isEmpty() || pass.isEmpty()) {\r\n            erroreInserimento.setText(\"There are empty fields!\");\r\n            erroreInserimento.setVisible(true);\r\n        }\r\n\r\n        else {\r\n            LoginCtrlApplicativo loginCtrlApplicativo = new LoginCtrlApplicativo();\r\n            try{\r\n                //istanziazione del bean per il login\r\n                LoginBean loginBean = new LoginBean(em,pass);\r\n\r\n                //creazione del controler applicativo per il login\r\n\r\n                //passaggio del bean al controller applicativo per il controllo delle credenziali\r\n                if(!loginCtrlApplicativo.verificaCredenziali(loginBean)){\r\n                    throw new EccezionePasswordErrata(\"Credenziali errate\");\r\n                }\r\n\r\n                //creazione del bean utente generico in funzione dei dati del bean di login\r\n                UtenteBean utenteBean = loginCtrlApplicativo.recuperoUtente(loginBean);\r\n\r\n                Stage stage = (Stage) email.getScene().getWindow();\r\n                CambioScena cambioScena = new CambioScena();\r\n\r\n                //codice temporaneo per il cambio di scena alla home page del giocatore o allenatore\r\n                if (utenteBean.getAllenatore()) {\r\n                    cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);\r\n                } else {\r\n                    cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);\r\n                }\r\n\r\n\r\n            } catch (EccezionePasswordErrata e){\r\n                erroreInserimento.setText(e.getMessage());\r\n                erroreInserimento.setVisible(true);\r\n            }\r\n            catch (EccezioneCambioScena e) {\r\n                erroreInserimento.setText(\"Errore di cambio scena\");\r\n                erroreInserimento.setVisible(true);\r\n            }\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    protected void registrazione(ActionEvent event) throws IOException {\r\n        //implemento di cambio di scena all pagina di registrazione\r\n\r\n\r\n        //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE\r\n        try {\r\n            Stage stage = (Stage) email.getScene().getWindow();\r\n            CambioScena cambioScena = new CambioScena();\r\n            cambioScena.cambioScena(stage, PAGINA_REGISTRAZIONE);\r\n\r\n        } catch (Exception e) {\r\n            erroreInserimento.setText(\"Errore di cambio scena\");\r\n            erroreInserimento.setVisible(true);        }\r\n    }\r\n\r\n    public static class CreazioneAllenamentoControllerGrafico {\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/LoginCtrlGrafico.java b/src/main/java/viste/first/LoginCtrlGrafico.java
+--- a/src/main/java/viste/first/LoginCtrlGrafico.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/first/LoginCtrlGrafico.java	(date 1738591082262)
+@@ -98,11 +98,14 @@
+             CambioScena cambioScena = new CambioScena();
+             cambioScena.cambioScena(stage, PAGINA_REGISTRAZIONE);
+ 
+-        } catch (Exception e) {
++        }
++        catch (EccezioneCambioScena e) {
+             erroreInserimento.setText("Errore di cambio scena");
+-            erroreInserimento.setVisible(true);        }
++            erroreInserimento.setVisible(true);
++        }
+     }
+ 
+     public static class CreazioneAllenamentoControllerGrafico {
++        //costruttore vuoto di default
+     }
+ }
+\ No newline at end of file
+Index: src/main/java/viste/first/utils/GestoreTabella.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first.utils;\r\n\r\nimport engineering.bean.AllenatoreBean;\r\nimport engineering.bean.GiocatoreBean;\r\nimport engineering.bean.UtenteBean;\r\nimport engineering.pattern.Singleton;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.layout.HBox;\r\nimport modelli.Utente;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class GestoreTabella {\r\n\r\n    Singleton istanza = Singleton.getInstance();\r\n\r\n    // Callback interface for handling button actions in the controller\r\n    public interface ButtonActionHandler {\r\n        void handleAccept(UtenteBean utenteBean);\r\n        void handleRefuse(UtenteBean utenteBean);\r\n    }\r\n\r\n    private ButtonActionHandler buttonActionHandler;\r\n\r\n    // Constructor to set the ButtonActionHandler\r\n    public GestoreTabella(ButtonActionHandler buttonActionHandler) {\r\n        this.buttonActionHandler = buttonActionHandler;\r\n    }\r\n\r\n    // Method to populate the TableView with a list of UtenteBean objects\r\n    public void populateTable(TableView<UtenteBean> tableView) {\r\n        // Get columns by fx:id (these should be linked via SceneBuilder)\r\n        TableColumn<UtenteBean, String> nameColumn = (TableColumn<UtenteBean, String>) tableView.getColumns().get(0);\r\n        TableColumn<UtenteBean, Void> actionColumn = (TableColumn<UtenteBean, Void>) tableView.getColumns().get(1);\r\n\r\n        // Set the value factory for the name column\r\n        nameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmail()));\r\n\r\n        // Set the cell factory for the action column (buttons)\r\n        actionColumn.setCellFactory(col -> createButtonCell());\r\n\r\n        // Populate the TableView with the list of users (UtenteBean)\r\n        tableView.getItems().setAll(recuperaUtentiBean());\r\n    }\r\n\r\n    // Method to refresh the TableView\r\n    public void refreshTable(TableView<UtenteBean> tableView) {\r\n        tableView.getItems().setAll(recuperaUtentiBean());\r\n    }\r\n\r\n    private List<UtenteBean> recuperaUtentiBean() {\r\n        List<UtenteBean> utentiBean = new ArrayList<>();\r\n        // Modify to retrieve UtenteBean objects instead of Utente\r\n        List<Utente> utenti = istanza.getUtenteCorrente().getSquadra().getRichiesteIngresso();\r\n        for (Utente utente : utenti) {\r\n            UtenteBean utenteBean;\r\n            if (utente.getAllenatore()) {\r\n                utenteBean = new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());\r\n            } else {\r\n                utenteBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());\r\n            }\r\n            utentiBean.add(utenteBean);\r\n        }\r\n        return utentiBean;\r\n    }\r\n\r\n    // Method to create button cells for the action column\r\n    private TableCell<UtenteBean, Void> createButtonCell() {\r\n        return new TableCell<UtenteBean, Void>() {\r\n            private final Button acceptButton = new Button(\"Accept\");\r\n            private final Button refuseButton = new Button(\"Refuse\");\r\n\r\n            {// Set button actions that delegate to the controller's methods via the callback\r\n                acceptButton.setOnAction(event -> {\r\n                    UtenteBean utenteBean = getTableView().getItems().get(getIndex());\r\n                    buttonActionHandler.handleAccept(utenteBean);\r\n                });\r\n                refuseButton.setOnAction(event -> {\r\n                    UtenteBean utenteBean = getTableView().getItems().get(getIndex());\r\n                    buttonActionHandler.handleRefuse(utenteBean);\r\n                });\r\n            }\r\n\r\n            @Override\r\n            protected void updateItem(Void item, boolean empty) {\r\n                super.updateItem(item, empty);\r\n                if (empty) {\r\n                    setGraphic(null);  // Remove the buttons if the cell is empty\r\n                } else {\r\n                    setGraphic(new HBox(10, acceptButton, refuseButton));  // Add buttons to the cell\r\n                }\r\n            }\r\n        };\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/utils/GestoreTabella.java b/src/main/java/viste/first/utils/GestoreTabella.java
+--- a/src/main/java/viste/first/utils/GestoreTabella.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/first/utils/GestoreTabella.java	(date 1738588667192)
+@@ -13,7 +13,8 @@
+ 
+ public class GestoreTabella {
+ 
+-    Singleton istanza = Singleton.getInstance();
++    private final Singleton istanza;
++    private final ButtonActionHandler buttonActionHandler;
+ 
+     // Callback interface for handling button actions in the controller
+     public interface ButtonActionHandler {
+@@ -21,11 +22,10 @@
+         void handleRefuse(UtenteBean utenteBean);
+     }
+ 
+-    private ButtonActionHandler buttonActionHandler;
+-
+-    // Constructor to set the ButtonActionHandler
++    // Constructor to set the ButtonActionHandler and initialize Singleton
+     public GestoreTabella(ButtonActionHandler buttonActionHandler) {
+         this.buttonActionHandler = buttonActionHandler;
++        this.istanza = Singleton.getInstance(); // Initialize Singleton here
+     }
+ 
+     // Method to populate the TableView with a list of UtenteBean objects
+@@ -71,7 +71,8 @@
+             private final Button acceptButton = new Button("Accept");
+             private final Button refuseButton = new Button("Refuse");
+ 
+-            {// Set button actions that delegate to the controller's methods via the callback
++            {
++                // Initialize button actions in the constructor of the cell
+                 acceptButton.setOnAction(event -> {
+                     UtenteBean utenteBean = getTableView().getItems().get(getIndex());
+                     buttonActionHandler.handleAccept(utenteBean);
+Index: src/main/java/ctrlApplicativo/HomepageAllenatoreCtrlApplicativo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ctrlApplicativo;\r\n\r\nimport engineering.pattern.Singleton;\r\nimport modelli.Utente;\r\n\r\npublic class HomepageAllenatoreCtrlApplicativo\r\n{\r\n\r\n    public HomepageAllenatoreCtrlApplicativo() {\r\n        //costruttore vuoto di default del controllore applicativo\r\n    }\r\n\r\n    public Boolean esisteSquadra(){\r\n        Singleton istanza= Singleton.getInstance();\r\n        Utente utente= istanza.getUtenteCorrente();\r\n\r\n        if (utente.getSquadra().getNome().isEmpty()) {\r\n            System.out.println(\"L'allenatore non ha una squadra\");\r\n            return false;\r\n        }\r\n        else {\r\n            System.out.println(\"L'allenatore ha una squadra\");\r\n            return true;\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ctrlApplicativo/HomepageAllenatoreCtrlApplicativo.java b/src/main/java/ctrlApplicativo/HomepageAllenatoreCtrlApplicativo.java
+--- a/src/main/java/ctrlApplicativo/HomepageAllenatoreCtrlApplicativo.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/ctrlApplicativo/HomepageAllenatoreCtrlApplicativo.java	(date 1738590933540)
+@@ -10,17 +10,10 @@
+         //costruttore vuoto di default del controllore applicativo
+     }
+ 
+-    public Boolean esisteSquadra(){
++    public boolean esisteSquadra(){
+         Singleton istanza= Singleton.getInstance();
+         Utente utente= istanza.getUtenteCorrente();
+ 
+-        if (utente.getSquadra().getNome().isEmpty()) {
+-            System.out.println("L'allenatore non ha una squadra");
+-            return false;
+-        }
+-        else {
+-            System.out.println("L'allenatore ha una squadra");
+-            return true;
+-        }
++        return !utente.getSquadra().getNome().isEmpty();
+     }
+ }
+Index: src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport ctrlApplicativo.CreazioneAllenamentoCtrlApplicativo;\r\nimport engineering.eccezioni.EccezioneAllenamentoInvalido;\r\nimport engineering.eccezioni.EccezioneCambioScena;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.Button;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.control.TextField;\r\nimport engineering.bean.AllenamentoBean;\r\nimport javafx.stage.Stage;\r\nimport viste.first.utils.CambioScena;\r\n\r\nimport static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;\r\n\r\npublic class CreazioneAllenamentoCtrlGrafico {\r\n\r\n    @FXML\r\n    private Label labelErrori;\r\n\r\n    @FXML\r\n    private TextField giornoAllenamento;\r\n\r\n    @FXML\r\n    private TextField meseAllenamento;\r\n\r\n    @FXML\r\n    private TextField annoAllenamento;\r\n\r\n    @FXML\r\n    private TextField oraInizio;\r\n\r\n    @FXML\r\n    private TextField minutoInizio;\r\n\r\n    @FXML\r\n    private TextField oraFine;\r\n\r\n    @FXML\r\n    private TextField minutoFine;\r\n\r\n    @FXML\r\n    private TextField descrizioneAllenamento;\r\n\r\n    @FXML\r\n    private Button creaAllenamento;\r\n\r\n    public void initialize() {\r\n        System.out.println(\"Inizializzazione Temporanea della Pagina di Creazione Allenamento\");\r\n    }\r\n\r\n    @FXML\r\n    private void tornaIndietro() throws EccezioneCambioScena {\r\n        try {\r\n            Stage stage = (Stage) labelErrori.getScene().getWindow();\r\n            CambioScena cambioScena = new CambioScena();\r\n            cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);\r\n\r\n        } catch (EccezioneCambioScena e) {\r\n            throw new EccezioneCambioScena(e.getMessage());\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    public void CreaAllenamento() {\r\n        try {\r\n            System.out.println(\"Creazione Allenamento\");\r\n            int giorno = Integer.parseInt(giornoAllenamento.getText());\r\n            int mese = Integer.parseInt(meseAllenamento.getText());\r\n            int anno = Integer.parseInt(annoAllenamento.getText());\r\n            int oraIn = Integer.parseInt(oraInizio.getText());\r\n            int minutoIn = Integer.parseInt(minutoInizio.getText());\r\n            int oraFin = Integer.parseInt(oraFine.getText());\r\n            int minutoFin = Integer.parseInt(minutoFine.getText());\r\n\r\n            String descrizione = descrizioneAllenamento.getText();\r\n\r\n            if(giorno < 1 || giorno > 31)       {throw new EccezioneUtenteInvalido(\"Giorno non valido\");}\r\n            if (mese < 1 || mese > 12)          {throw new EccezioneUtenteInvalido(\"Mese non valido\");}\r\n            if (anno < 2025 )                   {throw new EccezioneUtenteInvalido(\"Anno non valido\");}\r\n            if (oraIn < 0 || oraIn > 23)        {throw new EccezioneUtenteInvalido(\"Ora di inizio non valida\");}\r\n            if (minutoIn < 0 || minutoIn > 59)  {throw new EccezioneUtenteInvalido(\"Minuto di inizio non valido\");}\r\n            if (oraFin < 0 || oraFin > 23)      {throw new EccezioneUtenteInvalido(\"Ora di fine non valida\");}\r\n            if (minutoFin < 0 || minutoFin > 59){throw new EccezioneUtenteInvalido(\"Minuto di fine non valido\");}\r\n\r\n            String orarioInizio = String.format(\"%02d-%02d\", oraIn, minutoIn);\r\n            String orarioFine = String.format(\"%02d-%02d\", oraFin, minutoFin);\r\n\r\n            //creazione della data con cui verrà salvato l'allenamento\r\n            String data = String.format(\"%02d-%02d-%04d\", giorno, mese, anno);\r\n\r\n            //creazione del ben dell'allenamento da far salvare al sistema\r\n            AllenamentoBean allenamentoBean = new AllenamentoBean(data, orarioInizio, orarioFine, descrizione);\r\n\r\n            //richiediamo al sistema di salvare il bean dell'allenamento\r\n            CreazioneAllenamentoCtrlApplicativo creazioneAllenamentoCtrlApplicativo = new CreazioneAllenamentoCtrlApplicativo();\r\n            creazioneAllenamentoCtrlApplicativo.creaAllenamento(allenamentoBean);\r\n\r\n            //abbiamo completato il salvataggio e lo facciamo vedere con una stampa a schermo\r\n            System.out.println(\"giorno: \" + giorno + \" mese: \" + mese + \" anno: \" + anno + \"orario inizio \" + orarioInizio + \" orario fine \"+ orarioFine + \" descrizione: \" + descrizione);\r\n\r\n            cambiaScena();\r\n\r\n        } catch (EccezioneCambioScena | EccezioneUtenteInvalido e) {\r\n            System.out.println(e.getMessage());\r\n            labelErrori.setText(e.getMessage());\r\n            labelErrori.setVisible(true);\r\n        }\r\n    }\r\n\r\n    private void cambiaScena() throws EccezioneCambioScena {\r\n        //facciamo il cambio scena per tornare alla home dell'allenatore\r\n        try {\r\n            Stage stage = (Stage) labelErrori.getScene().getWindow();\r\n            CambioScena cambioScena = new CambioScena();\r\n            cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);\r\n\r\n        } catch (EccezioneCambioScena e) {\r\n            throw new EccezioneCambioScena(e.getMessage());\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java b/src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java
+--- a/src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java	(date 1738591970721)
+@@ -47,7 +47,7 @@
+     private Button creaAllenamento;
+ 
+     public void initialize() {
+-        System.out.println("Inizializzazione Temporanea della Pagina di Creazione Allenamento");
++        labelErrori.setVisible(false);
+     }
+ 
+     @FXML
+@@ -65,7 +65,6 @@
+     @FXML
+     public void CreaAllenamento() {
+         try {
+-            System.out.println("Creazione Allenamento");
+             int giorno = Integer.parseInt(giornoAllenamento.getText());
+             int mese = Integer.parseInt(meseAllenamento.getText());
+             int anno = Integer.parseInt(annoAllenamento.getText());
+@@ -102,10 +101,13 @@
+ 
+             cambiaScena();
+ 
+-        } catch (EccezioneCambioScena | EccezioneUtenteInvalido e) {
+-            System.out.println(e.getMessage());
++        } catch (EccezioneCambioScena | EccezioneAllenamentoInvalido e) {
+             labelErrori.setText(e.getMessage());
+             labelErrori.setVisible(true);
++        }
++        catch (Exception e) {
++            labelErrori.setText("Errore con il format delle date");
++            labelErrori.setVisible(true);
+         }
+     }
+ 
+Index: src/main/java/engineering/pattern/Singleton.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.pattern;\r\n\r\nimport engineering.eccezioni.EccezioneCambioScena;\r\nimport engineering.eccezioni.EccezioneIstanza;\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport modelli.*;\r\n\r\nimport java.io.InputStream;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Properties;\r\n\r\npublic class Singleton {\r\n\r\n    //variabile statica che contiene l'istanza della classe\r\n    private static final Singleton instance;\r\n\r\n    //variabili private dove vengono salvate le istanze\r\n    private final List<Utente> utenti = new ArrayList<>();\r\n\r\n    //variabile privata che contiene l'istanza dell'utente che sta facendo uso del sistema\r\n    private Utente utenteCorrente;\r\n\r\n    //variabile che indica se il sistema è in modalità demo o meno\r\n    private Boolean demo;\r\n\r\n\r\n    private Singleton(){}\r\n\r\n    // static block initialization for exception handling\r\n    static {\r\n        Singleton tempInstance = null;\r\n        try {\r\n            // Creazione dell'istanza singleton\r\n            tempInstance = new Singleton();\r\n\r\n            // Caricamento delle proprietà dal file demo.properties\r\n            try (InputStream input = Singleton.class.getClassLoader().getResourceAsStream(\"demo.properties\")) {\r\n                if (input != null) {\r\n                    Properties properties = new Properties();\r\n                    properties.load(input);\r\n\r\n                    // Lettura del valore dalla chiave del file demo\r\n                    String parameter = properties.getProperty(\"mode.type\", \"false\");\r\n\r\n                    // Converte il valore in booleano\r\n                    Boolean boo = Boolean.valueOf(parameter);\r\n\r\n                    // Imposta il valore alla variabile demo dell'istanza singleton\r\n                    tempInstance.setDemo(boo);\r\n                } else {\r\n                    System.out.println(\"File demo.properties non trovato.\");\r\n                }\r\n            } catch (Exception e) {\r\n                System.out.println(\"Errore durante la lettura del file demo.properties: \" + e.getMessage());\r\n            }\r\n\r\n        } catch (Exception e) {\r\n            throw new EccezioneIstanza(\"Exception occurred in creating singleton instance: \" + e.getMessage());\r\n        }\r\n        instance = tempInstance;\r\n    }\r\n\r\n    public static Singleton getInstance() {\r\n        return instance;\r\n    }\r\n\r\n    //metodi pubblici per ottenere le istanze di tutti gli utenti istanziati nel sistema\r\n    public void aggiungiUtente(Utente utente) {utenti.add(utente);}\r\n\r\n    public Utente getUtenteCorrente() {return utenteCorrente;}\r\n    public void setUtenteCorrente(Utente utente) {utenteCorrente = utente;}\r\n\r\n    public Boolean getDemo() {return demo;}\r\n    public void setDemo(Boolean demo) {this.demo = demo;}\r\n\r\n    public List<Utente> getUtenti() {return utenti;}\r\n\r\n    public Boolean esisteUtenteDaLogin(Login login) {\r\n        for (Utente utente : utenti) {\r\n            if (utente.getEmail().equals(login.getEmail()) && utente.getPassword().equals(login.getPassword())) {\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n    public Boolean esisteUtenteDaRegistrazione(Registrazione registrazione) {return esisteUtenteDaEmail(registrazione.getEmail());}\r\n    public Boolean esisteUtenteDaEmail(String email) {\r\n        for (Utente utente : utenti) {\r\n            if (utente.getEmail().equals(email)) {\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n    public Boolean esisteSquadraDaNome(String nomeSquadra) {\r\n        for (Utente utente : utenti) {\r\n            if (utente.getAllenatore() && utente.getSquadra().getNome().equals(nomeSquadra)) {\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public Utente getUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {\r\n        try {\r\n            if (getUtenteDaEmail(login.getEmail()).getPassword().equals(login.getPassword())) {\r\n                return getUtenteDaEmail(login.getEmail());\r\n            }\r\n        } catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(\"Utente non esistente\");\r\n        }\r\n        return null;\r\n    }\r\n    public Utente getUtenteDaEmail(String email) throws EccezioneUtenteInvalido {\r\n        for (Utente utente : utenti) {\r\n            if (utente.getEmail().equals(email)) {\r\n                return utente;\r\n            }\r\n        }\r\n        throw new EccezioneUtenteInvalido(\"Utente non esistente\");\r\n    }\r\n    public Squadra getSquadraDaNome(String nomeSquadra) throws EccezioneSquadraInvalida {\r\n        for (Utente utente : utenti) {\r\n            if (utente instanceof Allenatore allenatore && allenatore.getSquadra().getNome().equals(nomeSquadra)) {\r\n                return allenatore.getSquadra();\r\n            }\r\n        }\r\n        throw new EccezioneUtenteInvalido(\"Squadra non esistente\");\r\n    }\r\n\r\n    public void aggiungiRegistrazione(Registrazione registrazione){\r\n        Utente utente;\r\n        if (registrazione.getAllenatore()) {\r\n            utente=new Allenatore(registrazione.getUsername(),registrazione.getEmail(), registrazione.getPassword());\r\n        } else {\r\n            utente=new Giocatore(registrazione.getUsername(),registrazione.getEmail(), registrazione.getPassword());\r\n        }\r\n        utenti.add(utente);\r\n        setUtenteCorrente(utente);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/pattern/Singleton.java b/src/main/java/engineering/pattern/Singleton.java
+--- a/src/main/java/engineering/pattern/Singleton.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/engineering/pattern/Singleton.java	(date 1738589892919)
+@@ -1,9 +1,6 @@
+ package engineering.pattern;
+ 
+-import engineering.eccezioni.EccezioneCambioScena;
+-import engineering.eccezioni.EccezioneIstanza;
+-import engineering.eccezioni.EccezioneSquadraInvalida;
+-import engineering.eccezioni.EccezioneUtenteInvalido;
++import engineering.eccezioni.*;
+ import modelli.*;
+ 
+ import java.io.InputStream;
+@@ -31,34 +28,30 @@
+     // static block initialization for exception handling
+     static {
+         Singleton tempInstance = null;
+-        try {
+-            // Creazione dell'istanza singleton
+-            tempInstance = new Singleton();
++        // Creazione dell'istanza singleton
++        tempInstance = new Singleton();
+ 
+-            // Caricamento delle proprietà dal file demo.properties
+-            try (InputStream input = Singleton.class.getClassLoader().getResourceAsStream("demo.properties")) {
+-                if (input != null) {
+-                    Properties properties = new Properties();
+-                    properties.load(input);
++        // Caricamento delle proprietà dal file demo.properties
++        try (InputStream input = Singleton.class.getClassLoader().getResourceAsStream("demo.properties")) {
++            if (input != null) {
++                Properties properties = new Properties();
++                properties.load(input);
+ 
+-                    // Lettura del valore dalla chiave del file demo
+-                    String parameter = properties.getProperty("mode.type", "false");
++                // Lettura del valore dalla chiave del file demo
++                String parameter = properties.getProperty("mode.type", "false");
+ 
+-                    // Converte il valore in booleano
+-                    Boolean boo = Boolean.valueOf(parameter);
++                // Converte il valore in booleano
++                Boolean boo = Boolean.valueOf(parameter);
+ 
+-                    // Imposta il valore alla variabile demo dell'istanza singleton
+-                    tempInstance.setDemo(boo);
+-                } else {
+-                    System.out.println("File demo.properties non trovato.");
+-                }
+-            } catch (Exception e) {
+-                System.out.println("Errore durante la lettura del file demo.properties: " + e.getMessage());
++                // Imposta il valore alla variabile demo dell'istanza singleton
++                tempInstance.setDemo(boo);
++            } else {
++                System.out.println("File demo.properties non trovato.");
+             }
+-
+         } catch (Exception e) {
+             throw new EccezioneIstanza("Exception occurred in creating singleton instance: " + e.getMessage());
+         }
++
+         instance = tempInstance;
+     }
+ 
+@@ -103,13 +96,13 @@
+         return false;
+     }
+ 
+-    public Utente getUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
++    public Utente getUtenteDaLogin(Login login) throws EccezionePasswordErrata {
+         try {
+             if (getUtenteDaEmail(login.getEmail()).getPassword().equals(login.getPassword())) {
+                 return getUtenteDaEmail(login.getEmail());
+             }
+-        } catch (EccezioneUtenteInvalido e) {
+-            throw new EccezioneUtenteInvalido("Utente non esistente");
++        } catch (EccezionePasswordErrata e) {
++            throw new EccezionePasswordErrata("Credenziali errate, riprovare assicurandosi di aver inserito correttamente email e password");
+         }
+         return null;
+     }
+Index: src/main/resources/config.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># File: config.properties\r\n\r\n# Tipo di persistenza (Selezionabile tra: MYSQL, JSON)\r\npersistence.type=JSON\r\n# Tipo di interfaccia (Selezionabile tra 1 grafica, 2 CLI)\r\ninterface.type=2\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/src/main/resources/config.properties b/src/main/resources/config.properties
+--- a/src/main/resources/config.properties	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/resources/config.properties	(date 1738588820537)
+@@ -3,4 +3,4 @@
+ # Tipo di persistenza (Selezionabile tra: MYSQL, JSON)
+ persistence.type=JSON
+ # Tipo di interfaccia (Selezionabile tra 1 grafica, 2 CLI)
+-interface.type=2
++interface.type=1
+\ No newline at end of file
+Index: src/main/java/viste/first/CreazioneSquadraCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport ctrlApplicativo.CreazioneSquadraCtrlApplicativo;\r\nimport javafx.event.ActionEvent;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.Button;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.control.TextField;\r\nimport javafx.stage.Stage;\r\nimport viste.first.utils.CambioScena;\r\n\r\nimport static viste.first.utils.FxmlFileName.*;\r\n\r\npublic class CreazioneSquadraCtrlGrafico {\r\n\r\n    @FXML\r\n    private TextField nomeSquadra;\r\n\r\n    @FXML\r\n    private Button creaSquadra;\r\n\r\n    @FXML\r\n    private Label messaggioErrore;\r\n\r\n    @FXML\r\n    protected void TornaIndietro(ActionEvent event) {\r\n        //cambio scena alla pagina di login\r\n        try {\r\n            Stage stage = (Stage) nomeSquadra.getScene().getWindow();\r\n            CambioScena cambioScena = new CambioScena();\r\n            cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);\r\n\r\n        } catch (Exception e) {\r\n            messaggioErrore.setText(\"Errore nel cambio scena\");\r\n            messaggioErrore.setVisible(true);\r\n\r\n        }\r\n    }\r\n\r\n    public void initialize() {\r\n        System.out.println(\"Inizializzazione Temporanea della creazione della squadra\");\r\n    }\r\n\r\n    @FXML\r\n    public void CreaSquadra(ActionEvent actionEvent) {\r\n        if (nomeSquadra.getText().isEmpty()) {\r\n            messaggioErrore.setText(\"There are empty fields!\");\r\n            messaggioErrore.setVisible(true);\r\n\r\n        }\r\n        else {\r\n            System.out.println(\"Nome squadra: \" + nomeSquadra.getText());\r\n            //implementazione della logica per la creazione della squadra\r\n\r\n            //inizializziamo il controller applicativo\r\n            CreazioneSquadraCtrlApplicativo creazioneSquadraCtrlApplicativo = new CreazioneSquadraCtrlApplicativo();\r\n\r\n            //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean\r\n            creazioneSquadraCtrlApplicativo.creazioneSquadra(nomeSquadra.getText());\r\n\r\n            //finita la logica cambio la scena\r\n            //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE\r\n            try {\r\n                Stage stage = (Stage) nomeSquadra.getScene().getWindow();\r\n                CambioScena cambioScena = new CambioScena();\r\n                cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);\r\n\r\n            } catch (Exception e) {\r\n                messaggioErrore.setText(\"Errore nel cambio scena\");\r\n                messaggioErrore.setVisible(true);\r\n            }\r\n        }\r\n        //implementazione della logica per il controllo della corretta formattazione del nome della squadra\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/CreazioneSquadraCtrlGrafico.java b/src/main/java/viste/first/CreazioneSquadraCtrlGrafico.java
+--- a/src/main/java/viste/first/CreazioneSquadraCtrlGrafico.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/first/CreazioneSquadraCtrlGrafico.java	(date 1738591970775)
+@@ -1,6 +1,8 @@
+ package viste.first;
+ 
+ import ctrlApplicativo.CreazioneSquadraCtrlApplicativo;
++import engineering.eccezioni.EccezioneCambioScena;
++import engineering.eccezioni.EccezioneSquadraInvalida;
+ import javafx.event.ActionEvent;
+ import javafx.fxml.FXML;
+ import javafx.scene.control.Button;
+@@ -30,7 +32,7 @@
+             CambioScena cambioScena = new CambioScena();
+             cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
+ 
+-        } catch (Exception e) {
++        } catch (EccezioneCambioScena e) {
+             messaggioErrore.setText("Errore nel cambio scena");
+             messaggioErrore.setVisible(true);
+ 
+@@ -43,34 +45,37 @@
+ 
+     @FXML
+     public void CreaSquadra(ActionEvent actionEvent) {
+-        if (nomeSquadra.getText().isEmpty()) {
+-            messaggioErrore.setText("There are empty fields!");
+-            messaggioErrore.setVisible(true);
++        try {
++            if (nomeSquadra.getText().isEmpty()) {
++                messaggioErrore.setText("There are empty fields!");
++                messaggioErrore.setVisible(true);
+ 
+-        }
+-        else {
+-            System.out.println("Nome squadra: " + nomeSquadra.getText());
+-            //implementazione della logica per la creazione della squadra
++            } else {
++                System.out.println("Nome squadra: " + nomeSquadra.getText());
++                //implementazione della logica per la creazione della squadra
+ 
+-            //inizializziamo il controller applicativo
+-            CreazioneSquadraCtrlApplicativo creazioneSquadraCtrlApplicativo = new CreazioneSquadraCtrlApplicativo();
++                //inizializziamo il controller applicativo
++                CreazioneSquadraCtrlApplicativo creazioneSquadraCtrlApplicativo = new CreazioneSquadraCtrlApplicativo();
+ 
+-            //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean
+-            creazioneSquadraCtrlApplicativo.creazioneSquadra(nomeSquadra.getText());
++                //creazione della squadra con il nome inserito dall'utente e lo lego all'utenteBean
++                creazioneSquadraCtrlApplicativo.creazioneSquadra(nomeSquadra.getText());
+ 
+-            //finita la logica cambio la scena
+-            //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
+-            try {
++                //finita la logica cambio la scena
++
+                 Stage stage = (Stage) nomeSquadra.getScene().getWindow();
+                 CambioScena cambioScena = new CambioScena();
+                 cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
+-
+-            } catch (Exception e) {
+-                messaggioErrore.setText("Errore nel cambio scena");
+-                messaggioErrore.setVisible(true);
+-            }
++            }
++            //implementazione della logica per il controllo della corretta formattazione del nome della squadra
++        }
++        catch (EccezioneSquadraInvalida e) {
++            messaggioErrore.setText(e.getMessage());
++            messaggioErrore.setVisible(true);
++        }
++        catch (EccezioneCambioScena e) {
++            messaggioErrore.setText("Errore nel cambio scena");
++            messaggioErrore.setVisible(true);
+         }
+-        //implementazione della logica per il controllo della corretta formattazione del nome della squadra
+     }
+ 
+ 
+Index: src/main/java/ctrlApplicativo/EntraInSquadraCtrlApplicativo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ctrlApplicativo;\r\n\r\nimport engineering.dao.SquadraDAO;\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport engineering.pattern.Singleton;\r\nimport engineering.pattern.abstract_factory.DAOFactory;\r\nimport modelli.Squadra;\r\nimport modelli.Utente;\r\n\r\npublic class EntraInSquadraCtrlApplicativo {\r\n\r\n    public EntraInSquadraCtrlApplicativo() {\r\n        // Inizializza il DAO tramite la factory\r\n    }\r\n\r\n\r\n    public boolean verificaEsistenzaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {\r\n\r\n        if (nomeSquadra == null || nomeSquadra.trim().isEmpty()) {\r\n            throw new EccezioneSquadraInvalida(\"Il nome della squadra non può essere vuoto.\");\r\n        }\r\n\r\n        Singleton istanza = Singleton.getInstance();\r\n\r\n        //L'utente è sicuramente in una squadra e quindi verifico solamente se la squadra esiste\r\n\r\n        //controllo negli utenti se esiste una squadra con quel nome nel singleton prima di tutto\r\n        if(istanza.esisteSquadraDaNome(nomeSquadra)){\r\n            return true;\r\n        }\r\n\r\n        //se l'utente è in modalità demo e non ho trovato nulla nel singleton, restituisco false\r\n        if (istanza.getDemo()){\r\n            return false;\r\n        }\r\n\r\n        //se non è in modalità demo, controllo nel database\r\n        else {\r\n            return DAOFactory.getDAOFactory().createSquadraDAO().verificaEsistenzaSquadra(nomeSquadra);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Invia una richiesta di ingresso alla squadra specificata.\r\n     *\r\n     * @param nomeSquadra Nome della squadra a cui inviare la richiesta.\r\n     * @throws EccezioneSquadraInvalida Se l'utente è già in una squadra o la squadra non esiste.\r\n     */\r\n    public void inviaRichiestaAllaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {\r\n        try {\r\n            //poiché sono arrivato all'invio della richiesta, l'utente ha sicuramente inserito una squadra esistente\r\n\r\n            Singleton istanza = Singleton.getInstance();\r\n            Utente utente = istanza.getUtenteCorrente();\r\n\r\n            //In questa funzione non mi preoccupo di controllare se la squadra esiste perché è stato già controllato\r\n            //come prima cosa, ottengo la squadra da nome\r\n            Squadra squadra = new Squadra();\r\n\r\n            //controllo se sono in modalità demo\r\n            if (istanza.getDemo()) {\r\n                squadra = istanza.getSquadraDaNome(nomeSquadra);\r\n                squadra.getRichiesteIngresso().add(utente);\r\n            }\r\n\r\n            //entrerò all'interno di questo else solo se non ho trovato la squadra nel singleton e non sono nella modalità demo\r\n            else {\r\n                SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();\r\n\r\n                squadra = istanza.getSquadraDaNome(nomeSquadra);\r\n\r\n                //ottengo dalla persistenza la squadra da modificare se non l'ho trovata nel singleton\r\n                if (squadra.getNome().isEmpty()) {\r\n                    squadra = squadraDAO.getSquadraDaNome(nomeSquadra);\r\n                    squadra.getRichiesteIngresso().add(utente);\r\n                }\r\n\r\n                //aggiorno la squadra in modo da aggiungere la richiesta alla lista\r\n                squadraDAO.aggiornaSquadra(squadra);\r\n            }\r\n        }\r\n        catch (EccezioneSquadraInvalida e) {\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ctrlApplicativo/EntraInSquadraCtrlApplicativo.java b/src/main/java/ctrlApplicativo/EntraInSquadraCtrlApplicativo.java
+--- a/src/main/java/ctrlApplicativo/EntraInSquadraCtrlApplicativo.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/ctrlApplicativo/EntraInSquadraCtrlApplicativo.java	(date 1738590933466)
+@@ -30,7 +30,7 @@
+         }
+ 
+         //se l'utente è in modalità demo e non ho trovato nulla nel singleton, restituisco false
+-        if (istanza.getDemo()){
++        else if (istanza.getDemo()){
+             return false;
+         }
+ 
+@@ -82,7 +82,6 @@
+         catch (EccezioneSquadraInvalida e) {
+             throw new EccezioneSquadraInvalida(e.getMessage());
+         }
+-
+     }
+ }
+ 
+Index: src/main/java/engineering/dao/UtenteDAOMySQL.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.dao;\r\n\r\n\r\nimport engineering.altro.Connessione;\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport engineering.query.QueryRegistrazione;\r\nimport modelli.*;\r\n\r\nimport java.sql.*;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n\r\nimport static engineering.query.QueriesLogin.*;\r\n\r\npublic class UtenteDAOMySQL implements UtenteDAO {\r\n\r\n    public static String password = \"password\";\r\n    public static String email1 = \"email\";\r\n    public static String username = \"username\";\r\n\r\n    public void aggiornaUtente(Utente utente) throws EccezioneUtenteInvalido {\r\n        Connection conn = null;\r\n        //apriamo la connessione con il DB\r\n        conn = Connessione.getInstance().getDBConnection();\r\n        if (conn != null) {\r\n            try {\r\n                //l'aggiornamento dell'utente avverrà sempre controllando se l'utente ha una squadra non di default\r\n                if (!utente.getSquadra().getNome().isEmpty()) {\r\n\r\n                    //se l'utente è iscritto a una squadra, controllo che la squadra esisti e non sia quella di default\r\n                    SquadraDAOMySQL squadraDAOMySQL = new SquadraDAOMySQL();\r\n                    Squadra appoggio = squadraDAOMySQL.getSquadraDaUtente(utente);\r\n\r\n                    //se la squadra non è quella di default, iscrivo l'utente alla squadra\r\n                    if (!appoggio.getNome().isEmpty()) {\r\n                        squadraDAOMySQL.IscrizioneUtenteASquadra(utente, utente.getSquadra());\r\n                    }\r\n\r\n                    //da implementare l'aggiornamento degli allenamenti\r\n                }\r\n            } catch (EccezioneSquadraInvalida e) {\r\n                throw new EccezioneUtenteInvalido(e.getMessage());\r\n            }\r\n        } else {\r\n            throw new EccezioneUtenteInvalido(\"Connessione con il DB non riuscita mentre si aggiornava l'utente \" + utente.getEmail());\r\n        }\r\n    }\r\n\r\n    public Utente recuperaUtenteDaEmail(String email) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida {\r\n        //poi recupero il resto dell'utente\r\n        Connection conn=null;\r\n        Utente utente;\r\n\r\n        //apriamo la connessione con il DB\r\n        conn = Connessione.getInstance().getDBConnection();\r\n        if (conn != null) {\r\n            try(ResultSet rs = RecuperaUtenteRSPerEmail(conn, email)) {\r\n\r\n                System.out.println(\"Inizio lavoro dell'utenteDAOMySQL\");\r\n                //invocazione del metodo per la ricerca dell'utente in funzione della variabile di ricerca\r\n\r\n\r\n                if (!rs.next()) {\r\n                    throw new EccezioneUtenteInvalido(\"Utente non trovato\");\r\n                }\r\n\r\n                System.out.println(\"Descrizione degli allenamenti:\");\r\n                //controllo se un utente ha degli allenamenti\r\n\r\n                List<Allenamento> allenamenti = new ArrayList<>();\r\n\r\n                AllenamentoDAOMySQL allenamentoDAOMySQL = new AllenamentoDAOMySQL();\r\n                allenamenti = allenamentoDAOMySQL.recuperaAllenamentiPerEmail(email);\r\n\r\n                Squadra squadra = new Squadra();\r\n\r\n                SquadraDAOMySQL squadraDAOMySQL = new SquadraDAOMySQL();\r\n                squadra= squadraDAOMySQL.getSquadraDaEmail(email);\r\n                System.out.println(\"Finito lavoro dell'utenteDAOMySQL\");\r\n\r\n                if (rs.getBoolean(\"allenatore\")) {\r\n                    System.out.println(\"Utente allenatore\");\r\n                    utente = new Allenatore(rs.getString(username), rs.getString(email1), rs.getString(password) , allenamenti, squadra );\r\n\r\n                } else {\r\n                    System.out.println(\"Utente non allenatore\");\r\n                    utente = new Giocatore(rs.getString(username), rs.getString(email1), rs.getString(password) , allenamenti , squadra );\r\n                }\r\n                return utente;\r\n            }\r\n            catch (SQLException e) {\r\n                throw new EccezioneUtenteInvalido(\"Errore di recupero dell'utente\");\r\n            }\r\n            catch(EccezioneSquadraInvalida e)\r\n            {\r\n                throw new EccezioneSquadraInvalida(e.getMessage());\r\n\r\n            }\r\n            catch (EccezioneUtenteInvalido e) {\r\n                throw new EccezioneUtenteInvalido(e.getMessage());\r\n            }\r\n        }\r\n        throw new EccezioneUtenteInvalido(\"Connessione con il DB non riuscita\");\r\n    }\r\n    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida {\r\n        try {\r\n            return recuperaUtenteDaEmail(login.getEmail());\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n        catch(EccezioneSquadraInvalida e) {\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {\r\n        try\r\n        {\r\n            return esisteUtenteDaEmail(login.getEmail());\r\n        }\r\n        catch (EccezioneUtenteInvalido e)\r\n        {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n    public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido{\r\n        try{\r\n            return recuperaUtenteDaEmail(email) != null;\r\n        }\r\n        catch(Exception e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) throws EccezioneUtenteInvalido {\r\n        int result = 0;\r\n\r\n        Connection conn = null;\r\n        conn = Connessione.getInstance().getDBConnection();\r\n\r\n        if(conn!=null)\r\n        {\r\n            try {\r\n                result = QueryRegistrazione.InserisciUtenteQuery(conn, registrazione);\r\n                if (result > 0) {\r\n                    System.out.println(\"A new user was inserted successfully!\");\r\n                }\r\n            }\r\n            catch (EccezioneUtenteInvalido e)\r\n            {\r\n                throw new EccezioneUtenteInvalido(e.getMessage());\r\n            }\r\n\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/dao/UtenteDAOMySQL.java b/src/main/java/engineering/dao/UtenteDAOMySQL.java
+--- a/src/main/java/engineering/dao/UtenteDAOMySQL.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/engineering/dao/UtenteDAOMySQL.java	(date 1738590303653)
+@@ -2,6 +2,7 @@
+ 
+ 
+ import engineering.altro.Connessione;
++import engineering.eccezioni.EccezionePasswordErrata;
+ import engineering.eccezioni.EccezioneSquadraInvalida;
+ import engineering.eccezioni.EccezioneUtenteInvalido;
+ import engineering.query.QueryRegistrazione;
+@@ -104,9 +105,15 @@
+         }
+         throw new EccezioneUtenteInvalido("Connessione con il DB non riuscita");
+     }
+-    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida {
++    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida, EccezionePasswordErrata {
+         try {
+-            return recuperaUtenteDaEmail(login.getEmail());
++            Utente utente = recuperaUtenteDaEmail(login.getEmail());
++            if(utente.getPassword().equals(login.getPassword())) {
++                return utente;
++            }
++            else {
++                throw new EccezionePasswordErrata("Credenziali errate, assicurati di aver inserito correttamente email e password");
++            }
+         }
+         catch (EccezioneUtenteInvalido e) {
+             throw new EccezioneUtenteInvalido(e.getMessage());
+@@ -114,18 +121,11 @@
+         catch(EccezioneSquadraInvalida e) {
+             throw new EccezioneSquadraInvalida(e.getMessage());
+         }
+-    }
+-
+-    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
+-        try
+-        {
+-            return esisteUtenteDaEmail(login.getEmail());
+-        }
+-        catch (EccezioneUtenteInvalido e)
+-        {
+-            throw new EccezioneUtenteInvalido(e.getMessage());
++        catch (EccezionePasswordErrata e) {
++            throw new EccezionePasswordErrata(e.getMessage());
+         }
+     }
++
+     public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido{
+         try{
+             return recuperaUtenteDaEmail(email) != null;
+Index: src/main/java/ctrlApplicativo/HomepageGiocatoreCtrlApplicativo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ctrlApplicativo;\r\n\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport engineering.pattern.Singleton;\r\nimport modelli.Utente;\r\n\r\npublic class HomepageGiocatoreCtrlApplicativo {\r\n\r\n    public HomepageGiocatoreCtrlApplicativo() {\r\n        // Costruttore vuoto di default\r\n    }\r\n\r\n    /**\r\n     * Recupera il messaggio di benvenuto per l'utente corrente.\r\n     *\r\n     * @return Messaggio di benvenuto con il nome utente.\r\n     * @throws  Se l'utente corrente non è disponibile.\r\n     */\r\n    public String getMessaggioBenvenuto() throws EccezioneUtenteInvalido {\r\n        // Recupera l'utente corrente dalla sessione\r\n        Singleton istanza = Singleton.getInstance();\r\n        Utente utenteCorrente = istanza.getUtenteCorrente();\r\n\r\n        if (utenteCorrente == null) {\r\n            throw new EccezioneUtenteInvalido(\"Nessun utente loggato nella sessione corrente.\");\r\n        }\r\n        return utenteCorrente.getUsername() + \"!\";\r\n    }\r\n\r\n    public boolean isUtenteInSquadra() {\r\n        // Recupera l'utente corrente dalla sessione\r\n        Singleton istanza = Singleton.getInstance();\r\n        Utente utenteCorrente = istanza.getUtenteCorrente();\r\n\r\n        return !utenteCorrente.getSquadra().getNome().isEmpty();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ctrlApplicativo/HomepageGiocatoreCtrlApplicativo.java b/src/main/java/ctrlApplicativo/HomepageGiocatoreCtrlApplicativo.java
+--- a/src/main/java/ctrlApplicativo/HomepageGiocatoreCtrlApplicativo.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/ctrlApplicativo/HomepageGiocatoreCtrlApplicativo.java	(date 1738590933519)
+@@ -10,12 +10,6 @@
+         // Costruttore vuoto di default
+     }
+ 
+-    /**
+-     * Recupera il messaggio di benvenuto per l'utente corrente.
+-     *
+-     * @return Messaggio di benvenuto con il nome utente.
+-     * @throws  Se l'utente corrente non è disponibile.
+-     */
+     public String getMessaggioBenvenuto() throws EccezioneUtenteInvalido {
+         // Recupera l'utente corrente dalla sessione
+         Singleton istanza = Singleton.getInstance();
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AnalysisUIOptions\">\r\n    <option name=\"SCOPE_TYPE\" value=\"3\" />\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d48fabd9-9d0c-4832-9762-f7ff2f4fd62e\" name=\"Changes\" comment=\"Torna Indietro Button in creazioneAllenamento\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/pattern/abstract_factory/DAOFactory.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/pattern/abstract_factory/DAOFactory.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/ConsultaAllenamentiCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/ConsultaAllenamentiCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/CreazioneAllenamentoCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/CreazioneAllenamentoCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/GenericaCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/GenericaCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/IscrivitiAllenamentoCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/IscrivitiAllenamentoCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/RegistrazioneCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/RegistrazioneCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/VisualizzaRichiesteCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/VisualizzaRichiesteCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/config.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/config.properties\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Exception\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;FrancescoMin&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub.git&quot;,\r\n    &quot;accountId&quot;: &quot;64b32a3e-6402-44ac-8316-64089203d618&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2nIPzptCElr3Z2cbKRrMzjtrfIO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.IscrivitiAllenamentoCtrlGrafico.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.testCreaSquadraPerAllenatoreConSquadraValida.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.testGetSquadraDaNomeConSquadraEsistente.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.testIscrizioneUtenteASquadraConSquadraValida.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestVari.testMessaggioBenvenutoGiocatore.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/max/IdeaProjects/TeamTrainingHub/src/main/resources/persistenza/utenti&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\max\\IdeaProjects\\TeamTrainingHub\\src\\main\\resources\\persistenza\\utenti\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.LoginApplicazione\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"LoginApplicazione\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"inizio.LoginApplicazione\" />\r\n      <module name=\"TeamTrainingHub\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"inizio.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TestPerSquadra\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TeamTrainingHub\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"TestPerSquadra\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.LoginApplicazione\" />\r\n        <item itemvalue=\"JUnit.TestPerSquadra\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d48fabd9-9d0c-4832-9762-f7ff2f4fd62e\" name=\"Changes\" comment=\"\" />\r\n      <created>1728657885128</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1728657885128</updated>\r\n      <workItem from=\"1728657886213\" duration=\"2000\" />\r\n      <workItem from=\"1730031757462\" duration=\"424000\" />\r\n      <workItem from=\"1730055384804\" duration=\"595000\" />\r\n      <workItem from=\"1730114720831\" duration=\"614000\" />\r\n      <workItem from=\"1730297470122\" duration=\"795000\" />\r\n      <workItem from=\"1730367712503\" duration=\"1261000\" />\r\n      <workItem from=\"1730900062191\" duration=\"11000\" />\r\n      <workItem from=\"1730900495932\" duration=\"139000\" />\r\n      <workItem from=\"1730900654982\" duration=\"1874000\" />\r\n      <workItem from=\"1731419658599\" duration=\"1145000\" />\r\n      <workItem from=\"1731510660528\" duration=\"565000\" />\r\n      <workItem from=\"1731513936734\" duration=\"1087000\" />\r\n      <workItem from=\"1732372725814\" duration=\"1497000\" />\r\n      <workItem from=\"1732618556068\" duration=\"9617000\" />\r\n      <workItem from=\"1732719715292\" duration=\"1949000\" />\r\n      <workItem from=\"1732787371589\" duration=\"8556000\" />\r\n      <workItem from=\"1732810871835\" duration=\"127000\" />\r\n      <workItem from=\"1733073299051\" duration=\"853000\" />\r\n      <workItem from=\"1733240050872\" duration=\"2012000\" />\r\n      <workItem from=\"1733675765565\" duration=\"234000\" />\r\n      <workItem from=\"1733845576886\" duration=\"191000\" />\r\n      <workItem from=\"1733997673195\" duration=\"1357000\" />\r\n      <workItem from=\"1734004004118\" duration=\"9782000\" />\r\n      <workItem from=\"1734084904930\" duration=\"4581000\" />\r\n      <workItem from=\"1734364185289\" duration=\"606000\" />\r\n      <workItem from=\"1734386510091\" duration=\"6108000\" />\r\n      <workItem from=\"1734427385697\" duration=\"11873000\" />\r\n      <workItem from=\"1734528607867\" duration=\"6716000\" />\r\n      <workItem from=\"1734601053904\" duration=\"7748000\" />\r\n      <workItem from=\"1734692612739\" duration=\"2111000\" />\r\n      <workItem from=\"1734796908625\" duration=\"5339000\" />\r\n      <workItem from=\"1734862555389\" duration=\"6467000\" />\r\n      <workItem from=\"1734974038587\" duration=\"706000\" />\r\n      <workItem from=\"1735036002463\" duration=\"3338000\" />\r\n      <workItem from=\"1735040248138\" duration=\"605000\" />\r\n      <workItem from=\"1735383789763\" duration=\"1649000\" />\r\n      <workItem from=\"1735401058574\" duration=\"6814000\" />\r\n      <workItem from=\"1735469017340\" duration=\"11381000\" />\r\n      <workItem from=\"1735901517487\" duration=\"3570000\" />\r\n      <workItem from=\"1736012938977\" duration=\"1842000\" />\r\n      <workItem from=\"1736072047840\" duration=\"2860000\" />\r\n      <workItem from=\"1736177918852\" duration=\"9082000\" />\r\n      <workItem from=\"1736256472061\" duration=\"8405000\" />\r\n      <workItem from=\"1736347769647\" duration=\"6915000\" />\r\n      <workItem from=\"1736417291928\" duration=\"5116000\" />\r\n      <workItem from=\"1736525504890\" duration=\"2745000\" />\r\n      <workItem from=\"1736696782806\" duration=\"1876000\" />\r\n      <workItem from=\"1736722507443\" duration=\"1318000\" />\r\n      <workItem from=\"1736776367586\" duration=\"9518000\" />\r\n      <workItem from=\"1736953782882\" duration=\"6240000\" />\r\n      <workItem from=\"1737050236660\" duration=\"1203000\" />\r\n      <workItem from=\"1737196745248\" duration=\"593000\" />\r\n      <workItem from=\"1737799649228\" duration=\"659000\" />\r\n      <workItem from=\"1737973972595\" duration=\"15124000\" />\r\n      <workItem from=\"1738013645922\" duration=\"1486000\" />\r\n      <workItem from=\"1738060126182\" duration=\"9237000\" />\r\n      <workItem from=\"1738147994818\" duration=\"1081000\" />\r\n      <workItem from=\"1738246028832\" duration=\"605000\" />\r\n      <workItem from=\"1738332646947\" duration=\"8051000\" />\r\n      <workItem from=\"1738413851468\" duration=\"15796000\" />\r\n      <workItem from=\"1738485749767\" duration=\"12542000\" />\r\n      <workItem from=\"1738507452223\" duration=\"17643000\" />\r\n      <workItem from=\"1738530990714\" duration=\"9176000\" />\r\n      <workItem from=\"1738573161156\" duration=\"9191000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Inizio settaggio database\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730032171397</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730032171397</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"file workspace\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730299192134</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730299192136</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"commit e push di recupero\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730299261335</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730299261335</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"view della registrazione (senza controller)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730901612261</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730901612261</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Modifica di controller applicativo, grafico della registrazione e fxml della registrazione\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732726100799</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732726100800</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Typo nel package, aggiunta string password\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733074263323</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733074263323</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733675993534</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733675993534</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"correzione typo &quot;Eccezione&quot;, modifiche RegistrazioneCtrlApplicativo, non vengono salvati i dati di registrazione\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734108476104</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734108476104</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734393253773</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734393253773</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"RegistrazioneCtrlApplicativo funzionante\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734428756847</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734428756847</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Fix valori stringhe nei json\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734442708259</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734442708259</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Commit fix versione locale, poche modifiche, non significative\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734602305673</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734602305673</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"parziale implementazione entraInSquadra\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734974150480</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734974150480</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1735039696644</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1735039696644</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1735498458976</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1735498458976</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"risolti errori a runtime per consultare allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736181732483</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736181732483</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"caricamento e visualizzazione allenamenti JSON in tabella\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736257078648</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736257078648</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"spostamento codice EntraInSquadra per renderlo corretto. Funzione di riconoscimento esistenza squadra in persistenza, finta notifica per l'allenatore. Implementazione parziale di iscrizione all'allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736527054634</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736527054634</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"Inizializzazione alcune classi CLI, ulteriori modifiche iscrizione allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1737996520541</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1737996520541</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"correzioni varie e codesmell\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738411592574</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738411592574</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Implementazione caso d'uso Iscrizione allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738498320261</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738498320261</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"Sistemazione Consulta Allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738508787632</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738508787632</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"Sistemazione Viste e controller grafici\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738516077520</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738516077520</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"Creazione EccezioneAllenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738517571134</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738517571134</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"Test Francesco Minotti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738522210197</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738522210197</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"Eliminazione Eccezione generica\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738533711700</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738533711700</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"Sistemazione imperfezioni\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738535809282</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738535809282</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"modifiche CLI Login, registrazione e creazione allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738540113089</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738540113089</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"Sistemazione Iscriviti AllenamentoCLI\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738575837067</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738575837067</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"Torna Indietro Button in creazioneAllenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738576624906</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738576624906</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"31\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Typo nel package, aggiunta string password\" />\r\n    <MESSAGE value=\"rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;\" />\r\n    <MESSAGE value=\"correzione typo &quot;Eccezione&quot;, modifiche RegistrazioneCtrlApplicativo, non vengono salvati i dati di registrazione\" />\r\n    <MESSAGE value=\"Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo\" />\r\n    <MESSAGE value=\"RegistrazioneCtrlApplicativo funzionante\" />\r\n    <MESSAGE value=\"Fix valori stringhe nei json\" />\r\n    <MESSAGE value=\"Commit fix versione locale, poche modifiche, non significative\" />\r\n    <MESSAGE value=\"parziale implementazione entraInSquadra\" />\r\n    <MESSAGE value=\"fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori\" />\r\n    <MESSAGE value=\"Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti\" />\r\n    <MESSAGE value=\"risolti errori a runtime per consultare allenamenti\" />\r\n    <MESSAGE value=\"caricamento e visualizzazione allenamenti JSON in tabella\" />\r\n    <MESSAGE value=\"spostamento codice EntraInSquadra per renderlo corretto. Funzione di riconoscimento esistenza squadra in persistenza, finta notifica per l'allenatore. Implementazione parziale di iscrizione all'allenamento\" />\r\n    <MESSAGE value=\"Inizializzazione alcune classi CLI, ulteriori modifiche iscrizione allenamento\" />\r\n    <MESSAGE value=\"correzioni varie e codesmell\" />\r\n    <MESSAGE value=\"Implementazione caso d'uso Iscrizione allenamento\" />\r\n    <MESSAGE value=\"Sistemazione Consulta Allenamenti\" />\r\n    <MESSAGE value=\"Sistemazione Viste e controller grafici\" />\r\n    <MESSAGE value=\"Creazione EccezioneAllenamento\" />\r\n    <MESSAGE value=\"Test Francesco Minotti\" />\r\n    <MESSAGE value=\"Eliminazione Eccezione generica\" />\r\n    <MESSAGE value=\"Sistemazione imperfezioni\" />\r\n    <MESSAGE value=\"modifiche CLI Login, registrazione e creazione allenamento\" />\r\n    <MESSAGE value=\"Sistemazione Iscriviti AllenamentoCLI\" />\r\n    <MESSAGE value=\"Torna Indietro Button in creazioneAllenamento\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Torna Indietro Button in creazioneAllenamento\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/.idea/workspace.xml	(date 1738592043583)
+@@ -7,21 +7,32 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Torna Indietro Button in creazioneAllenamento">
++    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Risoluzione alcuni codesmell">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/EntraInSquadraCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/EntraInSquadraCtrlApplicativo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/HomepageAllenatoreCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/HomepageAllenatoreCtrlApplicativo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/HomepageGiocatoreCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/HomepageGiocatoreCtrlApplicativo.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/LoginCtrlApplicativo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/RegistrazioneCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrlApplicativo/RegistrazioneCtrlApplicativo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/abstract_factory/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/abstract_factory/DAOFactory.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/ConsultaAllenamentiCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/ConsultaAllenamentiCLI.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/CreazioneAllenamentoCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/CreazioneAllenamentoCLI.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/GenericaCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/GenericaCLI.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/IscrivitiAllenamentoCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/IscrivitiAllenamentoCLI.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneSquadraCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneSquadraCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/GestioneSquadraCtrlGrafico.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/HomepageGiocatoreCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/LoginCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/LoginCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/RegistrazioneCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/FxmlFileName.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/RegistrazioneCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/RegistrazioneCLI.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/VisualizzaRichiesteCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/VisualizzaRichiesteCLI.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/gestioneSquadra.fxml" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -233,7 +244,8 @@
+       <workItem from="1738485749767" duration="12542000" />
+       <workItem from="1738507452223" duration="17643000" />
+       <workItem from="1738530990714" duration="9176000" />
+-      <workItem from="1738573161156" duration="9191000" />
++      <workItem from="1738573161156" duration="10437000" />
++      <workItem from="1738588027032" duration="3979000" />
+     </task>
+     <task id="LOCAL-00001" summary="Inizio settaggio database">
+       <option name="closed" value="true" />
+@@ -475,7 +487,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1738576624906</updated>
+     </task>
+-    <option name="localTasksCounter" value="31" />
++    <task id="LOCAL-00031" summary="Risoluzione alcuni codesmell">
++      <option name="closed" value="true" />
++      <created>1738584084938</created>
++      <option name="number" value="00031" />
++      <option name="presentableId" value="LOCAL-00031" />
++      <option name="project" value="LOCAL" />
++      <updated>1738584084938</updated>
++    </task>
++    <option name="localTasksCounter" value="32" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -493,7 +513,6 @@
+     </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="Typo nel package, aggiunta string password" />
+     <MESSAGE value="rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;" />
+     <MESSAGE value="correzione typo &quot;Eccezione&quot;, modifiche RegistrazioneCtrlApplicativo, non vengono salvati i dati di registrazione" />
+     <MESSAGE value="Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo" />
+@@ -518,6 +537,7 @@
+     <MESSAGE value="modifiche CLI Login, registrazione e creazione allenamento" />
+     <MESSAGE value="Sistemazione Iscriviti AllenamentoCLI" />
+     <MESSAGE value="Torna Indietro Button in creazioneAllenamento" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Torna Indietro Button in creazioneAllenamento" />
++    <MESSAGE value="Risoluzione alcuni codesmell" />
++    <option name="LAST_COMMIT_MESSAGE" value="Risoluzione alcuni codesmell" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport engineering.bean.AllenamentoBean;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.TableCell;\r\nimport javafx.scene.control.TableColumn;\r\nimport javafx.scene.control.TableView;\r\nimport javafx.scene.control.cell.PropertyValueFactory;\r\nimport javafx.scene.control.Button;\r\nimport ctrlApplicativo.IscrivitiAllenamentoCtrlApplicativo;\r\nimport viste.first.basi.BaseTabelleCtrlGrafico;\r\nimport viste.first.utils.IscrizioneAllenamentiTabella;\r\n\r\nimport static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;\r\n\r\npublic class IscrivitiAllenamentoCtrlGrafico {\r\n\r\n    @FXML\r\n    private TableView<AllenamentoBean> tableViewAllenamenti;\r\n\r\n    @FXML\r\n    private TableColumn<AllenamentoBean, String> colData;\r\n\r\n    @FXML\r\n    private TableColumn<AllenamentoBean, String> colOrarioInizio;\r\n\r\n    @FXML\r\n    private TableColumn<AllenamentoBean, String> colOrarioFine;\r\n\r\n    @FXML\r\n    private TableColumn<AllenamentoBean, String> colDescrizione;\r\n\r\n    @FXML\r\n    private TableColumn<AllenamentoBean, Button> colAccetta;\r\n\r\n    private IscrizioneAllenamentiTabella iscrizioneAllenamentiTabella;\r\n    private IscrivitiAllenamentoCtrlApplicativo controllerApplicativo;\r\n\r\n    private static void setupCambio(){\r\n        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_GIOCATORE;\r\n    }\r\n\r\n    @FXML\r\n    public void initialize() {\r\n\r\n        setupCambio();\r\n\r\n        // Inizializza le colonne della TableView\r\n        colData.setCellValueFactory(new PropertyValueFactory<>(\"data\"));\r\n        colOrarioInizio.setCellValueFactory(new PropertyValueFactory<>(\"orarioInizio\"));\r\n        colOrarioFine.setCellValueFactory(new PropertyValueFactory<>(\"orarioFine\"));\r\n        colDescrizione.setCellValueFactory(new PropertyValueFactory<>(\"descrizione\"));\r\n\r\n        // Configura la colonna \"Accetta\" con un pulsante\r\n        colAccetta.setCellFactory(param -> new ButtonCell());\r\n        colAccetta.setVisible(true);\r\n\r\n        // Verifica se la colonna è stata correttamente configurata\r\n        System.out.println(\"La colonna Accetta è stata configurata: \" + (colAccetta != null));\r\n\r\n        // Inizializza il controller applicativo\r\n        controllerApplicativo = new IscrivitiAllenamentoCtrlApplicativo();\r\n        controllerApplicativo.popola();\r\n\r\n        iscrizioneAllenamentiTabella = new IscrizioneAllenamentiTabella(tableViewAllenamenti, controllerApplicativo.getCollezioneAllenamenti());\r\n    }\r\n\r\n    private class ButtonCell extends TableCell<AllenamentoBean, Button> {\r\n        private final Button button;\r\n\r\n        public ButtonCell() {\r\n            button = new Button(\"Accetta\");\r\n\r\n            button.setOnAction(event -> {\r\n                AllenamentoBean selected = getTableView().getItems().get(getIndex());\r\n                System.out.println(\"Accettato allenamento: \" + selected.getDescrizione());  // Aggiungi un log per il debug\r\n                controllerApplicativo.accettaAllenamento(selected);\r\n                // Rimuovi l'allenamento dalla tabella dopo l'accettazione\r\n                getTableView().getItems().remove(selected);\r\n                // Dopo la rimozione, forziamo un aggiornamento della TableView\r\n                tableViewAllenamenti.refresh();\r\n            });\r\n        }\r\n\r\n        @Override\r\n        protected void updateItem(Button item, boolean empty) {\r\n            super.updateItem(item, empty);\r\n\r\n            if (empty) {\r\n                setGraphic(null); // Nascondi il pulsante se la cella è vuota\r\n            }\r\n            else {\r\n                setGraphic(button); // Mostra il pulsante\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java b/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java
+--- a/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java	(date 1738591970740)
+@@ -85,7 +85,6 @@
+         @Override
+         protected void updateItem(Button item, boolean empty) {
+             super.updateItem(item, empty);
+-
+             if (empty) {
+                 setGraphic(null); // Nascondi il pulsante se la cella è vuota
+             }
+Index: src/main/java/engineering/dao/UtenteDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.dao;\r\n\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport modelli.Login;\r\nimport modelli.Registrazione;\r\nimport modelli.Utente;\r\n\r\npublic interface UtenteDAO\r\n{\r\n\r\n    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) throws EccezioneUtenteInvalido;\r\n    public Utente recuperaUtenteDaEmail(String string) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida;\r\n    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida;\r\n    public void aggiornaUtente(Utente utente) throws EccezioneUtenteInvalido; ;\r\n    public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido;\r\n    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneUtenteInvalido;\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/dao/UtenteDAO.java b/src/main/java/engineering/dao/UtenteDAO.java
+--- a/src/main/java/engineering/dao/UtenteDAO.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/engineering/dao/UtenteDAO.java	(date 1738590303626)
+@@ -1,5 +1,6 @@
+ package engineering.dao;
+ 
++import engineering.eccezioni.EccezionePasswordErrata;
+ import engineering.eccezioni.EccezioneSquadraInvalida;
+ import engineering.eccezioni.EccezioneUtenteInvalido;
+ import modelli.Login;
+@@ -11,9 +12,8 @@
+ 
+     public void inserisciUtenteDaRegistrazione(Registrazione registrazione) throws EccezioneUtenteInvalido;
+     public Utente recuperaUtenteDaEmail(String string) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida;
+-    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida;
++    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida, EccezionePasswordErrata;
+     public void aggiornaUtente(Utente utente) throws EccezioneUtenteInvalido; ;
+     public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido;
+-    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneUtenteInvalido;
+ }
+ 
+Index: src/main/java/engineering/dao/UtenteDAOJSON.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.dao;\r\n\r\nimport com.google.gson.*;\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport modelli.*;\r\n\r\nimport java.io.*;\r\nimport java.nio.file.Files;\r\nimport java.nio.file.Paths;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Objects;\r\n\r\n\r\npublic class UtenteDAOJSON implements UtenteDAO {\r\n\r\n    public static String json = \".json\";\r\n    public static String pathUtenti = \"src/main/resources/persistenza/utenti/\";\r\n    public static String password = \"password\";\r\n    public static String email1 = \"email\";\r\n    public static String user = \"username\";\r\n\r\n    public static String trainings = \"allenamenti\";\r\n    public static String squadra = \"squadra\";\r\n    public static String allenatore = \"allenatore\";\r\n\r\n\r\n    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {\r\n        try {\r\n            return esisteUtenteDaEmail(login.getEmail());\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n    public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido {\r\n        try {\r\n            //creazione del path\r\n            String filePath = pathUtenti + email + json;\r\n\r\n            //controllo se il file esiste\r\n            Files.readAllBytes(Paths.get(filePath));\r\n            return true;\r\n\r\n        } catch (IOException e) {\r\n            throw new EccezioneUtenteInvalido(\"Utente non esistente\");\r\n        }\r\n    }\r\n\r\n    public void aggiornaUtente(Utente utente) throws EccezioneUtenteInvalido{\r\n        //aggiunta dell'utente alla lista degli utenti\r\n        //Creazione del path\r\n        String filePath = pathUtenti + utente.getEmail() + json;\r\n\r\n        try {\r\n            //controllo che il file sia già esistente\r\n            Files.readAllBytes(Paths.get(filePath));\r\n\r\n            // Create a Gson object\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n            FileWriter writer = new FileWriter(filePath);\r\n\r\n            // Step 1: Serialize the Person object to a JSON string\r\n            String jsonString = gson.toJson(serializzazioneUtente(utente));\r\n\r\n            // Step 2: Convert the JSON string to a JsonObject\r\n            JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();\r\n\r\n            //salvataggio dell'oggetto serializzato utente nel file json\r\n            writer.write(gson.toJson(jsonObject));\r\n            writer.close();\r\n\r\n        } catch (IOException e) {\r\n            //creazione del file con nome username dell'utente in formato json\r\n            throw new EccezioneUtenteInvalido(\"Impossibile aggiornare l'utente perché non esistente\");\r\n        }\r\n    }\r\n\r\n    public void inserisciUtente(Utente utente) throws EccezioneUtenteInvalido {\r\n\r\n        //Creazione del path\r\n        String filePath = pathUtenti + utente.getEmail() + json;\r\n\r\n        try {\r\n            //controllo che il file sia già esistente\r\n            Files.readAllBytes(Paths.get(filePath));\r\n\r\n            //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione\r\n            throw new EccezioneUtenteInvalido(\"Impossibile inserire l'utente perché esistente\");\r\n\r\n        }\r\n        catch (IOException e) {\r\n            try {\r\n                //creazione del file con nome username dell'utente in formato json\r\n\r\n                // Create a Gson object\r\n                Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n                //serializzo l'oggetto java in un oggetto json\r\n                JsonObject jsonObject = serializzazioneUtente(utente);\r\n\r\n                //parso l'oggetto json in una stringa\r\n                String serial = gson.toJson(jsonObject);\r\n\r\n                //creazione del file con nome username dell'utente in formato json\r\n                FileWriter writer = new FileWriter(filePath);\r\n\r\n                //salvataggio dell'oggetto serializzato utente nel file json\r\n                writer.write(serial);\r\n                writer.close();\r\n            }\r\n            catch (IOException e1) {\r\n                throw new EccezioneUtenteInvalido(e1.getMessage());\r\n            }\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n    //creazione del file json con i dati dell'utente registrato\r\n    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) throws EccezioneUtenteInvalido {\r\n        try {\r\n            if (registrazione.getAllenatore()) {inserisciUtente(new Allenatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));}\r\n\r\n            else {inserisciUtente(new Giocatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));}\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public Utente recuperaUtente(Utente utente) throws EccezioneUtenteInvalido{\r\n        try {\r\n            return recuperaUtenteDaEmail(utente.getEmail());\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {\r\n        try {\r\n            //Serializziamo l'oggetto in JSON\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n            //creazione del path\r\n            String filePath = pathUtenti + login.getEmail() + json;\r\n\r\n            //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste\r\n            String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));\r\n\r\n            //creo un oggetto JSON per il controllo delle credenziali\r\n            JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);\r\n\r\n            //inizializzo un oggetto di tipo Login per il controllo delle credenziali\r\n            Login deserializedLogin = new Login(jsonObject.get(email1).getAsString(), jsonObject.get(password).getAsString());\r\n\r\n            //controllo della password\r\n            if (deserializedLogin.getPassword().equals(login.getPassword())) {\r\n                System.out.println(\"Login effettuato con successo\");\r\n\r\n                //mi faccio recuperare dal metodo addetto l'utente e lo restituisco al controller\r\n                return recuperaUtenteDaEmail(login.getEmail());\r\n\r\n            } else {\r\n                throw new EccezioneUtenteInvalido(\"Password errata: lancio eccezione di password errata\");\r\n            }\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n        catch (IOException e) {\r\n            throw new EccezioneUtenteInvalido(\"Impossibile trovare l'utente\");\r\n        }\r\n        catch(EccezioneSquadraInvalida e) {\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n\r\n    }\r\n    public Utente recuperaUtenteDaEmail(String email) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida {\r\n        try {\r\n            //Serializziamo l'oggetto in JSON\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n            //creazione del path\r\n            String filePath = pathUtenti + email + json;\r\n\r\n            //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste\r\n            String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));\r\n\r\n            //creo l'oggetto JSON corrispondete all'utente con l'email passata\r\n            JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);\r\n\r\n            AllenamentoDAOJSON allenamentoDAOJSON = new AllenamentoDAOJSON();\r\n            //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente\r\n            List<Allenamento> allenamenti = new ArrayList<>();\r\n            allenamenti = allenamentoDAOJSON.recuperaAllenamentiPerJsonArray(jsonObject.get(trainings).getAsJsonArray());\r\n\r\n            //ottengo il nome della stringa della squadra\r\n            String nomeSquadra = jsonObject.get(squadra).getAsString();\r\n            Squadra squad = new Squadra();\r\n\r\n            if(!nomeSquadra.isEmpty()){\r\n                //mi faccio recuperare dal DAO responsabile l'oggetto squadra\r\n                SquadraDAOJSON squadraDAOJSON = new SquadraDAOJSON();\r\n                squad = squadraDAOJSON.getSquadraDaNome(nomeSquadra);\r\n            }\r\n\r\n            //faccio il controllo che l'utente sia un allenatore o un giocatore\r\n            if (jsonObject.get(allenatore).getAsBoolean()) {\r\n                return new Allenatore(jsonObject.get(user).getAsString(), jsonObject.get(email1).getAsString(), jsonObject.get(password).getAsString(), allenamenti, squad);\r\n\r\n            } else {\r\n                return new Giocatore(jsonObject.get(user).getAsString(), jsonObject.get(email1).getAsString(), jsonObject.get(password).getAsString(), allenamenti, squad);\r\n            }\r\n\r\n        } catch (IOException e) {\r\n            //gestione dell'eccezione nel caso in cui non troviamo l'utente\r\n            throw new EccezioneUtenteInvalido(\"Impossibile recuperare l'utente perché non esistente\");\r\n        }\r\n        catch (EccezioneSquadraInvalida e){\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n\r\n    }\r\n\r\n    public static JsonObject serializzazioneUtente(Utente utente) {\r\n\r\n        JsonObject jsonObject = new JsonObject();\r\n        jsonObject.addProperty(user, utente.getUsername());\r\n        jsonObject.addProperty(email1, utente.getEmail());\r\n        jsonObject.addProperty(password, utente.getPassword());\r\n        jsonObject.addProperty(allenatore, utente.getAllenatore());\r\n\r\n        JsonArray jsonArray = new JsonArray();\r\n\r\n        if (utente.getAllenamenti() == null) {\r\n            jsonObject.add(trainings, jsonArray);\r\n\r\n        } else if (utente.getAllenamenti().isEmpty()) {\r\n            jsonObject.add(trainings, jsonArray);\r\n        } else {\r\n            for (int i = 0; i < utente.getAllenamenti().size(); i++) {\r\n                jsonArray.add(utente.getAllenamenti().get(i).getData() + \"-\" + utente.getAllenamenti().get(i).getOrarioInizio() + \"-\" + utente.getAllenamenti().get(i).getOrarioFine());\r\n            }\r\n            jsonObject.add(trainings, jsonArray);\r\n        }\r\n\r\n        if (Objects.equals(utente.getSquadra().getNome(), \"\")) {\r\n            jsonObject.addProperty(squadra, \"\");\r\n        } else {\r\n            jsonObject.addProperty(squadra, utente.getSquadra().getNome());\r\n        }\r\n\r\n        return jsonObject;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/dao/UtenteDAOJSON.java b/src/main/java/engineering/dao/UtenteDAOJSON.java
+--- a/src/main/java/engineering/dao/UtenteDAOJSON.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/engineering/dao/UtenteDAOJSON.java	(date 1738590303680)
+@@ -1,6 +1,7 @@
+ package engineering.dao;
+ 
+ import com.google.gson.*;
++import engineering.eccezioni.EccezionePasswordErrata;
+ import engineering.eccezioni.EccezioneSquadraInvalida;
+ import engineering.eccezioni.EccezioneUtenteInvalido;
+ import modelli.*;
+@@ -26,14 +27,6 @@
+     public static String allenatore = "allenatore";
+ 
+ 
+-    public Boolean esisteUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
+-        try {
+-            return esisteUtenteDaEmail(login.getEmail());
+-        }
+-        catch (EccezioneUtenteInvalido e) {
+-            throw new EccezioneUtenteInvalido(e.getMessage());
+-        }
+-    }
+     public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido {
+         try {
+             //creazione del path
+@@ -138,7 +131,7 @@
+             throw new EccezioneUtenteInvalido(e.getMessage());
+         }
+     }
+-    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido {
++    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida, EccezionePasswordErrata {
+         try {
+             //Serializziamo l'oggetto in JSON
+             Gson gson = new GsonBuilder().setPrettyPrinting().create();
+@@ -163,7 +156,7 @@
+                 return recuperaUtenteDaEmail(login.getEmail());
+ 
+             } else {
+-                throw new EccezioneUtenteInvalido("Password errata: lancio eccezione di password errata");
++                throw new EccezionePasswordErrata("Credenziali errate: assicurarvi di aver inserito correttamente username password");
+             }
+         }
+         catch (EccezioneUtenteInvalido e) {
+@@ -175,7 +168,9 @@
+         catch(EccezioneSquadraInvalida e) {
+             throw new EccezioneSquadraInvalida(e.getMessage());
+         }
+-
++        catch (EccezionePasswordErrata e) {
++            throw new EccezionePasswordErrata(e.getMessage());
++        }
+     }
+     public Utente recuperaUtenteDaEmail(String email) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida {
+         try {
+Index: src/main/java/viste/second/LoginCLI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.second;\r\n\r\nimport ctrlApplicativo.LoginCtrlApplicativo;\r\nimport engineering.bean.LoginBean;\r\nimport engineering.bean.UtenteBean;\r\nimport engineering.eccezioni.EccezioneCambioScena;\r\nimport engineering.eccezioni.EccezionePasswordErrata;\r\n\r\npublic class LoginCLI extends GenericaCLI {\r\n\r\n    public LoginCLI () {\r\n        this.pagina = \"Login\";\r\n    }\r\n\r\n    @Override\r\n    public void start() {\r\n\r\n        boolean continua = true;\r\n\r\n        stampaPagina();\r\n\r\n\r\n        LoginCtrlApplicativo loginCtrl = new LoginCtrlApplicativo();\r\n\r\n        while (continua) {\r\n\r\n            try {\r\n                System.out.println(\"Per registrarsi premere 1\");\r\n                System.out.println(\"Per continuare con il login premere un numero qualsiasi\");\r\n\r\n                String scelta = scanner.nextLine();\r\n\r\n                if (scelta.equals(\"1\")) {\r\n                    prossimaPagina = RegistrazioneCLI.class.getName();\r\n                    break;\r\n                }\r\n\r\n                System.out.print(\"Inserisci email: \");\r\n                String email = scanner.nextLine();\r\n\r\n                System.out.print(\"Inserisci password: \");\r\n                String password = scanner.nextLine();\r\n\r\n                LoginBean loginBean = new LoginBean(email, password);\r\n\r\n                try {\r\n                    // Verifica credenziali\r\n                    if (loginCtrl.verificaCredenziali(loginBean)) {\r\n                        System.out.println(\"Login effettuato con successo!\");\r\n\r\n                        // Recupero utente\r\n                        UtenteBean utenteBean = loginCtrl.recuperoUtente(loginBean);\r\n                        if (utenteBean.getAllenatore()) {\r\n                            prossimaPagina = HomepageAllenatoreCLI.class.getName();\r\n                        } else {\r\n                            prossimaPagina = HomepageGiocatoreCLI.class.getName();\r\n                        }\r\n\r\n                        // Interrompi il loop di login\r\n                        continua = false;\r\n                    } else {\r\n                        System.out.println(\"Credenziali errate. Riprova.\");\r\n                    }\r\n\r\n                } catch (EccezioneCambioScena e) {\r\n                    System.err.println(e.getMessage());\r\n                }\r\n                catch (EccezionePasswordErrata e) {\r\n                    System.err.println(\"Username o password errate, riprovare.\");\r\n                }\r\n            }\r\n            catch (Exception e) {\r\n                System.err.println(\"Errore durante il login: \" + e.getMessage());\r\n            }\r\n        }\r\n        spostamento(prossimaPagina);\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/second/LoginCLI.java b/src/main/java/viste/second/LoginCLI.java
+--- a/src/main/java/viste/second/LoginCLI.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/second/LoginCLI.java	(date 1738588173875)
+@@ -5,6 +5,7 @@
+ import engineering.bean.UtenteBean;
+ import engineering.eccezioni.EccezioneCambioScena;
+ import engineering.eccezioni.EccezionePasswordErrata;
++import modelli.Login;
+ 
+ public class LoginCLI extends GenericaCLI {
+ 
+@@ -15,13 +16,9 @@
+     @Override
+     public void start() {
+ 
+-        boolean continua = true;
+-
+         stampaPagina();
+ 
+ 
+-        LoginCtrlApplicativo loginCtrl = new LoginCtrlApplicativo();
+-
+         while (continua) {
+ 
+             try {
+@@ -43,37 +40,45 @@
+ 
+                 LoginBean loginBean = new LoginBean(email, password);
+ 
+-                try {
+-                    // Verifica credenziali
+-                    if (loginCtrl.verificaCredenziali(loginBean)) {
+-                        System.out.println("Login effettuato con successo!");
++                boh(loginBean);
++            }
++            catch (Exception e) {
++                System.err.println("Errore durante il login: " + e.getMessage());
++            }
++        }
++        spostamento(this.prossimaPagina);
++    }
++
++    private void boh(LoginBean loginBean) {
++        try {
++
++            LoginCtrlApplicativo loginCtrl = new LoginCtrlApplicativo();
++
++            // Verifica credenziali
++            if (loginCtrl.verificaCredenziali(loginBean)) {
++                System.out.println("Login effettuato con successo!");
+ 
+-                        // Recupero utente
+-                        UtenteBean utenteBean = loginCtrl.recuperoUtente(loginBean);
+-                        if (utenteBean.getAllenatore()) {
+-                            prossimaPagina = HomepageAllenatoreCLI.class.getName();
+-                        } else {
+-                            prossimaPagina = HomepageGiocatoreCLI.class.getName();
+-                        }
++                // Recupero utente
++                UtenteBean utenteBean = loginCtrl.recuperoUtente(loginBean);
++                assegnazionePagina(utenteBean);
+ 
+-                        // Interrompi il loop di login
+-                        continua = false;
+-                    } else {
+-                        System.out.println("Credenziali errate. Riprova.");
+-                    }
++                // Interrompi il loop di login
++                this.continua = false;
++            } else {
++                System.out.println("Credenziali errate.");
++            }
+ 
+-                } catch (EccezioneCambioScena e) {
+-                    System.err.println(e.getMessage());
+-                }
+-                catch (EccezionePasswordErrata e) {
+-                    System.err.println("Username o password errate, riprovare.");
+-                }
+-            }
+-            catch (Exception e) {
+-                System.err.println("Errore durante il login: " + e.getMessage());
+-            }
++        } catch (EccezioneCambioScena | EccezionePasswordErrata e) {
++            System.err.println(e.getMessage());
++        }
++    }
++
++    private void assegnazionePagina(UtenteBean utenteBean) {
++        if (utenteBean.getAllenatore()) {
++            this.prossimaPagina = HomepageAllenatoreCLI.class.getName();
++        } else {
++            this.prossimaPagina = HomepageGiocatoreCLI.class.getName();
+         }
+-        spostamento(prossimaPagina);
+     }
+ }
+ 
+Index: src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport ctrlApplicativo.HomepageAllenatoreCtrlApplicativo;\r\nimport engineering.eccezioni.EccezioneCambioScena;\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.Button;\r\nimport javafx.scene.control.Label;\r\nimport javafx.stage.Stage;\r\nimport viste.first.utils.CambioScena;\r\n\r\nimport static viste.first.utils.FxmlFileName.*;\r\n\r\npublic class HomepageAllenatoreCtrlGrafico {\r\n\r\n\r\n    public void initialize() {\r\n        System.out.println(\"Inizializzazione Temporanea della Pagina Principale\");\r\n    }\r\n\r\n    @FXML\r\n    private Label mostraErrori;\r\n\r\n    @FXML\r\n    private Button gestisciSquadra;\r\n\r\n    @FXML\r\n    private void VisualizzaRichiestePartecipazione(){\r\n        System.out.println(\"Visualizza Richieste Partecipazione\");\r\n\r\n        if(new HomepageAllenatoreCtrlApplicativo().esisteSquadra()) {\r\n            //cambio scena alla pagina di visualizzazione delle richieste di partecipazione\r\n            try {\r\n                Cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);\r\n            }\r\n            catch (EccezioneCambioScena e) {\r\n                MostraErrore(e.getMessage());\r\n            }\r\n        }\r\n        else {\r\n            MostraErrore(\"Non hai una squadra, non puoi visualizzare le richieste di partecipazione\");\r\n        }\r\n    }\r\n\r\n\r\n    @FXML\r\n    protected void CreaAllenamento() {\r\n\r\n        System.out.println(\"Creazione Allenamento\");\r\n\r\n        HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();\r\n        if(homepageAllenatoreCtrlApplicativo.esisteSquadra()) {\r\n            //cambio scena alla pagina di creazione dell'allenamento\r\n            try {\r\n                Cambio(PAGINA_CREAZIONE_ALLENAMENTO);\r\n\r\n            } catch (EccezioneCambioScena e) {\r\n                MostraErrore(e.getMessage());\r\n            }\r\n        }\r\n        else {\r\n            MostraErrore(\"Non hai una squadra, non puoi creare un allenamento\");\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    protected void GestisciSquadra() {\r\n        //controlliamo che l'allenatore abbia o meno una squadra chiedendolo al controllore applicativo\r\n        HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();\r\n\r\n        if(homepageAllenatoreCtrlApplicativo.esisteSquadra()){\r\n            //Se l'allenatore ha una squadra allora compiamo il cambio scena alla pagina di gestione della squadra\r\n            System.out.println(\"Gestione Squadra\");\r\n\r\n            throw new EccezioneSquadraInvalida(\"Non implementato\");\r\n        }\r\n        else {\r\n            //Se l'allenatore non ha una squadra allora compiamo il cambio scena alla pagina di creazione della squadra\r\n            System.out.println(\"Creazione Squadra\");\r\n\r\n            //cambio scena alla prima vista dove compiamo la creazione della squadra\r\n            try {\r\n                Cambio(PAGINA_CREAZIONE_SQUADRA);\r\n\r\n            } catch (EccezioneCambioScena e) {\r\n                MostraErrore(e.getMessage());\r\n            }\r\n        }\r\n    }\r\n\r\n    private void Cambio(String paginaDiCambioScena) {\r\n        try {\r\n            Stage stage = (Stage) gestisciSquadra.getScene().getWindow();\r\n            CambioScena cambioScena = new CambioScena();\r\n            cambioScena.cambioScena(stage, paginaDiCambioScena);\r\n\r\n        } catch (EccezioneCambioScena e) {\r\n            MostraErrore(e.getMessage());\r\n        }\r\n    }\r\n\r\n    private void MostraErrore(String messaggio) {\r\n        mostraErrori.setText(messaggio);\r\n        mostraErrori.setVisible(true);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java b/src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java
+--- a/src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/first/HomepageAllenatoreCtrlGrafico.java	(date 1738591970760)
+@@ -27,8 +27,9 @@
+     @FXML
+     private void VisualizzaRichiestePartecipazione(){
+         System.out.println("Visualizza Richieste Partecipazione");
++        HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();
+ 
+-        if(new HomepageAllenatoreCtrlApplicativo().esisteSquadra()) {
++        if(homepageAllenatoreCtrlApplicativo.esisteSquadra()) {
+             //cambio scena alla pagina di visualizzazione delle richieste di partecipazione
+             try {
+                 Cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
+@@ -68,15 +69,12 @@
+         //controlliamo che l'allenatore abbia o meno una squadra chiedendolo al controllore applicativo
+         HomepageAllenatoreCtrlApplicativo homepageAllenatoreCtrlApplicativo = new HomepageAllenatoreCtrlApplicativo();
+ 
+-        if(homepageAllenatoreCtrlApplicativo.esisteSquadra()){
++        if (homepageAllenatoreCtrlApplicativo.esisteSquadra()) {
+             //Se l'allenatore ha una squadra allora compiamo il cambio scena alla pagina di gestione della squadra
+-            System.out.println("Gestione Squadra");
+-
+-            throw new EccezioneSquadraInvalida("Non implementato");
++            MostraErrore("Sei già in possesso di una squadra");
+         }
+         else {
+             //Se l'allenatore non ha una squadra allora compiamo il cambio scena alla pagina di creazione della squadra
+-            System.out.println("Creazione Squadra");
+ 
+             //cambio scena alla prima vista dove compiamo la creazione della squadra
+             try {
+@@ -95,7 +93,7 @@
+             cambioScena.cambioScena(stage, paginaDiCambioScena);
+ 
+         } catch (EccezioneCambioScena e) {
+-            MostraErrore(e.getMessage());
++            throw new EccezioneCambioScena(e.getMessage());
+         }
+     }
+ 
+Index: src/main/java/viste/second/RegistrazioneCLI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.second;\r\n\r\nimport ctrlApplicativo.RegistrazioneCtrlApplicativo;\r\nimport engineering.bean.RegistrazioneBean;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\n\r\n\r\n/**\r\n * Questa classe gestisce l'interfaccia a riga di comando (CLI) per la registrazione di un nuovo utente.\r\n */\r\n\r\n// Classe che gestisce l'interfaccia a riga di comando per la registrazione di un nuovo utente\r\npublic class RegistrazioneCLI extends GenericaCLI {\r\n\r\n    public RegistrazioneCLI() {\r\n        this.pagina = \"Registrazione\";\r\n    }\r\n\r\n    @Override\r\n    public void start() {\r\n\r\n        stampaPagina();\r\n\r\n        boolean continua = true;\r\n        String scelta;\r\n        RegistrazioneBean registrazioneBean = null;\r\n\r\n\r\n        while (continua) {\r\n\r\n            try {\r\n                System.out.println(\"Per tornare al Login premere 1\");\r\n                System.out.println(\"Per continuare la registrazione premere un tasto qualsiasi\");\r\n                scelta = scanner.nextLine();\r\n\r\n                if(scelta.equals(\"1\")) {\r\n                    spostamento(LoginCLI.class.getName());\r\n                    break;\r\n                }\r\n\r\n                System.out.print(\"Inserisci username: \");\r\n                String username = scanner.nextLine();\r\n\r\n                System.out.print(\"Inserisci email: \");\r\n                String email = scanner.nextLine();\r\n\r\n                System.out.print(\"Inserisci password: \");\r\n                String password = scanner.nextLine();\r\n\r\n                System.out.print(\"Vuoi registrarti come allenatore? (s/n): \");\r\n                String risposta = scanner.nextLine().toLowerCase();\r\n\r\n                while(!risposta.equals(\"s\") && !risposta.equals(\"n\")){\r\n                    System.out.print(\"Inserisci una risposta valida (s/n): \");\r\n                    risposta = scanner.nextLine().toLowerCase();\r\n                }\r\n\r\n                boolean isAllenatore = risposta.equals(\"s\");\r\n\r\n                // Creazione del bean di registrazione\r\n                registrazioneBean = new RegistrazioneBean(username, email, password, isAllenatore);\r\n\r\n                RegistrazioneCtrlApplicativo registrazioneCtrlApplicativo = new RegistrazioneCtrlApplicativo();\r\n                registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);\r\n\r\n                System.out.println(\"Registrazione effettuata con successo!\");\r\n                continua = false; // Fine registrazione\r\n\r\n            } catch (EccezioneUtenteInvalido e) {\r\n                System.err.println(\"Errore durante la registrazione: \" + e.getMessage());\r\n                System.out.println(\"Riprova la registrazione.\");\r\n                System.out.println(\"Se hai un account e vuoi fare il login, premi 1. Altrimenti inserire un numero qualsiasi e riprova.\");\r\n                scelta = scanner.nextLine();\r\n                if(scelta.equals(\"1\")) {\r\n                    prossimaPagina = LoginCLI.class.getName();\r\n                    continua = false;\r\n                }\r\n            }\r\n        }\r\n        if (registrazioneBean.getAllenatore()) {\r\n            spostamento(HomepageAllenatoreCLI.class.getName());\r\n        }\r\n        spostamento(HomepageGiocatoreCLI.class.getName());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/second/RegistrazioneCLI.java b/src/main/java/viste/second/RegistrazioneCLI.java
+--- a/src/main/java/viste/second/RegistrazioneCLI.java	(revision 0d3edde6bf94c2274a29d607920594589485c014)
++++ b/src/main/java/viste/second/RegistrazioneCLI.java	(date 1738584939050)
+@@ -2,6 +2,7 @@
+ 
+ import ctrlApplicativo.RegistrazioneCtrlApplicativo;
+ import engineering.bean.RegistrazioneBean;
++import engineering.eccezioni.EccezioneCambioScena;
+ import engineering.eccezioni.EccezioneUtenteInvalido;
+ 
+ 
+@@ -21,7 +22,6 @@
+ 
+         stampaPagina();
+ 
+-        boolean continua = true;
+         String scelta;
+         RegistrazioneBean registrazioneBean = null;
+ 
+@@ -34,7 +34,7 @@
+                 scelta = scanner.nextLine();
+ 
+                 if(scelta.equals("1")) {
+-                    spostamento(LoginCLI.class.getName());
++                    prossimaPagina = LoginCLI.class.getName();
+                     break;
+                 }
+ 
+@@ -63,6 +63,13 @@
+                 RegistrazioneCtrlApplicativo registrazioneCtrlApplicativo = new RegistrazioneCtrlApplicativo();
+                 registrazioneCtrlApplicativo.inserisciUtente(registrazioneBean);
+ 
++                if (registrazioneBean.getAllenatore()) {
++                    prossimaPagina = HomepageAllenatoreCLI.class.getName();
++                }
++                else {
++                    prossimaPagina = HomepageGiocatoreCLI.class.getName();
++                }
++
+                 System.out.println("Registrazione effettuata con successo!");
+                 continua = false; // Fine registrazione
+ 
+@@ -70,16 +77,8 @@
+                 System.err.println("Errore durante la registrazione: " + e.getMessage());
+                 System.out.println("Riprova la registrazione.");
+                 System.out.println("Se hai un account e vuoi fare il login, premi 1. Altrimenti inserire un numero qualsiasi e riprova.");
+-                scelta = scanner.nextLine();
+-                if(scelta.equals("1")) {
+-                    prossimaPagina = LoginCLI.class.getName();
+-                    continua = false;
+-                }
+             }
+         }
+-        if (registrazioneBean.getAllenatore()) {
+-            spostamento(HomepageAllenatoreCLI.class.getName());
+-        }
+-        spostamento(HomepageGiocatoreCLI.class.getName());
++        spostamento(prossimaPagina);
+     }
+ }

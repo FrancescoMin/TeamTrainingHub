@@ -1,6 +1,7 @@
 package viste.second;
 
 import ctrlApplicativo.EntraInSquadraCtrlApplicativo;
+import engineering.eccezioni.EccezioneSquadraInvalida;
 
 public class EntraInSquadraCLI extends GenericaCLI {
     public EntraInSquadraCLI() {
@@ -27,24 +28,7 @@ public class EntraInSquadraCLI extends GenericaCLI {
                 }
                 //se non vogliamo uscire lavoriamo con il nome della squadra
                 else {
-                    try {
-                        EntraInSquadraCtrlApplicativo entraInSquadraCtrlApplicativo = new EntraInSquadraCtrlApplicativo();
-
-                        //entriamo se la squadra esiste
-                        if (entraInSquadraCtrlApplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
-                            entraInSquadraCtrlApplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
-                            System.out.println("Richiesta inviata con successo.");
-                            prossimaPagina = HomepageGiocatoreCLI.class.getName();
-                        }
-                        //se la squadra non esiste entriamo qui
-                        else {
-                            System.out.println("La squadra non esiste.");
-                        }
-                    }
-                    //gestiamo le eccezioni qui
-                    catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
+                    verificaSquadra(nomeSquadra);
                 }
             }
             catch (Exception e) {
@@ -55,4 +39,25 @@ public class EntraInSquadraCLI extends GenericaCLI {
         while(prossimaPagina.isEmpty());
         spostamento(prossimaPagina);
     }
+
+    private void verificaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {
+        try {
+            EntraInSquadraCtrlApplicativo entraInSquadraCtrlApplicativo = new EntraInSquadraCtrlApplicativo();
+
+            //entriamo se la squadra esiste
+            if (entraInSquadraCtrlApplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
+                entraInSquadraCtrlApplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
+                System.out.println("Richiesta inviata con successo.");
+                this.prossimaPagina = HomepageGiocatoreCLI.class.getName();
+            }
+            //se la squadra non esiste entriamo qui
+            else {
+                System.out.println("La squadra non esiste.");
+            }
+        }
+        catch (EccezioneSquadraInvalida e) {
+            throw new EccezioneSquadraInvalida(e.getMessage());
+        }
+    }
+
 }
