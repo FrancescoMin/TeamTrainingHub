@@ -6,6 +6,7 @@ import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
 import engineering.pattern.observer.CollezioneAllenamenti;
+import engineering.pattern.observer.Observer;
 import modelli.Allenamento;
 import modelli.Squadra;
 import modelli.Utente;
@@ -13,13 +14,18 @@ import modelli.Utente;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IscrivitiAllenamentoCtrlApplicativo {
+public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
 
     private CollezioneAllenamenti collezioneAllenamenti ;
     private AllenamentoDAO allenamentoDAO; // DAO per interagire con la persistenza
 
     public IscrivitiAllenamentoCtrlApplicativo() {
         collezioneAllenamenti = new CollezioneAllenamenti();
+    }
+
+    @Override
+    public void update() {
+        popola();
     }
 
     // Carica gli allenamenti dalla persistenza
@@ -62,11 +68,12 @@ public class IscrivitiAllenamentoCtrlApplicativo {
         return collezioneAllenamenti;
     }
 
+
     // Accetta un allenamento
     public void accettaAllenamento(AllenamentoBean allenamento) throws EccezioneAllenamentoInvalido {
         try {
-            // Logica per accettare l'allenamento
 
+            // Logica per accettare l'allenamento
             allenamentoDAO.inserisciAllenamentoAdUtente(new Allenamento(allenamento.getData(), allenamento.getOrarioInizio(), allenamento.getOrarioFine(), allenamento.getDescrizione()), Singleton.getInstance().getUtenteCorrente()); // Approva l'allenamento nel DAO
             collezioneAllenamenti.removeAllenamento(allenamento); // Rimuovi l'allenamento dalla collezione
         }
