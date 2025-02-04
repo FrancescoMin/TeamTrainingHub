@@ -70,9 +70,9 @@ public class GestoreTabella {
             private final Button acceptButton = new Button("Accept");
             private final Button refuseButton = new Button("Refuse");
 
-            // Costruttore della cella
+            // Standard constructor inside the anonymous TableCell class
             {
-                // Inizializza le azioni dei pulsanti nel blocco di inizializzazione
+                // Initialize the actions for the buttons
                 acceptButton.setOnAction(event -> {
                     UtenteBean utenteBean = getTableView().getItems().get(getIndex());
                     buttonActionHandler.handleAccept(utenteBean);
@@ -87,9 +87,9 @@ public class GestoreTabella {
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty) {
-                    setGraphic(null);  // Rimuovi i pulsanti se la cella è vuota
+                    setGraphic(null);  // Remove buttons if the cell is empty
                 } else {
-                    setGraphic(new HBox(10, acceptButton, refuseButton));  // Aggiungi i pulsanti alla cella
+                    setGraphic(new HBox(10, acceptButton, refuseButton));  // Add buttons to the cell
                 }
             }
         };

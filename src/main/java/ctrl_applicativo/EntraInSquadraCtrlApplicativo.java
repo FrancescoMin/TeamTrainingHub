@@ -1,6 +1,7 @@
 package ctrl_applicativo;
 
 import engineering.dao.SquadraDAO;
+import engineering.dao.SquadraDAOJSON;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.pattern.Singleton;
 import engineering.pattern.abstract_factory.DAOFactory;
@@ -8,6 +9,8 @@ import modelli.Squadra;
 import modelli.Utente;
 
 public class EntraInSquadraCtrlApplicativo {
+
+    private final Singleton istanza = Singleton.getInstance();
 
     public EntraInSquadraCtrlApplicativo() {
         // Inizializza il DAO tramite la factory
@@ -60,13 +63,7 @@ public class EntraInSquadraCtrlApplicativo {
 
             //controllo se sono in modalità demo
             if (istanza.getDemo()) {
-                squadra = istanza.getSquadraDaNome(nomeSquadra);
-                for(Utente u : squadra.getRichiesteIngresso()){
-                    if(u.getEmail().equals(utente.getEmail())){
-                        throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
-                    }
-                }
-                squadra.getRichiesteIngresso().add(utente);
+                appoggio(nomeSquadra, utente);
             }
 
             //entrerò all'interno di questo else solo se non ho trovato la squadra nel singleton e non sono nella modalità demo
@@ -74,13 +71,7 @@ public class EntraInSquadraCtrlApplicativo {
                 SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
 
                 if(istanza.esisteSquadraDaNome(nomeSquadra)) {
-                    squadra = istanza.getSquadraDaNome(nomeSquadra);
-                    for(Utente u : squadra.getRichiesteIngresso()){
-                        if(u.getEmail().equals(utente.getEmail())){
-                            throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
-                        }
-                    }
-                    squadra.getRichiesteIngresso().add(utente);
+                    appoggio(nomeSquadra, utente);
                 }
 
                 //ottengo dalla persistenza la squadra da modificare se non l'ho trovata nel singleton
@@ -89,7 +80,7 @@ public class EntraInSquadraCtrlApplicativo {
                     squadra = squadraDAO.getSquadraDaNome(nomeSquadra);
                     for(Utente u : squadra.getRichiesteIngresso()){
                         if(u.getEmail().equals(utente.getEmail())){
-                            throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
+                            throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra, attendi la risposta");
                         }
                     }
                     squadra.getRichiesteIngresso().add(utente);
@@ -102,6 +93,16 @@ public class EntraInSquadraCtrlApplicativo {
         catch (EccezioneSquadraInvalida e) {
             throw new EccezioneSquadraInvalida(e.getMessage());
         }
+    }
+
+    private void appoggio(String nomeSquadra, Utente utente) throws EccezioneSquadraInvalida {
+        Squadra squadra = istanza.getSquadraDaNome(nomeSquadra);
+        for(Utente u : squadra.getRichiesteIngresso()){
+            if(u.getEmail().equals(utente.getEmail())){
+                throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
+            }
+        }
+        squadra.getRichiesteIngresso().add(utente);
     }
 }
 

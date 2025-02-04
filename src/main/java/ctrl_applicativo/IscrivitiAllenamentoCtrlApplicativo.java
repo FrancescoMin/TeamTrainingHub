@@ -90,7 +90,6 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
 
             collezioneAllenamenti.removeAllenamento(allenamentoBean); // Rimuovi l'allenamento dalla collezione
 
-            CollezioneAllenamenti collezioneAllenamenti = new CollezioneAllenamenti();
             collezioneAllenamenti.addAllenamento(allenamentoBean);
         }
         catch (EccezioneAllenamentoInvalido e) {

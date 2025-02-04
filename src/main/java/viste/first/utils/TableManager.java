@@ -24,46 +24,6 @@ public class TableManager {
             index++;
         }
     }
-/*
-    /**
-     * @param tableViewAllenamenti è la tabella vera e propria
-     * @param allenamenti     è la lista delle playlist da rappresentare
-     *
-
-    public static void updateTable(TableView<AllenamentoBean> tableViewAllenamenti, List<AllenamentoBean> allenamenti) {
-
-        List<AllenamentoBean> currentPlaylists = tableViewAllenamenti.getItems();     // Ottenere la lista attuale di playlist dalla TableView
-
-        allenamenti.removeAll(currentPlaylists);                              // Rimuove le playlist già caricate, cosi da avere una lista di playlist nuove
-
-        ObservableList<AllenamentoBean> datiAllenamenti = FXCollections.observableArrayList(allenamenti);
-        tableViewAllenamenti.setItems(datiAllenamenti);                               // Aggiornare la TableView con la lista aggiornata di playlist
-    }
-
-
- */
-
-    /*
-    /**
-     * @param tableViewAllenamenti   è la tabella vera e propria
-     * @param allenamenti            è la lista delle playlist da rappresentare
-     *
-    public static void addInTable(TableView<AllenamentoBean> tableViewAllenamenti, List<AllenamentoBean> allenamenti) {
-        List<AllenamentoBean> currentPlaylists = tableViewAllenamenti.getItems(); // Ottenere la lista attuale di playlist dalla TableView
-
-        allenamenti.removeIf(allenamento -> currentPlaylists.stream().anyMatch(current ->
-                current.getData().equals(allenamento.getData()) &&
-                        current.getOrarioInizio().equals(allenamento.getOrarioInizio()) &&
-                        current.getOrarioFine().equals(allenamento.getOrarioFine())
-        ));
-        currentPlaylists.addAll(allenamenti);
-
-        ObservableList<AllenamentoBean> datiAllenamenti = FXCollections.observableArrayList(currentPlaylists);
-        tableViewAllenamenti.setItems(datiAllenamenti); // Aggiornare la TableView con la lista aggiornata di playlist
-    }
-
-     */
-
 
     /**
      * @param tableViewAllenamenti   è la tabella vera e propria
