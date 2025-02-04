@@ -17,6 +17,6 @@ public class Registrazione extends Login{
     public String getUsername() {return this.username;}
 
     public void setAllenatore(Boolean allenatore) {this.allenatore = allenatore;}
-    public Boolean getAllenatore() {return this.allenatore;}
+    public boolean getAllenatore() {return this.allenatore;}
 
 }

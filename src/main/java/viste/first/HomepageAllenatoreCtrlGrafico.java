@@ -24,7 +24,7 @@ public class HomepageAllenatoreCtrlGrafico {
     private Button gestisciSquadra;
 
     @FXML
-    private void VisualizzaRichiestePartecipazione(){
+    private void visualizzaRichiestePartecipazione(){
         System.out.println("Visualizza Richieste Partecipazione");
         HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
 

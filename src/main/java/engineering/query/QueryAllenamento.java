@@ -13,18 +13,18 @@ public class QueryAllenamento {
         //Add a private constructor to hide the implicit public one
     }
 
-    public static String creaAllenamentoQuery = "INSERT INTO allenamento (data, descrizione , utenti_email,orarioInizio , orarioFine ) VALUES (?, ?, ? ,?, ?)";
+    public static final String CREA_ALLENAMENTO_QUERY = "INSERT INTO allenamento (data, descrizione , utenti_email,orarioInizio , orarioFine ) VALUES (?, ?, ? ,?, ?)";
 
-    public static int createAllenamento(Connection connection, Allenamento allenamento , String utenti_email) throws EccezioneAllenamentoInvalido {
+    public static int createAllenamento(Connection connection, Allenamento allenamento , String utentiEmail) throws EccezioneAllenamentoInvalido {
         try {
 
             //preparazione dello statement
-            PreparedStatement statement = getPreparedStatement(connection, allenamento, utenti_email);
+            PreparedStatement statement = getPreparedStatement(connection, allenamento, utentiEmail);
 
             //esecuzione della query e restituzione del risultato
             int i=0;
 
-            System.out.println("email: "+utenti_email + " inserito per allenamento in data: "+allenamento.getData() + " con orario inizio " + allenamento.getOrarioInizio() + "con orario finale " + allenamento.getOrarioFine() + " e descrizione: "+allenamento.getDescrizione());
+            System.out.println("email: "+utentiEmail + " inserito per allenamento in data: "+allenamento.getData() + " con orario inizio " + allenamento.getOrarioInizio() + "con orario finale " + allenamento.getOrarioFine() + " e descrizione: "+allenamento.getDescrizione());
             i=statement.executeUpdate();
             return  i;
 
@@ -35,7 +35,7 @@ public class QueryAllenamento {
     }
 
     private static PreparedStatement getPreparedStatement(Connection connection, Allenamento allenamento, String utenti_email) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement(creaAllenamentoQuery);
+        PreparedStatement statement = connection.prepareStatement(CREA_ALLENAMENTO_QUERY);
 
         //setting dei parametri della query
         statement.setString(1, allenamento.getData());

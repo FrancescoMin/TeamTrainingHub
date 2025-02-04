@@ -75,7 +75,7 @@ public class QuerySquadra {
         } catch (SQLException e) {throw new EccezioneSquadraInvalida("Errore di recupera allenamenti per utente");}
     }
 
-    public static int eliminaRichiestaIscrizione(Connection connection, Squadra squadra, String utente_email) throws EccezioneSquadraInvalida {
+    public static int eliminaRichiestaIscrizione(Connection connection, Squadra squadra, String utenteEmail) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query = "DELETE FROM richiesteiscrizione WHERE Squadra_codice = ? AND utenti_email = ?";
@@ -85,7 +85,7 @@ public class QuerySquadra {
 
             //setting dei parametri della query
             statement.setString(1, squadra.getNome());
-            statement.setString(2, utente_email);
+            statement.setString(2, utenteEmail);
 
             //esecuzione della query
             return statement.executeUpdate();
@@ -94,7 +94,7 @@ public class QuerySquadra {
         }
     }
 
-    public static int inserisciRichiestaIscrizione(Connection connection, Squadra squadra , String utente_email) throws EccezioneSquadraInvalida {
+    public static int inserisciRichiestaIscrizione(Connection connection, Squadra squadra , String utenteEmail) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query = "INSERT INTO richiesteiscrizione (utenti_email, Squadra_codice, Squadra_utenti_email) VALUES ( ? , ? , ? )";
@@ -103,7 +103,7 @@ public class QuerySquadra {
             PreparedStatement statement = connection.prepareStatement(query);
 
             //setting dei parametri della query
-            statement.setString(1, utente_email);
+            statement.setString(1, utenteEmail);
             statement.setString(2, squadra.getNome());
             statement.setString(3, squadra.getAllenatore());
 
@@ -114,7 +114,7 @@ public class QuerySquadra {
         }
     }
 
-    public static ResultSet getrichiestaiscrizionersperemail(Connection connection, Squadra squadra, String utente_email) throws EccezioneSquadraInvalida {
+    public static ResultSet getrichiestaiscrizionersperemail(Connection connection, Squadra squadra, String utenteEmail) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query = "SELECT * FROM richiesteiscrizione where Squadra_codice = ? AND utenti_email = ?";
@@ -124,7 +124,7 @@ public class QuerySquadra {
 
             //setting dei parametri della query
             statement.setString(1, squadra.getNome());
-            statement.setString(2, utente_email);
+            statement.setString(2, utenteEmail);
 
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();

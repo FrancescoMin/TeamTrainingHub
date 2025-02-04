@@ -10,7 +10,7 @@ import org.junit.Test;
 public class TestPerUtente {
     private final String testUser = "testUser";
     private final String email = "testUser@gmail.com";
-    private final Boolean allenatore = false;
+    private final boolean allenatore = false;
 
     /**
      * Testo che l'inserimento di un utente avvenga con successo se tutti i valori sono validi (email e username generati random)
@@ -22,7 +22,7 @@ public class TestPerUtente {
 
         String randomUsername = generateRandomUsername();
         String randomEmail = generateRandomEmail();
-        Boolean randomAllenatore = generateRandomAllenamento();
+        boolean randomAllenatore = generateRandomAllenamento();
 
         Utente utenteValido = assegnaUtente(randomUsername, randomEmail, randomAllenatore);
 
@@ -98,12 +98,12 @@ public class TestPerUtente {
         return "testEmail" + System.currentTimeMillis() + "@test.com";
     }
 
-    private Utente assegnaUtente(String USERNAME, String EMAIL, Boolean ALLENATORE){
-        if(ALLENATORE){return new Allenatore(USERNAME,EMAIL, USERNAME);}
-        else{return new Giocatore(USERNAME, EMAIL, USERNAME);}
+    private Utente assegnaUtente(String string, String string1, boolean aBoolean){
+        if(aBoolean){return new Allenatore(string,string1, string);}
+        else{return new Giocatore(string, string1, string);}
     }
 
-    private Boolean generateRandomAllenamento() {
+    private boolean generateRandomAllenamento() {
         return Math.random() < 0.5;
     }
 }
