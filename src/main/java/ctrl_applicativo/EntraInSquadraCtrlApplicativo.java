@@ -61,6 +61,11 @@ public class EntraInSquadraCtrlApplicativo {
             //controllo se sono in modalità demo
             if (istanza.getDemo()) {
                 squadra = istanza.getSquadraDaNome(nomeSquadra);
+                for(Utente u : squadra.getRichiesteIngresso()){
+                    if(u.getEmail().equals(utente.getEmail())){
+                        throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
+                    }
+                }
                 squadra.getRichiesteIngresso().add(utente);
             }
 
@@ -70,11 +75,23 @@ public class EntraInSquadraCtrlApplicativo {
 
                 if(istanza.esisteSquadraDaNome(nomeSquadra)) {
                     squadra = istanza.getSquadraDaNome(nomeSquadra);
+                    for(Utente u : squadra.getRichiesteIngresso()){
+                        if(u.getEmail().equals(utente.getEmail())){
+                            throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
+                        }
+                    }
+                    squadra.getRichiesteIngresso().add(utente);
                 }
 
                 //ottengo dalla persistenza la squadra da modificare se non l'ho trovata nel singleton
-                if (squadra.getNome().isEmpty()) {
+                else {
+                    System.out.println("Squadra non trovata nel singleton, la cerco nel database");
                     squadra = squadraDAO.getSquadraDaNome(nomeSquadra);
+                    for(Utente u : squadra.getRichiesteIngresso()){
+                        if(u.getEmail().equals(utente.getEmail())){
+                            throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
+                        }
+                    }
                     squadra.getRichiesteIngresso().add(utente);
                 }
 

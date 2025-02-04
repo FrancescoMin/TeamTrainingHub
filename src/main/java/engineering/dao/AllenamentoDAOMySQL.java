@@ -17,7 +17,11 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
 
     private static final String DESC = "descrizione";
 
-    public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido{
+    public void creaAllenamentoAdUtente(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido {
+        iscriviUtenteAdAllenamento(allenamento, utente);
+    }
+
+    public void iscriviUtenteAdAllenamento(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido{
 
         Connection conn;
         int righeModificate = 0;

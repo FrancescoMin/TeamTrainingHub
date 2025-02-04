@@ -1,9 +1,6 @@
 {
   "allenatore": "1",
   "nome": "prova1",
-  "allenamenti": [
-
-  ],
-  "richiesteIngresso": [
-  ]
+  "allenamenti": [],
+  "richiesteIngresso": []
 }

@@ -33,7 +33,8 @@ public class LoginCtrlApplicativo {
             //se siamo nella modalità demo, non devo controllare le credenziali dalla persistenza
             else if (istanza.getDemo()) {
                 return false;
-            } else {
+            }
+            else {
                 //creazione del dao per controllare le credenziali
                 UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
 

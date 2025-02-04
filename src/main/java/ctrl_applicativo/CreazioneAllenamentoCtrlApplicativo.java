@@ -43,8 +43,9 @@ public class CreazioneAllenamentoCtrlApplicativo {
                 AllenamentoDAO allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
 
                 //assegniamo l'allenamento all'allenatore che lo ha creato
-                allenamentoDAO.inserisciAllenamentoAdUtente(allenamento, utente);
+                allenamentoDAO.creaAllenamentoAdUtente(allenamento, utente);
             }
+
         }
         catch (EccezioneAllenamentoInvalido e) {
             throw new EccezioneAllenamentoInvalido(e.getMessage());

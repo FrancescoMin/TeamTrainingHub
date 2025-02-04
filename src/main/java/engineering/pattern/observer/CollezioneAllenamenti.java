@@ -6,7 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CollezioneAllenamenti extends Subject {
+
+    private static CollezioneAllenamenti collezioneAllenamenti = null;
+
     private final List<AllenamentoBean> allenamenti = new ArrayList<>();
+
+    public static CollezioneAllenamenti getInstance() { //Pattern Singleton
+        if (collezioneAllenamenti == null) {
+            collezioneAllenamenti = new CollezioneAllenamenti();
+        }
+        return collezioneAllenamenti;
+    }
 
     public void addAllenamento(AllenamentoBean allenamento) {
         allenamenti.add(allenamento);
@@ -18,9 +28,7 @@ public class CollezioneAllenamenti extends Subject {
         notifyObservers(); // Notifica gli osservatori
     }
 
-    public List<AllenamentoBean> getAllenamenti() {
-        return allenamenti;
-    }
+    public List<AllenamentoBean> getAllenamenti() {return allenamenti;}
 
     public void popolaTabella(List<AllenamentoBean> allenamenti) {
         this.allenamenti.clear();

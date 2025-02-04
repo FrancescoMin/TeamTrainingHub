@@ -41,11 +41,12 @@ public class CreazioneAllenamentoCLI extends GenericaCLI{
                 creazioneallenamentoctrlapplicativo.creaAllenamento(allenamentobean);
 
                 System.out.println("Allenamento creato con successo! Adesso se si vuole creare un altro allenamento premere 1, altrimenti premere un tasto qualsiasi");
-                int scelta = scanner.nextInt();
-                if(scelta != 1) {
+                String input = scanner.nextLine();
+                if(!input.equals("1")){
                     continua = false;
                     prossimaPagina = HomepageAllenatoreCLI.class.getName();
                 }
+
             }
             catch (EccezioneAllenamentoInvalido e){
                 System.out.println("Errore durante la creazione dell'allenamento: " + e.getMessage());

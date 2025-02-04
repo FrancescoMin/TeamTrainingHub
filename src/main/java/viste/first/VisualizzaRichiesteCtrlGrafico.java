@@ -48,12 +48,19 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
 
     @Override
     public void handleAccept(UtenteBean utenteBean) {
-        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
-        visualizzarichiestectrlapplicativo.accettaRichiesta(utenteBean);
+        try {
+            VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
+            visualizzarichiestectrlapplicativo.accettaRichiesta(utenteBean);
 
-        // Show an alert to indicate acceptance
-        popup("Accept User", "User " + utenteBean.getEmail() + " has been accepted!");
+            // Show an alert to indicate acceptance
+            popup("Accept User", "User " + utenteBean.getEmail() + " has been accepted!");
+        }
+        catch (Exception e) {
+            mostraErrori.setText(e.getMessage());
+            mostraErrori.setVisible(true);
+            ricarica();
 
+        }
     }
 
     // Implementation of the handleRefuse method from ButtonActionHandler
@@ -69,6 +76,7 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
         catch (Exception e) {
             mostraErrori.setText(e.getMessage());
             mostraErrori.setVisible(true);
+            ricarica();
         }
     }
 

@@ -22,7 +22,6 @@ public class VisualizzaRichiesteCtrlApplicativo {
 
     public void accettaRichiesta(UtenteBean utenteBean) throws EccezioneSquadraInvalida, EccezioneUtenteInvalido {
         try {
-
             update(utenteBean, true);
         }
         catch (EccezioneSquadraInvalida e) {
@@ -62,11 +61,15 @@ public class VisualizzaRichiesteCtrlApplicativo {
 
                     //se l'utente ha già una squadra, cancello la richiesta di iscrizione e lancio un'eccezione
                     if (!utente.getSquadra().getNome().isEmpty()) {
+
+                        SquadraDAO squadraDao = DAOFactory.getDAOFactory().createSquadraDAO();
+                        squadraDao.aggiornaSquadra(squadra);
+
                         throw new EccezioneSquadraInvalida("L'utente è stato accettato in un'altra squadra");
                     }
 
                     //se l'utente è stato accettato, lo aggiungo alla squadra
-                    if (accettato) {
+                    else if (accettato) {
                         utente.setSquadra(squadra);
                     }
                     //se ho trovato l'utente posso uscire dal ciclo
@@ -76,13 +79,14 @@ public class VisualizzaRichiesteCtrlApplicativo {
 
             //adesso, se sto utilizzando il dao, aggiorno la persistenza per poter salvare le modifiche
             if (!istanza.getDemo()) {
-                //se non siamo in modalità demo, aggiorno il database con le modifiche all'utente
-                UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
-                utenteDao.aggiornaUtente(utente);
 
                 //aggiorno anche la squadra
                 SquadraDAO squadraDao = DAOFactory.getDAOFactory().createSquadraDAO();
                 squadraDao.aggiornaSquadra(squadra);
+
+                //se non siamo in modalità demo, aggiorno il database con le modifiche all'utente
+                UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
+                utenteDao.aggiornaUtente(utente);
             }
         }
         catch (EccezioneSquadraInvalida e) {

@@ -26,6 +26,7 @@ public abstract class Subject {
     // Notifica tutti gli observer registrati chiamando il metodo update()
     protected void notifyObservers() {
         for (Observer observer : observers) {
+            System.out.println("Notifico l'observer");
             observer.update();
         }
     }

@@ -17,12 +17,21 @@ import static engineering.dao.UtenteDAOJSON.*;
 
 public class AllenamentoDAOJSON implements AllenamentoDAO {
 
-    public void inserisciAllenamentoAdUtente(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido{
+    public void creaAllenamentoAdUtente(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido {
+        try {
+            inserisciAllenamento(allenamento);
+
+            iscriviUtenteAdAllenamento(allenamento, utente);
+        }
+        catch (EccezioneAllenamentoInvalido e) {
+            throw new EccezioneAllenamentoInvalido(e.getMessage());
+        }
+    }
+
+    public void iscriviUtenteAdAllenamento(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido{
         try {
 
             //aggiorno l'utente con l'allenamento nella lista degli allenamenti a cui è iscritto
-            inserisciAllenamento(allenamento);
-
             UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
             utenteDAOJSON.aggiornaUtente(utente);
 
@@ -49,7 +58,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
             Files.readAllBytes(Paths.get(filePath));
 
             //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione
-            throw new EccezioneAllenamentoInvalido("Impossibile inserire l'utente perché esistente");
+            throw new EccezioneAllenamentoInvalido("Impossibile inserire l'allenamento perché esistente");
 
         }
         catch (IOException e) {

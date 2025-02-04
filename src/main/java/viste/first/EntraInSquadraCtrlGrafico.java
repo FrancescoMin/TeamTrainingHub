@@ -41,6 +41,7 @@ public class EntraInSquadraCtrlGrafico{
 
 
                     entrainsquadractrlapplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
+
                     // Show an alert to indicate refusal
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Invio Richiesta");

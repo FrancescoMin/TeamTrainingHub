@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GestoreTabella {
-
     private final Singleton istanza;
     private final ButtonActionHandler buttonActionHandler;
 
@@ -72,8 +71,8 @@ public class GestoreTabella {
             private final Button refuseButton = new Button("Refuse");
 
             // Costruttore della cella
-            public void ButtonCell() {
-                // Inizializza le azioni dei pulsanti nel costruttore
+            {
+                // Inizializza le azioni dei pulsanti nel blocco di inizializzazione
                 acceptButton.setOnAction(event -> {
                     UtenteBean utenteBean = getTableView().getItems().get(getIndex());
                     buttonActionHandler.handleAccept(utenteBean);

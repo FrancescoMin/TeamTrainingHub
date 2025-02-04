@@ -48,10 +48,11 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
 
             List<Allenamento> allenamentiAllenatore = allenamentoDAO.getAllenamentiPerEmail(nomeAllenatore);
 
-
             //eliminiamo dalla lista degli allenamenti dell'allenatore quelli che sono già presenti nella lista degli allenamenti del giocatore
+            List<Allenamento> allenamentiFinale = new ArrayList<>();
+            allenamentiFinale=eliminaAllenamenti(allenamentiAllenatore, allenamentiGiocatore);
 
-            return trasformazione(eliminaAllenamenti(allenamentiAllenatore, allenamentiGiocatore));
+            return trasformazione(allenamentiFinale);
         }
         catch (EccezioneAllenamentoInvalido e) {
             throw new EccezioneAllenamentoInvalido(e.getMessage());
@@ -60,22 +61,37 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
 
     public void popola(){
         List<AllenamentoBean> allenamentiFinali = caricaAllenamenti();
-        collezioneAllenamenti.popolaTabella(allenamentiFinali);
-    }
 
-    // Restituisce la collezione di allenamenti
-    public CollezioneAllenamenti getCollezioneAllenamenti() {
-        return collezioneAllenamenti;
+        System.out.println("Allenamenti Finali");
+        for (AllenamentoBean allenamento : allenamentiFinali) {
+            System.out.println(allenamento.getData());
+        }
+
+        collezioneAllenamenti.popolaTabella(allenamentiFinali);
     }
 
 
     // Accetta un allenamento
-    public void accettaAllenamento(AllenamentoBean allenamento) throws EccezioneAllenamentoInvalido {
+    public void accettaAllenamento(AllenamentoBean allenamentoBean) throws EccezioneAllenamentoInvalido {
         try {
 
+            System.out.println("Accetta Allenamento");
+
+            Allenamento allenamento = new Allenamento(allenamentoBean.getData(), allenamentoBean.getOrarioInizio(), allenamentoBean.getOrarioFine(), allenamentoBean.getDescrizione());
+
+            Utente utente = Singleton.getInstance().getUtenteCorrente();
+            utente.getAllenamenti().add(allenamento); // Aggiungi l'allenamento all'utente
+
             // Logica per accettare l'allenamento
-            allenamentoDAO.inserisciAllenamentoAdUtente(new Allenamento(allenamento.getData(), allenamento.getOrarioInizio(), allenamento.getOrarioFine(), allenamento.getDescrizione()), Singleton.getInstance().getUtenteCorrente()); // Approva l'allenamento nel DAO
-            collezioneAllenamenti.removeAllenamento(allenamento); // Rimuovi l'allenamento dalla collezione
+            allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
+            allenamentoDAO.iscriviUtenteAdAllenamento(allenamento, utente); // Approva l'allenamento nel DAO
+
+            System.out.println("Allenamento inserito");
+
+            collezioneAllenamenti.removeAllenamento(allenamentoBean); // Rimuovi l'allenamento dalla collezione
+
+            CollezioneAllenamenti collezioneAllenamenti = new CollezioneAllenamenti();
+            collezioneAllenamenti.addAllenamento(allenamentoBean);
         }
         catch (EccezioneAllenamentoInvalido e) {
             throw new EccezioneAllenamentoInvalido(e.getMessage());
