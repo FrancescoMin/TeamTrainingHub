@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AnalysisUIOptions">
-    <option name="SCOPE_TYPE" value="3" />
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="All Places" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="tasto ricarica visibile">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_14_17__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_14_17__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/basi/BaseHomePageCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/basi/BaseHomePageCtrlGrafico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/baseColori.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/baseColori.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/baseHomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/baseHomePage.fxml" afterDir="false" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="tasto Login di baseHomePage.fxml tornato a funzionare">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/foto/strategy (1).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/foto/strategy_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/viste/consultaAllenamenti.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/consultaAllenamenti.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -513,7 +507,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738667890566</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="tasto Login di baseHomePage.fxml tornato a funzionare">
+      <option name="closed" value="true" />
+      <created>1738706450482</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1738706450482</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +533,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix valori stringhe nei json" />
     <MESSAGE value="Commit fix versione locale, poche modifiche, non significative" />
     <MESSAGE value="parziale implementazione entraInSquadra" />
     <MESSAGE value="fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori" />
@@ -556,6 +557,7 @@
     <MESSAGE value="codesmell" />
     <MESSAGE value="correzioni grafiche e aggiunta icone" />
     <MESSAGE value="tasto ricarica visibile" />
-    <option name="LAST_COMMIT_MESSAGE" value="tasto ricarica visibile" />
+    <MESSAGE value="tasto Login di baseHomePage.fxml tornato a funzionare" />
+    <option name="LAST_COMMIT_MESSAGE" value="tasto Login di baseHomePage.fxml tornato a funzionare" />
   </component>
 </project>
