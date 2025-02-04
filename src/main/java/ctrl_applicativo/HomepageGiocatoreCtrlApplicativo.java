@@ -1,7 +1,7 @@
 package ctrl_applicativo;
 
 import engineering.eccezioni.EccezioneUtenteInvalido;
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import modelli.Utente;
 
 public class HomepageGiocatoreCtrlApplicativo {
@@ -12,7 +12,7 @@ public class HomepageGiocatoreCtrlApplicativo {
 
     public String getMessaggioBenvenuto() throws EccezioneUtenteInvalido {
         // Recupera l'utente corrente dalla sessione
-        Singleton istanza = Singleton.getInstance();
+        Memoria istanza = Memoria.getInstance();
         Utente utenteCorrente = istanza.getUtenteCorrente();
 
         if (utenteCorrente == null) {
@@ -23,7 +23,7 @@ public class HomepageGiocatoreCtrlApplicativo {
 
     public boolean isUtenteInSquadra() {
         // Recupera l'utente corrente dalla sessione
-        Singleton istanza = Singleton.getInstance();
+        Memoria istanza = Memoria.getInstance();
         Utente utenteCorrente = istanza.getUtenteCorrente();
 
         return !utenteCorrente.getSquadra().getNome().isEmpty();

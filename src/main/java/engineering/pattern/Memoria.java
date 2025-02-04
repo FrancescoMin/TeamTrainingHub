@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class Singleton {
+public class Memoria {
 
     //variabile statica che contiene l'istanza della classe
-    private static final Singleton instance;
+    private static final Memoria instance;
 
     //variabili private dove vengono salvate le istanze
     private final List<Utente> utenti = new ArrayList<>();
@@ -23,16 +23,16 @@ public class Singleton {
     private boolean demo;
 
 
-    private Singleton(){}
+    private Memoria(){}
 
     // static block initialization for exception handling
     static {
-        Singleton tempInstance = null;
+        Memoria tempInstance = null;
         // Creazione dell'istanza singleton
-        tempInstance = new Singleton();
+        tempInstance = new Memoria();
 
         // Caricamento delle proprietà dal file demo.properties
-        try (InputStream input = Singleton.class.getClassLoader().getResourceAsStream("demo.properties")) {
+        try (InputStream input = Memoria.class.getClassLoader().getResourceAsStream("demo.properties")) {
             if (input != null) {
                 Properties properties = new Properties();
                 properties.load(input);
@@ -55,7 +55,7 @@ public class Singleton {
         instance = tempInstance;
     }
 
-    public static Singleton getInstance() {
+    public static Memoria getInstance() {
         return instance;
     }
 

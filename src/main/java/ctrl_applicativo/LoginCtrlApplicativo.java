@@ -4,7 +4,7 @@ import engineering.bean.*;
 import engineering.dao.UtenteDAO;
 import engineering.eccezioni.EccezionePasswordErrata;
 import engineering.eccezioni.EccezioneUtenteInvalido;
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Login;
 import modelli.Utente;
@@ -23,7 +23,7 @@ public class LoginCtrlApplicativo {
             Login login = new Login(loginbean.getEmail(), loginbean.getPassword());
 
             //vedo se l'utente esiste nel singleton
-            Singleton istanza = Singleton.getInstance();
+            Memoria istanza = Memoria.getInstance();
 
             //controllo che l'utente esiste nel singleton
             if (istanza.esisteUtenteDaEmail(login.getEmail())) {
@@ -53,7 +53,7 @@ public class LoginCtrlApplicativo {
 
 
             //vedo se l'utente esiste nel singleton
-            Singleton istanza=Singleton.getInstance();
+            Memoria istanza= Memoria.getInstance();
 
 
             Login login = new Login(loginbean.getEmail(), loginbean.getPassword());

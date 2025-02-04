@@ -1,16 +1,15 @@
 package ctrl_applicativo;
 
 import engineering.dao.SquadraDAO;
-import engineering.dao.SquadraDAOJSON;
 import engineering.eccezioni.EccezioneSquadraInvalida;
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Squadra;
 import modelli.Utente;
 
 public class EntraInSquadraCtrlApplicativo {
 
-    private final Singleton istanza = Singleton.getInstance();
+    private final Memoria istanza = Memoria.getInstance();
 
     public EntraInSquadraCtrlApplicativo() {
         // Inizializza il DAO tramite la factory
@@ -22,8 +21,6 @@ public class EntraInSquadraCtrlApplicativo {
         if (nomeSquadra == null || nomeSquadra.trim().isEmpty()) {
             throw new EccezioneSquadraInvalida("Il nome della squadra non può essere vuoto.");
         }
-
-        Singleton istanza = Singleton.getInstance();
 
         //L'utente è sicuramente in una squadra e quindi verifico solamente se la squadra esiste
 
@@ -54,7 +51,6 @@ public class EntraInSquadraCtrlApplicativo {
         try {
             //poiché sono arrivato all'invio della richiesta, l'utente ha sicuramente inserito una squadra esistente
 
-            Singleton istanza = Singleton.getInstance();
             Utente utente = istanza.getUtenteCorrente();
 
             //In questa funzione non mi preoccupo di controllare se la squadra esiste perché è stato già controllato

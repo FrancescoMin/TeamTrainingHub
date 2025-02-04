@@ -16,7 +16,7 @@ public class Connessione {
     private Connessione() {
     }
 
-    /*Singleton*/
+    /*Memoria*/
     public static synchronized Connessione getInstance() {
         if (instance == null) {
             instance = new Connessione();

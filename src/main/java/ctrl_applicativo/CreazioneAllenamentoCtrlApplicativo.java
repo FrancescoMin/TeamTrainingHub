@@ -2,7 +2,7 @@ package ctrl_applicativo;
 
 import engineering.dao.AllenamentoDAO;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Allenamento;
 import engineering.bean.AllenamentoBean;
@@ -21,7 +21,7 @@ public class CreazioneAllenamentoCtrlApplicativo {
     public void creaAllenamento(AllenamentoBean allenamentobean) throws EccezioneAllenamentoInvalido {
 
         try {
-            Singleton istanza = Singleton.getInstance();
+            Memoria istanza = Memoria.getInstance();
 
             //ottengo dal singleton l'utente corrente
             Utente utente = istanza.getUtenteCorrente();

@@ -3,7 +3,7 @@ package ctrl_applicativo;
 import engineering.bean.AllenamentoBean;
 import engineering.dao.AllenamentoDAO;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Allenamento;
 import modelli.Utente;
@@ -17,7 +17,7 @@ public class ConsultaAllenamentiCtrlApplicativo {
     public List<AllenamentoBean> getAllAllenamenti() throws EccezioneAllenamentoInvalido {
         try {
 
-            Utente utente = Singleton.getInstance().getUtenteCorrente();
+            Utente utente = Memoria.getInstance().getUtenteCorrente();
 
             AllenamentoDAO allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
             List<Allenamento> allenamentiModel = allenamentoDAO.getAllenamentiPerUtente(utente);

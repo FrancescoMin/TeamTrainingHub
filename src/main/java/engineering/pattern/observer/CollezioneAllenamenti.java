@@ -11,7 +11,7 @@ public class CollezioneAllenamenti extends Subject {
 
     private final List<AllenamentoBean> allenamenti = new ArrayList<>();
 
-    public static CollezioneAllenamenti getInstance() { //Pattern Singleton
+    public static CollezioneAllenamenti getInstance() { //Pattern Memoria
         if (collezioneAllenamenti == null) {
             collezioneAllenamenti = new CollezioneAllenamenti();
         }

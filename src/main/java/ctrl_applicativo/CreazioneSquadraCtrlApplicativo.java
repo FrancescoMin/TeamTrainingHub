@@ -2,7 +2,7 @@ package ctrl_applicativo;
 
 import engineering.dao.*;
 import engineering.eccezioni.EccezioneSquadraInvalida;
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Squadra;
 import modelli.Utente;
@@ -17,7 +17,7 @@ public class CreazioneSquadraCtrlApplicativo {
         try {
 
             //ottengo il singleton per ricavare l'utente che sta creando la squadra
-            Singleton istanza = Singleton.getInstance();
+            Memoria istanza = Memoria.getInstance();
             Utente utente = istanza.getUtenteCorrente();
 
             if (istanza.esisteSquadraDaNome(nomeSquadra) ){
@@ -39,7 +39,7 @@ public class CreazioneSquadraCtrlApplicativo {
         catch (EccezioneSquadraInvalida e)
         {
             //ottengo il singleton per ricavare l'utente che sta creando la squadra
-            Singleton istanza = Singleton.getInstance();
+            Memoria istanza = Memoria.getInstance();
             Utente utente = istanza.getUtenteCorrente();
 
             //modifico il modello Utente con la squadra che stiamo creando

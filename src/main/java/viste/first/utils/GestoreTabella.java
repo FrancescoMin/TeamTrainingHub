@@ -3,7 +3,7 @@ package viste.first.utils;
 import engineering.bean.AllenatoreBean;
 import engineering.bean.GiocatoreBean;
 import engineering.bean.UtenteBean;
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import modelli.Utente;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GestoreTabella {
-    private final Singleton istanza;
+    private final Memoria istanza;
     private final ButtonActionHandler buttonActionHandler;
 
     // Callback interface for handling button actions in the controller
@@ -21,10 +21,10 @@ public class GestoreTabella {
         void handleRefuse(UtenteBean utenteBean);
     }
 
-    // Constructor to set the ButtonActionHandler and initialize Singleton
+    // Constructor to set the ButtonActionHandler and initialize Memoria
     public GestoreTabella(ButtonActionHandler buttonActionHandler) {
         this.buttonActionHandler = buttonActionHandler;
-        this.istanza = Singleton.getInstance(); // Initialize Singleton here
+        this.istanza = Memoria.getInstance(); // Initialize Memoria here
     }
 
     // Method to populate the TableView with a list of UtenteBean objects

@@ -6,7 +6,7 @@ import engineering.dao.SquadraDAO;
 import engineering.dao.UtenteDAO;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import modelli.Utente;
 public class VisualizzaRichiesteCtrlApplicativo {
 
     //devo recuperare la squadra dell'utente (allenatore) che sta accettando la richiesta
-    Singleton istanza = Singleton.getInstance();
+    Memoria istanza = Memoria.getInstance();
     Squadra squadra = istanza.getUtenteCorrente().getSquadra();
 
     public void accettaRichiesta(UtenteBean utenteBean) throws EccezioneSquadraInvalida, EccezioneUtenteInvalido {

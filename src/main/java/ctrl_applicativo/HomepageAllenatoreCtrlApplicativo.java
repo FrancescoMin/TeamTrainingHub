@@ -1,6 +1,6 @@
 package ctrl_applicativo;
 
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import modelli.Utente;
 
 public class HomepageAllenatoreCtrlApplicativo
@@ -11,7 +11,7 @@ public class HomepageAllenatoreCtrlApplicativo
     }
 
     public boolean esisteSquadra(){
-        Singleton istanza= Singleton.getInstance();
+        Memoria istanza= Memoria.getInstance();
         Utente utente= istanza.getUtenteCorrente();
 
         return !utente.getSquadra().getNome().isEmpty();

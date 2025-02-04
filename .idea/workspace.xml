@@ -7,13 +7,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Sistemazione crea allenamento">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="sistemazione codesmell">
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/ConsultaAllenamentiCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/ConsultaAllenamentiCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/CreazioneAllenamentoCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/CreazioneAllenamentoCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/CreazioneSquadraCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/CreazioneSquadraCtrlApplicativo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/HomepageAllenatoreCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/HomepageAllenatoreCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/HomepageGiocatoreCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/HomepageGiocatoreCtrlApplicativo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/IscrivitiAllenamentoCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/IscrivitiAllenamentoCtrlApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/LoginCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/LoginCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/RegistrazioneCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/RegistrazioneCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/VisualizzaRichiesteCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/VisualizzaRichiesteCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/altro/Connessione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/altro/Connessione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/Memoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/observer/CollezioneAllenamenti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/observer/CollezioneAllenamenti.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/TableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/TableManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +236,7 @@
       <workItem from="1738573161156" duration="10437000" />
       <workItem from="1738588027032" duration="3979000" />
       <workItem from="1738663464979" duration="273000" />
-      <workItem from="1738684167417" duration="15876000" />
+      <workItem from="1738684167417" duration="16436000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -542,7 +550,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738697424166</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="sistemazione codesmell">
+      <option name="closed" value="true" />
+      <created>1738702842852</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1738702842852</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -560,7 +576,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori" />
     <MESSAGE value="Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti" />
     <MESSAGE value="risolti errori a runtime per consultare allenamenti" />
     <MESSAGE value="caricamento e visualizzazione allenamenti JSON in tabella" />
@@ -585,6 +600,7 @@
     <MESSAGE value="modifica observer" />
     <MESSAGE value="rimozioni stampe inutili" />
     <MESSAGE value="Sistemazione crea allenamento" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sistemazione crea allenamento" />
+    <MESSAGE value="sistemazione codesmell" />
+    <option name="LAST_COMMIT_MESSAGE" value="sistemazione codesmell" />
   </component>
 </project>

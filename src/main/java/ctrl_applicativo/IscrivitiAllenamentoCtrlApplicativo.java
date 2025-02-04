@@ -3,7 +3,7 @@ package ctrl_applicativo;
 import engineering.bean.AllenamentoBean;
 import engineering.dao.AllenamentoDAO;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
 import engineering.pattern.observer.CollezioneAllenamenti;
 import engineering.pattern.observer.Observer;
@@ -34,7 +34,7 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
 
             // Recupera gli allenamenti dal DAO e aggiungili alla collezione
             allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
-            Singleton singleton = Singleton.getInstance();
+            Memoria singleton = Memoria.getInstance();
             Utente utente = singleton.getUtenteCorrente();
 
             //carico gli allenamenti per l'utente corrente così da sapere a quali è già iscritto
@@ -79,7 +79,7 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
 
             Allenamento allenamento = new Allenamento(allenamentoBean.getData(), allenamentoBean.getOrarioInizio(), allenamentoBean.getOrarioFine(), allenamentoBean.getDescrizione());
 
-            Utente utente = Singleton.getInstance().getUtenteCorrente();
+            Utente utente = Memoria.getInstance().getUtenteCorrente();
             utente.getAllenamenti().add(allenamento); // Aggiungi l'allenamento all'utente
 
             // Logica per accettare l'allenamento

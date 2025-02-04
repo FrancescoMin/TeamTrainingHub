@@ -3,7 +3,7 @@ package ctrl_applicativo;
 import engineering.bean.RegistrazioneBean;
 import engineering.dao.UtenteDAO;
 import engineering.eccezioni.EccezioneUtenteInvalido;
-import engineering.pattern.Singleton;
+import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Registrazione;
 
@@ -18,7 +18,7 @@ public class RegistrazioneCtrlApplicativo {
 
 
         //controllo che l'utente esisti già nel singleton
-        Singleton istanza = Singleton.getInstance();
+        Memoria istanza = Memoria.getInstance();
         if (istanza.esisteUtenteDaRegistrazione(registrazione)) {
             throw new EccezioneUtenteInvalido("Utente già registrato!");
         }
