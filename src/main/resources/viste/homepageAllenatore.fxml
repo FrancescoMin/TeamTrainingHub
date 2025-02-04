@@ -1,32 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.HomepageAllenatoreCtrlGrafico">
+<AnchorPane maxHeight="640.0" maxWidth="1024.0" minHeight="640.0" minWidth="1024.0" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.HomepageAllenatoreCtrlGrafico">
 
-   <fx:include source="baseHomePage.fxml" />
+
    <fx:include source="baseColori.fxml" />
-
-
-
-   <Button layoutX="317.0" layoutY="221.0" mnemonicParsing="false" onAction="#visualizzaRichiestePartecipazione" prefHeight="60.0" prefWidth="389.0" text="Visualizza Le Richieste di Partecipazione alle Squadra">
-      <font>
-         <Font size="15.0" />
-      </font></Button>
-   <Button fx:id="gestisciSquadra" layoutX="437.0" layoutY="115.0" mnemonicParsing="false" onAction="#gestisciSquadra" prefHeight="60.0" prefWidth="150.0" text="Gestisci Squadra">
-      <font>
-         <Font size="15.0" />
-      </font></Button>
-   <Button layoutX="420.0" layoutY="320.0" mnemonicParsing="false" onAction="#creaAllenamento" prefHeight="60.0" prefWidth="183.0" text="Creazione Allenamento">
-      <font>
-         <Font size="15.0" />
-      </font></Button>
-   <Label fx:id="mostraErrori" layoutX="286.0" layoutY="500.0" textFill="RED" />
+   <fx:include source="baseHomePage.fxml" />
+   <VBox layoutX="285.0" layoutY="108.0" prefHeight="423.0" prefWidth="500.0">
+      <children>
+      
+      
+         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#visualizzaRichiestePartecipazione" prefHeight="60.0" prefWidth="400.0" text="Visualizza Le Richieste di Partecipazione alle Squadra">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets bottom="20.0" left="50.0" />
+            </VBox.margin>
+         </Button>
+         <Button fx:id="gestisciSquadra" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gestisciSquadra" prefHeight="60.0" prefWidth="200.0" text="Gestisci Squadra">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets bottom="20.0" left="150.0" />
+            </VBox.margin>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#creaAllenamento" prefHeight="60.0" prefWidth="200.0" text="Creazione Allenamento">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets bottom="20.0" left="150.0" />
+            </VBox.margin>
+         </Button>
+         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="Consulta Allenamenti">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets bottom="20.0" left="150.0" />
+            </VBox.margin>
+         </Button>
+         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="Modifica Allenamento">
+            <font>
+               <Font size="15.0" />
+            </font>
+            <VBox.margin>
+               <Insets bottom="20.0" left="150.0" />
+            </VBox.margin>
+         </Button>
+      </children>
+   </VBox>
+   <Label fx:id="mostraErrori" layoutX="286.0" layoutY="530.0" textFill="RED" />
    <Label layoutX="420.0" layoutY="25.0" text="Menu Allenatore" textFill="WHITE">
       <font>
          <Font name="MS Outlook" size="27.0" />
@@ -37,4 +72,7 @@
          <Image url="@../foto/whistle.png" />
       </image>
    </ImageView>
+   <rotationAxis>
+      <Point3D />
+   </rotationAxis>
 </AnchorPane>

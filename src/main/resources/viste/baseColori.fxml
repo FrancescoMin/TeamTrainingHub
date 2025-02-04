@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,5 +19,8 @@
             <Image url="@../foto/LOGO-TeamTrainingHub.png" />
          </image>
       </ImageView>
+      <rotationAxis>
+         <Point3D />
+      </rotationAxis>
       </AnchorPane>
 </AnchorPane>
