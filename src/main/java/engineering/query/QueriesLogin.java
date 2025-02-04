@@ -17,13 +17,14 @@ public class QueriesLogin {
 
         try {
             //creazione della query parametrica
-            String string= "SELECT * FROM utenti where email = ? ";
+            String string= "SELECT ? FROM utenti where email = ? ";
 
             //preparazione dello statement
             statement = connection.prepareStatement(string);
 
+            statement.setString(1, "*");
             //setting dei parametri della query
-            statement.setString(1, email);
+            statement.setString(2, email);
 
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();
@@ -37,10 +38,11 @@ public class QueriesLogin {
         PreparedStatement statement = null;
 
         try {
-            String query= "SELECT * FROM allenamento where utenti_email = ? ;";
+            String query= "SELECT ? FROM allenamento where utenti_email = ? ;";
             statement = connection.prepareStatement(query);
 
-            statement.setString(1, email);
+            statement.setString(1, "*");
+            statement.setString(2, email);
 
             return statement.executeQuery();
 

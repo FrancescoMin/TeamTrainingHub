@@ -178,30 +178,20 @@ public class UtenteDAOJSON implements UtenteDAO {
             //Serializziamo l'oggetto in JSON
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-            System.out.println("Recupero utente da email " + email);
-
             //creazione del path
             String filePath = PATH_UTENTI + email + JSON;
 
             //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
-            System.out.println("Json string " + jsonString);
-
             //creo l'oggetto JSON corrispondete all'utente con l'email passata
             JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
-
-            System.out.println("Json object parte 2 " + jsonObject);
 
             AllenamentoDAOJSON allenamentoDAOJSON = new AllenamentoDAOJSON();
             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
             List<Allenamento> allenamenti = new ArrayList<>();
 
-            System.out.println("Inizia il recupero degli allenamenti");
-
             allenamenti = allenamentoDAOJSON.recuperaAllenamentiPerJsonArray(jsonObject.get(ALLENAMENTI).getAsJsonArray());
-
-            System.out.println("Allenamenti " + allenamenti);
 
             //ottengo il nome della stringa della squadra
             String nomeSquadra = jsonObject.get(SQUADRA).getAsString();

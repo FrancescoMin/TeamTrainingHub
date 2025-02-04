@@ -1,0 +1,644 @@
+Index: src/main/java/viste/first/EntraInSquadraCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first;\r\n\r\nimport ctrl_applicativo.EntraInSquadraCtrlApplicativo;\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.Alert;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.control.TextField;\r\nimport javafx.scene.text.Text;\r\nimport viste.first.basi.BaseHomePageCtrlGrafico;\r\n\r\npublic class EntraInSquadraCtrlGrafico{\r\n\r\n    @FXML\r\n    private TextField scriviSquadraTextField;\r\n\r\n    @FXML\r\n    private Text scriviSquadraText;\r\n\r\n    @FXML\r\n    private Label mostraErrore;\r\n\r\n    @FXML\r\n    protected void richiediIngresso() {\r\n        //prendiamo dalla text field il nome della squadra\r\n        String nomeSquadra = scriviSquadraTextField.getText();\r\n\r\n        //se il nome della squadra non è vuoto\r\n        if (nomeSquadra != null && !nomeSquadra.trim().isEmpty()) {\r\n            try {\r\n                // Invio della richiesta alla squadra tramite il controller applicativo\r\n                EntraInSquadraCtrlApplicativo entrainsquadractrlapplicativo = new EntraInSquadraCtrlApplicativo();\r\n\r\n                if(entrainsquadractrlapplicativo.verificaEsistenzaSquadra(nomeSquadra)) {\r\n\r\n                    entrainsquadractrlapplicativo.inviaRichiestaAllaSquadra(nomeSquadra);\r\n                    // Show an alert to indicate refusal\r\n                    Alert alert = new Alert(Alert.AlertType.INFORMATION);\r\n                    alert.setTitle(\"Invio Richiesta\");\r\n                    alert.setHeaderText(null);\r\n                    alert.setContentText(\"Richiesta di partecipazione inviata alla squadra con successo\");\r\n                    alert.showAndWait();\r\n\r\n                    //torno al login\r\n                    BaseHomePageCtrlGrafico baseHomePageCtrlGrafico = new BaseHomePageCtrlGrafico();\r\n                    baseHomePageCtrlGrafico.tornaAlLogin();\r\n                }\r\n                else {\r\n                    throw new EccezioneSquadraInvalida(\"Squadra inserita non esiste\");\r\n                }\r\n\r\n            } catch (EccezioneSquadraInvalida e) {\r\n                mostraErrore.setText(e.getMessage());\r\n                mostraErrore.setVisible(true);\r\n            }\r\n        } else {\r\n            mostraErrore.setText(\"Squadra inserita non valida\");\r\n            mostraErrore.setVisible(true);\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    public void initialize() {\r\n        //inizializzo la pagina\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java b/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java
+--- a/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java	(date 1738666976208)
+@@ -1,13 +1,19 @@
+ package viste.first;
+ 
+ import ctrl_applicativo.EntraInSquadraCtrlApplicativo;
++import engineering.eccezioni.EccezioneCambioScena;
+ import engineering.eccezioni.EccezioneSquadraInvalida;
+ import javafx.fxml.FXML;
+ import javafx.scene.control.Alert;
+ import javafx.scene.control.Label;
+ import javafx.scene.control.TextField;
+ import javafx.scene.text.Text;
++import javafx.stage.Stage;
+ import viste.first.basi.BaseHomePageCtrlGrafico;
++import viste.first.utils.CambioScena;
++
++import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
++import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
+ 
+ public class EntraInSquadraCtrlGrafico{
+ 
+@@ -33,6 +39,8 @@
+ 
+                 if(entrainsquadractrlapplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
+ 
++                    System.out.println("Squadra esiste");
++
+                     entrainsquadractrlapplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
+                     // Show an alert to indicate refusal
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+@@ -42,8 +50,7 @@
+                     alert.showAndWait();
+ 
+                     //torno al login
+-                    BaseHomePageCtrlGrafico baseHomePageCtrlGrafico = new BaseHomePageCtrlGrafico();
+-                    baseHomePageCtrlGrafico.tornaAlLogin();
++                    tornaIndietro();
+                 }
+                 else {
+                     throw new EccezioneSquadraInvalida("Squadra inserita non esiste");
+@@ -64,4 +71,17 @@
+         //inizializzo la pagina
+     }
+ 
++    @FXML
++    public void tornaIndietro(){
++        //facciamo il cambio scena per tornare alla home dell'allenatore
++        try {
++            Stage stage = (Stage) scriviSquadraText.getScene().getWindow();
++            CambioScena cambioScena = new CambioScena();
++            cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
++
++        } catch (EccezioneCambioScena e) {
++            throw new EccezioneCambioScena(e.getMessage());
++        }
++    }
++
+ }
+\ No newline at end of file
+Index: src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ctrl_applicativo;\r\n\r\nimport engineering.dao.SquadraDAO;\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport engineering.pattern.Singleton;\r\nimport engineering.pattern.abstract_factory.DAOFactory;\r\nimport modelli.Squadra;\r\nimport modelli.Utente;\r\n\r\npublic class EntraInSquadraCtrlApplicativo {\r\n\r\n    public EntraInSquadraCtrlApplicativo() {\r\n        // Inizializza il DAO tramite la factory\r\n    }\r\n\r\n\r\n    public boolean verificaEsistenzaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {\r\n\r\n        if (nomeSquadra == null || nomeSquadra.trim().isEmpty()) {\r\n            throw new EccezioneSquadraInvalida(\"Il nome della squadra non può essere vuoto.\");\r\n        }\r\n\r\n        Singleton istanza = Singleton.getInstance();\r\n\r\n        //L'utente è sicuramente in una squadra e quindi verifico solamente se la squadra esiste\r\n\r\n        //controllo negli utenti se esiste una squadra con quel nome nel singleton prima di tutto\r\n        if(istanza.esisteSquadraDaNome(nomeSquadra)){\r\n            return true;\r\n        }\r\n\r\n        //se l'utente è in modalità demo e non ho trovato nulla nel singleton, restituisco false\r\n        else if (istanza.getDemo()){\r\n            return false;\r\n        }\r\n\r\n        //se non è in modalità demo, controllo nel database\r\n        else {\r\n            SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();\r\n            return squadraDAO.verificaEsistenzaSquadra(nomeSquadra);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Invia una richiesta di ingresso alla squadra specificata.\r\n     *\r\n     * @param nomeSquadra Nome della squadra a cui inviare la richiesta.\r\n     * @throws EccezioneSquadraInvalida Se l'utente è già in una squadra o la squadra non esiste.\r\n     */\r\n    public void inviaRichiestaAllaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {\r\n        try {\r\n            //poiché sono arrivato all'invio della richiesta, l'utente ha sicuramente inserito una squadra esistente\r\n\r\n            Singleton istanza = Singleton.getInstance();\r\n            Utente utente = istanza.getUtenteCorrente();\r\n\r\n            //In questa funzione non mi preoccupo di controllare se la squadra esiste perché è stato già controllato\r\n            //come prima cosa, ottengo la squadra da nome\r\n            Squadra squadra = new Squadra();\r\n\r\n            //controllo se sono in modalità demo\r\n            if (istanza.getDemo()) {\r\n                squadra = istanza.getSquadraDaNome(nomeSquadra);\r\n                squadra.getRichiesteIngresso().add(utente);\r\n            }\r\n\r\n            //entrerò all'interno di questo else solo se non ho trovato la squadra nel singleton e non sono nella modalità demo\r\n            else {\r\n                SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();\r\n\r\n                squadra = istanza.getSquadraDaNome(nomeSquadra);\r\n\r\n                //ottengo dalla persistenza la squadra da modificare se non l'ho trovata nel singleton\r\n                if (squadra.getNome().isEmpty()) {\r\n                    squadra = squadraDAO.getSquadraDaNome(nomeSquadra);\r\n                    squadra.getRichiesteIngresso().add(utente);\r\n                }\r\n\r\n                //aggiorno la squadra in modo da aggiungere la richiesta alla lista\r\n                squadraDAO.aggiornaSquadra(squadra);\r\n            }\r\n        }\r\n        catch (EccezioneSquadraInvalida e) {\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java b/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java
+--- a/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java	(date 1738667315612)
+@@ -30,7 +30,7 @@
+         }
+ 
+         //se l'utente è in modalità demo e non ho trovato nulla nel singleton, restituisco false
+-        else if (istanza.getDemo()){
++        if (istanza.getDemo()){
+             return false;
+         }
+ 
+@@ -66,9 +66,13 @@
+ 
+             //entrerò all'interno di questo else solo se non ho trovato la squadra nel singleton e non sono nella modalità demo
+             else {
++                System.out.println("Controllo nel database");
+                 SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
+ 
+-                squadra = istanza.getSquadraDaNome(nomeSquadra);
++                if(istanza.esisteSquadraDaNome(nomeSquadra)) {
++                    squadra = istanza.getSquadraDaNome(nomeSquadra);
++                }
++                System.out.println("Squadra recuperata: " + squadra.getNome());
+ 
+                 //ottengo dalla persistenza la squadra da modificare se non l'ho trovata nel singleton
+                 if (squadra.getNome().isEmpty()) {
+Index: src/main/java/engineering/dao/SquadraDAOJSON.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.dao;\r\n\r\nimport com.google.gson.*;\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport modelli.*;\r\n\r\nimport java.io.FileWriter;\r\nimport java.io.IOException;\r\nimport java.nio.file.Files;\r\nimport java.nio.file.Paths;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport static engineering.dao.UtenteDAOJSON.JSON;\r\n\r\npublic class SquadraDAOJSON implements SquadraDAO {\r\n\r\n    public static final  String ALLEN = \"allenamenti\";\r\n    public static final  String RICHIESTE = \"richiesteIngresso\";\r\n    public static final  String PATH_SQUADRE = \"src/main/resources/persistenza/squadre/\";\r\n\r\n    public SquadraDAOJSON() {\r\n        //costruttore vuoto di default\r\n    }\r\n\r\n    public void creaSquadraPerAllenatore(Utente utente, Squadra squadra) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida {\r\n\r\n        try {\r\n            creaSquadra(squadra);\r\n            iscrizioneUtenteASquadra(utente, squadra);\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n        catch (EccezioneSquadraInvalida e) {\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public void creaSquadra(Squadra squadra) throws EccezioneSquadraInvalida {\r\n\r\n        try {\r\n            //Creazione del path\r\n            String filePath = PATH_SQUADRE + squadra.getNome() + JSON;\r\n\r\n            //chiamo la funzione per la corretta creazione dell'oggetto json\r\n            JsonObject jsonObject = setUpSquadra(squadra);\r\n\r\n            creazioneSquadra(jsonObject, filePath);\r\n\r\n\r\n        } catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public JsonObject setUpSquadra(Squadra squadra) throws EccezioneUtenteInvalido {\r\n\r\n        try {\r\n            JsonObject jsonObject = new JsonObject();\r\n\r\n            System.out.println(\"inizio il settaggio della squadra\");\r\n\r\n            jsonObject.addProperty(\"allenatore\", squadra.getAllenatore());\r\n            System.out.println(squadra.getAllenatore());\r\n            jsonObject.addProperty(\"nome\", squadra.getNome());\r\n            System.out.println(squadra.getNome());\r\n\r\n            UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();\r\n            Utente allenatore = utenteDAOJSON.recuperaUtenteDaEmail(squadra.getAllenatore());\r\n\r\n            for (Allenamento allenamento : allenatore.getAllenamenti()) {\r\n                System.out.println(allenamento.getData() + \"-\" + allenamento.getOrarioInizio() + \"-\" + allenamento.getOrarioFine());\r\n            }\r\n\r\n            JsonArray jsonArrayAllenamenti = new JsonArray();\r\n            for (Allenamento allenamento : allenatore.getAllenamenti()) {\r\n                System.out.println(allenamento.getData() + \"-\" + allenamento.getOrarioInizio() + \"-\" + allenamento.getOrarioFine());\r\n                jsonArrayAllenamenti.add(allenamento.getData() + \"-\" + allenamento.getOrarioInizio() + \"-\" + allenamento.getOrarioFine());\r\n            }\r\n            jsonObject.add(ALLEN, jsonArrayAllenamenti);\r\n\r\n            JsonArray jsonArrayRichiesteIscrizione = new JsonArray();\r\n            for (Utente utente1 : squadra.getRichiesteIngresso()) {\r\n                jsonArrayRichiesteIscrizione.add(utente1.getEmail());\r\n            }\r\n            jsonObject.add(RICHIESTE, jsonArrayRichiesteIscrizione);\r\n            return jsonObject;\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public void creazioneSquadra(JsonObject jsonObject, String filePath) throws EccezioneSquadraInvalida {\r\n        Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n        try {\r\n\r\n            //controllo che il file sia già esistente\r\n            Files.readAllBytes(Paths.get(filePath));\r\n\r\n            //se sono ancora qui vuol dire che il file esiste e lancio un'eccezione\r\n            throw new EccezioneSquadraInvalida(\"Squadra esistente\");\r\n\r\n        } catch (IOException e) {\r\n\r\n            try {//se arrivo qui vuol dire che sto facendo una modifica e il file esiste, quindi posso sovrascriverlo\r\n                FileWriter writer = new FileWriter(filePath);\r\n\r\n                //salvataggio dell'oggetto serializzato utente nel file json\r\n                writer.write(gson.toJson(jsonObject));\r\n                writer.close();\r\n            }\r\n            catch (IOException e2) {\r\n                throw new EccezioneSquadraInvalida(\"Errore di creazione della squadra\");\r\n            }\r\n        }\r\n\r\n    }\r\n\r\n    public void aggiornaSquadra(Squadra squadra) throws EccezioneSquadraInvalida {\r\n        try {\r\n            //Creazione del path\r\n            String filePath = PATH_SQUADRE + squadra.getNome() + JSON;\r\n\r\n            //chiamo la funzione per la corretta creazione dell'oggetto json\r\n            JsonObject jsonObject = setUpSquadra(squadra);\r\n\r\n            aggiornaSquadraJson(jsonObject, filePath);\r\n\r\n        }\r\n        catch (EccezioneSquadraInvalida e) {\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public void aggiornaSquadraJson(JsonObject jsonObject, String filePath) throws EccezioneSquadraInvalida {\r\n        Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n        try {\r\n\r\n            //controllo che il file sia già esistente\r\n            Files.readAllBytes(Paths.get(filePath));\r\n\r\n            //se arrivo qui vuol dire che sto facendo una modifica e il file esiste, quindi posso sovrascriverlo\r\n            FileWriter writer = new FileWriter(filePath);\r\n\r\n            //salvataggio dell'oggetto serializzato utente nel file json\r\n            writer.write(gson.toJson(jsonObject));\r\n            writer.close();\r\n\r\n        } catch (IOException e) {\r\n\r\n            //se arrivo qui vuol dire che la squadra non esiste quindi lancio un'eccezione\r\n            throw new EccezioneSquadraInvalida(\"Squadra non esistente\");\r\n        }\r\n    }\r\n\r\n    public Squadra getSquadraDaNome(String nomeSquadra) throws EccezioneSquadraInvalida{\r\n        try {\r\n            //Serializziamo l'oggetto in JSON\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n            //creazione del path\r\n            String filePath = PATH_SQUADRE + nomeSquadra + JSON;\r\n\r\n            System.out.println(\"SquadraDAOJSON: getSquadraDaNome: filePath: \" + filePath);\r\n\r\n            //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste\r\n            String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));\r\n\r\n            //creo l'oggetto JSON corrispondete all'utente con l'email passata\r\n            JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);\r\n\r\n            //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente\r\n            List<Utente> richiesteIngresso = recuperaUtentiPerJsonArray(jsonObject.get(RICHIESTE).getAsJsonArray());\r\n\r\n            System.out.println(\"SquadraDAOJSON: getSquadraDaNome: richiesteIngresso: \" + richiesteIngresso);\r\n\r\n            return new Squadra(jsonObject.get(\"nome\").getAsString(), jsonObject.get(\"allenatore\").getAsString() , richiesteIngresso);\r\n\r\n        }\r\n        catch (IOException e) {\r\n            throw new EccezioneSquadraInvalida(\"Squadra non esistente\");\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n\r\n    }\r\n\r\n    public List<Utente> recuperaUtentiPerJsonArray(JsonArray jsonArray) throws EccezioneUtenteInvalido {\r\n        UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();\r\n        List<Utente> utenti = new ArrayList<>();\r\n\r\n        try {\r\n\r\n            for (JsonElement jsonElement : jsonArray) {\r\n                String email = jsonElement.getAsString();\r\n                Utente utente = utenteDAOJSON.recuperaUtenteDaEmail(email);\r\n                utenti.add(utente);\r\n            }\r\n            return utenti;\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public void iscrizioneUtenteASquadra(Utente utente, Squadra squadra) throws EccezioneUtenteInvalido {\r\n\r\n        try {\r\n            //poiché è il sistema a modificare i modelli e non il dao, non c'è bisogno di fare il setSquadra\r\n\r\n            utente.setSquadra(squadra);\r\n\r\n            UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();\r\n            utenteDAOJSON.aggiornaUtente(utente);\r\n\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public boolean verificaEsistenzaSquadra(String nomeSquadra) {\r\n\r\n        //Creazione del path\r\n        String filePath = PATH_SQUADRE + nomeSquadra + JSON;\r\n\r\n        try {\r\n            //controllo che il file sia già esistente\r\n            Files.readAllBytes(Paths.get(filePath));\r\n\r\n            //se sono ancora qui vuol dire che il file esiste e restituisco vero\r\n            return true;\r\n\r\n        } catch (IOException e) {\r\n            return false;\r\n        }\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/dao/SquadraDAOJSON.java b/src/main/java/engineering/dao/SquadraDAOJSON.java
+--- a/src/main/java/engineering/dao/SquadraDAOJSON.java	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/java/engineering/dao/SquadraDAOJSON.java	(date 1738667430853)
+@@ -60,23 +60,15 @@
+         try {
+             JsonObject jsonObject = new JsonObject();
+ 
+-            System.out.println("inizio il settaggio della squadra");
+ 
+             jsonObject.addProperty("allenatore", squadra.getAllenatore());
+-            System.out.println(squadra.getAllenatore());
+             jsonObject.addProperty("nome", squadra.getNome());
+-            System.out.println(squadra.getNome());
+ 
+             UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
+             Utente allenatore = utenteDAOJSON.recuperaUtenteDaEmail(squadra.getAllenatore());
+ 
+-            for (Allenamento allenamento : allenatore.getAllenamenti()) {
+-                System.out.println(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
+-            }
+-
+             JsonArray jsonArrayAllenamenti = new JsonArray();
+             for (Allenamento allenamento : allenatore.getAllenamenti()) {
+-                System.out.println(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
+                 jsonArrayAllenamenti.add(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
+             }
+             jsonObject.add(ALLEN, jsonArrayAllenamenti);
+@@ -164,8 +156,6 @@
+             //creazione del path
+             String filePath = PATH_SQUADRE + nomeSquadra + JSON;
+ 
+-            System.out.println("SquadraDAOJSON: getSquadraDaNome: filePath: " + filePath);
+-
+             //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
+             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
+ 
+@@ -175,8 +165,6 @@
+             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
+             List<Utente> richiesteIngresso = recuperaUtentiPerJsonArray(jsonObject.get(RICHIESTE).getAsJsonArray());
+ 
+-            System.out.println("SquadraDAOJSON: getSquadraDaNome: richiesteIngresso: " + richiesteIngresso);
+-
+             return new Squadra(jsonObject.get("nome").getAsString(), jsonObject.get("allenatore").getAsString() , richiesteIngresso);
+ 
+         }
+Index: src/main/resources/persistenza/squadre/prova1.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"allenatore\": \"1\",\r\n  \"nome\": \"prova1\",\r\n  \"allenamenti\": [\r\n    \"12-12-200000-10-10-12-12\",\r\n    \"01-01-200000-01-01-12-12\",\r\n    \"01-01-111111-01-01-11-11\"\r\n  ],\r\n  \"richiesteIngresso\": []\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/persistenza/squadre/prova1.json b/src/main/resources/persistenza/squadre/prova1.json
+--- a/src/main/resources/persistenza/squadre/prova1.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/resources/persistenza/squadre/prova1.json	(date 1738667430807)
+@@ -2,9 +2,8 @@
+   "allenatore": "1",
+   "nome": "prova1",
+   "allenamenti": [
+-    "12-12-200000-10-10-12-12",
+-    "01-01-200000-01-01-12-12",
+-    "01-01-111111-01-01-11-11"
++
+   ],
+-  "richiesteIngresso": []
++  "richiesteIngresso": [
++  ]
+ }
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/2.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"username\": \"2\",\r\n  \"email\": \"2\",\r\n  \"password\": \"2\",\r\n  \"allenatore\": false,\r\n  \"allenamenti\": [\r\n    \"12-12-200000-10-10-12-12\"\r\n  ],\r\n  \"squadra\": \"prova1\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/2.json b/src/main/resources/persistenza/utenti/2.json
+--- a/src/main/resources/persistenza/utenti/2.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/resources/persistenza/utenti/2.json	(date 1738667430943)
+@@ -4,7 +4,6 @@
+   "password": "2",
+   "allenatore": false,
+   "allenamenti": [
+-    "12-12-200000-10-10-12-12"
+   ],
+   "squadra": "prova1"
+ }
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/1.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"username\": \"1\",\r\n  \"email\": \"1\",\r\n  \"password\": \"1\",\r\n  \"allenatore\": true,\r\n  \"allenamenti\": [\r\n    \"12-12-200000-10-10-12-12\",\r\n    \"01-01-200000-01-01-12-12\",\r\n    \"01-01-111111-01-01-11-11\"\r\n  ],\r\n  \"squadra\": \"prova1\"\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/1.json b/src/main/resources/persistenza/utenti/1.json
+--- a/src/main/resources/persistenza/utenti/1.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/resources/persistenza/utenti/1.json	(date 1738667430824)
+@@ -4,9 +4,6 @@
+   "password": "1",
+   "allenatore": true,
+   "allenamenti": [
+-    "12-12-200000-10-10-12-12",
+-    "01-01-200000-01-01-12-12",
+-    "01-01-111111-01-01-11-11"
+   ],
+   "squadra": "prova1"
+ }
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/8.json
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/8.json b/src/main/resources/persistenza/utenti/8.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/8.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ /dev/null	(revision 35391910b919106d8057f548333c197a63a5f767)
+@@ -1,8 +0,0 @@
+-{
+-  "username": "8",
+-  "email": "8",
+-  "password": "8",
+-  "allenatore": true,
+-  "allenamenti": [],
+-  "squadra": ""
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/email.json
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/email.json b/src/main/resources/persistenza/utenti/email.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/email.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ /dev/null	(revision 35391910b919106d8057f548333c197a63a5f767)
+@@ -1,8 +0,0 @@
+-{
+-  "username": "username",
+-  "email": "email",
+-  "password": "password",
+-  "allenatore": true,
+-  "allenamenti": [],
+-  "squadra": ""
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/3.json
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/3.json b/src/main/resources/persistenza/utenti/3.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/3.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ /dev/null	(revision 35391910b919106d8057f548333c197a63a5f767)
+@@ -1,8 +0,0 @@
+-{
+-  "username": "3",
+-  "email": "3",
+-  "password": "3",
+-  "allenatore": false,
+-  "allenamenti": [],
+-  "squadra": ""
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/pippo.json
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/pippo.json b/src/main/resources/persistenza/utenti/pippo.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/pippo.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ /dev/null	(revision 35391910b919106d8057f548333c197a63a5f767)
+@@ -1,8 +0,0 @@
+-{
+-  "username": "pippo",
+-  "email": "pippo",
+-  "password": "pippo",
+-  "allenatore": true,
+-  "allenamenti": [],
+-  "squadra": ""
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/allenamenti/12-12-200000-10-10-12-12.json
+===================================================================
+diff --git a/src/main/resources/persistenza/allenamenti/12-12-200000-10-10-12-12.json b/src/main/resources/persistenza/allenamenti/12-12-200000-10-10-12-12.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/allenamenti/12-12-200000-10-10-12-12.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ /dev/null	(revision 35391910b919106d8057f548333c197a63a5f767)
+@@ -1,6 +0,0 @@
+-{
+-  "data": "12-12-200000",
+-  "descrizione": "",
+-  "orarioInizio": "10-10",
+-  "orarioFine": "12-12"
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/allenamenti/01-01-200000-01-01-12-12.json
+===================================================================
+diff --git a/src/main/resources/persistenza/allenamenti/01-01-200000-01-01-12-12.json b/src/main/resources/persistenza/allenamenti/01-01-200000-01-01-12-12.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/allenamenti/01-01-200000-01-01-12-12.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ /dev/null	(revision 35391910b919106d8057f548333c197a63a5f767)
+@@ -1,6 +0,0 @@
+-{
+-  "data": "01-01-200000",
+-  "descrizione": "",
+-  "orarioInizio": "01-01",
+-  "orarioFine": "12-12"
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/em.json
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/em.json b/src/main/resources/persistenza/utenti/em.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/em.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ /dev/null	(revision 35391910b919106d8057f548333c197a63a5f767)
+@@ -1,8 +0,0 @@
+-{
+-  "username": "us",
+-  "email": "em",
+-  "password": "pas",
+-  "allenatore": false,
+-  "allenamenti": [],
+-  "squadra": ""
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/4.json
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/4.json b/src/main/resources/persistenza/utenti/4.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/4.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ /dev/null	(revision 35391910b919106d8057f548333c197a63a5f767)
+@@ -1,8 +0,0 @@
+-{
+-  "username": "4",
+-  "email": "4",
+-  "password": "4",
+-  "allenatore": false,
+-  "allenamenti": [],
+-  "squadra": ""
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/allenamenti/01-01-111111-01-01-11-11.json
+===================================================================
+diff --git a/src/main/resources/persistenza/allenamenti/01-01-111111-01-01-11-11.json b/src/main/resources/persistenza/allenamenti/01-01-111111-01-01-11-11.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/allenamenti/01-01-111111-01-01-11-11.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ /dev/null	(revision 35391910b919106d8057f548333c197a63a5f767)
+@@ -1,6 +0,0 @@
+-{
+-  "data": "01-01-111111",
+-  "descrizione": "",
+-  "orarioInizio": "01-01",
+-  "orarioFine": "11-11"
+-}
+\ No newline at end of file
+Index: src/main/resources/persistenza/utenti/5.json
+===================================================================
+diff --git a/src/main/resources/persistenza/utenti/5.json b/src/main/resources/persistenza/utenti/5.json
+deleted file mode 100644
+--- a/src/main/resources/persistenza/utenti/5.json	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ /dev/null	(revision 35391910b919106d8057f548333c197a63a5f767)
+@@ -1,8 +0,0 @@
+-{
+-  "username": "5",
+-  "email": "5",
+-  "password": "5",
+-  "allenatore": false,
+-  "allenamenti": [],
+-  "squadra": "prova1"
+-}
+\ No newline at end of file
+Index: src/main/java/engineering/query/QuerySquadra.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.query;\r\n\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport modelli.Squadra;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\n\r\npublic class QuerySquadra {\r\n\r\n    private QuerySquadra() {\r\n        //Add a private constructor to hide the implicit public one\r\n    }\r\n\r\n    public static int createSquadra(Connection connection, String nomeSquadra , String utenti_email, String allenatore) throws EccezioneSquadraInvalida {\r\n        try {\r\n            //creazione della query parametrica\r\n            String query= \"INSERT INTO squadra (codice, utenti_email, allenatore) VALUES (?, ?, ?)\";\r\n\r\n            //preparazione dello statement\r\n            PreparedStatement statement = connection.prepareStatement(query);\r\n\r\n            //setting dei parametri della query\r\n            statement.setString(1, nomeSquadra);\r\n            statement.setString(2, utenti_email);\r\n            statement.setString(3, allenatore);\r\n\r\n            //esecuzione della query e restituzione del risultato\r\n            int i=0;\r\n\r\n\r\n            System.out.println(\"In QuerySquadra email: \"+utenti_email + \" nome squadra: \"+nomeSquadra);\r\n            i=statement.executeUpdate();\r\n            System.out.println(\"Non lo so,facciamo la seconda prova\");\r\n            return  i;\r\n\r\n\r\n        } catch (SQLException e) {\r\n            throw new EccezioneSquadraInvalida(\"Errore di creazione della squadra\");\r\n        }\r\n    }\r\n\r\n    public static ResultSet getsquadrarsdanome(Connection connection, String nomeSquadra) throws EccezioneSquadraInvalida {\r\n        PreparedStatement statement = null;\r\n        try {\r\n            //creazione della query parametrica\r\n            String query = \"SELECT * FROM squadra where codice = ? \";\r\n\r\n            //preparazione dello statement\r\n            statement = connection.prepareStatement(query);\r\n\r\n            //setting dei parametri della query\r\n            statement.setString(1, nomeSquadra);\r\n\r\n            //esecuzione della query e restituzione del risultato\r\n            return statement.executeQuery();\r\n        } catch (SQLException e) {\r\n            throw new EccezioneSquadraInvalida(\"Problema con la query di recupero della squadra\");\r\n        }\r\n    }\r\n\r\n    public static ResultSet recuperasquadrersperemail(Connection connection, String email) throws EccezioneSquadraInvalida {\r\n        PreparedStatement statement = null;\r\n\r\n        try {\r\n            String query= \"SELECT * FROM squadra where utenti_email = ? ;\";\r\n            statement = connection.prepareStatement(query);\r\n\r\n            statement.setString(1, email);\r\n\r\n            return statement.executeQuery();\r\n\r\n        } catch (SQLException e) {throw new EccezioneSquadraInvalida(\"Errore di recupera allenamenti per utente\");}\r\n    }\r\n\r\n    public static int eliminaRichiestaIscrizione(Connection connection, Squadra squadra, String utenteEmail) throws EccezioneSquadraInvalida {\r\n        try {\r\n            //creazione della query parametrica\r\n            String query = \"DELETE FROM richiesteiscrizione WHERE Squadra_codice = ? AND utenti_email = ?\";\r\n\r\n            //preparazione dello statement\r\n            PreparedStatement statement = connection.prepareStatement(query);\r\n\r\n            //setting dei parametri della query\r\n            statement.setString(1, squadra.getNome());\r\n            statement.setString(2, utenteEmail);\r\n\r\n            //esecuzione della query\r\n            return statement.executeUpdate();\r\n        } catch (SQLException e) {\r\n            throw new EccezioneSquadraInvalida(\"Errore di eliminazione della richiesta di iscrizione\");\r\n        }\r\n    }\r\n\r\n    public static int inserisciRichiestaIscrizione(Connection connection, Squadra squadra , String utenteEmail) throws EccezioneSquadraInvalida {\r\n        try {\r\n            //creazione della query parametrica\r\n            String query = \"INSERT INTO richiesteiscrizione (utenti_email, Squadra_codice, Squadra_utenti_email) VALUES ( ? , ? , ? )\";\r\n\r\n            //preparazione dello statement\r\n            PreparedStatement statement = connection.prepareStatement(query);\r\n\r\n            //setting dei parametri della query\r\n            statement.setString(1, utenteEmail);\r\n            statement.setString(2, squadra.getNome());\r\n            statement.setString(3, squadra.getAllenatore());\r\n\r\n            //esecuzione della query e restituzione del risultato\r\n            return statement.executeUpdate();\r\n        } catch (SQLException e) {\r\n            throw new EccezioneSquadraInvalida(\"Errore di inserimento della richiesta di iscrizione\");\r\n        }\r\n    }\r\n\r\n    public static ResultSet getrichiestaiscrizionersperemail(Connection connection, Squadra squadra, String utenteEmail) throws EccezioneSquadraInvalida {\r\n        try {\r\n            //creazione della query parametrica\r\n            String query = \"SELECT * FROM richiesteiscrizione where Squadra_codice = ? AND utenti_email = ?\";\r\n\r\n            //preparazione dello statement\r\n            PreparedStatement statement = connection.prepareStatement(query);\r\n\r\n            //setting dei parametri della query\r\n            statement.setString(1, squadra.getNome());\r\n            statement.setString(2, utenteEmail);\r\n\r\n            //esecuzione della query e restituzione del risultato\r\n            return statement.executeQuery();\r\n        } catch (SQLException e) {\r\n            throw new EccezioneSquadraInvalida(\"Errore di recupero della richiesta di iscrizione\");\r\n        }\r\n    }\r\n\r\n    public static ResultSet getrichiesteiscrizionerspersquadra(Connection connection, Squadra squadra) throws EccezioneSquadraInvalida {\r\n        try {\r\n            //creazione della query parametrica\r\n            String query = \"SELECT * FROM richiesteiscrizione where Squadra_codice = ?\";\r\n\r\n            //preparazione dello statement\r\n            PreparedStatement statement = connection.prepareStatement(query);\r\n\r\n            //setting dei parametri della query\r\n            statement.setString(1, squadra.getNome());\r\n\r\n            //esecuzione della query e restituzione del risultato\r\n            return statement.executeQuery();\r\n        } catch (SQLException e) {\r\n            throw new EccezioneSquadraInvalida(\"Errore di recupero delle richieste di iscrizione\");\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/query/QuerySquadra.java b/src/main/java/engineering/query/QuerySquadra.java
+--- a/src/main/java/engineering/query/QuerySquadra.java	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/java/engineering/query/QuerySquadra.java	(date 1738664274804)
+@@ -14,7 +14,7 @@
+         //Add a private constructor to hide the implicit public one
+     }
+ 
+-    public static int createSquadra(Connection connection, String nomeSquadra , String utenti_email, String allenatore) throws EccezioneSquadraInvalida {
++    public static int createSquadra(Connection connection, String nomeSquadra , String utentiEmail, String allenatore) throws EccezioneSquadraInvalida {
+         try {
+             //creazione della query parametrica
+             String query= "INSERT INTO squadra (codice, utenti_email, allenatore) VALUES (?, ?, ?)";
+@@ -24,14 +24,14 @@
+ 
+             //setting dei parametri della query
+             statement.setString(1, nomeSquadra);
+-            statement.setString(2, utenti_email);
++            statement.setString(2, utentiEmail);
+             statement.setString(3, allenatore);
+ 
+             //esecuzione della query e restituzione del risultato
+             int i=0;
+ 
+ 
+-            System.out.println("In QuerySquadra email: "+utenti_email + " nome squadra: "+nomeSquadra);
++            System.out.println("In QuerySquadra email: "+utentiEmail + " nome squadra: "+nomeSquadra);
+             i=statement.executeUpdate();
+             System.out.println("Non lo so,facciamo la seconda prova");
+             return  i;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AnalysisUIOptions\">\r\n    <option name=\"SCOPE_TYPE\" value=\"3\" />\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d48fabd9-9d0c-4832-9762-f7ff2f4fd62e\" name=\"Changes\" comment=\"altri codesmell\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/query/QueryAllenamento.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/query/QueryAllenamento.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/modelli/Registrazione.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/modelli/Registrazione.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Exception\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;FrancescoMin&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub.git&quot;,\r\n    &quot;accountId&quot;: &quot;64b32a3e-6402-44ac-8316-64089203d618&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2nIPzptCElr3Z2cbKRrMzjtrfIO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.IscrivitiAllenamentoCtrlGrafico.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.testCreaSquadraPerAllenatoreConSquadraValida.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.testGetSquadraDaNomeConSquadraEsistente.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.testIscrizioneUtenteASquadraConSquadraValida.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestVari.testMessaggioBenvenutoGiocatore.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/max/IdeaProjects/TeamTrainingHub/src/main/resources/persistenza/utenti&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\max\\IdeaProjects\\TeamTrainingHub\\src\\main\\resources\\persistenza\\utenti\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.LoginApplicazione\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"LoginApplicazione\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"inizio.LoginApplicazione\" />\r\n      <module name=\"TeamTrainingHub\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"inizio.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TestPerSquadra\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TeamTrainingHub\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"TestPerSquadra\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.LoginApplicazione\" />\r\n        <item itemvalue=\"JUnit.TestPerSquadra\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d48fabd9-9d0c-4832-9762-f7ff2f4fd62e\" name=\"Changes\" comment=\"\" />\r\n      <created>1728657885128</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1728657885128</updated>\r\n      <workItem from=\"1728657886213\" duration=\"2000\" />\r\n      <workItem from=\"1730031757462\" duration=\"424000\" />\r\n      <workItem from=\"1730055384804\" duration=\"595000\" />\r\n      <workItem from=\"1730114720831\" duration=\"614000\" />\r\n      <workItem from=\"1730297470122\" duration=\"795000\" />\r\n      <workItem from=\"1730367712503\" duration=\"1261000\" />\r\n      <workItem from=\"1730900062191\" duration=\"11000\" />\r\n      <workItem from=\"1730900495932\" duration=\"139000\" />\r\n      <workItem from=\"1730900654982\" duration=\"1874000\" />\r\n      <workItem from=\"1731419658599\" duration=\"1145000\" />\r\n      <workItem from=\"1731510660528\" duration=\"565000\" />\r\n      <workItem from=\"1731513936734\" duration=\"1087000\" />\r\n      <workItem from=\"1732372725814\" duration=\"1497000\" />\r\n      <workItem from=\"1732618556068\" duration=\"9617000\" />\r\n      <workItem from=\"1732719715292\" duration=\"1949000\" />\r\n      <workItem from=\"1732787371589\" duration=\"8556000\" />\r\n      <workItem from=\"1732810871835\" duration=\"127000\" />\r\n      <workItem from=\"1733073299051\" duration=\"853000\" />\r\n      <workItem from=\"1733240050872\" duration=\"2012000\" />\r\n      <workItem from=\"1733675765565\" duration=\"234000\" />\r\n      <workItem from=\"1733845576886\" duration=\"191000\" />\r\n      <workItem from=\"1733997673195\" duration=\"1357000\" />\r\n      <workItem from=\"1734004004118\" duration=\"9782000\" />\r\n      <workItem from=\"1734084904930\" duration=\"4581000\" />\r\n      <workItem from=\"1734364185289\" duration=\"606000\" />\r\n      <workItem from=\"1734386510091\" duration=\"6108000\" />\r\n      <workItem from=\"1734427385697\" duration=\"11873000\" />\r\n      <workItem from=\"1734528607867\" duration=\"6716000\" />\r\n      <workItem from=\"1734601053904\" duration=\"7748000\" />\r\n      <workItem from=\"1734692612739\" duration=\"2111000\" />\r\n      <workItem from=\"1734796908625\" duration=\"5339000\" />\r\n      <workItem from=\"1734862555389\" duration=\"6467000\" />\r\n      <workItem from=\"1734974038587\" duration=\"706000\" />\r\n      <workItem from=\"1735036002463\" duration=\"3338000\" />\r\n      <workItem from=\"1735040248138\" duration=\"605000\" />\r\n      <workItem from=\"1735383789763\" duration=\"1649000\" />\r\n      <workItem from=\"1735401058574\" duration=\"6814000\" />\r\n      <workItem from=\"1735469017340\" duration=\"11381000\" />\r\n      <workItem from=\"1735901517487\" duration=\"3570000\" />\r\n      <workItem from=\"1736012938977\" duration=\"1842000\" />\r\n      <workItem from=\"1736072047840\" duration=\"2860000\" />\r\n      <workItem from=\"1736177918852\" duration=\"9082000\" />\r\n      <workItem from=\"1736256472061\" duration=\"8405000\" />\r\n      <workItem from=\"1736347769647\" duration=\"6915000\" />\r\n      <workItem from=\"1736417291928\" duration=\"5116000\" />\r\n      <workItem from=\"1736525504890\" duration=\"2745000\" />\r\n      <workItem from=\"1736696782806\" duration=\"1876000\" />\r\n      <workItem from=\"1736722507443\" duration=\"1318000\" />\r\n      <workItem from=\"1736776367586\" duration=\"9518000\" />\r\n      <workItem from=\"1736953782882\" duration=\"6240000\" />\r\n      <workItem from=\"1737050236660\" duration=\"1203000\" />\r\n      <workItem from=\"1737196745248\" duration=\"593000\" />\r\n      <workItem from=\"1737799649228\" duration=\"659000\" />\r\n      <workItem from=\"1737973972595\" duration=\"15124000\" />\r\n      <workItem from=\"1738013645922\" duration=\"1486000\" />\r\n      <workItem from=\"1738060126182\" duration=\"9237000\" />\r\n      <workItem from=\"1738147994818\" duration=\"1081000\" />\r\n      <workItem from=\"1738246028832\" duration=\"605000\" />\r\n      <workItem from=\"1738332646947\" duration=\"8051000\" />\r\n      <workItem from=\"1738413851468\" duration=\"15796000\" />\r\n      <workItem from=\"1738485749767\" duration=\"12542000\" />\r\n      <workItem from=\"1738507452223\" duration=\"17643000\" />\r\n      <workItem from=\"1738530990714\" duration=\"9176000\" />\r\n      <workItem from=\"1738573161156\" duration=\"10437000\" />\r\n      <workItem from=\"1738588027032\" duration=\"3979000\" />\r\n      <workItem from=\"1738663464979\" duration=\"273000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Inizio settaggio database\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730032171397</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730032171397</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"file workspace\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730299192134</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730299192136</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"commit e push di recupero\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730299261335</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730299261335</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"view della registrazione (senza controller)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730901612261</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730901612261</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Modifica di controller applicativo, grafico della registrazione e fxml della registrazione\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732726100799</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732726100800</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Typo nel package, aggiunta string password\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733074263323</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733074263323</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733675993534</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733675993534</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"correzione typo &quot;Eccezione&quot;, modifiche RegistrazioneCtrlApplicativo, non vengono salvati i dati di registrazione\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734108476104</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734108476104</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734393253773</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734393253773</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"RegistrazioneCtrlApplicativo funzionante\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734428756847</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734428756847</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Fix valori stringhe nei json\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734442708259</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734442708259</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Commit fix versione locale, poche modifiche, non significative\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734602305673</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734602305673</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"parziale implementazione entraInSquadra\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734974150480</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734974150480</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1735039696644</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1735039696644</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1735498458976</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1735498458976</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"risolti errori a runtime per consultare allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736181732483</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736181732483</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"caricamento e visualizzazione allenamenti JSON in tabella\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736257078648</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736257078648</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"spostamento codice EntraInSquadra per renderlo corretto. Funzione di riconoscimento esistenza squadra in persistenza, finta notifica per l'allenatore. Implementazione parziale di iscrizione all'allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736527054634</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736527054634</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"Inizializzazione alcune classi CLI, ulteriori modifiche iscrizione allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1737996520541</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1737996520541</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"correzioni varie e codesmell\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738411592574</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738411592574</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Implementazione caso d'uso Iscrizione allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738498320261</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738498320261</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"Sistemazione Consulta Allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738508787632</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738508787632</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"Sistemazione Viste e controller grafici\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738516077520</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738516077520</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"Creazione EccezioneAllenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738517571134</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738517571134</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"Test Francesco Minotti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738522210197</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738522210197</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"Eliminazione Eccezione generica\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738533711700</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738533711700</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"Sistemazione imperfezioni\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738535809282</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738535809282</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"modifiche CLI Login, registrazione e creazione allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738540113089</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738540113089</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"Sistemazione Iscriviti AllenamentoCLI\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738575837067</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738575837067</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"Torna Indietro Button in creazioneAllenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738576624906</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738576624906</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00031\" summary=\"Risoluzione alcuni codesmell\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738584084938</created>\r\n      <option name=\"number\" value=\"00031\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738584084938</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00032\" summary=\"Risoluzione problema creazione allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738614651368</created>\r\n      <option name=\"number\" value=\"00032\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738614651368</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00033\" summary=\"codesmell\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738616170352</created>\r\n      <option name=\"number\" value=\"00033\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00033\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738616170352</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00034\" summary=\"altri codesmell\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738617593350</created>\r\n      <option name=\"number\" value=\"00034\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00034\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738617593350</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00035\" summary=\"altri codesmell\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738617626322</created>\r\n      <option name=\"number\" value=\"00035\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00035\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738617626322</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"36\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"RegistrazioneCtrlApplicativo funzionante\" />\r\n    <MESSAGE value=\"Fix valori stringhe nei json\" />\r\n    <MESSAGE value=\"Commit fix versione locale, poche modifiche, non significative\" />\r\n    <MESSAGE value=\"parziale implementazione entraInSquadra\" />\r\n    <MESSAGE value=\"fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori\" />\r\n    <MESSAGE value=\"Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti\" />\r\n    <MESSAGE value=\"risolti errori a runtime per consultare allenamenti\" />\r\n    <MESSAGE value=\"caricamento e visualizzazione allenamenti JSON in tabella\" />\r\n    <MESSAGE value=\"spostamento codice EntraInSquadra per renderlo corretto. Funzione di riconoscimento esistenza squadra in persistenza, finta notifica per l'allenatore. Implementazione parziale di iscrizione all'allenamento\" />\r\n    <MESSAGE value=\"Inizializzazione alcune classi CLI, ulteriori modifiche iscrizione allenamento\" />\r\n    <MESSAGE value=\"correzioni varie e codesmell\" />\r\n    <MESSAGE value=\"Implementazione caso d'uso Iscrizione allenamento\" />\r\n    <MESSAGE value=\"Sistemazione Consulta Allenamenti\" />\r\n    <MESSAGE value=\"Sistemazione Viste e controller grafici\" />\r\n    <MESSAGE value=\"Creazione EccezioneAllenamento\" />\r\n    <MESSAGE value=\"Test Francesco Minotti\" />\r\n    <MESSAGE value=\"Eliminazione Eccezione generica\" />\r\n    <MESSAGE value=\"Sistemazione imperfezioni\" />\r\n    <MESSAGE value=\"modifiche CLI Login, registrazione e creazione allenamento\" />\r\n    <MESSAGE value=\"Sistemazione Iscriviti AllenamentoCLI\" />\r\n    <MESSAGE value=\"Torna Indietro Button in creazioneAllenamento\" />\r\n    <MESSAGE value=\"Risoluzione alcuni codesmell\" />\r\n    <MESSAGE value=\"Risoluzione problema creazione allenamenti\" />\r\n    <MESSAGE value=\"codesmell\" />\r\n    <MESSAGE value=\"altri codesmell\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"altri codesmell\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/.idea/workspace.xml	(date 1738674746088)
+@@ -7,11 +7,29 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="altri codesmell">
++    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="codesmell pt3">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueryAllenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueryAllenamento.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Registrazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Registrazione.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/01-01-111111-01-01-11-11.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/01-01-200000-01-01-12-12.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/12-12-200000-10-10-12-12.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/prova1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/prova1.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/1.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/2.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/3.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/4.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/5.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/8.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/em.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/email.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/pippo.json" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -225,7 +243,8 @@
+       <workItem from="1738530990714" duration="9176000" />
+       <workItem from="1738573161156" duration="10437000" />
+       <workItem from="1738588027032" duration="3979000" />
+-      <workItem from="1738663464979" duration="273000" />
++      <workItem from="1738663464979" duration="4353000" />
++      <workItem from="1738671356074" duration="64000" />
+     </task>
+     <task id="LOCAL-00001" summary="Inizio settaggio database">
+       <option name="closed" value="true" />
+@@ -507,7 +526,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1738617626322</updated>
+     </task>
+-    <option name="localTasksCounter" value="36" />
++    <task id="LOCAL-00036" summary="codesmell pt3">
++      <option name="closed" value="true" />
++      <created>1738663964215</created>
++      <option name="number" value="00036" />
++      <option name="presentableId" value="LOCAL-00036" />
++      <option name="project" value="LOCAL" />
++      <updated>1738663964215</updated>
++    </task>
++    <option name="localTasksCounter" value="37" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -525,7 +552,6 @@
+     </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="RegistrazioneCtrlApplicativo funzionante" />
+     <MESSAGE value="Fix valori stringhe nei json" />
+     <MESSAGE value="Commit fix versione locale, poche modifiche, non significative" />
+     <MESSAGE value="parziale implementazione entraInSquadra" />
+@@ -550,6 +576,7 @@
+     <MESSAGE value="Risoluzione problema creazione allenamenti" />
+     <MESSAGE value="codesmell" />
+     <MESSAGE value="altri codesmell" />
+-    <option name="LAST_COMMIT_MESSAGE" value="altri codesmell" />
++    <MESSAGE value="codesmell pt3" />
++    <option name="LAST_COMMIT_MESSAGE" value="codesmell pt3" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/engineering/dao/UtenteDAOJSON.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.dao;\r\n\r\nimport com.google.gson.*;\r\nimport engineering.eccezioni.EccezionePasswordErrata;\r\nimport engineering.eccezioni.EccezioneSquadraInvalida;\r\nimport engineering.eccezioni.EccezioneUtenteInvalido;\r\nimport modelli.*;\r\n\r\nimport java.io.*;\r\nimport java.nio.file.Files;\r\nimport java.nio.file.Paths;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Objects;\r\n\r\n\r\npublic class UtenteDAOJSON implements UtenteDAO {\r\n\r\n    public static final String JSON = \".json\";\r\n    public static final String PATH_UTENTI = \"src/main/resources/persistenza/utenti/\";\r\n    public static final String PASSWORD = \"password\";\r\n    public static final String EMAIL = \"email\";\r\n    public static final String USERNAME = \"username\";\r\n\r\n    public static final String ALLENAMENTI = \"allenamenti\";\r\n    public static final String SQUADRA = \"squadra\";\r\n    public static final String ALLENATORE = \"allenatore\";\r\n\r\n\r\n    public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido {\r\n        try {\r\n            //creazione del path\r\n            String filePath = PATH_UTENTI + email + JSON;\r\n\r\n            //controllo se il file esiste\r\n            Files.readAllBytes(Paths.get(filePath));\r\n            return true;\r\n\r\n        } catch (IOException e) {\r\n            throw new EccezioneUtenteInvalido(\"Utente non esistente\");\r\n        }\r\n    }\r\n\r\n    public void aggiornaUtente(Utente utente) throws EccezioneUtenteInvalido{\r\n        //aggiunta dell'utente alla lista degli utenti\r\n        //Creazione del path\r\n        String filePath = PATH_UTENTI + utente.getEmail() + JSON;\r\n\r\n        try {\r\n            //controllo che il file sia già esistente\r\n            Files.readAllBytes(Paths.get(filePath));\r\n\r\n            // Create a Gson object\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n            FileWriter writer = new FileWriter(filePath);\r\n\r\n            // Step 1: Serialize the Person object to a JSON string\r\n            String jsonString = gson.toJson(serializzazioneUtente(utente));\r\n\r\n            // Step 2: Convert the JSON string to a JsonObject\r\n            JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();\r\n\r\n            //salvataggio dell'oggetto serializzato utente nel file json\r\n            writer.write(gson.toJson(jsonObject));\r\n            writer.close();\r\n\r\n        } catch (IOException e) {\r\n            //creazione del file con nome username dell'utente in formato json\r\n            throw new EccezioneUtenteInvalido(\"Impossibile aggiornare l'utente perché non esistente\");\r\n        }\r\n    }\r\n\r\n    public void inserisciUtente(Utente utente) throws EccezioneUtenteInvalido {\r\n\r\n        //Creazione del path\r\n        String filePath = PATH_UTENTI + utente.getEmail() + JSON;\r\n\r\n        try {\r\n            //controllo che il file sia già esistente\r\n            Files.readAllBytes(Paths.get(filePath));\r\n\r\n            //se il file esiste, un utente con la stessa email esiste già e lancio un'eccezione\r\n            throw new EccezioneUtenteInvalido(\"Impossibile inserire l'utente perché esistente\");\r\n\r\n        }\r\n        catch (IOException e) {\r\n            try {\r\n                //creazione del file con nome username dell'utente in formato json\r\n\r\n                // Create a Gson object\r\n                Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n                //serializzo l'oggetto java in un oggetto json\r\n                JsonObject jsonObject = serializzazioneUtente(utente);\r\n\r\n                //parso l'oggetto json in una stringa\r\n                String serial = gson.toJson(jsonObject);\r\n\r\n                //creazione del file con nome username dell'utente in formato json\r\n                FileWriter writer = new FileWriter(filePath);\r\n\r\n                //salvataggio dell'oggetto serializzato utente nel file json\r\n                writer.write(serial);\r\n                writer.close();\r\n            }\r\n            catch (IOException e1) {\r\n                throw new EccezioneUtenteInvalido(e1.getMessage());\r\n            }\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n\r\n    //creazione del file json con i dati dell'utente registrato\r\n    public void inserisciUtenteDaRegistrazione(Registrazione registrazione) throws EccezioneUtenteInvalido {\r\n        try {\r\n            if (registrazione.getAllenatore()) {inserisciUtente(new Allenatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));}\r\n\r\n            else {inserisciUtente(new Giocatore(registrazione.getUsername(), registrazione.getEmail(), registrazione.getPassword()));}\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n\r\n    public Utente recuperaUtente(Utente utente) throws EccezioneUtenteInvalido{\r\n        try {\r\n            return recuperaUtenteDaEmail(utente.getEmail());\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n    }\r\n    public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida, EccezionePasswordErrata {\r\n        try {\r\n            //Serializziamo l'oggetto in JSON\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n            //creazione del path\r\n            String filePath = PATH_UTENTI + login.getEmail() + JSON;\r\n\r\n            //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste\r\n            String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));\r\n\r\n            //creo un oggetto JSON per il controllo delle credenziali\r\n            JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);\r\n\r\n            //inizializzo un oggetto di tipo Login per il controllo delle credenziali\r\n            Login deserializedLogin = new Login(jsonObject.get(EMAIL).getAsString(), jsonObject.get(PASSWORD).getAsString());\r\n\r\n            //controllo della password\r\n            if (deserializedLogin.getPassword().equals(login.getPassword())) {\r\n                System.out.println(\"Login effettuato con successo\");\r\n\r\n                //mi faccio recuperare dal metodo addetto l'utente e lo restituisco al controller\r\n                return recuperaUtenteDaEmail(login.getEmail());\r\n\r\n            } else {\r\n                throw new EccezionePasswordErrata(\"Credenziali errate: assicurarvi di aver inserito correttamente username password\");\r\n            }\r\n        }\r\n        catch (EccezioneUtenteInvalido e) {\r\n            throw new EccezioneUtenteInvalido(e.getMessage());\r\n        }\r\n        catch (IOException e) {\r\n            throw new EccezioneUtenteInvalido(\"Impossibile trovare l'utente\");\r\n        }\r\n        catch(EccezioneSquadraInvalida e) {\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n        catch (EccezionePasswordErrata e) {\r\n            throw new EccezionePasswordErrata(e.getMessage());\r\n        }\r\n    }\r\n    public Utente recuperaUtenteDaEmail(String email) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida {\r\n        try {\r\n            //Serializziamo l'oggetto in JSON\r\n            Gson gson = new GsonBuilder().setPrettyPrinting().create();\r\n\r\n            System.out.println(\"Recupero utente da email \" + email);\r\n\r\n            //creazione del path\r\n            String filePath = PATH_UTENTI + email + JSON;\r\n\r\n            //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste\r\n            String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));\r\n\r\n            System.out.println(\"Json string \" + jsonString);\r\n\r\n            //creo l'oggetto JSON corrispondete all'utente con l'email passata\r\n            JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);\r\n\r\n            System.out.println(\"Json object parte 2 \" + jsonObject);\r\n\r\n            AllenamentoDAOJSON allenamentoDAOJSON = new AllenamentoDAOJSON();\r\n            //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente\r\n            List<Allenamento> allenamenti = new ArrayList<>();\r\n\r\n            System.out.println(\"Inizia il recupero degli allenamenti\");\r\n\r\n            allenamenti = allenamentoDAOJSON.recuperaAllenamentiPerJsonArray(jsonObject.get(ALLENAMENTI).getAsJsonArray());\r\n\r\n            System.out.println(\"Allenamenti \" + allenamenti);\r\n\r\n            //ottengo il nome della stringa della squadra\r\n            String nomeSquadra = jsonObject.get(SQUADRA).getAsString();\r\n            Squadra squad = new Squadra();\r\n\r\n            if(!nomeSquadra.isEmpty()){\r\n                //mi faccio recuperare dal DAO responsabile l'oggetto squadra\r\n                SquadraDAOJSON squadraDAOJSON = new SquadraDAOJSON();\r\n                squad = squadraDAOJSON.getSquadraDaNome(nomeSquadra);\r\n            }\r\n\r\n            //faccio il controllo che l'utente sia un allenatore o un giocatore\r\n            if (jsonObject.get(ALLENATORE).getAsBoolean()) {\r\n                return new Allenatore(jsonObject.get(USERNAME).getAsString(), jsonObject.get(EMAIL).getAsString(), jsonObject.get(PASSWORD).getAsString(), allenamenti, squad);\r\n\r\n            } else {\r\n                return new Giocatore(jsonObject.get(USERNAME).getAsString(), jsonObject.get(EMAIL).getAsString(), jsonObject.get(PASSWORD).getAsString(), allenamenti, squad);\r\n            }\r\n\r\n        } catch (IOException e) {\r\n            //gestione dell'eccezione nel caso in cui non troviamo l'utente\r\n            throw new EccezioneUtenteInvalido(\"Impossibile recuperare l'utente perché non esistente\");\r\n        }\r\n        catch (EccezioneSquadraInvalida e){\r\n            throw new EccezioneSquadraInvalida(e.getMessage());\r\n        }\r\n\r\n    }\r\n\r\n    public static JsonObject serializzazioneUtente(Utente utente) {\r\n\r\n        JsonObject jsonObject = new JsonObject();\r\n        jsonObject.addProperty(USERNAME, utente.getUsername());\r\n        jsonObject.addProperty(EMAIL, utente.getEmail());\r\n        jsonObject.addProperty(PASSWORD, utente.getPassword());\r\n        jsonObject.addProperty(ALLENATORE, utente.getAllenatore());\r\n\r\n        JsonArray jsonArray = new JsonArray();\r\n\r\n        if (utente.getAllenamenti() == null) {\r\n            jsonObject.add(ALLENAMENTI, jsonArray);\r\n\r\n        } else if (utente.getAllenamenti().isEmpty()) {\r\n            jsonObject.add(ALLENAMENTI, jsonArray);\r\n        } else {\r\n            for (int i = 0; i < utente.getAllenamenti().size(); i++) {\r\n                jsonArray.add(utente.getAllenamenti().get(i).getData() + \"-\" + utente.getAllenamenti().get(i).getOrarioInizio() + \"-\" + utente.getAllenamenti().get(i).getOrarioFine());\r\n            }\r\n            jsonObject.add(ALLENAMENTI, jsonArray);\r\n        }\r\n\r\n        if (Objects.equals(utente.getSquadra().getNome(), \"\")) {\r\n            jsonObject.addProperty(SQUADRA, \"\");\r\n        } else {\r\n            jsonObject.addProperty(SQUADRA, utente.getSquadra().getNome());\r\n        }\r\n\r\n        return jsonObject;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/dao/UtenteDAOJSON.java b/src/main/java/engineering/dao/UtenteDAOJSON.java
+--- a/src/main/java/engineering/dao/UtenteDAOJSON.java	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/java/engineering/dao/UtenteDAOJSON.java	(date 1738667315651)
+@@ -178,31 +178,21 @@
+             //Serializziamo l'oggetto in JSON
+             Gson gson = new GsonBuilder().setPrettyPrinting().create();
+ 
+-            System.out.println("Recupero utente da email " + email);
+-
+             //creazione del path
+             String filePath = PATH_UTENTI + email + JSON;
+ 
+             //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
+             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
+ 
+-            System.out.println("Json string " + jsonString);
+-
+             //creo l'oggetto JSON corrispondete all'utente con l'email passata
+             JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
+ 
+-            System.out.println("Json object parte 2 " + jsonObject);
+-
+             AllenamentoDAOJSON allenamentoDAOJSON = new AllenamentoDAOJSON();
+             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
+             List<Allenamento> allenamenti = new ArrayList<>();
+ 
+-            System.out.println("Inizia il recupero degli allenamenti");
+-
+             allenamenti = allenamentoDAOJSON.recuperaAllenamentiPerJsonArray(jsonObject.get(ALLENAMENTI).getAsJsonArray());
+ 
+-            System.out.println("Allenamenti " + allenamenti);
+-
+             //ottengo il nome della stringa della squadra
+             String nomeSquadra = jsonObject.get(SQUADRA).getAsString();
+             Squadra squad = new Squadra();
+Index: src/main/java/viste/first/utils/GestoreTabella.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first.utils;\r\n\r\nimport engineering.bean.AllenatoreBean;\r\nimport engineering.bean.GiocatoreBean;\r\nimport engineering.bean.UtenteBean;\r\nimport engineering.pattern.Singleton;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.layout.HBox;\r\nimport modelli.Utente;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class GestoreTabella {\r\n\r\n    private final Singleton istanza;\r\n    private final ButtonActionHandler buttonActionHandler;\r\n\r\n    // Callback interface for handling button actions in the controller\r\n    public interface ButtonActionHandler {\r\n        void handleAccept(UtenteBean utenteBean);\r\n        void handleRefuse(UtenteBean utenteBean);\r\n    }\r\n\r\n    // Constructor to set the ButtonActionHandler and initialize Singleton\r\n    public GestoreTabella(ButtonActionHandler buttonActionHandler) {\r\n        this.buttonActionHandler = buttonActionHandler;\r\n        this.istanza = Singleton.getInstance(); // Initialize Singleton here\r\n    }\r\n\r\n    // Method to populate the TableView with a list of UtenteBean objects\r\n    public void populateTable(TableView<UtenteBean> tableView) {\r\n        // Get columns by fx:id (these should be linked via SceneBuilder)\r\n        TableColumn<UtenteBean, String> nameColumn = (TableColumn<UtenteBean, String>) tableView.getColumns().get(0);\r\n        TableColumn<UtenteBean, Void> actionColumn = (TableColumn<UtenteBean, Void>) tableView.getColumns().get(1);\r\n\r\n        // Set the value factory for the name column\r\n        nameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmail()));\r\n\r\n        // Set the cell factory for the action column (buttons)\r\n        actionColumn.setCellFactory(col -> createButtonCell());\r\n\r\n        // Populate the TableView with the list of users (UtenteBean)\r\n        tableView.getItems().setAll(recuperaUtentiBean());\r\n    }\r\n\r\n    // Method to refresh the TableView\r\n    public void refreshTable(TableView<UtenteBean> tableView) {\r\n        tableView.getItems().setAll(recuperaUtentiBean());\r\n    }\r\n\r\n    private List<UtenteBean> recuperaUtentiBean() {\r\n        List<UtenteBean> utentiBean = new ArrayList<>();\r\n        // Modify to retrieve UtenteBean objects instead of Utente\r\n        List<Utente> utenti = istanza.getUtenteCorrente().getSquadra().getRichiesteIngresso();\r\n        for (Utente utente : utenti) {\r\n            UtenteBean utenteBean;\r\n            if (utente.getAllenatore()) {\r\n                utenteBean = new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());\r\n            } else {\r\n                utenteBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());\r\n            }\r\n            utentiBean.add(utenteBean);\r\n        }\r\n        return utentiBean;\r\n    }\r\n\r\n    // Method to create button cells for the action column\r\n    private TableCell<UtenteBean, Void> createButtonCell() {\r\n        return new TableCell<UtenteBean, Void>() {\r\n            private final Button acceptButton = new Button(\"Accept\");\r\n            private final Button refuseButton = new Button(\"Refuse\");\r\n\r\n            {\r\n                // Initialize button actions in the constructor of the cell\r\n                acceptButton.setOnAction(event -> {\r\n                    UtenteBean utenteBean = getTableView().getItems().get(getIndex());\r\n                    buttonActionHandler.handleAccept(utenteBean);\r\n                });\r\n                refuseButton.setOnAction(event -> {\r\n                    UtenteBean utenteBean = getTableView().getItems().get(getIndex());\r\n                    buttonActionHandler.handleRefuse(utenteBean);\r\n                });\r\n            }\r\n\r\n            @Override\r\n            protected void updateItem(Void item, boolean empty) {\r\n                super.updateItem(item, empty);\r\n                if (empty) {\r\n                    setGraphic(null);  // Remove the buttons if the cell is empty\r\n                } else {\r\n                    setGraphic(new HBox(10, acceptButton, refuseButton));  // Add buttons to the cell\r\n                }\r\n            }\r\n        };\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/utils/GestoreTabella.java b/src/main/java/viste/first/utils/GestoreTabella.java
+--- a/src/main/java/viste/first/utils/GestoreTabella.java	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/java/viste/first/utils/GestoreTabella.java	(date 1738665654188)
+@@ -71,8 +71,9 @@
+             private final Button acceptButton = new Button("Accept");
+             private final Button refuseButton = new Button("Refuse");
+ 
++            // Costruttore della cella
+             {
+-                // Initialize button actions in the constructor of the cell
++                // Inizializza le azioni dei pulsanti nel blocco di inizializzazione
+                 acceptButton.setOnAction(event -> {
+                     UtenteBean utenteBean = getTableView().getItems().get(getIndex());
+                     buttonActionHandler.handleAccept(utenteBean);
+@@ -87,11 +88,11 @@
+             protected void updateItem(Void item, boolean empty) {
+                 super.updateItem(item, empty);
+                 if (empty) {
+-                    setGraphic(null);  // Remove the buttons if the cell is empty
++                    setGraphic(null);  // Rimuovi i pulsanti se la cella è vuota
+                 } else {
+-                    setGraphic(new HBox(10, acceptButton, refuseButton));  // Add buttons to the cell
++                    setGraphic(new HBox(10, acceptButton, refuseButton));  // Aggiungi i pulsanti alla cella
+                 }
+             }
+         };
+     }
+-}
++}
+\ No newline at end of file
+Index: src/main/java/engineering/query/QueryAllenamento.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.query;\r\n\r\nimport engineering.eccezioni.EccezioneAllenamentoInvalido;\r\nimport modelli.Allenamento;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.SQLException;\r\n\r\npublic class QueryAllenamento {\r\n\r\n    private QueryAllenamento() {\r\n        //Add a private constructor to hide the implicit public one\r\n    }\r\n\r\n    public static final String CREA_ALLENAMENTO_QUERY = \"INSERT INTO allenamento (data, descrizione , utenti_email,orarioInizio , orarioFine ) VALUES (?, ?, ? ,?, ?)\";\r\n\r\n    public static int createAllenamento(Connection connection, Allenamento allenamento , String utentiEmail) throws EccezioneAllenamentoInvalido {\r\n        try {\r\n\r\n            //preparazione dello statement\r\n            PreparedStatement statement = getPreparedStatement(connection, allenamento, utentiEmail);\r\n\r\n            //esecuzione della query e restituzione del risultato\r\n            int i=0;\r\n\r\n            System.out.println(\"email: \"+utentiEmail + \" inserito per allenamento in data: \"+allenamento.getData() + \" con orario inizio \" + allenamento.getOrarioInizio() + \"con orario finale \" + allenamento.getOrarioFine() + \" e descrizione: \"+allenamento.getDescrizione());\r\n            i=statement.executeUpdate();\r\n            return  i;\r\n\r\n\r\n        } catch (SQLException e) {\r\n            throw new EccezioneAllenamentoInvalido(\"Errore nella creazione dell'allenamento nel DB\");\r\n        }\r\n    }\r\n\r\n    private static PreparedStatement getPreparedStatement(Connection connection, Allenamento allenamento, String utenti_email) throws SQLException {\r\n        PreparedStatement statement = connection.prepareStatement(CREA_ALLENAMENTO_QUERY);\r\n\r\n        //setting dei parametri della query\r\n        statement.setString(1, allenamento.getData());\r\n        statement.setString(2, allenamento.getDescrizione());\r\n        statement.setString(3, utenti_email);\r\n        statement.setString(4, allenamento.getOrarioInizio());\r\n        statement.setString(5, allenamento.getOrarioFine());\r\n        return statement;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/query/QueryAllenamento.java b/src/main/java/engineering/query/QueryAllenamento.java
+--- a/src/main/java/engineering/query/QueryAllenamento.java	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/java/engineering/query/QueryAllenamento.java	(date 1738664236764)
+@@ -34,13 +34,13 @@
+         }
+     }
+ 
+-    private static PreparedStatement getPreparedStatement(Connection connection, Allenamento allenamento, String utenti_email) throws SQLException {
++    private static PreparedStatement getPreparedStatement(Connection connection, Allenamento allenamento, String utentiEmail) throws SQLException {
+         PreparedStatement statement = connection.prepareStatement(CREA_ALLENAMENTO_QUERY);
+ 
+         //setting dei parametri della query
+         statement.setString(1, allenamento.getData());
+         statement.setString(2, allenamento.getDescrizione());
+-        statement.setString(3, utenti_email);
++        statement.setString(3, utentiEmail);
+         statement.setString(4, allenamento.getOrarioInizio());
+         statement.setString(5, allenamento.getOrarioFine());
+         return statement;
+Index: src/main/java/inizio/LoginApplicazione.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package inizio;\r\n\r\nimport javafx.application.Application;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Scene;\r\nimport javafx.stage.Stage;\r\nimport viste.first.utils.FxmlFileName;\r\nimport viste.second.LoginCLI;\r\n\r\nimport java.io.IOException;\r\nimport java.io.InputStream;\r\nimport java.util.Properties;\r\n\r\n\r\npublic class\r\nLoginApplicazione extends Application {\r\n\r\n    @Override\r\n    public void start(Stage stage) throws IOException {\r\n        // Carica le proprietà dal file di configurazione\r\n        Properties properties = loadConfigurationProperties();\r\n\r\n        // Ottieni il tipo di interfaccia dalle proprietà\r\n        int interfaceType = Integer.parseInt(properties.getProperty(\"interface.type\",\"1\"));\r\n\r\n        if (interfaceType == 1) {\r\n            // Interfaccia grafica\r\n            loadGraphicalInterface(stage);\r\n        } else if (interfaceType == 2) {\r\n            // Interfaccia a riga di comando\r\n            startCommandLineInterface();\r\n        } else {\r\n            System.out.println(\"Tipo di interfaccia non valido. Utilizzo l'interfaccia grafica di default\");\r\n            // Interfaccia grafica\r\n            loadGraphicalInterface(stage);\r\n        }\r\n    }\r\n\r\n    private void loadGraphicalInterface(Stage stage) throws IOException {\r\n        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FxmlFileName.PAGINA_PRINCIPALE));\r\n        Scene scene = new Scene(fxmlLoader.load());\r\n        stage.setResizable(false);\r\n        stage.setScene(scene);\r\n        stage.show();\r\n    }\r\n\r\n    private void startCommandLineInterface() {\r\n        LoginCLI loginCLI = new LoginCLI();\r\n        loginCLI.start();\r\n    }\r\n\r\n    /** Lettura dal file di configurazione per la scelta dell'interfaccia */\r\n    private Properties loadConfigurationProperties() {\r\n        Properties properties = new Properties();\r\n        try (InputStream input = getClass().getClassLoader().getResourceAsStream(\"config.properties\")) {\r\n            if (input != null) {\r\n                properties.load(input);\r\n            } else {\r\n                System.out.println(\"Errore durante la lettura del file di configurazione\");\r\n            }\r\n        } catch (IOException e) {\r\n            System.out.println(\"Errore durante la lettura del file di configurazione\");\r\n        }\r\n        return properties;\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        launch();\r\n    }\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/inizio/LoginApplicazione.java b/src/main/java/inizio/LoginApplicazione.java
+--- a/src/main/java/inizio/LoginApplicazione.java	(revision 35391910b919106d8057f548333c197a63a5f767)
++++ b/src/main/java/inizio/LoginApplicazione.java	(date 1738664538744)
+@@ -23,16 +23,23 @@
+         // Ottieni il tipo di interfaccia dalle proprietà
+         int interfaceType = Integer.parseInt(properties.getProperty("interface.type","1"));
+ 
+-        if (interfaceType == 1) {
+-            // Interfaccia grafica
+-            loadGraphicalInterface(stage);
+-        } else if (interfaceType == 2) {
+-            // Interfaccia a riga di comando
+-            startCommandLineInterface();
+-        } else {
+-            System.out.println("Tipo di interfaccia non valido. Utilizzo l'interfaccia grafica di default");
+-            // Interfaccia grafica
+-            loadGraphicalInterface(stage);
++        switch (interfaceType) {
++            case 1: {
++                // Interfaccia grafica
++                loadGraphicalInterface(stage);
++                break;
++            }
++            case 2: {
++                // Interfaccia a riga di comando
++                startCommandLineInterface();
++                break;
++            }
++            default:{
++                System.out.println("Tipo di interfaccia non valido. Utilizzo l'interfaccia grafica di default");
++                // Interfaccia grafica
++                loadGraphicalInterface(stage);
++                break;
++            }
+         }
+     }
+ 

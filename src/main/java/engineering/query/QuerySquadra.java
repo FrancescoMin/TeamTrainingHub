@@ -14,7 +14,7 @@ public class QuerySquadra {
         //Add a private constructor to hide the implicit public one
     }
 
-    public static int createSquadra(Connection connection, String nomeSquadra , String utenti_email, String allenatore) throws EccezioneSquadraInvalida {
+    public static int createSquadra(Connection connection, String nomeSquadra , String utentiEmail, String allenatore) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
             String query= "INSERT INTO squadra (codice, utenti_email, allenatore) VALUES (?, ?, ?)";
@@ -24,14 +24,14 @@ public class QuerySquadra {
 
             //setting dei parametri della query
             statement.setString(1, nomeSquadra);
-            statement.setString(2, utenti_email);
+            statement.setString(2, utentiEmail);
             statement.setString(3, allenatore);
 
             //esecuzione della query e restituzione del risultato
             int i=0;
 
 
-            System.out.println("In QuerySquadra email: "+utenti_email + " nome squadra: "+nomeSquadra);
+            System.out.println("In QuerySquadra email: "+utentiEmail + " nome squadra: "+nomeSquadra);
             i=statement.executeUpdate();
             System.out.println("Non lo so,facciamo la seconda prova");
             return  i;
@@ -46,13 +46,14 @@ public class QuerySquadra {
         PreparedStatement statement = null;
         try {
             //creazione della query parametrica
-            String query = "SELECT * FROM squadra where codice = ? ";
+            String query = "SELECT ? FROM squadra where codice = ? ";
 
             //preparazione dello statement
             statement = connection.prepareStatement(query);
 
             //setting dei parametri della query
-            statement.setString(1, nomeSquadra);
+            statement.setString(1, "*");
+            statement.setString(2, nomeSquadra);
 
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();
@@ -65,10 +66,11 @@ public class QuerySquadra {
         PreparedStatement statement = null;
 
         try {
-            String query= "SELECT * FROM squadra where utenti_email = ? ;";
+            String query= "SELECT ? FROM squadra where utenti_email = ? ;";
             statement = connection.prepareStatement(query);
 
-            statement.setString(1, email);
+            statement.setString(1, "*");
+            statement.setString(2, email);
 
             return statement.executeQuery();
 
@@ -117,14 +119,15 @@ public class QuerySquadra {
     public static ResultSet getrichiestaiscrizionersperemail(Connection connection, Squadra squadra, String utenteEmail) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
-            String query = "SELECT * FROM richiesteiscrizione where Squadra_codice = ? AND utenti_email = ?";
+            String query = "SELECT ? FROM richiesteiscrizione where Squadra_codice = ? AND utenti_email = ?";
 
             //preparazione dello statement
             PreparedStatement statement = connection.prepareStatement(query);
 
             //setting dei parametri della query
-            statement.setString(1, squadra.getNome());
-            statement.setString(2, utenteEmail);
+            statement.setString(1, "*");
+            statement.setString(2, squadra.getNome());
+            statement.setString(3, utenteEmail);
 
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();
@@ -136,13 +139,14 @@ public class QuerySquadra {
     public static ResultSet getrichiesteiscrizionerspersquadra(Connection connection, Squadra squadra) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
-            String query = "SELECT * FROM richiesteiscrizione where Squadra_codice = ?";
+            String query = "SELECT ? FROM richiesteiscrizione where Squadra_codice = ?";
 
             //preparazione dello statement
             PreparedStatement statement = connection.prepareStatement(query);
 
             //setting dei parametri della query
-            statement.setString(1, squadra.getNome());
+            statement.setString(1, "*");
+            statement.setString(2, squadra.getNome());
 
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();

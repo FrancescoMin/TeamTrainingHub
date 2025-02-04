@@ -1,13 +1,19 @@
 package viste.first;
 
 import ctrl_applicativo.EntraInSquadraCtrlApplicativo;
+import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import viste.first.basi.BaseHomePageCtrlGrafico;
+import viste.first.utils.CambioScena;
+
+import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
+import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
 public class EntraInSquadraCtrlGrafico{
 
@@ -33,6 +39,8 @@ public class EntraInSquadraCtrlGrafico{
 
                 if(entrainsquadractrlapplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
 
+                    System.out.println("Squadra esiste");
+
                     entrainsquadractrlapplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
                     // Show an alert to indicate refusal
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -42,8 +50,7 @@ public class EntraInSquadraCtrlGrafico{
                     alert.showAndWait();
 
                     //torno al login
-                    BaseHomePageCtrlGrafico baseHomePageCtrlGrafico = new BaseHomePageCtrlGrafico();
-                    baseHomePageCtrlGrafico.tornaAlLogin();
+                    tornaIndietro();
                 }
                 else {
                     throw new EccezioneSquadraInvalida("Squadra inserita non esiste");
@@ -62,6 +69,19 @@ public class EntraInSquadraCtrlGrafico{
     @FXML
     public void initialize() {
         //inizializzo la pagina
+    }
+
+    @FXML
+    public void tornaIndietro(){
+        //facciamo il cambio scena per tornare alla home dell'allenatore
+        try {
+            Stage stage = (Stage) scriviSquadraText.getScene().getWindow();
+            CambioScena cambioScena = new CambioScena();
+            cambioScena.cambioScena(stage, PAGINA_HOME_GIOCATORE);
+
+        } catch (EccezioneCambioScena e) {
+            throw new EccezioneCambioScena(e.getMessage());
+        }
     }
 
 }

@@ -34,7 +34,7 @@ public class ConsultaAllenamentiCtrlGrafico {
     }
 
     private static void setupCambio(){
-        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_GIOCATORE;
+        BaseTabelleCtrlGrafico.setPaginaPrecedente(PAGINA_HOME_GIOCATORE);
     }
 
     @FXML

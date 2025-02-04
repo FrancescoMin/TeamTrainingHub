@@ -24,7 +24,6 @@ public class QueryAllenamento {
             //esecuzione della query e restituzione del risultato
             int i=0;
 
-            System.out.println("email: "+utentiEmail + " inserito per allenamento in data: "+allenamento.getData() + " con orario inizio " + allenamento.getOrarioInizio() + "con orario finale " + allenamento.getOrarioFine() + " e descrizione: "+allenamento.getDescrizione());
             i=statement.executeUpdate();
             return  i;
 
@@ -34,13 +33,13 @@ public class QueryAllenamento {
         }
     }
 
-    private static PreparedStatement getPreparedStatement(Connection connection, Allenamento allenamento, String utenti_email) throws SQLException {
+    private static PreparedStatement getPreparedStatement(Connection connection, Allenamento allenamento, String utentiEmail) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(CREA_ALLENAMENTO_QUERY);
 
         //setting dei parametri della query
         statement.setString(1, allenamento.getData());
         statement.setString(2, allenamento.getDescrizione());
-        statement.setString(3, utenti_email);
+        statement.setString(3, utentiEmail);
         statement.setString(4, allenamento.getOrarioInizio());
         statement.setString(5, allenamento.getOrarioFine());
         return statement;

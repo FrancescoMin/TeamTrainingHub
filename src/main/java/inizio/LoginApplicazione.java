@@ -23,16 +23,23 @@ LoginApplicazione extends Application {
         // Ottieni il tipo di interfaccia dalle proprietà
         int interfaceType = Integer.parseInt(properties.getProperty("interface.type","1"));
 
-        if (interfaceType == 1) {
-            // Interfaccia grafica
-            loadGraphicalInterface(stage);
-        } else if (interfaceType == 2) {
-            // Interfaccia a riga di comando
-            startCommandLineInterface();
-        } else {
-            System.out.println("Tipo di interfaccia non valido. Utilizzo l'interfaccia grafica di default");
-            // Interfaccia grafica
-            loadGraphicalInterface(stage);
+        switch (interfaceType) {
+            case 1: {
+                // Interfaccia grafica
+                loadGraphicalInterface(stage);
+                break;
+            }
+            case 2: {
+                // Interfaccia a riga di comando
+                startCommandLineInterface();
+                break;
+            }
+            default:{
+                System.out.println("Tipo di interfaccia non valido. Utilizzo l'interfaccia grafica di default");
+                // Interfaccia grafica
+                loadGraphicalInterface(stage);
+                break;
+            }
         }
     }
 

@@ -2,9 +2,8 @@
   "allenatore": "1",
   "nome": "prova1",
   "allenamenti": [
-    "12-12-200000-10-10-12-12",
-    "01-01-200000-01-01-12-12",
-    "01-01-111111-01-01-11-11"
+
   ],
-  "richiesteIngresso": []
+  "richiesteIngresso": [
+  ]
 }

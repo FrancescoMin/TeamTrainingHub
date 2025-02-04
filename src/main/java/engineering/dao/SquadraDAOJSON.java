@@ -60,23 +60,15 @@ public class SquadraDAOJSON implements SquadraDAO {
         try {
             JsonObject jsonObject = new JsonObject();
 
-            System.out.println("inizio il settaggio della squadra");
 
             jsonObject.addProperty("allenatore", squadra.getAllenatore());
-            System.out.println(squadra.getAllenatore());
             jsonObject.addProperty("nome", squadra.getNome());
-            System.out.println(squadra.getNome());
 
             UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
             Utente allenatore = utenteDAOJSON.recuperaUtenteDaEmail(squadra.getAllenatore());
 
-            for (Allenamento allenamento : allenatore.getAllenamenti()) {
-                System.out.println(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
-            }
-
             JsonArray jsonArrayAllenamenti = new JsonArray();
             for (Allenamento allenamento : allenatore.getAllenamenti()) {
-                System.out.println(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
                 jsonArrayAllenamenti.add(allenamento.getData() + "-" + allenamento.getOrarioInizio() + "-" + allenamento.getOrarioFine());
             }
             jsonObject.add(ALLEN, jsonArrayAllenamenti);
@@ -164,8 +156,6 @@ public class SquadraDAOJSON implements SquadraDAO {
             //creazione del path
             String filePath = PATH_SQUADRE + nomeSquadra + JSON;
 
-            System.out.println("SquadraDAOJSON: getSquadraDaNome: filePath: " + filePath);
-
             //Dato il path del file, leggo il file JSON. Se vieni lanciato un'eccezione, l'utente non esiste
             String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
 
@@ -174,8 +164,6 @@ public class SquadraDAOJSON implements SquadraDAO {
 
             //istanzio gli allenamenti e la squadra dell'utente, se ce ne ha, per l'istanziazione dell'utente
             List<Utente> richiesteIngresso = recuperaUtentiPerJsonArray(jsonObject.get(RICHIESTE).getAsJsonArray());
-
-            System.out.println("SquadraDAOJSON: getSquadraDaNome: richiesteIngresso: " + richiesteIngresso);
 
             return new Squadra(jsonObject.get("nome").getAsString(), jsonObject.get("allenatore").getAsString() , richiesteIngresso);
 

@@ -7,12 +7,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="tasto ricarica visibile">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/foto/banner.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/foto/profile.png" afterDir="false" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="ultimi codesmell">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_14_17_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_14_17__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneSquadra.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneSquadra.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/IscrivitiAllenamentoCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/IscrivitiAllenamentoCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueryAllenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueryAllenamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/ConsultaAllenamentiCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/ConsultaAllenamentiCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/EntraInSquadraCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/IscrivitiAllenamentoCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/basi/BaseTabelleCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/basi/BaseTabelleCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/IscrizioneAllenamentiTabella.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/01-01-111111-01-01-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/01-01-200000-01-01-12-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/12-12-200000-10-10-12-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/prova1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/prova1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/8.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/em.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/email.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/pippo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestPerSquadra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/TestPerSquadra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestPerUtente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/TestPerUtente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,38 +84,37 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.IscrivitiAllenamentoCtrlGrafico.executor": "Run",
-    "Application.LoginApplicazione.executor": "Run",
-    "JUnit.TestPerSquadra.executor": "Run",
-    "JUnit.TestPerSquadra.testCreaSquadraPerAllenatoreConSquadraValida.executor": "Run",
-    "JUnit.TestPerSquadra.testGetSquadraDaNomeConSquadraEsistente.executor": "Run",
-    "JUnit.TestPerSquadra.testIscrizioneUtenteASquadraConSquadraValida.executor": "Run",
-    "JUnit.TestVari.testMessaggioBenvenutoGiocatore.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/max/IdeaProjects/FinalTeamTrainingHub/src/main/resources/foto",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.48505747",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.IscrivitiAllenamentoCtrlGrafico.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestPerSquadra.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestPerSquadra.testCreaSquadraPerAllenatoreConSquadraValida.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestPerSquadra.testGetSquadraDaNomeConSquadraEsistente.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestPerSquadra.testIscrizioneUtenteASquadraConSquadraValida.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestVari.testMessaggioBenvenutoGiocatore.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/max/IdeaProjects/TeamTrainingHub/src/main/resources/persistenza/utenti&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\max\IdeaProjects\FinalTeamTrainingHub\src\main\resources\foto" />
       <recent name="C:\Users\max\IdeaProjects\TeamTrainingHub\src\main\resources\persistenza\utenti" />
     </key>
   </component>
@@ -119,8 +147,8 @@
     </configuration>
     <configuration name="TestPerSquadra" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TeamTrainingHub" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPerSquadra" />
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.TestPerSquadra" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -227,6 +255,7 @@
       <workItem from="1738530990714" duration="9176000" />
       <workItem from="1738573161156" duration="10437000" />
       <workItem from="1738588027032" duration="3979000" />
+      <workItem from="1738663464979" duration="273000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -492,21 +521,21 @@
       <option name="project" value="LOCAL" />
       <updated>1738616170352</updated>
     </task>
-    <task id="LOCAL-00034" summary="correzioni grafiche e aggiunta icone">
+    <task id="LOCAL-00034" summary="altri codesmell">
       <option name="closed" value="true" />
-      <created>1738667331440</created>
+      <created>1738617593350</created>
       <option name="number" value="00034" />
       <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1738667331440</updated>
+      <updated>1738617593350</updated>
     </task>
-    <task id="LOCAL-00035" summary="tasto ricarica visibile">
+    <task id="LOCAL-00035" summary="altri codesmell">
       <option name="closed" value="true" />
-      <created>1738667890566</created>
+      <created>1738617626322</created>
       <option name="number" value="00035" />
       <option name="presentableId" value="LOCAL-00035" />
       <option name="project" value="LOCAL" />
-      <updated>1738667890566</updated>
+      <updated>1738617626322</updated>
     </task>
     <option name="localTasksCounter" value="36" />
     <servers />
@@ -549,8 +578,8 @@
     <MESSAGE value="Risoluzione alcuni codesmell" />
     <MESSAGE value="Risoluzione problema creazione allenamenti" />
     <MESSAGE value="codesmell" />
-    <MESSAGE value="correzioni grafiche e aggiunta icone" />
-    <MESSAGE value="tasto ricarica visibile" />
-    <option name="LAST_COMMIT_MESSAGE" value="tasto ricarica visibile" />
+    <MESSAGE value="altri codesmell" />
+    <MESSAGE value="ultimi codesmell" />
+    <option name="LAST_COMMIT_MESSAGE" value="ultimi codesmell" />
   </component>
 </project>

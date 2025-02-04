@@ -32,7 +32,7 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
     }
 
     private static void setupCambio(){
-        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_ALLENATORE;
+        BaseTabelleCtrlGrafico.setPaginaPrecedente(PAGINA_HOME_ALLENATORE);
     }
 
     @FXML

@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ctrl_applicativo.IscrivitiAllenamentoCtrlApplicativo;
 import viste.first.basi.BaseTabelleCtrlGrafico;
-import viste.first.utils.IscrizioneAllenamentiTabella;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
@@ -33,11 +32,10 @@ public class IscrivitiAllenamentoCtrlGrafico {
     @FXML
     private Label mostraErrori;
 
-    private IscrizioneAllenamentiTabella iscrizioneAllenamentiTabella;
     private IscrivitiAllenamentoCtrlApplicativo controllerApplicativo;
 
     private static void setupCambio(){
-        BaseTabelleCtrlGrafico.paginaPrecedente = PAGINA_HOME_GIOCATORE;
+        BaseTabelleCtrlGrafico.setPaginaPrecedente(PAGINA_HOME_GIOCATORE);
     }
 
     @FXML
@@ -61,8 +59,6 @@ public class IscrivitiAllenamentoCtrlGrafico {
         // Inizializza il controller applicativo
         controllerApplicativo = new IscrivitiAllenamentoCtrlApplicativo();
         controllerApplicativo.popola();
-
-        iscrizioneAllenamentiTabella = new IscrizioneAllenamentiTabella(tableViewAllenamenti, controllerApplicativo.getCollezioneAllenamenti());
     }
 
     private class ButtonCell extends TableCell<AllenamentoBean, Button> {
