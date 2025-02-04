@@ -13,7 +13,6 @@
     <top>
         <!-- Barra del titolo TopPage -->
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
-         <Button layoutX="930.0" layoutY="18.0" mnemonicParsing="false" onAction="#ricarica" text="Ricarica" AnchorPane.topAnchor="40.0" />
             <fx:include source="baseTabelle.fxml" />
          <Label layoutX="500.0" layoutY="44.0" text="di visualizzazione di richieste di ingresso alla squadra" textFill="WHITE">
             <font>
@@ -26,7 +25,7 @@
     <center>
         <!-- Tabella playlist -->
         <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <TableView fx:id="tabellaRichieste" fixedCellSize="0.0" layoutX="51.2" layoutY="54.4" prefHeight="461.0" prefWidth="923.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="54.0">
+            <TableView fx:id="tabellaRichieste" fixedCellSize="0.0" layoutX="51.2" layoutY="54.4" prefHeight="461.0" prefWidth="806.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="54.0">
                 <columns>
                     <TableColumn fx:id="giocatoreColonna" prefWidth="150.0" text="Giocatore" />
                     <TableColumn fx:id="approveColumn" prefWidth="150.0" text="Approve or Reject" />
@@ -41,6 +40,10 @@
                <Font size="15.0" />
             </font>
          </Label>
+         <Button layoutX="882.0" layoutY="259.0" mnemonicParsing="false" onAction="#ricarica" prefHeight="50.0" prefWidth="100.0" text="Ricarica" AnchorPane.topAnchor="259.0">
+            <font>
+               <Font size="15.0" />
+            </font></Button>
         </AnchorPane>
     </center>
 </BorderPane>
