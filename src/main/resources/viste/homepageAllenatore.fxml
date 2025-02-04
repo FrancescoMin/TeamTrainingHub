@@ -2,13 +2,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.HomepageAllenatoreCtrlGrafico">
 
-   <fx:include source="baseColori.fxml" />
    <fx:include source="baseHomePage.fxml" />
+   <fx:include source="baseColori.fxml" />
+
 
 
    <Button layoutX="317.0" layoutY="221.0" mnemonicParsing="false" onAction="#visualizzaRichiestePartecipazione" prefHeight="60.0" prefWidth="389.0" text="Visualizza Le Richieste di Partecipazione alle Squadra">
@@ -24,9 +27,14 @@
          <Font size="15.0" />
       </font></Button>
    <Label fx:id="mostraErrori" layoutX="286.0" layoutY="500.0" textFill="RED" />
-   <Label layoutX="420.0" layoutY="26.0" text="Menu Allenatore" textFill="WHITE">
+   <Label layoutX="420.0" layoutY="25.0" text="Menu Allenatore" textFill="WHITE">
       <font>
          <Font name="MS Outlook" size="27.0" />
       </font>
    </Label>
+   <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="800.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../foto/whistle.png" />
+      </image>
+   </ImageView>
 </AnchorPane>

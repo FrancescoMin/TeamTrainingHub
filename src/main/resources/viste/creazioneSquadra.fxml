@@ -14,7 +14,7 @@
       <font>
          <Font size="17.0" />
       </font></TextField>
-   <Button fx:id="creaSquadra" layoutX="436.0" layoutY="250.0" mnemonicParsing="false" onAction="#creaSquadra" prefHeight="60.0" prefWidth="150.0" text="Crea">
+   <Button fx:id="creaSquadra" layoutX="436.0" layoutY="250.0" mnemonicParsing="false" onAction="#creaSquadra" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #078d53;" text="Crea" textFill="WHITE">
       <font>
          <Font size="15.0" />
       </font></Button>
