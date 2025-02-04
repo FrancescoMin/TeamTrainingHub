@@ -28,13 +28,19 @@ public class ConsultaAllenamentiCtrlGrafico {
 
     private ConsultaAllenamentiTabella gestoreTabella;
 
+    private static String paginaHome;
+
+    public static void setPaginaHome(String paginaHome) {
+        ConsultaAllenamentiCtrlGrafico.paginaHome = paginaHome;
+    }
+
     @FXML
     protected void ricarica() {
         gestoreTabella.refreshTable(tabellaAllenamenti);
     }
 
     private static void setupCambio(){
-        BaseTabelleCtrlGrafico.setPaginaPrecedente(PAGINA_HOME_GIOCATORE);
+        BaseTabelleCtrlGrafico.setPaginaPrecedente(paginaHome);
     }
 
     @FXML

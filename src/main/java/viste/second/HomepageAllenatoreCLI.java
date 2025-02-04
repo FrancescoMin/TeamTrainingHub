@@ -15,7 +15,9 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
         System.out.println("1. Creazione squadra");
         System.out.println("2. Visualizza le richieste di partecipazione alla squadra");
         System.out.println("3. Creazione allenamento");
-        System.out.println("4. Torna al Login");
+        System.out.println("4. Consulta allenamenti");
+        System.out.println("5. Modifica allenamenti");
+        System.out.println("6. Torna al Login");
         int scelta = scanner.nextInt();
         scanner.nextLine();
         boolean ciclo = true;
@@ -53,6 +55,20 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
                     }
                     break;
                 case 4:
+                    if(!homepageallenatorectrlapplicativo.esisteSquadra()){
+                        System.out.println("L'allenatore non ha una squadra");
+                        scelta = scanner.nextInt();
+                    }
+                    else {
+                        prossimaPagina = ConsultaAllenamentiCLI.class.getName();
+                        ConsultaAllenamentiCLI.setPaginaHome(HomepageAllenatoreCLI.class);
+                        ciclo = false;
+                    }
+                        break;
+                case 5:
+                    System.out.println("Funzionalità non implementata");
+                        break;
+                case 6:
                     prossimaPagina = LoginCLI.class.getName();
                     ciclo = false;
                     break;

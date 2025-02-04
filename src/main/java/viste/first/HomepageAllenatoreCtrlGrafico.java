@@ -41,6 +41,27 @@ public class HomepageAllenatoreCtrlGrafico {
         }
     }
 
+    @FXML
+    protected void modificaAllenamenti(){
+        mostraErrore("Funzionalità non implementata");
+    }
+
+    @FXML
+    protected void consultaAllenamenti(){// Logica per il pulsante "Consulta allenamenti"
+        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
+        if(homepageallenatorectrlapplicativo.esisteSquadra()) {
+        try {
+            ConsultaAllenamentiCtrlGrafico.setPaginaHome(PAGINA_HOME_ALLENATORE);
+            cambio(PAGINA_CONSULTA_ALLENAMENTI);
+
+        } catch (EccezioneCambioScena e) {
+            mostraErrore(e.getMessage());
+        }
+    }
+        else {
+        mostraErrore("Non sei in una squadra, non puoi consultare gli allenamenti");
+    }
+}
 
     @FXML
     protected void creaAllenamento() {

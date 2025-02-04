@@ -43,7 +43,7 @@
                <Insets bottom="20.0" left="150.0" />
             </VBox.margin>
          </Button>
-         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="Consulta Allenamenti">
+         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="Consulta Allenamenti" onAction="#consultaAllenamenti">
             <font>
                <Font size="15.0" />
             </font>
@@ -51,7 +51,7 @@
                <Insets bottom="20.0" left="150.0" />
             </VBox.margin>
          </Button>
-         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="Modifica Allenamento">
+         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="Modifica Allenamento" onAction="#modificaAllenamenti">
             <font>
                <Font size="15.0" />
             </font>

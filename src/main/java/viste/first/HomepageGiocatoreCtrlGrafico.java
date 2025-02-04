@@ -55,6 +55,7 @@ public class HomepageGiocatoreCtrlGrafico {
         // Logica per il pulsante "Consulta allenamenti"
         if(homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
             try {
+                ConsultaAllenamentiCtrlGrafico.setPaginaHome(PAGINA_HOME_GIOCATORE);
                 cambio(PAGINA_CONSULTA_ALLENAMENTI);
 
             } catch (EccezioneCambioScena e) {
