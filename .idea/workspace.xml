@@ -7,14 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="correzioni grafiche e aggiunta icone">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2025_12_27__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2025_12_27__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_02_2025_15_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_02_2025_15_14__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_02_2025_16_09__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_02_2025_16_09__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_01_2025_16_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_01_2025_16_37__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2024_10_43__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2024_10_43__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" afterDir="false" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="tasto ricarica visibile">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/foto/banner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/foto/profile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneSquadra.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneSquadra.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,37 +55,38 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.IscrivitiAllenamentoCtrlGrafico.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestPerSquadra.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestPerSquadra.testCreaSquadraPerAllenatoreConSquadraValida.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestPerSquadra.testGetSquadraDaNomeConSquadraEsistente.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestPerSquadra.testIscrizioneUtenteASquadraConSquadraValida.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestVari.testMessaggioBenvenutoGiocatore.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/max/IdeaProjects/TeamTrainingHub/src/main/resources/persistenza/utenti&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.IscrivitiAllenamentoCtrlGrafico.executor": "Run",
+    "Application.LoginApplicazione.executor": "Run",
+    "JUnit.TestPerSquadra.executor": "Run",
+    "JUnit.TestPerSquadra.testCreaSquadraPerAllenatoreConSquadraValida.executor": "Run",
+    "JUnit.TestPerSquadra.testGetSquadraDaNomeConSquadraEsistente.executor": "Run",
+    "JUnit.TestPerSquadra.testIscrizioneUtenteASquadraConSquadraValida.executor": "Run",
+    "JUnit.TestVari.testMessaggioBenvenutoGiocatore.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/max/IdeaProjects/FinalTeamTrainingHub/src/main/resources/foto",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.48505747",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\max\IdeaProjects\FinalTeamTrainingHub\src\main\resources\foto" />
       <recent name="C:\Users\max\IdeaProjects\TeamTrainingHub\src\main\resources\persistenza\utenti" />
     </key>
   </component>
@@ -501,7 +500,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738667331440</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="tasto ricarica visibile">
+      <option name="closed" value="true" />
+      <created>1738667890566</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1738667890566</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -519,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="RegistrazioneCtrlApplicativo funzionante" />
     <MESSAGE value="Fix valori stringhe nei json" />
     <MESSAGE value="Commit fix versione locale, poche modifiche, non significative" />
     <MESSAGE value="parziale implementazione entraInSquadra" />
@@ -544,6 +550,7 @@
     <MESSAGE value="Risoluzione problema creazione allenamenti" />
     <MESSAGE value="codesmell" />
     <MESSAGE value="correzioni grafiche e aggiunta icone" />
-    <option name="LAST_COMMIT_MESSAGE" value="correzioni grafiche e aggiunta icone" />
+    <MESSAGE value="tasto ricarica visibile" />
+    <option name="LAST_COMMIT_MESSAGE" value="tasto ricarica visibile" />
   </component>
 </project>
