@@ -44,7 +44,6 @@ public class CreazioneAllenamentoCtrlApplicativo {
 
                 //assegniamo l'allenamento all'allenatore che lo ha creato
                 allenamentoDAO.inserisciAllenamentoAdUtente(allenamento, utente);
-                System.out.println("pesca 3");
             }
         }
         catch (EccezioneAllenamentoInvalido e) {

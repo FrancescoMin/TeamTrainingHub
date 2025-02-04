@@ -66,13 +66,11 @@ public class EntraInSquadraCtrlApplicativo {
 
             //entrerò all'interno di questo else solo se non ho trovato la squadra nel singleton e non sono nella modalità demo
             else {
-                System.out.println("Controllo nel database");
                 SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
 
                 if(istanza.esisteSquadraDaNome(nomeSquadra)) {
                     squadra = istanza.getSquadraDaNome(nomeSquadra);
                 }
-                System.out.println("Squadra recuperata: " + squadra.getNome());
 
                 //ottengo dalla persistenza la squadra da modificare se non l'ho trovata nel singleton
                 if (squadra.getNome().isEmpty()) {

@@ -62,8 +62,6 @@ public class LoginCtrlApplicativo {
                 //inizializzo il modello all'interno del sistema per l'utilizzo
                 Utente utente= istanza.getUtenteDaLogin(new Login(loginbean.getEmail(), loginbean.getPassword()));
 
-                System.out.println(" Utente recuperato email " + utente.getEmail() + " password " + utente.getPassword() + " username " + utente.getUsername() + " squadra " + utente.getSquadra().getNome() + " allenamenti " + utente.getAllenamenti());
-
                 //salvo all'interno del singleton l'utente con utenteCorrente
                 istanza.setUtenteCorrente(utente);
                 if (utente.getAllenatore()) {

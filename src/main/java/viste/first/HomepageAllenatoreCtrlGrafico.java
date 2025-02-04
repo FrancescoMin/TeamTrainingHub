@@ -14,7 +14,7 @@ public class HomepageAllenatoreCtrlGrafico {
 
 
     public void initialize() {
-        System.out.println("Inizializzazione Temporanea della Pagina Principale");
+        //inizializzazione default del controllore
     }
 
     @FXML
@@ -25,7 +25,6 @@ public class HomepageAllenatoreCtrlGrafico {
 
     @FXML
     private void visualizzaRichiestePartecipazione(){
-        System.out.println("Visualizza Richieste Partecipazione");
         HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
 
         if(homepageallenatorectrlapplicativo.esisteSquadra()) {
@@ -45,8 +44,6 @@ public class HomepageAllenatoreCtrlGrafico {
 
     @FXML
     protected void creaAllenamento() {
-
-        System.out.println("Creazione Allenamento");
 
         HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
         if(homepageallenatorectrlapplicativo.esisteSquadra()) {

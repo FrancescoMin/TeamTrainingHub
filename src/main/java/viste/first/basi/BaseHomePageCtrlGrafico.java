@@ -13,7 +13,6 @@ public class BaseHomePageCtrlGrafico {
     private  Button tornaAlLogin;
 
     public void tornaAlLogin() {
-        System.out.println("Torno al login");
         try {
             Stage stage = (Stage) tornaAlLogin.getScene().getWindow();
             CambioScena cambioScena = new CambioScena();

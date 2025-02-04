@@ -72,8 +72,8 @@ public class GestoreTabella {
             private final Button refuseButton = new Button("Refuse");
 
             // Costruttore della cella
-            {
-                // Inizializza le azioni dei pulsanti nel blocco di inizializzazione
+            public void ButtonCell() {
+                // Inizializza le azioni dei pulsanti nel costruttore
                 acceptButton.setOnAction(event -> {
                     UtenteBean utenteBean = getTableView().getItems().get(getIndex());
                     buttonActionHandler.handleAccept(utenteBean);

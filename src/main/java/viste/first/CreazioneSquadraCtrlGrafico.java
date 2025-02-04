@@ -40,7 +40,7 @@ public class CreazioneSquadraCtrlGrafico {
     }
 
     public void initialize() {
-        System.out.println("Inizializzazione Temporanea della creazione della squadra");
+        //inizializzazione standard
     }
 
     @FXML
@@ -51,7 +51,6 @@ public class CreazioneSquadraCtrlGrafico {
                 messaggioErrore.setVisible(true);
 
             } else {
-                System.out.println("Nome squadra: " + nomeSquadra.getText());
                 //implementazione della logica per la creazione della squadra
 
                 //inizializziamo il controller applicativo

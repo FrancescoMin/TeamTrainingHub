@@ -89,22 +89,13 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
 
             for (int i = 0; i < jsonArray.size(); i++) {
 
-                System.out.println(jsonArray.get(i).getAsString());
-
                 String path = jsonArray.get(i).getAsString();
 
                 String filePath = "src/main/resources/persistenza/allenamenti/" + path + JSON;
-
-                System.out.println(filePath);
-
                 String jsonString = new String(Files.readAllBytes(Paths.get(filePath)));
-
-                System.out.println(jsonString);
 
                 //creo l'oggetto JSON corrispondete all'utente con l'email passata
                 JsonObject allenamento = gson.fromJson(jsonString, JsonObject.class);
-
-                System.out.println(allenamento);
 
                 allenamenti.add(new Allenamento(allenamento.get("data").getAsString(),allenamento.get("orarioInizio").getAsString(), allenamento.get("orarioFine").getAsString() , allenamento.get("descrizione").getAsString()));
             }

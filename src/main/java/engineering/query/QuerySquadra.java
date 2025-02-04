@@ -31,9 +31,7 @@ public class QuerySquadra {
             int i=0;
 
 
-            System.out.println("In QuerySquadra email: "+utentiEmail + " nome squadra: "+nomeSquadra);
             i=statement.executeUpdate();
-            System.out.println("Non lo so,facciamo la seconda prova");
             return  i;
 
 

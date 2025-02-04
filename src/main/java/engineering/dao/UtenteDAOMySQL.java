@@ -59,7 +59,6 @@ public class UtenteDAOMySQL implements UtenteDAO {
         if (conn != null) {
             try(ResultSet rs = recuperautentersperemail(conn, email)) {
 
-                System.out.println("Inizio lavoro dell'utenteDAOMySQL");
                 //invocazione del metodo per la ricerca dell'utente in funzione della variabile di ricerca
 
 
@@ -67,7 +66,6 @@ public class UtenteDAOMySQL implements UtenteDAO {
                     throw new EccezioneUtenteInvalido("Utente non trovato");
                 }
 
-                System.out.println("Descrizione degli allenamenti:");
                 //controllo se un utente ha degli allenamenti
 
                 List<Allenamento> allenamenti = new ArrayList<>();
@@ -79,14 +77,11 @@ public class UtenteDAOMySQL implements UtenteDAO {
 
                 SquadraDAOMySQL squadraDAOMySQL = new SquadraDAOMySQL();
                 squadra= squadraDAOMySQL.getSquadraDaEmail(email);
-                System.out.println("Finito lavoro dell'utenteDAOMySQL");
 
                 if (rs.getBoolean("allenatore")) {
-                    System.out.println("Utente allenatore");
                     utente = new Allenatore(rs.getString(USERNAME), rs.getString(EMAIL), rs.getString(PASSWORD) , allenamenti, squadra );
 
                 } else {
-                    System.out.println("Utente non allenatore");
                     utente = new Giocatore(rs.getString(USERNAME), rs.getString(EMAIL), rs.getString(PASSWORD) , allenamenti , squadra );
                 }
                 return utente;
@@ -145,8 +140,8 @@ public class UtenteDAOMySQL implements UtenteDAO {
         {
             try {
                 result = QueryRegistrazione.inserisciUtenteQuery(conn, registrazione);
-                if (result > 0) {
-                    System.out.println("A new user was inserted successfully!");
+                if (result < 1) {
+                    throw new EccezioneUtenteInvalido("Errore nell'inserimento dell'utente dalla registrazione");
                 }
             }
             catch (EccezioneUtenteInvalido e)

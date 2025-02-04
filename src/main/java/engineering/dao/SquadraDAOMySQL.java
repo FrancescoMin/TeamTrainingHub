@@ -30,7 +30,6 @@ public class SquadraDAOMySQL implements SquadraDAO {
 
                 if(rs.next()) {
                     squadra = new Squadra(rs.getString("codice"), rs.getString("allenatore"));
-                    System.out.println("Squadra trovata da getSquadraDaNome: " + squadra.getNome());
                     return squadra;
                 }
                 return new Squadra();
@@ -55,7 +54,6 @@ public class SquadraDAOMySQL implements SquadraDAO {
                 //invocazione del metodo per la ricerca della squadra in funzione del nome
                 if(rs.next()) {
                     squadra = new Squadra(rs.getString("codice"), rs.getString("allenatore"));
-                    System.out.println("Squadra trovata da getSquadraDaEmail: " + squadra.getNome());
 
                     squadra.setRichiesteIngresso(getRichiesteIscrizionePerSquadra(squadra));
                     return squadra;
@@ -91,7 +89,6 @@ public class SquadraDAOMySQL implements SquadraDAO {
             {
                 //invocazione del metodo per la ricerca delle richieste di iscrizione in funzione della squadra
                 while(rs.next()) {
-                    System.out.println("Richiesta di iscrizione per la squadra: " + squadra.getNome());
                     UtenteDAOMySQL utenteDAO = new UtenteDAOMySQL();
                     Utente utente = utenteDAO.recuperaUtenteDaEmail(rs.getString("utenti_email"));
                     utenti.add(utente);
@@ -115,7 +112,6 @@ public class SquadraDAOMySQL implements SquadraDAO {
 
     public void creaSquadraPerAllenatore(Utente utente, Squadra squadra) throws EccezioneSquadraInvalida {
         try{
-            System.out.println("Creazione della squadra per l'allenatore");
 
             creaSquadra(squadra, utente);
         }
@@ -137,7 +133,6 @@ public class SquadraDAOMySQL implements SquadraDAO {
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
                 righeModificate = QuerySquadra.createSquadra(conn, squadra.getNome(), utente.getEmail(), squadra.getAllenatore());
 
-                System.out.println("Creazione della squadra con nome: " + squadra.getNome() + " e utente_email: " + utente.getEmail());
 
                 //controllo di aver modificato 1 riga nel DB prima di completare il codice
                 if (righeModificate==0)

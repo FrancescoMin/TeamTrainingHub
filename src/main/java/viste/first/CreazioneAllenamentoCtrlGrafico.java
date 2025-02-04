@@ -94,7 +94,6 @@ public class CreazioneAllenamentoCtrlGrafico {
 
             //richiediamo al sistema di salvare il bean dell'allenamento
             CreazioneAllenamentoCtrlApplicativo creazioneallenamentoctrlapplicativo = new CreazioneAllenamentoCtrlApplicativo();
-            System.out.println("giorno: " + giorno + " mese: " + mese + " anno: " + anno + "orario inizio " + orarioInizio + " orario fine "+ orarioFine + " descrizione: " + descrizione);
             creazioneallenamentoctrlapplicativo.creaAllenamento(allenamentobean);
 
             //abbiamo completato il salvataggio e lo facciamo vedere con una stampa a schermo

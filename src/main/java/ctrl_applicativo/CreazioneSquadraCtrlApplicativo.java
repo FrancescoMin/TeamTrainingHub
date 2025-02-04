@@ -16,8 +16,6 @@ public class CreazioneSquadraCtrlApplicativo {
     public void creazioneSquadra(String nomeSquadra) throws EccezioneSquadraInvalida{
         try {
 
-            System.out.println("Tento di creare la squadra: " + nomeSquadra);
-
             //ottengo il singleton per ricavare l'utente che sta creando la squadra
             Singleton istanza = Singleton.getInstance();
             Utente utente = istanza.getUtenteCorrente();

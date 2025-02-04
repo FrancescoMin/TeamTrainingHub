@@ -39,7 +39,6 @@ public class EntraInSquadraCtrlGrafico{
 
                 if(entrainsquadractrlapplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
 
-                    System.out.println("Squadra esiste");
 
                     entrainsquadractrlapplicativo.inviaRichiestaAllaSquadra(nomeSquadra);
                     // Show an alert to indicate refusal

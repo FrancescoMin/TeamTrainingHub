@@ -43,9 +43,8 @@ public class RegistrazioneCtrlGrafico implements Initializable {
         registratiButton.setOnAction(event -> handleRegistratiButton());
     }
 
-    public void initialize()
-    {
-        System.out.println("Inizializzazione Temporanea");
+    public void initialize() {
+        //inizializzazione di default del controller grafico
     }
 
     private void handleRegistratiButton() {
@@ -68,7 +67,6 @@ public class RegistrazioneCtrlGrafico implements Initializable {
 
                 //tentiamo di registrare l'utente
                 registrazionectrlapplicativo.inserisciUtente(registrazionebean);
-                System.out.println("Registrazione avvenuta con successo!");
 
                 //a registrazione avvenuta, cambiamo scena
                 Stage stage = (Stage) registrazioneAvvenuta.getScene().getWindow();

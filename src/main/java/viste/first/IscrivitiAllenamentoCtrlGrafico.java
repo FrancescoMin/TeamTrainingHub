@@ -53,8 +53,6 @@ public class IscrivitiAllenamentoCtrlGrafico {
         colAccetta.setCellFactory(param -> new ButtonCell());
         colAccetta.setVisible(true);
 
-        // Verifica se la colonna è stata correttamente configurata
-        System.out.println("La colonna Accetta è stata configurata: " + (colAccetta != null));
 
         // Inizializza il controller applicativo
         controllerApplicativo = new IscrivitiAllenamentoCtrlApplicativo();
@@ -69,7 +67,6 @@ public class IscrivitiAllenamentoCtrlGrafico {
 
             button.setOnAction(event -> {
                 AllenamentoBean selected = getTableView().getItems().get(getIndex());
-                System.out.println("Accettato allenamento: " + selected.getDescrizione());  // Aggiungi un log per il debug
                 controllerApplicativo.accettaAllenamento(selected);
                 // Rimuovi l'allenamento dalla tabella dopo l'accettazione
                 getTableView().getItems().remove(selected);

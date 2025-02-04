@@ -151,7 +151,6 @@ public class UtenteDAOJSON implements UtenteDAO {
 
             //controllo della password
             if (deserializedLogin.getPassword().equals(login.getPassword())) {
-                System.out.println("Login effettuato con successo");
 
                 //mi faccio recuperare dal metodo addetto l'utente e lo restituisco al controller
                 return recuperaUtenteDaEmail(login.getEmail());
