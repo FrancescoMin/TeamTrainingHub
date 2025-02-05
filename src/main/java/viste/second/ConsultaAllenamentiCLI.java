@@ -10,13 +10,13 @@ public class ConsultaAllenamentiCLI extends GenericaCLI {
     public ConsultaAllenamentiCLI() {
         this.pagina= "Consulta Allenamenti";
     }
-    private static Class paginaHome;
+    private static String paginaHome;
 
-    public static void setPaginaHome(Class paginaHome) {
+    public static void setPaginaHome(String paginaHome) {
         ConsultaAllenamentiCLI.paginaHome = paginaHome;
     }
 
-    public static Class getPaginaHome() {
+    public static String getPaginaHome() {
         return paginaHome;
     }
 
@@ -46,7 +46,7 @@ public class ConsultaAllenamentiCLI extends GenericaCLI {
                 }
                 System.out.println("Se si desidera tornare alla pagina precedente premere un tasto qualsiasi");
                 scanner.nextLine();
-                spostamento(getPaginaHome().getName());
+                spostamento(getPaginaHome());
                 ciclo = false;
             } catch (Exception e) {
                 System.out.println("Errore: " + e.getMessage());

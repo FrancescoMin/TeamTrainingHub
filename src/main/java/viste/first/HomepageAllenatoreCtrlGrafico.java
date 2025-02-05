@@ -55,7 +55,7 @@ public class HomepageAllenatoreCtrlGrafico {
             cambio(PAGINA_CONSULTA_ALLENAMENTI);
 
         } catch (EccezioneCambioScena e) {
-            mostraErrore(e.getMessage());
+            mostraErrore("Errore con il cambio di scena alla pagina di consultazione degli allenamenti");
         }
     }
         else {

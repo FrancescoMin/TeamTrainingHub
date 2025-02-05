@@ -10,7 +10,6 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
     @Override
     public void start() {
         stampaPagina();
-        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
 
         while (continua) {
 
@@ -98,7 +97,7 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
         }
         else {
             prossimaPagina = ConsultaAllenamentiCLI.class.getName();
-            ConsultaAllenamentiCLI.setPaginaHome(HomepageAllenatoreCLI.class);
+            ConsultaAllenamentiCLI.setPaginaHome(HomepageAllenatoreCLI.class.getName());
             return false;
         }
     }

@@ -7,8 +7,6 @@ import viste.first.basi.BaseTabelleCtrlGrafico;
 import viste.first.utils.ConsultaAllenamentiTabella;
 
 
-import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
-
 public class ConsultaAllenamentiCtrlGrafico {
 
     @FXML

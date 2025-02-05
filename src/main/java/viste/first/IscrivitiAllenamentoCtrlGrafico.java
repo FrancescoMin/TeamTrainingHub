@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import viste.first.basi.BaseTabelleCtrlGrafico;
+import viste.first.utils.SingleButtonTableCell;
 import viste.first.utils.TableManager;
 
 import java.net.URL;
@@ -26,7 +27,7 @@ public class IscrivitiAllenamentoCtrlGrafico implements Initializable {
     @FXML
     private TableColumn<AllenamentoBean, String> colDescrizione;
     @FXML
-    private TableColumn<AllenamentoBean, Button> colAccetta;
+    private TableColumn<AllenamentoBean, String> colAccetta;
     @FXML
     private Label mostraErrori;
 
@@ -48,28 +49,8 @@ public class IscrivitiAllenamentoCtrlGrafico implements Initializable {
         List<TableColumn<AllenamentoBean, ?>> columns = Arrays.asList(colData, colOrarioInizio, colOrarioFine, colDescrizione); // Tutte le colonne della table view
         List<String> nameColumns = Arrays.asList("data", "orarioInizio", "orarioFine", "descrizione");
         TableManager.setColumnsTableView(columns, nameColumns);
-
         // Aggiungi la colonna con un pulsante "Accetta"
-        colAccetta.setCellFactory(column -> new TableCell<AllenamentoBean, Button>() {
-            private final Button button = new Button("Accetta"); // Inizializzazione della variabile button
-
-            {
-                button.setOnAction(event -> {
-                    AllenamentoBean allenamento = getTableView().getItems().get(getIndex());
-                    handlerButton(allenamento); // Chiama il metodo handlerButton per approvare
-                });
-            }
-
-            @Override
-            protected void updateItem(Button item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || getTableRow() == null) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(button);
-                }
-            }
-        });
+        colAccetta.setCellFactory(button -> new SingleButtonTableCell());
 
         TableManager tableManager = new TableManager();
         observableList = tableManager.handler(tableViewAllenamenti, allenamenti);

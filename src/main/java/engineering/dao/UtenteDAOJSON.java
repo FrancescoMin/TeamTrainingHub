@@ -211,7 +211,6 @@ public class UtenteDAOJSON implements UtenteDAO {
             }
 
         } catch (IOException e) {
-            //gestione dell'eccezione nel caso in cui non troviamo l'utente;
             throw new EccezioneUtenteInvalido("Impossibile recuperare l'utente perché non esistente ");
         }
         catch (EccezioneSquadraInvalida e){

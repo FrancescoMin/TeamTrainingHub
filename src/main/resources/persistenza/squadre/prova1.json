@@ -1,6 +1,10 @@
 {
   "allenatore": "1",
   "nome": "prova1",
-  "allenamenti": [],
-  "richiesteIngresso": []
+  "allenamenti": [
+    "04-04-4444-04-04-14-14"
+  ],
+  "richiesteIngresso": [
+    "3"
+  ]
 }

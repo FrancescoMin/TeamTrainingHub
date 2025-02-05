@@ -1,5 +1,6 @@
 package ctrl_applicativo;
 
+import engineering.bean.AllenatoreBean;
 import engineering.bean.GiocatoreBean;
 import engineering.bean.UtenteBean;
 import engineering.dao.SquadraDAO;
@@ -19,6 +20,22 @@ public class VisualizzaRichiesteCtrlApplicativo {
     //devo recuperare la squadra dell'utente (allenatore) che sta accettando la richiesta
     Memoria istanza = Memoria.getInstance();
     Squadra squadra = istanza.getUtenteCorrente().getSquadra();
+
+    public List<UtenteBean> recuperaUtentiBean() {
+        List<UtenteBean> utentiBean = new ArrayList<>();
+        // Modify to retrieve UtenteBean objects instead of Utente
+        List<Utente> utenti = istanza.getUtenteCorrente().getSquadra().getRichiesteIngresso();
+        for (Utente utente : utenti) {
+            UtenteBean utenteBean;
+            if (utente.getAllenatore()) {
+                utenteBean = new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
+            } else {
+                utenteBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti(), utente.getSquadra());
+            }
+            utentiBean.add(utenteBean);
+        }
+        return utentiBean;
+    }
 
     public void accettaRichiesta(UtenteBean utenteBean) throws EccezioneSquadraInvalida, EccezioneUtenteInvalido {
         try {

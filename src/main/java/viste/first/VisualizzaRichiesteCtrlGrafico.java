@@ -5,20 +5,18 @@ import engineering.bean.UtenteBean;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import viste.first.basi.BaseTabelleCtrlGrafico;
-import viste.first.utils.GestoreTabella;
+import viste.first.utils.DoubleButtonTableCell;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
 
-public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActionHandler {
+public class VisualizzaRichiesteCtrlGrafico {
 
 
     @FXML
     private TableColumn<UtenteBean, String> giocatoreColonna;
 
     @FXML
-    private TableColumn<UtenteBean, Void> approveColumn;
-
-    private GestoreTabella gestoreTabella;
+    private TableColumn<UtenteBean, Boolean> approveColumn;
 
     @FXML
     private TableView<UtenteBean> tabellaRichieste;
@@ -28,7 +26,8 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
 
     @FXML
     protected void ricarica() {
-        gestoreTabella.refreshTable(tabellaRichieste);
+        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
+        tabellaRichieste.getItems().setAll(visualizzarichiestectrlapplicativo.recuperaUtentiBean());
     }
 
     private static void setupCambio(){
@@ -38,22 +37,37 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
     @FXML
     public void initialize() {
         setupCambio();
-        gestoreTabella = new GestoreTabella(this);  // 'this' refers to the controller
+
+        // Get columns by fx:id (these should be linked via SceneBuilder)
+        TableColumn<UtenteBean, String> giocatoreColonna = (TableColumn<UtenteBean, String>) tabellaRichieste.getColumns().get(0);
+
+        // Set the value factory for the name column
+        giocatoreColonna.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmail()));
+
+        // Set the cell factory for the action column (buttons)
+        approveColumn.setCellFactory(col -> new DoubleButtonTableCell(this));
+
+        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
+        visualizzarichiestectrlapplicativo.recuperaUtentiBean();
 
         // Populate the TableView with the list of users (UtenteBean)
-        gestoreTabella.populateTable(tabellaRichieste);
+        ricarica();
     }
 
 
-
-    @Override
-    public void handleAccept(UtenteBean utenteBean) {
+    public void handlerButton(UtenteBean utenteBean, boolean approved) {
         try {
             VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
-            visualizzarichiestectrlapplicativo.accettaRichiesta(utenteBean);
 
+            if (!approved)
+                visualizzarichiestectrlapplicativo.rifiutaRichiesta(utenteBean);
+            else {
+                visualizzarichiestectrlapplicativo.accettaRichiesta(utenteBean);
+            }
+
+            String accept = approved ? "accettato" : "rifiutato";
             // Show an alert to indicate acceptance
-            popup("Accept User", "User " + utenteBean.getEmail() + " has been accepted!");
+            popup("Giocatore " + accept, "Il giocatore " + utenteBean.getEmail() + " è stato "+accept+"!");
         }
         catch (Exception e) {
             mostraErrori.setText(e.getMessage());
@@ -63,22 +77,6 @@ public class VisualizzaRichiesteCtrlGrafico implements GestoreTabella.ButtonActi
         }
     }
 
-    // Implementation of the handleRefuse method from ButtonActionHandler
-    @Override
-    public void handleRefuse(UtenteBean utenteBean) {
-        try {
-            VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
-            visualizzarichiestectrlapplicativo.rifiutaRichiesta(utenteBean);
-
-            // Show an alert to indicate refusal
-            popup("Refuse User", "User " + utenteBean.getEmail() + " has been refused!");
-        }
-        catch (Exception e) {
-            mostraErrori.setText(e.getMessage());
-            mostraErrori.setVisible(true);
-            ricarica();
-        }
-    }
 
     private void popup(String title, String message) {
         // Show an alert to indicate refusal

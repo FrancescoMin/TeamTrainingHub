@@ -47,7 +47,7 @@ public class HomepageGiocatoreCLI extends GenericaCLI {
                 case 3:
                     if (homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
                         prossimaPagina = ConsultaAllenamentiCLI.class.getName();
-                        ConsultaAllenamentiCLI.setPaginaHome(HomepageGiocatoreCLI.class);
+                        ConsultaAllenamentiCLI.setPaginaHome(HomepageGiocatoreCLI.class.getName());
                         continua = false;
                     } else {
                         System.out.println("Devi essere iscritto ad una squadra per iscriverti ad un allenamento\n");

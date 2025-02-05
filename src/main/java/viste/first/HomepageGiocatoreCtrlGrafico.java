@@ -42,12 +42,19 @@ public class HomepageGiocatoreCtrlGrafico {
 
     @FXML
     protected void iscrizioneAllenamento(){
-        try {
-            cambio(PAGINA_ISCRIZIONE_ALLENAMENTO);
+        HomepageGiocatoreCtrlApplicativo homepagegiocatorectrlapplicativo = new HomepageGiocatoreCtrlApplicativo();
+        if (homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
+            try {
+                cambio(PAGINA_ISCRIZIONE_ALLENAMENTO);
+            }
+            catch (EccezioneCambioScena e) {
+                mostra(e.getMessage());
+            }
         }
-        catch (EccezioneCambioScena e) {
-            mostra(e.getMessage());
+        else {
+            mostra("Non sei in una squadra, non puoi iscriverti ad un allenamento");
         }
+
     }
 
     @FXML

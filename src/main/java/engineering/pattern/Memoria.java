@@ -11,7 +11,7 @@ import java.util.Properties;
 public class Memoria {
 
     //variabile statica che contiene l'istanza della classe
-    private static final Memoria instance;
+    private static Memoria instance = null;
 
     //variabili private dove vengono salvate le istanze
     private final List<Utente> utenti = new ArrayList<>();
@@ -26,10 +26,9 @@ public class Memoria {
     private Memoria(){}
 
     // static block initialization for exception handling
-    static {
-        Memoria tempInstance = null;
+    private static Memoria tempInstance(){
         // Creazione dell'istanza singleton
-        tempInstance = new Memoria();
+        Memoria tempInstance = new Memoria();
 
         // Caricamento delle proprietà dal file demo.properties
         try (InputStream input = Memoria.class.getClassLoader().getResourceAsStream("demo.properties")) {
@@ -52,10 +51,14 @@ public class Memoria {
             throw new EccezioneIstanza("Exception occurred in creating singleton instance: " + e.getMessage());
         }
 
-        instance = tempInstance;
+        return tempInstance;
     }
 
     public static Memoria getInstance() {
+        // Creazione dell'istanza singleton
+        if(instance == null) {
+            instance = tempInstance();
+        }
         return instance;
     }
 

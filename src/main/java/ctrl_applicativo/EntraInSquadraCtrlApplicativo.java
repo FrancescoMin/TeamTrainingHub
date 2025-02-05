@@ -66,7 +66,7 @@ public class EntraInSquadraCtrlApplicativo {
                         throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
                     }
                 }
-                squadra.getRichiesteIngresso().add(utente);;
+                squadra.getRichiesteIngresso().add(utente);
             }
 
             //entrerò all'interno di questo else solo se non sono nella modalità demo
@@ -105,6 +105,7 @@ public class EntraInSquadraCtrlApplicativo {
                 }
             }
             squadra.getRichiesteIngresso().add(utente);
+            squadraDAO.aggiornaSquadra(squadra);
         }
     }
 }
