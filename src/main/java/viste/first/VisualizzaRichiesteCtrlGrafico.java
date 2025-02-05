@@ -38,9 +38,6 @@ public class VisualizzaRichiesteCtrlGrafico {
     public void initialize() {
         setupCambio();
 
-        // Get columns by fx:id (these should be linked via SceneBuilder)
-        TableColumn<UtenteBean, String> giocatoreColonna = (TableColumn<UtenteBean, String>) tabellaRichieste.getColumns().get(0);
-
         // Set the value factory for the name column
         giocatoreColonna.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmail()));
 
@@ -70,7 +67,11 @@ public class VisualizzaRichiesteCtrlGrafico {
             popup("Giocatore " + accept, "Il giocatore " + utenteBean.getEmail() + " è stato "+accept+"!");
         }
         catch (Exception e) {
+            // Imposta il testo della Label
             mostraErrori.setText(e.getMessage());
+
+            // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
+            mostraErrori.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
             mostraErrori.setVisible(true);
             ricarica();
 

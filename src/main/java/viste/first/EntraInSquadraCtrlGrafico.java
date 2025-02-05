@@ -57,12 +57,10 @@ public class EntraInSquadraCtrlGrafico{
                 }
 
             } catch (EccezioneSquadraInvalida e) {
-                mostraErrore.setText(e.getMessage());
-                mostraErrore.setVisible(true);
+                setErroreInserimento(e.getMessage());
             }
         } else {
-            mostraErrore.setText("Squadra inserita non valida");
-            mostraErrore.setVisible(true);
+            setErroreInserimento("Inserire il nome della squadra");
         }
     }
 
@@ -82,6 +80,15 @@ public class EntraInSquadraCtrlGrafico{
         } catch (EccezioneCambioScena e) {
             throw new EccezioneCambioScena(e.getMessage());
         }
+    }
+
+    private void setErroreInserimento(String message) {
+        // Imposta il testo della Label
+        mostraErrore.setText(message);
+
+        // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
+        mostraErrore.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
+        mostraErrore.setVisible(true);
     }
 
 }

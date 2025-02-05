@@ -5,7 +5,6 @@ import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import engineering.bean.AllenamentoBean;
@@ -42,9 +41,6 @@ public class CreazioneAllenamentoCtrlGrafico {
 
     @FXML
     private TextField descrizioneAllenamento;
-
-    @FXML
-    private Button creaAllenamento;
 
     public void initialize() {
         labelErrori.setVisible(false);
@@ -101,14 +97,24 @@ public class CreazioneAllenamentoCtrlGrafico {
 
             cambiaScena();
 
-        } catch (EccezioneCambioScena | EccezioneAllenamentoInvalido e) {
-            labelErrori.setText(e.getMessage());
-            labelErrori.setVisible(true);
+        } catch (EccezioneCambioScena e){
+            setErroreInserimento("Errore di cambio scena");
+        }
+        catch(EccezioneAllenamentoInvalido e) {
+            setErroreInserimento(e.getMessage());
         }
         catch (Exception e) {
-            labelErrori.setText("Errore con il format delle date");
-            labelErrori.setVisible(true);
+            setErroreInserimento("Errore di inserimento");
         }
+    }
+
+    private void setErroreInserimento(String errore) {
+        // Imposta il testo della Label
+        labelErrori.setText(errore);
+
+        // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
+        labelErrori.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
+        labelErrori.setVisible(true);
     }
 
     private void cambiaScena() throws EccezioneCambioScena {

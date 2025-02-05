@@ -25,7 +25,7 @@ public class CreazioneSquadraCtrlGrafico {
     private Label messaggioErrore;
 
     @FXML
-    protected void tornaIndietro(ActionEvent event) {
+    protected void tornaIndietro() {
         //cambio scena alla pagina di login
         try {
             Stage stage = (Stage) nomeSquadra.getScene().getWindow();
@@ -33,9 +33,7 @@ public class CreazioneSquadraCtrlGrafico {
             cambioScena.cambioScena(stage, PAGINA_HOME_ALLENATORE);
 
         } catch (EccezioneCambioScena e) {
-            messaggioErrore.setText("Errore nel cambio scena");
-            messaggioErrore.setVisible(true);
-
+            setErroreInserimento("Errore nel cambio scena per la pagina principale");
         }
     }
 
@@ -47,9 +45,7 @@ public class CreazioneSquadraCtrlGrafico {
     public void creaSquadra(ActionEvent actionEvent) {
         try {
             if (nomeSquadra.getText().isEmpty()) {
-                messaggioErrore.setText("There are empty fields!");
-                messaggioErrore.setVisible(true);
-
+                setErroreInserimento("Inserire un nome per la squadra");
             } else {
                 //implementazione della logica per la creazione della squadra
 
@@ -68,14 +64,20 @@ public class CreazioneSquadraCtrlGrafico {
             //implementazione della logica per il controllo della corretta formattazione del nome della squadra
         }
         catch (EccezioneSquadraInvalida e) {
-            messaggioErrore.setText(e.getMessage());
-            messaggioErrore.setVisible(true);
+            setErroreInserimento(e.getMessage());
         }
         catch (EccezioneCambioScena e) {
-            messaggioErrore.setText("Errore nel cambio scena");
-            messaggioErrore.setVisible(true);
+            setErroreInserimento("Errore nel cambio scena");
         }
     }
 
+    private void setErroreInserimento(String message) {
+        // Imposta il testo della Label
+        messaggioErrore.setText(message);
+
+        // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
+        messaggioErrore.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
+        messaggioErrore.setVisible(true);
+    }
 
 }

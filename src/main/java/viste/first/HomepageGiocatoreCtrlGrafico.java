@@ -42,13 +42,12 @@ public class HomepageGiocatoreCtrlGrafico {
 
     @FXML
     protected void iscrizioneAllenamento(){
-        HomepageGiocatoreCtrlApplicativo homepagegiocatorectrlapplicativo = new HomepageGiocatoreCtrlApplicativo();
         if (homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
             try {
                 cambio(PAGINA_ISCRIZIONE_ALLENAMENTO);
             }
             catch (EccezioneCambioScena e) {
-                mostra(e.getMessage());
+                mostra("Errore con il cambio di scena alla pagina di iscrizione ad un allenamento");
             }
         }
         else {
@@ -66,7 +65,7 @@ public class HomepageGiocatoreCtrlGrafico {
                 cambio(PAGINA_CONSULTA_ALLENAMENTI);
 
             } catch (EccezioneCambioScena e) {
-                mostra(e.getMessage());
+                mostra("Errore con il cambio di scena alla pagina di consultazione degli allenamenti");
             }
         }
         else {
@@ -75,7 +74,11 @@ public class HomepageGiocatoreCtrlGrafico {
     }
 
     public void mostra(String messaggio){
+        // Imposta il testo della Label
         mostraErrori.setText(messaggio);
+
+        // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
+        mostraErrori.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
         mostraErrori.setVisible(true);
     }
 

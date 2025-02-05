@@ -10,18 +10,6 @@ import viste.first.utils.ConsultaAllenamentiTabella;
 public class ConsultaAllenamentiCtrlGrafico {
 
     @FXML
-    private TableColumn<AllenamentoBean, String> dataColonna;
-
-    @FXML
-    private TableColumn<AllenamentoBean, String> orarioInizioColonna;
-
-    @FXML
-    private TableColumn<AllenamentoBean, String> orarioFineColonna;
-
-    @FXML
-    private TableColumn<AllenamentoBean, String> descrizioneColonna;
-
-    @FXML
     private TableView<AllenamentoBean> tabellaAllenamenti;
 
     private ConsultaAllenamentiTabella gestoreTabella;

@@ -33,7 +33,7 @@ public class HomepageAllenatoreCtrlGrafico {
                 cambio(PAGINA_VISUALIZZA_RICHIESTE_PARTECIPAZIONE);
             }
             catch (EccezioneCambioScena e) {
-                mostraErrore(e.getMessage());
+                mostraErrore("Errore con il cambio di scena alla pagina di visualizzazione delle richieste di partecipazione");
             }
         }
         else {
@@ -73,7 +73,7 @@ public class HomepageAllenatoreCtrlGrafico {
                 cambio(PAGINA_CREAZIONE_ALLENAMENTO);
 
             } catch (EccezioneCambioScena e) {
-                mostraErrore(e.getMessage());
+                mostraErrore("Errore con il cambio di scena alla pagina di creazione dell'allenamento");
             }
         }
         else {
@@ -98,7 +98,7 @@ public class HomepageAllenatoreCtrlGrafico {
                 cambio(PAGINA_CREAZIONE_SQUADRA);
 
             } catch (EccezioneCambioScena e) {
-                mostraErrore(e.getMessage());
+                mostraErrore("Errore con il cambio di scena alla pagina di creazione della squadra");
             }
         }
     }
@@ -115,7 +115,11 @@ public class HomepageAllenatoreCtrlGrafico {
     }
 
     private void mostraErrore(String messaggio) {
+        // Imposta il testo della Label
         mostraErrori.setText(messaggio);
+
+        // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
+        mostraErrori.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
         mostraErrori.setVisible(true);
     }
 }

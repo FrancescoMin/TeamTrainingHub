@@ -45,8 +45,8 @@ public class LoginCtrlGrafico {
 
 
         if (em.isEmpty() || pass.isEmpty()) {
-            erroreInserimento.setText("There are empty fields!");
-            erroreInserimento.setVisible(true);
+            setErroreInserimento("There are empty fields!");
+
         }
 
         else {
@@ -77,31 +77,36 @@ public class LoginCtrlGrafico {
 
 
             } catch (EccezionePasswordErrata e){
-                erroreInserimento.setText(e.getMessage());
-                erroreInserimento.setVisible(true);
+                setErroreInserimento("Credenziali errate");
+
             }
             catch (EccezioneCambioScena e) {
-                erroreInserimento.setText("Errore di cambio scena");
-                erroreInserimento.setVisible(true);
+                setErroreInserimento("Errore di cambio scena");
             }
         }
     }
 
     @FXML
-    protected void registrazione(ActionEvent event) throws IOException {
+    protected void registrazione() throws IOException {
         //implemento di cambio di scena all pagina di registrazione
 
-
-        //CODICE TEMPORANEO PER IL PASSAGGIO DI SCENE ALLA PAGINA DI REGISTRAZIONE
         try {
             Stage stage = (Stage) email.getScene().getWindow();
             CambioScena cambioScena = new CambioScena();
             cambioScena.cambioScena(stage, PAGINA_REGISTRAZIONE);
-
         }
         catch (EccezioneCambioScena e) {
-            erroreInserimento.setText("Errore di cambio scena");
-            erroreInserimento.setVisible(true);
+            setErroreInserimento("Errore di cambio scena");
         }
     }
+
+    public void setErroreInserimento(String errore) {
+        // Imposta il testo della Label
+        erroreInserimento.setText(errore);
+
+        // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
+        erroreInserimento.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
+        erroreInserimento.setVisible(true);
+    }
+
 }

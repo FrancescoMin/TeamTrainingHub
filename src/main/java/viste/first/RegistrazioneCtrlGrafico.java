@@ -91,7 +91,11 @@ public class RegistrazioneCtrlGrafico implements Initializable {
     }
 
     private void mostra(String messaggio) {
+        // Imposta il testo della Label
         erroreInserimento.setText(messaggio);
+
+        // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
+        erroreInserimento.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
         erroreInserimento.setVisible(true);
     }
 

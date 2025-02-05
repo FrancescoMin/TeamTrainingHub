@@ -39,6 +39,7 @@ public class IscrivitiAllenamentoCtrlGrafico implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try{
         System.out.println("GUI PendingPlaylist: Inizio gestione degli allenamenti: ");
         setupCambio();
 
@@ -54,10 +55,15 @@ public class IscrivitiAllenamentoCtrlGrafico implements Initializable {
 
         TableManager tableManager = new TableManager();
         observableList = tableManager.handler(tableViewAllenamenti, allenamenti);
+        }
+        catch (Exception e) {
+            mostra(e.getMessage());
+        }
     }
 
     /** Public perché deve essere chiamata da DoubleButtonTableCell, è l'azione che viene compiuta al click del bottone Accept o Reject */
     public void handlerButton(AllenamentoBean allenamento) {
+        try{
         // Logica per gestire l'approvazione o il rifiuto della playlist
         IscrivitiAllenamentoCtrlApplicativo iscrivitiAllenamentoCtrlApplicativo = new IscrivitiAllenamentoCtrlApplicativo();
 
@@ -65,5 +71,19 @@ public class IscrivitiAllenamentoCtrlGrafico implements Initializable {
         iscrivitiAllenamentoCtrlApplicativo.accettaAllenamento(allenamento);
 
         observableList.remove(allenamento);
+        }
+        catch (Exception e) {
+            mostra(e.getMessage());
+        }
     }
+
+    private void mostra(String message) {
+        // Imposta il testo della Label
+        mostraErrori.setText(message);
+
+        // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
+        mostraErrori.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
+        mostraErrori.setVisible(true);
+    }
+
 }
