@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AnalysisUIOptions">
-    <option name="SCOPE_TYPE" value="3" />
+    <option name="ANALYZE_TEST_SOURCES" value="false" />
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="All Places" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="aggiustamento bottoni e passagio scena">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="tasto Login di baseHomePage.fxml tornato a funzionare">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77b9377d-7f76-49e7-98de-b479fd83680a.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_23_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_23_06__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/CreazioneSquadraCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/CreazioneSquadraCtrlApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/EntraInSquadraCtrlApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/LoginCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/LoginCtrlApplicativo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/Memoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/Memoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/HomepageAllenatoreCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/HomepageAllenatoreCLI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/squadre/prova3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/5.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/baseHomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/baseHomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/baseTabelle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/baseTabelle.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/paginaLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/paginaLogin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/visualizzazioneRichieste.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/visualizzazioneRichieste.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,8 +234,6 @@
       <workItem from="1738530990714" duration="9176000" />
       <workItem from="1738573161156" duration="10437000" />
       <workItem from="1738588027032" duration="3979000" />
-      <workItem from="1738747594067" duration="131000" />
-      <workItem from="1738748321868" duration="2889000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -519,7 +515,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738667890566</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="tasto Login di baseHomePage.fxml tornato a funzionare">
+      <option name="closed" value="true" />
+      <created>1738706450482</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1738706450482</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +541,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix valori stringhe nei json" />
     <MESSAGE value="Commit fix versione locale, poche modifiche, non significative" />
     <MESSAGE value="parziale implementazione entraInSquadra" />
     <MESSAGE value="fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori" />
@@ -562,6 +565,7 @@
     <MESSAGE value="codesmell" />
     <MESSAGE value="correzioni grafiche e aggiunta icone" />
     <MESSAGE value="tasto ricarica visibile" />
-    <option name="LAST_COMMIT_MESSAGE" value="tasto ricarica visibile" />
+    <MESSAGE value="tasto Login di baseHomePage.fxml tornato a funzionare" />
+    <option name="LAST_COMMIT_MESSAGE" value="tasto Login di baseHomePage.fxml tornato a funzionare" />
   </component>
 </project>

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.CreazioneAllenamentoCtrlGrafico">
+<AnchorPane prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: #1ccb5c;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.CreazioneAllenamentoCtrlGrafico">
 
    <fx:include source="baseColori.fxml" />
 
@@ -49,7 +49,7 @@
          <Font size="15.0" />
       </font></Button>
    <Label fx:id="labelErrori" layoutX="220.0" layoutY="470.0" textFill="RED" />
-   <Button layoutX="738.0" layoutY="532.0" mnemonicParsing="false" onAction="#tornaIndietro" prefHeight="60.0" prefWidth="150.0" text="Torna Indietro">
+   <Button layoutX="738.0" layoutY="532.0" mnemonicParsing="false" onAction="#tornaIndietro" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: B8EAB3FF;" text="Torna Indietro">
       <font>
          <Font size="15.0" />
       </font></Button>
