@@ -21,11 +21,11 @@
              <Font name="MS Outlook" size="27.0" />
          </font>
      </Label>
-    <Button layoutX="422.0" layoutY="142.0" mnemonicParsing="false" onAction="#consultaAllenamenti" prefHeight="68.0" prefWidth="180.0" text="Consulta allenamenti">
+    <Button layoutX="422.0" layoutY="142.0" mnemonicParsing="false" onAction="#consultaAllenamenti" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #b8eab3" text="Consulta allenamenti">
       <font>
          <Font size="15.0" />
       </font></Button>
-    <Button layoutX="422.0" layoutY="252.0" mnemonicParsing="false" onAction="#entraSquadra" prefHeight="68.0" prefWidth="180.0" text="Entra in una squadra">
+    <Button layoutX="422.0" layoutY="252.0" mnemonicParsing="false" onAction="#entraSquadra" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #b8eab3" text="Entra in una squadra">
       <font>
          <Font size="15.0" />
       </font></Button>
@@ -33,7 +33,7 @@
       <font>
          <Font size="15.0" />
       </font></Label>
-    <Button layoutX="383.0" layoutY="373.0" mnemonicParsing="false" onAction="#iscrizioneAllenamento" prefHeight="60.0" prefWidth="258.0" text="Iscrizione ad un nuovo Allenamento">
+    <Button layoutX="383.0" layoutY="373.0" mnemonicParsing="false" onAction="#iscrizioneAllenamento" prefHeight="60.0" prefWidth="258.0" style="-fx-background-color: #b8eab3" text="Iscrizione ad un nuovo Allenamento">
       <font>
          <Font size="15.0" />
       </font></Button>

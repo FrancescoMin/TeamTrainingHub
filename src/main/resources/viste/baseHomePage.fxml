@@ -7,7 +7,7 @@
 <AnchorPane prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.basi.BaseHomePageCtrlGrafico">
    <AnchorPane layoutY="80.0" prefHeight="560.0" prefWidth="1024.0" style="-fx-background-color: #1ccb5c;">
       <children>
-         <Button fx:id="tornaAlLogin" disable="false" layoutX="738.0" layoutY="452.0" mnemonicParsing="false" onAction="#tornaAlLogin" prefHeight="60.0" prefWidth="150.0" text="Torna al Login">
+         <Button fx:id="tornaAlLogin" disable="false" layoutX="738.0" layoutY="452.0" mnemonicParsing="false" onAction="#tornaAlLogin" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #b8eab3" text="Torna al Login">
             <font>
                <Font size="15.0" />
             </font>

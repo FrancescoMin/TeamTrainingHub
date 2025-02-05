@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="100.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.basi.BaseTabelleCtrlGrafico">
+<AnchorPane prefHeight="80.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.basi.BaseTabelleCtrlGrafico">
 
     <AnchorPane prefHeight="80.0" prefWidth="1024.0" style="-fx-background-color: #078d53;">
       <children>
@@ -16,7 +16,7 @@
                <Font name="MS Outlook" size="25.0" />
             </font>
          </Label>
-           <Button layoutX="43.0" layoutY="10.0" onAction="#onBackClick" prefHeight="60.0" prefWidth="150.0" text="Indietro" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="10.0">
+           <Button layoutX="43.0" layoutY="10.0" onAction="#onBackClick" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #b8eab3" text="Indietro" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="10.0">
             <font>
                <Font size="15.0" />
             </font>
