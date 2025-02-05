@@ -40,7 +40,6 @@ public class IscrivitiAllenamentoCtrlGrafico implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try{
-        System.out.println("GUI PendingPlaylist: Inizio gestione degli allenamenti: ");
         setupCambio();
 
         // Recupera tutte le playlist pending, metodo pull

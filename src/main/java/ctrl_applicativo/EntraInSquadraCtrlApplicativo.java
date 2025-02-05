@@ -97,7 +97,6 @@ public class EntraInSquadraCtrlApplicativo {
 
         //ottengo dalla persistenza la squadra da modificare se non l'ho trovata nel singleton
         else {
-            System.out.println("Squadra non trovata nel singleton, la cerco nel database");
             squadra = squadraDAO.getSquadraDaNome(nomeSquadra);
             for (Utente u : squadra.getRichiesteIngresso()) {
                 if (u.getEmail().equals(utente.getEmail())) {

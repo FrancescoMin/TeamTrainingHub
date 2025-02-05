@@ -71,13 +71,7 @@ public class CreazioneAllenamentoCtrlGrafico {
 
             String descrizione = descrizioneAllenamento.getText();
 
-            if(giorno < 1 || giorno > 31)       {throw new EccezioneUtenteInvalido("Giorno non valido");}
-            if (mese < 1 || mese > 12)          {throw new EccezioneUtenteInvalido("Mese non valido");}
-            if (anno < 2025 )                   {throw new EccezioneUtenteInvalido("Anno non valido");}
-            if (oraIn < 0 || oraIn > 23)        {throw new EccezioneUtenteInvalido("Ora di inizio non valida");}
-            if (minutoIn < 0 || minutoIn > 59)  {throw new EccezioneUtenteInvalido("Minuto di inizio non valido");}
-            if (oraFin < 0 || oraFin > 23)      {throw new EccezioneUtenteInvalido("Ora di fine non valida");}
-            if (minutoFin < 0 || minutoFin > 59){throw new EccezioneUtenteInvalido("Minuto di fine non valido");}
+            controllo(giorno, mese, anno, oraIn, minutoIn, oraFin, minutoFin);
 
             String orarioInizio = String.format("%02d-%02d", oraIn, minutoIn);
             String orarioFine = String.format("%02d-%02d", oraFin, minutoFin);
@@ -97,7 +91,8 @@ public class CreazioneAllenamentoCtrlGrafico {
 
             cambiaScena();
 
-        } catch (EccezioneCambioScena e){
+        }
+        catch (EccezioneCambioScena e){
             setErroreInserimento("Errore di cambio scena");
         }
         catch(EccezioneAllenamentoInvalido e) {
@@ -115,6 +110,16 @@ public class CreazioneAllenamentoCtrlGrafico {
         // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
         labelErrori.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
         labelErrori.setVisible(true);
+    }
+
+    private void controllo(int giorno, int mese, int anno, int oraIn, int minutoIn, int oraFin, int minutoFin) throws EccezioneUtenteInvalido {
+        if(giorno < 1 || giorno > 31)       {throw new EccezioneUtenteInvalido("Giorno non valido");}
+        if (mese < 1 || mese > 12)          {throw new EccezioneUtenteInvalido("Mese non valido");}
+        if (anno < 2025 )                   {throw new EccezioneUtenteInvalido("Anno non valido");}
+        if (oraIn < 0 || oraIn > 23)        {throw new EccezioneUtenteInvalido("Ora di inizio non valida");}
+        if (minutoIn < 0 || minutoIn > 59)  {throw new EccezioneUtenteInvalido("Minuto di inizio non valido");}
+        if (oraFin < 0 || oraFin > 23)      {throw new EccezioneUtenteInvalido("Ora di fine non valida");}
+        if (minutoFin < 0 || minutoFin > 59){throw new EccezioneUtenteInvalido("Minuto di fine non valido");}
     }
 
     private void cambiaScena() throws EccezioneCambioScena {

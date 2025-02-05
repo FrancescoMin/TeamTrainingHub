@@ -62,11 +62,6 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
     public void popola(){
         List<AllenamentoBean> allenamentiFinali = caricaAllenamenti();
 
-        System.out.println("Allenamenti Finali");
-        for (AllenamentoBean allenamento : allenamentiFinali) {
-            System.out.println(allenamento.getData());
-        }
-
         collezioneAllenamenti.popolaTabella(allenamentiFinali);
     }
 
@@ -74,8 +69,6 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
     // Accetta un allenamento
     public void accettaAllenamento(AllenamentoBean allenamentoBean) throws EccezioneAllenamentoInvalido {
         try {
-
-            System.out.println("Accetta Allenamento");
 
             Allenamento allenamento = new Allenamento(allenamentoBean.getData(), allenamentoBean.getOrarioInizio(), allenamentoBean.getOrarioFine(), allenamentoBean.getDescrizione());
 
@@ -85,8 +78,6 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
             // Logica per accettare l'allenamento
             allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
             allenamentoDAO.iscriviUtenteAdAllenamento(allenamento, utente); // Approva l'allenamento nel DAO
-
-            System.out.println("Allenamento inserito");
 
             collezioneAllenamenti.removeAllenamento(allenamentoBean); // Rimuovi l'allenamento dalla collezione
 
