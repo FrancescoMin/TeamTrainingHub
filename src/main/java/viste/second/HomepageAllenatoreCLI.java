@@ -11,72 +11,95 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
     public void start() {
         stampaPagina();
         HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
-        System.out.println("Cosa vuoi fare?");
-        System.out.println("1. Creazione squadra");
-        System.out.println("2. Visualizza le richieste di partecipazione alla squadra");
-        System.out.println("3. Creazione allenamento");
-        System.out.println("4. Consulta allenamenti");
-        System.out.println("5. Modifica allenamenti");
-        System.out.println("6. Torna al Login");
-        int scelta = scanner.nextInt();
-        scanner.nextLine();
-        boolean ciclo = true;
 
-        while (ciclo) {
+        while (continua) {
+
+            System.out.println("Cosa vuoi fare?");
+            System.out.println("1. Creazione squadra");
+            System.out.println("2. Visualizza le richieste di partecipazione alla squadra");
+            System.out.println("3. Creazione allenamento");
+            System.out.println("4. Consulta allenamenti");
+            System.out.println("5. Modifica allenamenti");
+            System.out.println("6. Torna al Login");
+            String scelta = scanner.nextLine();
+
+
             switch (scelta) {
-                case 1:
-                    if(homepageallenatorectrlapplicativo.esisteSquadra()){
-                        System.out.println("L'utente ha già una squadra");
-                        scelta = scanner.nextInt();
-                    }
-                    else{
-                        prossimaPagina = CreazioneSquadraCLI.class.getName();
-                        ciclo = false;
-                    }
+                case "1":
+                    continua=caso1();
                     break;
-                case 2:
-                    if(!homepageallenatorectrlapplicativo.esisteSquadra()){
-                        System.out.println("L'allenatore non ha una squadra");
-                        scelta = scanner.nextInt();
-                    }
-                    else {
-                        prossimaPagina = VisualizzaRichiesteCLI.class.getName();
-                        ciclo = false;
-                    }
+                case "2":
+                    continua=caso2();
                     break;
-                case 3:
-                    if(!homepageallenatorectrlapplicativo.esisteSquadra()){
-                        System.out.println("L'allenatore non ha una squadra");
-                        scelta = scanner.nextInt();
-                    }
-                    else {
-                        prossimaPagina = CreazioneAllenamentoCLI.class.getName();
-                        ciclo = false;
-                    }
+                case "3":
+                    continua = caso3();
                     break;
-                case 4:
-                    if(!homepageallenatorectrlapplicativo.esisteSquadra()){
-                        System.out.println("L'allenatore non ha una squadra");
-                        scelta = scanner.nextInt();
-                    }
-                    else {
-                        prossimaPagina = ConsultaAllenamentiCLI.class.getName();
-                        ConsultaAllenamentiCLI.setPaginaHome(HomepageAllenatoreCLI.class);
-                        ciclo = false;
-                    }
+                case "4":
+                    continua = caso4();
                         break;
-                case 5:
+                case "5":
                     System.out.println("Funzionalità non implementata");
                         break;
-                case 6:
+                case "6":
                     prossimaPagina = LoginCLI.class.getName();
-                    ciclo = false;
+                    continua = false;
                     break;
+
                 default:
                     System.out.println("Scelta non valida, riprovare");
                     break;
             }
         }
         spostamento(prossimaPagina);
+    }
+
+    private boolean caso1(){
+        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
+
+        if(homepageallenatorectrlapplicativo.esisteSquadra()){
+            System.out.println("L'utente ha già una squadra");
+            return true;
+        }
+        else{
+            prossimaPagina = CreazioneSquadraCLI.class.getName();
+            return false;
+        }
+    }
+
+    private boolean caso2(){
+        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
+        if(!homepageallenatorectrlapplicativo.esisteSquadra()){
+            System.out.println("L'allenatore non ha una squadra, non ci sono richieste");
+            return true;
+        }
+        else {
+            prossimaPagina = VisualizzaRichiesteCLI.class.getName();
+            return false;
+        }
+    }
+
+    private boolean caso3(){
+        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
+        if(!homepageallenatorectrlapplicativo.esisteSquadra()){
+            System.out.println("L'allenatore non ha una squadra, non puoi creare un allenamento");
+            return true;
+        }
+        else {
+            prossimaPagina = CreazioneAllenamentoCLI.class.getName();
+            return false;
+        }
+    }
+
+    private boolean caso4(){
+        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();
+        if(!homepageallenatorectrlapplicativo.esisteSquadra()){
+            System.out.println("L'allenatore non ha una squadra, non puoi consultare gli allenamenti");
+            return true;
+        }
+        else {
+            prossimaPagina = ConsultaAllenamentiCLI.class.getName();
+            ConsultaAllenamentiCLI.setPaginaHome(HomepageAllenatoreCLI.class);
+            return false;
+        }
     }
 }

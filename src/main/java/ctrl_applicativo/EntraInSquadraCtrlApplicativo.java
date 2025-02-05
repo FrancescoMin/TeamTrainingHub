@@ -55,35 +55,23 @@ public class EntraInSquadraCtrlApplicativo {
 
             //In questa funzione non mi preoccupo di controllare se la squadra esiste perché è stato già controllato
             //come prima cosa, ottengo la squadra da nome
-            Squadra squadra = new Squadra();
+
+            Squadra squadra;
 
             //controllo se sono in modalità demo
             if (istanza.getDemo()) {
-                appoggio(nomeSquadra, utente);
+                squadra = istanza.getSquadraDaNome(nomeSquadra);
+                for(Utente u : squadra.getRichiesteIngresso()){
+                    if(u.getEmail().equals(utente.getEmail())){
+                        throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
+                    }
+                }
+                squadra.getRichiesteIngresso().add(utente);;
             }
 
-            //entrerò all'interno di questo else solo se non ho trovato la squadra nel singleton e non sono nella modalità demo
+            //entrerò all'interno di questo else solo se non sono nella modalità demo
             else {
-                SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
-
-                if(istanza.esisteSquadraDaNome(nomeSquadra)) {
-                    appoggio(nomeSquadra, utente);
-                }
-
-                //ottengo dalla persistenza la squadra da modificare se non l'ho trovata nel singleton
-                else {
-                    System.out.println("Squadra non trovata nel singleton, la cerco nel database");
-                    squadra = squadraDAO.getSquadraDaNome(nomeSquadra);
-                    for(Utente u : squadra.getRichiesteIngresso()){
-                        if(u.getEmail().equals(utente.getEmail())){
-                            throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra, attendi la risposta");
-                        }
-                    }
-                    squadra.getRichiesteIngresso().add(utente);
-                }
-
-                //aggiorno la squadra in modo da aggiungere la richiesta alla lista
-                squadraDAO.aggiornaSquadra(squadra);
+                boh(nomeSquadra);
             }
         }
         catch (EccezioneSquadraInvalida e) {
@@ -91,14 +79,33 @@ public class EntraInSquadraCtrlApplicativo {
         }
     }
 
-    private void appoggio(String nomeSquadra, Utente utente) throws EccezioneSquadraInvalida {
-        Squadra squadra = istanza.getSquadraDaNome(nomeSquadra);
-        for(Utente u : squadra.getRichiesteIngresso()){
-            if(u.getEmail().equals(utente.getEmail())){
-                throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
+    private void boh(String nomeSquadra) throws EccezioneSquadraInvalida {
+        SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
+
+        Utente utente = istanza.getUtenteCorrente();
+        Squadra squadra;
+
+        if (istanza.esisteSquadraDaNome(nomeSquadra)) {
+            squadra = istanza.getSquadraDaNome(nomeSquadra);
+            for (Utente u : squadra.getRichiesteIngresso()) {
+                if (u.getEmail().equals(utente.getEmail())) {
+                    throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra");
+                }
             }
+            squadra.getRichiesteIngresso().add(utente);
         }
-        squadra.getRichiesteIngresso().add(utente);
+
+        //ottengo dalla persistenza la squadra da modificare se non l'ho trovata nel singleton
+        else {
+            System.out.println("Squadra non trovata nel singleton, la cerco nel database");
+            squadra = squadraDAO.getSquadraDaNome(nomeSquadra);
+            for (Utente u : squadra.getRichiesteIngresso()) {
+                if (u.getEmail().equals(utente.getEmail())) {
+                    throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra, attendi la risposta");
+                }
+            }
+            squadra.getRichiesteIngresso().add(utente);
+        }
     }
 }
 

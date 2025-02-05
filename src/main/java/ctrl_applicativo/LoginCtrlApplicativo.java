@@ -49,12 +49,11 @@ public class LoginCtrlApplicativo {
 
     public UtenteBean recuperoUtente(LoginBean loginbean) throws EccezionePasswordErrata {
         try {
-            UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
 
+            UtenteDAO utenteDao = DAOFactory.getDAOFactory().createUtenteDAO();
 
             //vedo se l'utente esiste nel singleton
             Memoria istanza= Memoria.getInstance();
-
 
             Login login = new Login(loginbean.getEmail(), loginbean.getPassword());
             //se esiste nel singleton, lo recupero e lo restituisco
@@ -64,7 +63,6 @@ public class LoginCtrlApplicativo {
                 Utente utente= istanza.getUtenteDaLogin(new Login(loginbean.getEmail(), loginbean.getPassword()));
 
                 //salvo all'interno del singleton l'utente con utenteCorrente
-                istanza.setUtenteCorrente(utente);
                 if (utente.getAllenatore()) {
                     return new AllenatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword() , utente.getAllenamenti(), utente.getSquadra());
                 }

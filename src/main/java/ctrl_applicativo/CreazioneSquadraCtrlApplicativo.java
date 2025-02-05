@@ -15,6 +15,7 @@ public class CreazioneSquadraCtrlApplicativo {
 
     public void creazioneSquadra(String nomeSquadra) throws EccezioneSquadraInvalida{
         try {
+            SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
 
             //ottengo il singleton per ricavare l'utente che sta creando la squadra
             Memoria istanza = Memoria.getInstance();
@@ -23,13 +24,16 @@ public class CreazioneSquadraCtrlApplicativo {
             if (istanza.esisteSquadraDaNome(nomeSquadra) ){
                 throw new EccezioneSquadraInvalida("squadra esistente");
             }
+            else if (squadraDAO.verificaEsistenzaSquadra(nomeSquadra)){
+                throw new EccezioneSquadraInvalida("squadra esistente in persistenza");
+            }
+
+            Squadra squadra = new Squadra(nomeSquadra, utente.getEmail());
 
             //modifico il modello Utente con la squadra che stiamo creando
-            utente.setSquadra(new Squadra(nomeSquadra, utente.getEmail()));
+            utente.setSquadra(squadra);
 
             if(!istanza.getDemo()) {
-                //istanzio il dao per la squadra
-                SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
 
                 //inoltre aggiorno la rappresentazione del modello nella persistenza
                 squadraDAO.creaSquadraPerAllenatore(utente, utente.getSquadra());

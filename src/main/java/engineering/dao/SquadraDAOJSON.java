@@ -64,6 +64,8 @@ public class SquadraDAOJSON implements SquadraDAO {
             jsonObject.addProperty("allenatore", squadra.getAllenatore());
             jsonObject.addProperty("nome", squadra.getNome());
 
+            System.out.println("allenatore della squadra: " + squadra.getAllenatore());
+
             UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
             Utente allenatore = utenteDAOJSON.recuperaUtenteDaEmail(squadra.getAllenatore());
 
@@ -118,6 +120,8 @@ public class SquadraDAOJSON implements SquadraDAO {
 
             //chiamo la funzione per la corretta creazione dell'oggetto json
             JsonObject jsonObject = setUpSquadra(squadra);
+
+            System.out.println("oggetto della squadra creato");
 
             aggiornaSquadraJson(jsonObject, filePath);
 

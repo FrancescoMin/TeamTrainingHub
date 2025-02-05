@@ -63,7 +63,10 @@ public class Memoria {
     public void aggiungiUtente(Utente utente) {utenti.add(utente);}
 
     public Utente getUtenteCorrente() {return utenteCorrente;}
-    public void setUtenteCorrente(Utente utente) {utenteCorrente = utente;}
+    public void setUtenteCorrente(Utente utente) {
+        utenteCorrente = utente;
+        aggiungiUtente(utente);
+    }
 
     public boolean getDemo() {return demo;}
     public void setDemo(Boolean demo) {this.demo = demo;}
@@ -98,7 +101,9 @@ public class Memoria {
 
     public Utente getUtenteDaLogin(Login login) throws EccezionePasswordErrata {
         try {
-            if (getUtenteDaEmail(login.getEmail()).getPassword().equals(login.getPassword())) {
+            Utente utente = getUtenteDaEmail(login.getEmail());
+            if (utente.getPassword().equals(login.getPassword())) {
+                utenteCorrente = utente;
                 return getUtenteDaEmail(login.getEmail());
             }
         } catch (EccezionePasswordErrata e) {
