@@ -61,27 +61,25 @@ public class UtenteDAOMySQL implements UtenteDAO {
 
                 //invocazione del metodo per la ricerca dell'utente in funzione della variabile di ricerca
 
-
                 if (!rs.next()) {
                     throw new EccezioneUtenteInvalido("Utente non trovato");
                 }
 
                 //controllo se un utente ha degli allenamenti
-
                 List<Allenamento> allenamenti = new ArrayList<>();
 
                 AllenamentoDAOMySQL allenamentoDAOMySQL = new AllenamentoDAOMySQL();
                 allenamenti = allenamentoDAOMySQL.recuperaAllenamentiPerEmail(email);
 
-                Squadra squadra = new Squadra();
+                Squadra squadra;
 
                 SquadraDAOMySQL squadraDAOMySQL = new SquadraDAOMySQL();
                 squadra= squadraDAOMySQL.getSquadraDaEmail(email);
 
                 if (rs.getBoolean("allenatore")) {
                     utente = new Allenatore(rs.getString(USERNAME), rs.getString(EMAIL), rs.getString(PASSWORD) , allenamenti, squadra );
-
-                } else {
+                }
+                else {
                     utente = new Giocatore(rs.getString(USERNAME), rs.getString(EMAIL), rs.getString(PASSWORD) , allenamenti , squadra );
                 }
                 return utente;
@@ -103,6 +101,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
     public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida, EccezionePasswordErrata {
         try {
             Utente utente = recuperaUtenteDaEmail(login.getEmail());
+
             if(utente.getPassword().equals(login.getPassword())) {
                 return utente;
             }

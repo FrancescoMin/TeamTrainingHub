@@ -19,6 +19,7 @@ public class HomepageGiocatoreCLI extends GenericaCLI {
 
         boolean continua = true;
         while(continua) {
+            System.out.println("Cosa vuoi fare?");
             System.out.println("Per iscriversi ad una Squadra premere 1");
             System.out.println("Per iscriversi ad un allenamento premere 2");
             System.out.println("Per consultare gli allenamenti a cui sei iscritto premere 3");

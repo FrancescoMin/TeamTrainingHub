@@ -21,30 +21,40 @@ public class LoginCLI extends GenericaCLI {
         while (continua) {
 
             try {
+                System.out.println("Cosa vuoi fare?");
                 System.out.println("Per registrarsi premere 1");
-                System.out.println("Per continuare con il login premere un numero qualsiasi");
+                System.out.println("Per fare il login con Google premere 2");
+                System.out.println("Per fare il login con Facebook premere 3");
+                System.out.println("Per continuare con il login premere un tasto qualsiasi");
 
                 String scelta = scanner.nextLine();
 
-                if (scelta.equals("1")) {
-                    prossimaPagina = RegistrazioneCLI.class.getName();
-                    break;
+                switch(scelta) {
+                    case "1":
+                        prossimaPagina = RegistrazioneCLI.class.getName();
+                        break;
+                    case "2":
+                    case "3":
+                        System.out.println("Funzionalità non implementata");
+                        break;
+                    default:
+                        System.out.print("Inserisci email: ");
+                        String email = scanner.nextLine();
+
+                        System.out.print("Inserisci password: ");
+                        String password = scanner.nextLine();
+
+                        LoginBean loginbean = new LoginBean(email, password);
+
+                        boh(loginbean);
+                        break;
+                        }
                 }
 
-                System.out.print("Inserisci email: ");
-                String email = scanner.nextLine();
-
-                System.out.print("Inserisci password: ");
-                String password = scanner.nextLine();
-
-                LoginBean loginbean = new LoginBean(email, password);
-
-                boh(loginbean);
-            }
-            catch (Exception e) {
+                catch (Exception e) {
                 System.err.println("Errore durante il login: " + e.getMessage());
+                }
             }
-        }
         spostamento(this.prossimaPagina);
     }
 

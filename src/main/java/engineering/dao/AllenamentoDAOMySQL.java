@@ -56,9 +56,12 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
                 //invocazione del metodo per la ricerca dell'utente in funzione della email
 
                 List<Allenamento> allenamenti = new ArrayList<>();
+
                 while (rsAll.next()){
+                    //metodo per l'aggiunta di un allenamento all'utente
                     allenamenti.add(new Allenamento(rsAll.getString("data"), rsAll.getString("orarioInizio"), rsAll.getString("orarioFine"), rsAll.getString(DESC)));
                 }
+
                 return allenamenti;
 
             } catch (Exception e) {

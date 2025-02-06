@@ -28,6 +28,7 @@ public class RegistrazioneCLI extends GenericaCLI {
         while (continua) {
 
             try {
+                System.out.println("Cosa vuoi fare?");
                 System.out.println("Per tornare al Login premere 1");
                 System.out.println("Per continuare la registrazione premere un tasto qualsiasi");
                 scelta = scanner.nextLine();

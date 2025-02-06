@@ -19,6 +19,7 @@ public class IscrivitiAllenamentoCLI extends GenericaCLI{
 
             while(continua) {
                 try {
+
                     IscrivitiAllenamentoCtrlApplicativo iscrivitiallenamentoctrlapplicativo = new IscrivitiAllenamentoCtrlApplicativo();
                     //ottengo dal controller applicativo la lista delle richieste in attesa aggiornata
                     allenamenti = iscrivitiallenamentoctrlapplicativo.caricaAllenamenti();

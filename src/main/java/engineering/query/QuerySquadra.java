@@ -44,14 +44,13 @@ public class QuerySquadra {
         PreparedStatement statement = null;
         try {
             //creazione della query parametrica
-            String query = "SELECT ? FROM squadra where codice = ? ";
+            String query = "SELECT codice,utenti_email,allenatore FROM squadra where codice = ? ";
 
             //preparazione dello statement
             statement = connection.prepareStatement(query);
 
             //setting dei parametri della query
-            statement.setString(1, "*");
-            statement.setString(2, nomeSquadra);
+            statement.setString(1, nomeSquadra);
 
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();
@@ -64,11 +63,10 @@ public class QuerySquadra {
         PreparedStatement statement = null;
 
         try {
-            String query= "SELECT ? FROM squadra where utenti_email = ? ;";
+            String query= "SELECT codice,utenti_email,allenatore FROM squadra where utenti_email = ? ;";
             statement = connection.prepareStatement(query);
 
-            statement.setString(1, "*");
-            statement.setString(2, email);
+            statement.setString(1, email);
 
             return statement.executeQuery();
 
@@ -117,15 +115,15 @@ public class QuerySquadra {
     public static ResultSet getrichiestaiscrizionersperemail(Connection connection, Squadra squadra, String utenteEmail) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
-            String query = "SELECT ? FROM richiesteiscrizione where Squadra_codice = ? AND utenti_email = ?";
+            String query = "SELECT codice,utenti_email,allenatore FROM richiesteiscrizione where Squadra_codice = ? AND utenti_email = ?";
 
             //preparazione dello statement
             PreparedStatement statement = connection.prepareStatement(query);
 
             //setting dei parametri della query
-            statement.setString(1, "*");
-            statement.setString(2, squadra.getNome());
-            statement.setString(3, utenteEmail);
+
+            statement.setString(1, squadra.getNome());
+            statement.setString(2, utenteEmail);
 
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();
@@ -137,14 +135,14 @@ public class QuerySquadra {
     public static ResultSet getrichiesteiscrizionerspersquadra(Connection connection, Squadra squadra) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
-            String query = "SELECT ? FROM richiesteiscrizione where Squadra_codice = ?";
+            String query = "SELECT Squadra_codice,utenti_email,Squadra_utenti_email FROM richiesteiscrizione where Squadra_codice = ?";
 
             //preparazione dello statement
             PreparedStatement statement = connection.prepareStatement(query);
 
             //setting dei parametri della query
-            statement.setString(1, "*");
-            statement.setString(2, squadra.getNome());
+
+            statement.setString(1, squadra.getNome());
 
             //esecuzione della query e restituzione del risultato
             return statement.executeQuery();

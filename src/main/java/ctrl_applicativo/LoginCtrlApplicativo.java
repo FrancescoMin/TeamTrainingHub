@@ -17,7 +17,6 @@ public class LoginCtrlApplicativo {
 
     public boolean verificaCredenziali(LoginBean loginbean) {
         try {
-
             //controllo delle credenziali
             //creo un utente da passare all'interno del sistema
             Login login = new Login(loginbean.getEmail(), loginbean.getPassword());
@@ -43,6 +42,7 @@ public class LoginCtrlApplicativo {
             }
         }
         catch (EccezioneUtenteInvalido e) {
+
             return false;
         }
     }
@@ -78,7 +78,6 @@ public class LoginCtrlApplicativo {
             //richiediamo l'utente dalla persistenza
             else {
                 //creazione del modello utente
-
                 //creo una nuova istanza di utente che contiene l'utente che fa uso del sistema
                 Utente utente = utenteDao.recuperaUtenteDaLogin(new Login(loginbean.getEmail(), loginbean.getPassword()));
 
