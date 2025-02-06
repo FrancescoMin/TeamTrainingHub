@@ -15,52 +15,45 @@
    <fx:include source="baseColori.fxml" />
    <fx:include source="baseHomePage.fxml" />
 
-   <VBox layoutX="285.0" layoutY="108.0" prefHeight="423.0" prefWidth="500.0">
-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-              onAction="#visualizzaRichiestePartecipazione" prefHeight="60.0" prefWidth="400.0"
-              style="-fx-background-color: #b8eab3" text="Visualizza Le Richieste di Partecipazione alle Squadra">
+   <VBox layoutX="262.0" layoutY="113.0" prefHeight="423.0" prefWidth="500.0">
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#visualizzaRichiestePartecipazione" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #b8eab3" text="Visualizza Le Richieste di Partecipazione alle Squadra">
          <font>
-            <Font size="15.0"/>
+            <Font size="15.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="20.0" left="50.0"/>
+            <Insets bottom="20.0" left="50.0" />
          </VBox.margin>
       </Button>
-      <Button fx:id="gestisciSquadra" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-              onAction="#gestisciSquadra" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3"
-              text="Gestisci Squadra">
+      <Button fx:id="gestisciSquadra" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gestisciSquadra" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3" text="Gestisci Squadra">
          <font>
-            <Font size="15.0"/>
+            <Font size="15.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="20.0" left="150.0"/>
+            <Insets bottom="20.0" left="150.0" />
          </VBox.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#creaAllenamento" prefHeight="60.0" prefWidth="200.0"
-              style="-fx-background-color: #b8eab3" text="Creazione Allenamento">
+      <Button mnemonicParsing="false" onAction="#creaAllenamento" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3" text="Creazione Allenamento">
          <font>
-            <Font size="15.0"/>
+            <Font size="15.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="20.0" left="150.0"/>
+            <Insets bottom="20.0" left="150.0" />
          </VBox.margin>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3"
-              text="Consulta Allenamenti" onAction="#consultaAllenamenti">
+      <Button mnemonicParsing="false" onAction="#consultaAllenamenti" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3" text="Consulta Allenamenti">
          <font>
-            <Font size="15.0"/>
+            <Font size="15.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="20.0" left="150.0"/>
+            <Insets bottom="20.0" left="150.0" />
          </VBox.margin>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3"
-              text="Modifica Allenamento" onAction="#modificaAllenamenti">
+      <Button mnemonicParsing="false" onAction="#modificaAllenamenti" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3" text="Modifica Allenamento">
          <font>
-            <Font size="15.0"/>
+            <Font size="15.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="20.0" left="150.0"/>
+            <Insets bottom="20.0" left="150.0" />
          </VBox.margin>
       </Button>
    </VBox>
