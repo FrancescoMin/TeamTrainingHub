@@ -1,6 +1,6 @@
 package viste.first;
 
-import ctrl_applicativo.EntraInSquadraCtrlApplicativo;
+import ctrl_applicativo.RichiediIngressoSquadraCtrlApplicativo;
 import engineering.eccezioni.EccezioneCambioScena;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import javafx.fxml.FXML;
@@ -9,13 +9,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import viste.first.basi.BaseHomePageCtrlGrafico;
 import viste.first.utils.CambioScena;
 
-import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
-public class EntraInSquadraCtrlGrafico{
+public class RichiediIngressoSquadraCtrlGrafico {
 
     @FXML
     private TextField scriviSquadraTextField;
@@ -35,7 +33,7 @@ public class EntraInSquadraCtrlGrafico{
         if (nomeSquadra != null && !nomeSquadra.trim().isEmpty()) {
             try {
                 // Invio della richiesta alla squadra tramite il controller applicativo
-                EntraInSquadraCtrlApplicativo entrainsquadractrlapplicativo = new EntraInSquadraCtrlApplicativo();
+                RichiediIngressoSquadraCtrlApplicativo entrainsquadractrlapplicativo = new RichiediIngressoSquadraCtrlApplicativo();
 
                 if(entrainsquadractrlapplicativo.verificaEsistenzaSquadra(nomeSquadra)) {
 

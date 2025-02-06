@@ -1,10 +1,10 @@
 package viste.second;
 
-import ctrl_applicativo.EntraInSquadraCtrlApplicativo;
+import ctrl_applicativo.RichiediIngressoSquadraCtrlApplicativo;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 
-public class EntraInSquadraCLI extends GenericaCLI {
-    public EntraInSquadraCLI() {
+public class RichiediIngressoSquadraCLI extends GenericaCLI {
+    public RichiediIngressoSquadraCLI() {
         this.pagina= "Entra In Squadra";
     }
 
@@ -42,7 +42,7 @@ public class EntraInSquadraCLI extends GenericaCLI {
 
     private void verificaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {
         try {
-            EntraInSquadraCtrlApplicativo entrainsquadractrlapplicativo = new EntraInSquadraCtrlApplicativo();
+            RichiediIngressoSquadraCtrlApplicativo entrainsquadractrlapplicativo = new RichiediIngressoSquadraCtrlApplicativo();
 
             //entriamo se la squadra esiste
             if (entrainsquadractrlapplicativo.verificaEsistenzaSquadra(nomeSquadra)) {

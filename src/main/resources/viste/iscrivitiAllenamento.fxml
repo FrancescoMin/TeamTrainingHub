@@ -9,23 +9,25 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.IscrivitiAllenamentoCtrlGrafico">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: #1ccb5c;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.IscrivitiAllenamentoCtrlGrafico">
+
 
     <top>
         <!-- Barra del titolo -->
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
             <fx:include source="baseTabelle.fxml" />
-         <Label layoutX="500.0" layoutY="43.0" text="di iscrizione agli allenamenti della squadra" textFill="WHITE" AnchorPane.topAnchor="44.0">
+            <Label layoutX="500.0" layoutY="43.0" text="di iscrizione agli allenamenti della squadra" textFill="WHITE" AnchorPane.topAnchor="44.0">
             <font>
                <Font size="15.0" />
             </font></Label>
-         <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="800.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../foto/strategy.png" />
-            </image>
-         </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="800.0" layoutY="10.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@../foto/strategy.png"/>
+            </ImageView>
         </AnchorPane>
     </top>
+
+
 
     <center>
         <!-- Tabella allenamenti -->

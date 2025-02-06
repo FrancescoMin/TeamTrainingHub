@@ -33,7 +33,7 @@ public class HomepageGiocatoreCLI extends GenericaCLI {
                     if(homepagegiocatorectrlapplicativo.isUtenteInSquadra()){
                         System.out.println("Sei già iscritto ad una squadra\n");
                     } else {
-                        prossimaPagina = EntraInSquadraCLI.class.getName();
+                        prossimaPagina = RichiediIngressoSquadraCLI.class.getName();
                         continua = false;
                     }
                     break;

@@ -7,14 +7,13 @@ import engineering.pattern.abstract_factory.DAOFactory;
 import modelli.Squadra;
 import modelli.Utente;
 
-public class EntraInSquadraCtrlApplicativo {
+public class RichiediIngressoSquadraCtrlApplicativo {
 
     private final Memoria istanza = Memoria.getInstance();
 
-    public EntraInSquadraCtrlApplicativo() {
+    public RichiediIngressoSquadraCtrlApplicativo() {
         // Inizializza il DAO tramite la factory
     }
-
 
     public boolean verificaEsistenzaSquadra(String nomeSquadra) throws EccezioneSquadraInvalida {
 
@@ -71,7 +70,7 @@ public class EntraInSquadraCtrlApplicativo {
 
             //entrerò all'interno di questo else solo se non sono nella modalità demo
             else {
-                boh(nomeSquadra);
+                invioRichiestaSquadraInPersistenza(nomeSquadra);
             }
         }
         catch (EccezioneSquadraInvalida e) {
@@ -79,7 +78,7 @@ public class EntraInSquadraCtrlApplicativo {
         }
     }
 
-    private void boh(String nomeSquadra) throws EccezioneSquadraInvalida {
+    private void invioRichiestaSquadraInPersistenza(String nomeSquadra) throws EccezioneSquadraInvalida {
         SquadraDAO squadraDAO = DAOFactory.getDAOFactory().createSquadraDAO();
 
         Utente utente = istanza.getUtenteCorrente();

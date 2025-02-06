@@ -14,7 +14,6 @@
     <top>
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
 
-
             <fx:include source="baseTabelle.fxml" />
 
          <Label layoutX="500.0" layoutY="44.0" text="di consulta degli allenamenti" textFill="WHITE">
