@@ -1,6 +1,6 @@
 package viste.first;
 
-import ctrl_applicativo.VisualizzaRichiesteCtrlApplicativo;
+import ctrl_applicativo.GestisciRichiesteCtrlApplicativo;
 import engineering.bean.UtenteBean;
 import javafx.fxml.*;
 import javafx.scene.control.*;
@@ -9,7 +9,7 @@ import viste.first.utils.DoubleButtonTableCell;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
 
-public class VisualizzaRichiesteCtrlGrafico {
+public class GestisciRichiesteCtrlGrafico {
 
 
     @FXML
@@ -26,7 +26,7 @@ public class VisualizzaRichiesteCtrlGrafico {
 
     @FXML
     protected void ricarica() {
-        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
+        GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
         tabellaRichieste.getItems().setAll(visualizzarichiestectrlapplicativo.recuperaUtentiBean());
     }
 
@@ -44,7 +44,7 @@ public class VisualizzaRichiesteCtrlGrafico {
         // Set the cell factory for the action column (buttons)
         approveColumn.setCellFactory(col -> new DoubleButtonTableCell(this));
 
-        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
+        GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
         visualizzarichiestectrlapplicativo.recuperaUtentiBean();
 
         // Populate the TableView with the list of users (UtenteBean)
@@ -54,7 +54,7 @@ public class VisualizzaRichiesteCtrlGrafico {
 
     public void handlerButton(UtenteBean utenteBean, boolean approved) {
         try {
-            VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
+            GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
 
             if (!approved)
                 visualizzarichiestectrlapplicativo.rifiutaRichiesta(utenteBean);

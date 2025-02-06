@@ -1,0 +1,541 @@
+Index: src/main/resources/viste/homepageAllenatore.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.geometry.Insets?>\r\n<?import javafx.geometry.Point3D?>\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.image.Image?>\r\n<?import javafx.scene.image.ImageView?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.layout.VBox?>\r\n<?import javafx.scene.text.Font?>\r\n\r\n<AnchorPane maxHeight=\"640.0\" maxWidth=\"1024.0\" minHeight=\"640.0\" minWidth=\"1024.0\" prefHeight=\"640.0\" prefWidth=\"1024.0\" xmlns=\"http://javafx.com/javafx/21\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"viste.first.HomepageAllenatoreCtrlGrafico\">\r\n\r\n   <fx:include source=\"baseColori.fxml\" />\r\n   <fx:include source=\"baseHomePage.fxml\" />\r\n\r\n   <VBox layoutX=\"285.0\" layoutY=\"108.0\" prefHeight=\"423.0\" prefWidth=\"500.0\">\r\n      <Button alignment=\"CENTER\" contentDisplay=\"CENTER\" mnemonicParsing=\"false\"\r\n              onAction=\"#visualizzaRichiestePartecipazione\" prefHeight=\"60.0\" prefWidth=\"400.0\"\r\n              style=\"-fx-background-color: #b8eab3\" text=\"Visualizza Le Richieste di Partecipazione alle Squadra\">\r\n         <font>\r\n            <Font size=\"15.0\"/>\r\n         </font>\r\n         <VBox.margin>\r\n            <Insets bottom=\"20.0\" left=\"50.0\"/>\r\n         </VBox.margin>\r\n      </Button>\r\n      <Button fx:id=\"gestisciSquadra\" alignment=\"CENTER\" contentDisplay=\"CENTER\" mnemonicParsing=\"false\"\r\n              onAction=\"#gestisciSquadra\" prefHeight=\"60.0\" prefWidth=\"200.0\" style=\"-fx-background-color: #b8eab3\"\r\n              text=\"Gestisci Squadra\">\r\n         <font>\r\n            <Font size=\"15.0\"/>\r\n         </font>\r\n         <VBox.margin>\r\n            <Insets bottom=\"20.0\" left=\"150.0\"/>\r\n         </VBox.margin>\r\n      </Button>\r\n      <Button mnemonicParsing=\"false\" onAction=\"#creaAllenamento\" prefHeight=\"60.0\" prefWidth=\"200.0\"\r\n              style=\"-fx-background-color: #b8eab3\" text=\"Creazione Allenamento\">\r\n         <font>\r\n            <Font size=\"15.0\"/>\r\n         </font>\r\n         <VBox.margin>\r\n            <Insets bottom=\"20.0\" left=\"150.0\"/>\r\n         </VBox.margin>\r\n      </Button>\r\n      <Button mnemonicParsing=\"false\" prefHeight=\"60.0\" prefWidth=\"200.0\" style=\"-fx-background-color: #b8eab3\"\r\n              text=\"Consulta Allenamenti\" onAction=\"#consultaAllenamenti\">\r\n         <font>\r\n            <Font size=\"15.0\"/>\r\n         </font>\r\n         <VBox.margin>\r\n            <Insets bottom=\"20.0\" left=\"150.0\"/>\r\n         </VBox.margin>\r\n      </Button>\r\n      <Button mnemonicParsing=\"false\" prefHeight=\"60.0\" prefWidth=\"200.0\" style=\"-fx-background-color: #b8eab3\"\r\n              text=\"Modifica Allenamento\" onAction=\"#modificaAllenamenti\">\r\n         <font>\r\n            <Font size=\"15.0\"/>\r\n         </font>\r\n         <VBox.margin>\r\n            <Insets bottom=\"20.0\" left=\"150.0\"/>\r\n         </VBox.margin>\r\n      </Button>\r\n   </VBox>\r\n   <Label fx:id=\"mostraErrori\" layoutX=\"286.0\" layoutY=\"530.0\" textFill=\"RED\" />\r\n   <Label layoutX=\"420.0\" layoutY=\"25.0\" text=\"Menu Allenatore\" textFill=\"WHITE\">\r\n      <font>\r\n         <Font name=\"MS Outlook\" size=\"27.0\" />\r\n      </font>\r\n   </Label>\r\n   <ImageView fitHeight=\"60.0\" fitWidth=\"60.0\" layoutX=\"800.0\" layoutY=\"10.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n      <image>\r\n         <Image url=\"@../foto/whistle.png\" />\r\n      </image>\r\n   </ImageView>\r\n   <rotationAxis>\r\n      <Point3D />\r\n   </rotationAxis>\r\n</AnchorPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/viste/homepageAllenatore.fxml b/src/main/resources/viste/homepageAllenatore.fxml
+--- a/src/main/resources/viste/homepageAllenatore.fxml	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/resources/viste/homepageAllenatore.fxml	(date 1738837243076)
+@@ -10,61 +10,58 @@
+ <?import javafx.scene.layout.VBox?>
+ <?import javafx.scene.text.Font?>
+ 
+-<AnchorPane maxHeight="640.0" maxWidth="1024.0" minHeight="640.0" minWidth="1024.0" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.HomepageAllenatoreCtrlGrafico">
++<AnchorPane maxHeight="640.0" maxWidth="1024.0" minHeight="640.0" minWidth="1024.0" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.HomepageAllenatoreCtrlGrafico">
+ 
+    <fx:include source="baseColori.fxml" />
+    <fx:include source="baseHomePage.fxml" />
+ 
+    <VBox layoutX="285.0" layoutY="108.0" prefHeight="423.0" prefWidth="500.0">
+-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+-              onAction="#visualizzaRichiestePartecipazione" prefHeight="60.0" prefWidth="400.0"
+-              style="-fx-background-color: #b8eab3" text="Visualizza Le Richieste di Partecipazione alle Squadra">
++      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#visualizzaRichiestePartecipazione" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #b8eab3" text="Visualizza Le Richieste di Partecipazione alle Squadra">
+          <font>
+-            <Font size="15.0"/>
++            <Font size="15.0" />
+          </font>
+          <VBox.margin>
+-            <Insets bottom="20.0" left="50.0"/>
++            <Insets bottom="20.0" left="50.0" />
+          </VBox.margin>
+       </Button>
+-      <Button fx:id="gestisciSquadra" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+-              onAction="#gestisciSquadra" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3"
+-              text="Gestisci Squadra">
++      <Button fx:id="gestisciSquadra" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gestisciSquadra" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3" text="Gestisci Squadra">
+          <font>
+-            <Font size="15.0"/>
++            <Font size="15.0" />
+          </font>
+          <VBox.margin>
+-            <Insets bottom="20.0" left="150.0"/>
++            <Insets bottom="20.0" left="150.0" />
+          </VBox.margin>
+       </Button>
+-      <Button mnemonicParsing="false" onAction="#creaAllenamento" prefHeight="60.0" prefWidth="200.0"
+-              style="-fx-background-color: #b8eab3" text="Creazione Allenamento">
++      <Button mnemonicParsing="false" onAction="#creaAllenamento" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3" text="Creazione Allenamento">
+          <font>
+-            <Font size="15.0"/>
++            <Font size="15.0" />
+          </font>
+          <VBox.margin>
+-            <Insets bottom="20.0" left="150.0"/>
++            <Insets bottom="20.0" left="150.0" />
+          </VBox.margin>
+       </Button>
+-      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3"
+-              text="Consulta Allenamenti" onAction="#consultaAllenamenti">
++      <Button mnemonicParsing="false" onAction="#consultaAllenamenti" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3" text="Consulta Allenamenti">
+          <font>
+-            <Font size="15.0"/>
++            <Font size="15.0" />
+          </font>
+          <VBox.margin>
+-            <Insets bottom="20.0" left="150.0"/>
++            <Insets bottom="20.0" left="150.0" />
+          </VBox.margin>
+       </Button>
+-      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3"
+-              text="Modifica Allenamento" onAction="#modificaAllenamenti">
++      <Button mnemonicParsing="false" onAction="#modificaAllenamenti" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #b8eab3" text="Modifica Allenamento">
+          <font>
+-            <Font size="15.0"/>
++            <Font size="15.0" />
+          </font>
+          <VBox.margin>
+-            <Insets bottom="20.0" left="150.0"/>
++            <Insets bottom="20.0" left="150.0" />
+          </VBox.margin>
+       </Button>
++      <Label fx:id="mostraErrori" prefHeight="17.0" textFill="RED">
++         <VBox.margin>
++            <Insets left="120.0" />
++         </VBox.margin>
++      </Label>
+    </VBox>
+-   <Label fx:id="mostraErrori" layoutX="286.0" layoutY="530.0" textFill="RED" />
+    <Label layoutX="420.0" layoutY="25.0" text="Menu Allenatore" textFill="WHITE">
+       <font>
+          <Font name="MS Outlook" size="27.0" />
+Index: src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java b/src/main/java/viste/first/GestisciRichiesteCtrlGrafico.java
+rename from src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java
+rename to src/main/java/viste/first/GestisciRichiesteCtrlGrafico.java
+--- a/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/java/viste/first/GestisciRichiesteCtrlGrafico.java	(date 1738835611162)
+@@ -1,6 +1,6 @@
+ package viste.first;
+ 
+-import ctrl_applicativo.VisualizzaRichiesteCtrlApplicativo;
++import ctrl_applicativo.GestisciRichiesteCtrlApplicativo;
+ import engineering.bean.UtenteBean;
+ import javafx.fxml.*;
+ import javafx.scene.control.*;
+@@ -9,7 +9,7 @@
+ 
+ import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
+ 
+-public class VisualizzaRichiesteCtrlGrafico {
++public class GestisciRichiesteCtrlGrafico {
+ 
+ 
+     @FXML
+@@ -26,7 +26,7 @@
+ 
+     @FXML
+     protected void ricarica() {
+-        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
++        GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
+         tabellaRichieste.getItems().setAll(visualizzarichiestectrlapplicativo.recuperaUtentiBean());
+     }
+ 
+@@ -44,7 +44,7 @@
+         // Set the cell factory for the action column (buttons)
+         approveColumn.setCellFactory(col -> new DoubleButtonTableCell(this));
+ 
+-        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
++        GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
+         visualizzarichiestectrlapplicativo.recuperaUtentiBean();
+ 
+         // Populate the TableView with the list of users (UtenteBean)
+@@ -54,7 +54,7 @@
+ 
+     public void handlerButton(UtenteBean utenteBean, boolean approved) {
+         try {
+-            VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
++            GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
+ 
+             if (!approved)
+                 visualizzarichiestectrlapplicativo.rifiutaRichiesta(utenteBean);
+Index: src/main/java/viste/first/utils/DoubleButtonTableCell.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.first.utils;\r\n\r\n\r\nimport engineering.bean.UtenteBean;\r\nimport javafx.geometry.Pos;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.layout.HBox;\r\nimport viste.first.VisualizzaRichiesteCtrlGrafico;\r\n\r\n\r\n// Classe TableCell personalizzata per aggiungere due bottoni nella cella\r\npublic class DoubleButtonTableCell extends TableCell<UtenteBean, Boolean> {\r\n\r\n    private final Button approveButton = new Button(\"Accetta\");\r\n    private final Button rejectButton = new Button(\"Rifiuta\");\r\n\r\n    public DoubleButtonTableCell(VisualizzaRichiesteCtrlGrafico visualizzaRichiesteCtrlGrafico) {\r\n\r\n        approveButton.setOnAction(e -> {\r\n            TableRow<UtenteBean> tableRow = getTableRow();\r\n            if (tableRow != null) {\r\n                UtenteBean utenteBean = tableRow.getItem();\r\n                handlePendingButton(visualizzaRichiesteCtrlGrafico, utenteBean, true);\r\n            }\r\n        });\r\n\r\n        rejectButton.setOnAction(e -> {\r\n            TableRow<UtenteBean> tableRow = getTableRow();\r\n            if (tableRow != null) {\r\n                UtenteBean utenteBean = tableRow.getItem();\r\n                handlePendingButton(visualizzaRichiesteCtrlGrafico, utenteBean, false);\r\n            }\r\n        });\r\n\r\n\r\n        approveButton.setStyle(\"-fx-background-color: #1DB954; -fx-text-fill: white; -fx-pref-height: 25px; ; -fx-pref-width: 120px; \" +\r\n                \"-fx-min-width: 80px; -fx-min-height: 25px; -fx-background-radius: 5px; -fx-stroke: 0; -fx-border-radius: 5px;\");\r\n\r\n        rejectButton.setStyle(\"-fx-background-color: red; -fx-text-fill: white;-fx-pref-height: 25px; ; -fx-pref-width: 120px; \" +\r\n                \"-fx-min-width: 80px; -fx-min-height: 25px; -fx-background-radius: 5px; -fx-stroke: 0; -fx-border-radius: 5px;\");\r\n    }\r\n\r\n    public void handlePendingButton(VisualizzaRichiesteCtrlGrafico visualizzaRichiesteCtrlGrafico, UtenteBean utenteBean, boolean approve) {\r\n        visualizzaRichiesteCtrlGrafico.handlerButton(utenteBean,approve);\r\n    }\r\n\r\n    @Override\r\n    protected void updateItem(Boolean item, boolean empty) {\r\n        super.updateItem(item, empty);\r\n        if (empty) {\r\n            setGraphic(null);\r\n        } else {\r\n            setGraphic(createButtonBox(approveButton, rejectButton));\r\n        }\r\n    }\r\n\r\n    private HBox createButtonBox(Button... buttons) {\r\n        HBox buttonBox = new HBox(5); // 5 è lo spazio tra i bottoni\r\n        buttonBox.setAlignment(Pos.CENTER);\r\n        buttonBox.getChildren().addAll(buttons);\r\n        return buttonBox;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/first/utils/DoubleButtonTableCell.java b/src/main/java/viste/first/utils/DoubleButtonTableCell.java
+--- a/src/main/java/viste/first/utils/DoubleButtonTableCell.java	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/java/viste/first/utils/DoubleButtonTableCell.java	(date 1738835611032)
+@@ -5,7 +5,7 @@
+ import javafx.geometry.Pos;
+ import javafx.scene.control.*;
+ import javafx.scene.layout.HBox;
+-import viste.first.VisualizzaRichiesteCtrlGrafico;
++import viste.first.GestisciRichiesteCtrlGrafico;
+ 
+ 
+ // Classe TableCell personalizzata per aggiungere due bottoni nella cella
+@@ -14,13 +14,13 @@
+     private final Button approveButton = new Button("Accetta");
+     private final Button rejectButton = new Button("Rifiuta");
+ 
+-    public DoubleButtonTableCell(VisualizzaRichiesteCtrlGrafico visualizzaRichiesteCtrlGrafico) {
++    public DoubleButtonTableCell(GestisciRichiesteCtrlGrafico gestisciRichiesteCtrlGrafico) {
+ 
+         approveButton.setOnAction(e -> {
+             TableRow<UtenteBean> tableRow = getTableRow();
+             if (tableRow != null) {
+                 UtenteBean utenteBean = tableRow.getItem();
+-                handlePendingButton(visualizzaRichiesteCtrlGrafico, utenteBean, true);
++                handlePendingButton(gestisciRichiesteCtrlGrafico, utenteBean, true);
+             }
+         });
+ 
+@@ -28,7 +28,7 @@
+             TableRow<UtenteBean> tableRow = getTableRow();
+             if (tableRow != null) {
+                 UtenteBean utenteBean = tableRow.getItem();
+-                handlePendingButton(visualizzaRichiesteCtrlGrafico, utenteBean, false);
++                handlePendingButton(gestisciRichiesteCtrlGrafico, utenteBean, false);
+             }
+         });
+ 
+@@ -40,8 +40,8 @@
+                 "-fx-min-width: 80px; -fx-min-height: 25px; -fx-background-radius: 5px; -fx-stroke: 0; -fx-border-radius: 5px;");
+     }
+ 
+-    public void handlePendingButton(VisualizzaRichiesteCtrlGrafico visualizzaRichiesteCtrlGrafico, UtenteBean utenteBean, boolean approve) {
+-        visualizzaRichiesteCtrlGrafico.handlerButton(utenteBean,approve);
++    public void handlePendingButton(GestisciRichiesteCtrlGrafico gestisciRichiesteCtrlGrafico, UtenteBean utenteBean, boolean approve) {
++        gestisciRichiesteCtrlGrafico.handlerButton(utenteBean,approve);
+     }
+ 
+     @Override
+Index: src/main/java/engineering/pattern/observer/Subject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package engineering.pattern.observer;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic abstract class Subject {\r\n\r\n    // Lista di Observer che si iscrivono per ricevere la notifica\r\n    private final List<Observer> observers;\r\n\r\n    // Costruttore\r\n    protected Subject() {\r\n        observers = new ArrayList<>();\r\n    }\r\n\r\n    // Aggiunge un observer alla lista dei subscribers\r\n    public void attach(Observer newObserver) {\r\n        observers.add(newObserver);\r\n    }\r\n\r\n    // Rimuove un observer dalla lista dei subscribers\r\n    public void detach(Observer removeObserver) {\r\n        observers.remove(removeObserver);\r\n    }\r\n\r\n    // Notifica tutti gli observer registrati chiamando il metodo update()\r\n    protected void notifyObservers() {\r\n        for (Observer observer : observers) {\r\n            System.out.println(\"Notifico l'observer\");\r\n            observer.update();\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/engineering/pattern/observer/Subject.java b/src/main/java/engineering/pattern/observer/Subject.java
+--- a/src/main/java/engineering/pattern/observer/Subject.java	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/java/engineering/pattern/observer/Subject.java	(date 1738836653116)
+@@ -26,7 +26,6 @@
+     // Notifica tutti gli observer registrati chiamando il metodo update()
+     protected void notifyObservers() {
+         for (Observer observer : observers) {
+-            System.out.println("Notifico l'observer");
+             observer.update();
+         }
+     }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AnalysisUIOptions\">\r\n    <option name=\"SCOPE_TYPE\" value=\"3\" />\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d48fabd9-9d0c-4832-9762-f7ff2f4fd62e\" name=\"Changes\" comment=\"ultimi codesmell\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dataSources.local.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/ctrl_applicativo/LoginCtrlApplicativo.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/ctrl_applicativo/LoginCtrlApplicativo.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOMySQL.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOMySQL.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOMySQL.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOMySQL.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/IscrivitiAllenamentoCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/IscrivitiAllenamentoCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/viste/second/RegistrazioneCLI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/viste/second/RegistrazioneCLI.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/config.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/config.properties\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Exception\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;FrancescoMin&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub.git&quot;,\r\n    &quot;accountId&quot;: &quot;64b32a3e-6402-44ac-8316-64089203d618&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2nIPzptCElr3Z2cbKRrMzjtrfIO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.IscrivitiAllenamentoCtrlGrafico.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.LoginApplicazione.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.testCreaSquadraPerAllenatoreConSquadraValida.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.testGetSquadraDaNomeConSquadraEsistente.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestPerSquadra.testIscrizioneUtenteASquadraConSquadraValida.executor&quot;: &quot;Run&quot;,\r\n    &quot;JUnit.TestVari.testMessaggioBenvenutoGiocatore.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/max/IdeaProjects/FinalTeamTrainingHub/src/main/resources/foto&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\max\\IdeaProjects\\FinalTeamTrainingHub\\src\\main\\resources\\foto\" />\r\n      <recent name=\"C:\\Users\\max\\IdeaProjects\\TeamTrainingHub\\src\\main\\resources\\persistenza\\utenti\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.LoginApplicazione\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"LoginApplicazione\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"inizio.LoginApplicazione\" />\r\n      <module name=\"TeamTrainingHub\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"inizio.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TestPerSquadra\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TeamTrainingHub\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"TestPerSquadra\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"OLDteamtraininghub\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.LoginApplicazione\" />\r\n        <item itemvalue=\"JUnit.TestPerSquadra\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d48fabd9-9d0c-4832-9762-f7ff2f4fd62e\" name=\"Changes\" comment=\"\" />\r\n      <created>1728657885128</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1728657885128</updated>\r\n      <workItem from=\"1728657886213\" duration=\"2000\" />\r\n      <workItem from=\"1730031757462\" duration=\"424000\" />\r\n      <workItem from=\"1730055384804\" duration=\"595000\" />\r\n      <workItem from=\"1730114720831\" duration=\"614000\" />\r\n      <workItem from=\"1730297470122\" duration=\"795000\" />\r\n      <workItem from=\"1730367712503\" duration=\"1261000\" />\r\n      <workItem from=\"1730900062191\" duration=\"11000\" />\r\n      <workItem from=\"1730900495932\" duration=\"139000\" />\r\n      <workItem from=\"1730900654982\" duration=\"1874000\" />\r\n      <workItem from=\"1731419658599\" duration=\"1145000\" />\r\n      <workItem from=\"1731510660528\" duration=\"565000\" />\r\n      <workItem from=\"1731513936734\" duration=\"1087000\" />\r\n      <workItem from=\"1732372725814\" duration=\"1497000\" />\r\n      <workItem from=\"1732618556068\" duration=\"9617000\" />\r\n      <workItem from=\"1732719715292\" duration=\"1949000\" />\r\n      <workItem from=\"1732787371589\" duration=\"8556000\" />\r\n      <workItem from=\"1732810871835\" duration=\"127000\" />\r\n      <workItem from=\"1733073299051\" duration=\"853000\" />\r\n      <workItem from=\"1733240050872\" duration=\"2012000\" />\r\n      <workItem from=\"1733675765565\" duration=\"234000\" />\r\n      <workItem from=\"1733845576886\" duration=\"191000\" />\r\n      <workItem from=\"1733997673195\" duration=\"1357000\" />\r\n      <workItem from=\"1734004004118\" duration=\"9782000\" />\r\n      <workItem from=\"1734084904930\" duration=\"4581000\" />\r\n      <workItem from=\"1734364185289\" duration=\"606000\" />\r\n      <workItem from=\"1734386510091\" duration=\"6108000\" />\r\n      <workItem from=\"1734427385697\" duration=\"11873000\" />\r\n      <workItem from=\"1734528607867\" duration=\"6716000\" />\r\n      <workItem from=\"1734601053904\" duration=\"7748000\" />\r\n      <workItem from=\"1734692612739\" duration=\"2111000\" />\r\n      <workItem from=\"1734796908625\" duration=\"5339000\" />\r\n      <workItem from=\"1734862555389\" duration=\"6467000\" />\r\n      <workItem from=\"1734974038587\" duration=\"706000\" />\r\n      <workItem from=\"1735036002463\" duration=\"3338000\" />\r\n      <workItem from=\"1735040248138\" duration=\"605000\" />\r\n      <workItem from=\"1735383789763\" duration=\"1649000\" />\r\n      <workItem from=\"1735401058574\" duration=\"6814000\" />\r\n      <workItem from=\"1735469017340\" duration=\"11381000\" />\r\n      <workItem from=\"1735901517487\" duration=\"3570000\" />\r\n      <workItem from=\"1736012938977\" duration=\"1842000\" />\r\n      <workItem from=\"1736072047840\" duration=\"2860000\" />\r\n      <workItem from=\"1736177918852\" duration=\"9082000\" />\r\n      <workItem from=\"1736256472061\" duration=\"8405000\" />\r\n      <workItem from=\"1736347769647\" duration=\"6915000\" />\r\n      <workItem from=\"1736417291928\" duration=\"5116000\" />\r\n      <workItem from=\"1736525504890\" duration=\"2745000\" />\r\n      <workItem from=\"1736696782806\" duration=\"1876000\" />\r\n      <workItem from=\"1736722507443\" duration=\"1318000\" />\r\n      <workItem from=\"1736776367586\" duration=\"9518000\" />\r\n      <workItem from=\"1736953782882\" duration=\"6240000\" />\r\n      <workItem from=\"1737050236660\" duration=\"1203000\" />\r\n      <workItem from=\"1737196745248\" duration=\"593000\" />\r\n      <workItem from=\"1737799649228\" duration=\"659000\" />\r\n      <workItem from=\"1737973972595\" duration=\"15124000\" />\r\n      <workItem from=\"1738013645922\" duration=\"1486000\" />\r\n      <workItem from=\"1738060126182\" duration=\"9237000\" />\r\n      <workItem from=\"1738147994818\" duration=\"1081000\" />\r\n      <workItem from=\"1738246028832\" duration=\"605000\" />\r\n      <workItem from=\"1738332646947\" duration=\"8051000\" />\r\n      <workItem from=\"1738413851468\" duration=\"15796000\" />\r\n      <workItem from=\"1738485749767\" duration=\"12542000\" />\r\n      <workItem from=\"1738507452223\" duration=\"17643000\" />\r\n      <workItem from=\"1738530990714\" duration=\"9176000\" />\r\n      <workItem from=\"1738573161156\" duration=\"10437000\" />\r\n      <workItem from=\"1738588027032\" duration=\"3979000\" />\r\n      <workItem from=\"1738747594067\" duration=\"131000\" />\r\n      <workItem from=\"1738748321868\" duration=\"2889000\" />\r\n      <workItem from=\"1738832768239\" duration=\"2191000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Inizio settaggio database\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730032171397</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730032171397</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"file workspace\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730299192134</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730299192136</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"commit e push di recupero\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730299261335</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730299261335</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"view della registrazione (senza controller)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1730901612261</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1730901612261</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Modifica di controller applicativo, grafico della registrazione e fxml della registrazione\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1732726100799</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1732726100800</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Typo nel package, aggiunta string password\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733074263323</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733074263323</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"rimozione stringa password, rimozione &quot;registraUtente&quot; per &quot;inserisciUtente&quot;\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1733675993534</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1733675993534</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"correzione typo &quot;Eccezione&quot;, modifiche RegistrazioneCtrlApplicativo, non vengono salvati i dati di registrazione\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734108476104</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734108476104</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Creazione nuova vista, altri tentativi in RegistrazioneCtrlApplicativo\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734393253773</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734393253773</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"RegistrazioneCtrlApplicativo funzionante\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734428756847</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734428756847</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Fix valori stringhe nei json\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734442708259</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734442708259</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Commit fix versione locale, poche modifiche, non significative\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734602305673</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734602305673</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"parziale implementazione entraInSquadra\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1734974150480</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1734974150480</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1735039696644</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1735039696644</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1735498458976</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1735498458976</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"risolti errori a runtime per consultare allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736181732483</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736181732483</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"caricamento e visualizzazione allenamenti JSON in tabella\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736257078648</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736257078648</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"spostamento codice EntraInSquadra per renderlo corretto. Funzione di riconoscimento esistenza squadra in persistenza, finta notifica per l'allenatore. Implementazione parziale di iscrizione all'allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736527054634</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736527054634</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"Inizializzazione alcune classi CLI, ulteriori modifiche iscrizione allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1737996520541</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1737996520541</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"correzioni varie e codesmell\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738411592574</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738411592574</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Implementazione caso d'uso Iscrizione allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738498320261</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738498320261</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"Sistemazione Consulta Allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738508787632</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738508787632</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"Sistemazione Viste e controller grafici\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738516077520</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738516077520</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"Creazione EccezioneAllenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738517571134</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738517571134</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"Test Francesco Minotti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738522210197</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738522210197</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"Eliminazione Eccezione generica\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738533711700</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738533711700</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"Sistemazione imperfezioni\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738535809282</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738535809282</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"modifiche CLI Login, registrazione e creazione allenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738540113089</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738540113089</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"Sistemazione Iscriviti AllenamentoCLI\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738575837067</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738575837067</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"Torna Indietro Button in creazioneAllenamento\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738576624906</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738576624906</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00031\" summary=\"Risoluzione alcuni codesmell\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738584084938</created>\r\n      <option name=\"number\" value=\"00031\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738584084938</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00032\" summary=\"Risoluzione problema creazione allenamenti\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738614651368</created>\r\n      <option name=\"number\" value=\"00032\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738614651368</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00033\" summary=\"codesmell\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738616170352</created>\r\n      <option name=\"number\" value=\"00033\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00033\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738616170352</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00034\" summary=\"correzioni grafiche e aggiunta icone\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738667331440</created>\r\n      <option name=\"number\" value=\"00034\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00034\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738667331440</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00035\" summary=\"tasto ricarica visibile\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738667890566</created>\r\n      <option name=\"number\" value=\"00035\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00035\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738667890566</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00036\" summary=\"modifica colore label\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738792835167</created>\r\n      <option name=\"number\" value=\"00036\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00036\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738792835167</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00037\" summary=\"ultimi codesmell\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1738793345541</created>\r\n      <option name=\"number\" value=\"00037\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00037\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1738793345541</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"38\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"parziale implementazione entraInSquadra\" />\r\n    <MESSAGE value=\"fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori\" />\r\n    <MESSAGE value=\"Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti\" />\r\n    <MESSAGE value=\"risolti errori a runtime per consultare allenamenti\" />\r\n    <MESSAGE value=\"caricamento e visualizzazione allenamenti JSON in tabella\" />\r\n    <MESSAGE value=\"spostamento codice EntraInSquadra per renderlo corretto. Funzione di riconoscimento esistenza squadra in persistenza, finta notifica per l'allenatore. Implementazione parziale di iscrizione all'allenamento\" />\r\n    <MESSAGE value=\"Inizializzazione alcune classi CLI, ulteriori modifiche iscrizione allenamento\" />\r\n    <MESSAGE value=\"correzioni varie e codesmell\" />\r\n    <MESSAGE value=\"Implementazione caso d'uso Iscrizione allenamento\" />\r\n    <MESSAGE value=\"Sistemazione Consulta Allenamenti\" />\r\n    <MESSAGE value=\"Sistemazione Viste e controller grafici\" />\r\n    <MESSAGE value=\"Creazione EccezioneAllenamento\" />\r\n    <MESSAGE value=\"Test Francesco Minotti\" />\r\n    <MESSAGE value=\"Eliminazione Eccezione generica\" />\r\n    <MESSAGE value=\"Sistemazione imperfezioni\" />\r\n    <MESSAGE value=\"modifiche CLI Login, registrazione e creazione allenamento\" />\r\n    <MESSAGE value=\"Sistemazione Iscriviti AllenamentoCLI\" />\r\n    <MESSAGE value=\"Torna Indietro Button in creazioneAllenamento\" />\r\n    <MESSAGE value=\"Risoluzione alcuni codesmell\" />\r\n    <MESSAGE value=\"Risoluzione problema creazione allenamenti\" />\r\n    <MESSAGE value=\"codesmell\" />\r\n    <MESSAGE value=\"correzioni grafiche e aggiunta icone\" />\r\n    <MESSAGE value=\"tasto ricarica visibile\" />\r\n    <MESSAGE value=\"modifica colore label\" />\r\n    <MESSAGE value=\"ultimi codesmell\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"ultimi codesmell\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/.idea/workspace.xml	(date 1738837286613)
+@@ -7,20 +7,18 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="ultimi codesmell">
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
++    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="riparazione mysql">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/LoginCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/LoginCtrlApplicativo.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOMySQL.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/SquadraDAOMySQL.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QueriesLogin.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/HomepageGiocatoreCLI.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/IscrivitiAllenamentoCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/IscrivitiAllenamentoCLI.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/VisualizzaRichiesteCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/GestisciRichiesteCtrlApplicativo.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/observer/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/observer/Subject.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/GestisciRichiesteCtrlGrafico.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/DoubleButtonTableCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/DoubleButtonTableCell.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/HomepageAllenatoreCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/HomepageAllenatoreCLI.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/RegistrazioneCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/RegistrazioneCLI.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/VisualizzaRichiesteCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/GestisciRichiesteCLI.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/visualizzazioneRichieste.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/visualizzazioneRichieste.fxml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -237,7 +235,7 @@
+       <workItem from="1738588027032" duration="3979000" />
+       <workItem from="1738747594067" duration="131000" />
+       <workItem from="1738748321868" duration="2889000" />
+-      <workItem from="1738832768239" duration="2191000" />
++      <workItem from="1738832768239" duration="4394000" />
+     </task>
+     <task id="LOCAL-00001" summary="Inizio settaggio database">
+       <option name="closed" value="true" />
+@@ -535,7 +533,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1738793345541</updated>
+     </task>
+-    <option name="localTasksCounter" value="38" />
++    <task id="LOCAL-00038" summary="riparazione mysql">
++      <option name="closed" value="true" />
++      <created>1738835408891</created>
++      <option name="number" value="00038" />
++      <option name="presentableId" value="LOCAL-00038" />
++      <option name="project" value="LOCAL" />
++      <updated>1738835408891</updated>
++    </task>
++    <option name="localTasksCounter" value="39" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -553,7 +559,6 @@
+     </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="parziale implementazione entraInSquadra" />
+     <MESSAGE value="fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori" />
+     <MESSAGE value="Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti" />
+     <MESSAGE value="risolti errori a runtime per consultare allenamenti" />
+@@ -578,6 +583,7 @@
+     <MESSAGE value="tasto ricarica visibile" />
+     <MESSAGE value="modifica colore label" />
+     <MESSAGE value="ultimi codesmell" />
+-    <option name="LAST_COMMIT_MESSAGE" value="ultimi codesmell" />
++    <MESSAGE value="riparazione mysql" />
++    <option name="LAST_COMMIT_MESSAGE" value="riparazione mysql" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/viste/second/HomepageAllenatoreCLI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.second;\r\n\r\nimport ctrl_applicativo.HomepageAllenatoreCtrlApplicativo;\r\n\r\npublic class HomepageAllenatoreCLI extends GenericaCLI {\r\n    public HomepageAllenatoreCLI() {\r\n        this.pagina = \"Homepage Allenatore\";\r\n    }\r\n\r\n    @Override\r\n    public void start() {\r\n        stampaPagina();\r\n\r\n        while (continua) {\r\n\r\n            System.out.println(\"Cosa vuoi fare?\");\r\n            System.out.println(\"1. Creazione squadra\");\r\n            System.out.println(\"2. Visualizza le richieste di partecipazione alla squadra\");\r\n            System.out.println(\"3. Creazione allenamento\");\r\n            System.out.println(\"4. Consulta allenamenti\");\r\n            System.out.println(\"5. Modifica allenamenti\");\r\n            System.out.println(\"6. Torna al Login\");\r\n            String scelta = scanner.nextLine();\r\n\r\n\r\n            switch (scelta) {\r\n                case \"1\":\r\n                    continua=caso1();\r\n                    break;\r\n                case \"2\":\r\n                    continua=caso2();\r\n                    break;\r\n                case \"3\":\r\n                    continua = caso3();\r\n                    break;\r\n                case \"4\":\r\n                    continua = caso4();\r\n                        break;\r\n                case \"5\":\r\n                    System.out.println(\"Funzionalità non implementata\");\r\n                        break;\r\n                case \"6\":\r\n                    prossimaPagina = LoginCLI.class.getName();\r\n                    continua = false;\r\n                    break;\r\n\r\n                default:\r\n                    System.out.println(\"Scelta non valida, riprovare\");\r\n                    break;\r\n            }\r\n        }\r\n        spostamento(prossimaPagina);\r\n    }\r\n\r\n    private boolean caso1(){\r\n        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();\r\n\r\n        if(homepageallenatorectrlapplicativo.esisteSquadra()){\r\n            System.out.println(\"L'utente ha già una squadra\");\r\n            return true;\r\n        }\r\n        else{\r\n            prossimaPagina = CreazioneSquadraCLI.class.getName();\r\n            return false;\r\n        }\r\n    }\r\n\r\n    private boolean caso2(){\r\n        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();\r\n        if(!homepageallenatorectrlapplicativo.esisteSquadra()){\r\n            System.out.println(\"L'allenatore non ha una squadra, non ci sono richieste\");\r\n            return true;\r\n        }\r\n        else {\r\n            prossimaPagina = VisualizzaRichiesteCLI.class.getName();\r\n            return false;\r\n        }\r\n    }\r\n\r\n    private boolean caso3(){\r\n        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();\r\n        if(!homepageallenatorectrlapplicativo.esisteSquadra()){\r\n            System.out.println(\"L'allenatore non ha una squadra, non puoi creare un allenamento\");\r\n            return true;\r\n        }\r\n        else {\r\n            prossimaPagina = CreazioneAllenamentoCLI.class.getName();\r\n            return false;\r\n        }\r\n    }\r\n\r\n    private boolean caso4(){\r\n        HomepageAllenatoreCtrlApplicativo homepageallenatorectrlapplicativo = new HomepageAllenatoreCtrlApplicativo();\r\n        if(!homepageallenatorectrlapplicativo.esisteSquadra()){\r\n            System.out.println(\"L'allenatore non ha una squadra, non puoi consultare gli allenamenti\");\r\n            return true;\r\n        }\r\n        else {\r\n            prossimaPagina = ConsultaAllenamentiCLI.class.getName();\r\n            ConsultaAllenamentiCLI.setPaginaHome(HomepageAllenatoreCLI.class.getName());\r\n            return false;\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/second/HomepageAllenatoreCLI.java b/src/main/java/viste/second/HomepageAllenatoreCLI.java
+--- a/src/main/java/viste/second/HomepageAllenatoreCLI.java	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/java/viste/second/HomepageAllenatoreCLI.java	(date 1738835611002)
+@@ -72,7 +72,7 @@
+             return true;
+         }
+         else {
+-            prossimaPagina = VisualizzaRichiesteCLI.class.getName();
++            prossimaPagina = GestisciRichiesteCLI.class.getName();
+             return false;
+         }
+     }
+Index: src/main/java/viste/second/VisualizzaRichiesteCLI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/second/VisualizzaRichiesteCLI.java b/src/main/java/viste/second/GestisciRichiesteCLI.java
+rename from src/main/java/viste/second/VisualizzaRichiesteCLI.java
+rename to src/main/java/viste/second/GestisciRichiesteCLI.java
+--- a/src/main/java/viste/second/VisualizzaRichiesteCLI.java	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/java/viste/second/GestisciRichiesteCLI.java	(date 1738835611042)
+@@ -1,15 +1,15 @@
+ package viste.second;
+ 
+-import ctrl_applicativo.VisualizzaRichiesteCtrlApplicativo;
++import ctrl_applicativo.GestisciRichiesteCtrlApplicativo;
+ import engineering.bean.UtenteBean;
+ import engineering.eccezioni.EccezioneSquadraInvalida;
+ import engineering.eccezioni.EccezioneUtenteInvalido;
+ 
+ import java.util.List;
+ 
+-public class VisualizzaRichiesteCLI extends GenericaCLI{
++public class GestisciRichiesteCLI extends GenericaCLI{
+ 
+-    public VisualizzaRichiesteCLI() {
++    public GestisciRichiesteCLI() {
+         this.pagina = "Visualizza Richieste";
+     }
+ 
+@@ -20,7 +20,7 @@
+ 
+         List<UtenteBean> utenti;
+ 
+-        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
++        GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
+ 
+         while(continua) {
+             try {
+@@ -57,7 +57,7 @@
+     }
+ 
+     private void controlloScelta(List<UtenteBean> utenti, int scelta) throws EccezioneSquadraInvalida, EccezioneUtenteInvalido {
+-        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
++        GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
+ 
+         if (scelta < 1 || scelta > utenti.size()) {
+             System.out.println("Scelta non valida, se si desidera uscire premere 0 se no premere un numero qualsiasi");
+Index: src/main/resources/viste/visualizzazioneRichieste.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.TableColumn?>\r\n<?import javafx.scene.control.TableView?>\r\n<?import javafx.scene.image.Image?>\r\n<?import javafx.scene.image.ImageView?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.layout.BorderPane?>\r\n<?import javafx.scene.text.Font?>\r\n\r\n<BorderPane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"640.0\" prefWidth=\"1024.0\" xmlns=\"http://javafx.com/javafx/21\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"viste.first.VisualizzaRichiesteCtrlGrafico\">\r\n\r\n    <top>\r\n        <!-- Barra del titolo TopPage -->\r\n        <AnchorPane minHeight=\"-Infinity\" minWidth=\"-Infinity\" AnchorPane.bottomAnchor=\"0.0\" AnchorPane.leftAnchor=\"0.0\" AnchorPane.rightAnchor=\"0.0\" AnchorPane.topAnchor=\"0.0\" BorderPane.alignment=\"CENTER\">\r\n            <fx:include prefHeight=\"80.0\" source=\"baseTabelle.fxml\" />\r\n         <ImageView fitHeight=\"60.0\" fitWidth=\"60.0\" layoutX=\"800.0\" layoutY=\"10.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n            <image>\r\n               <Image url=\"@../foto/profile.png\" />\r\n            </image>\r\n         </ImageView>\r\n         <Label layoutX=\"500.0\" layoutY=\"44.0\" text=\"delle richieste di ingresso alla squadra\" textFill=\"WHITE\">\r\n            <font>\r\n               <Font size=\"15.0\" />\r\n            </font></Label>\r\n\r\n        </AnchorPane>\r\n    </top>\r\n\r\n    <center>\r\n        <!-- Tabella playlist -->\r\n        <AnchorPane prefHeight=\"560.0\" prefWidth=\"1024.0\" style=\"-fx-background-color: #1ccb5c;\" AnchorPane.bottomAnchor=\"10.0\" AnchorPane.leftAnchor=\"0.0\" AnchorPane.rightAnchor=\"0.0\">\r\n            <TableView fx:id=\"tabellaRichieste\" fixedCellSize=\"0.0\" layoutX=\"51.2\" layoutY=\"54.4\" prefHeight=\"461.0\" prefWidth=\"806.0\" AnchorPane.bottomAnchor=\"25.0\" AnchorPane.leftAnchor=\"51.0\" AnchorPane.rightAnchor=\"167.0\" AnchorPane.topAnchor=\"54.0\">\r\n                <columns>\r\n                    <TableColumn fx:id=\"giocatoreColonna\" prefWidth=\"150.0\" text=\"Giocatore\" />\r\n                    <TableColumn fx:id=\"approveColumn\" prefWidth=\"150.0\" text=\"Approve or Reject\" />\r\n\r\n                </columns>\r\n                <columnResizePolicy>\r\n                    <TableView fx:constant=\"CONSTRAINED_RESIZE_POLICY\" />\r\n                </columnResizePolicy>\r\n            </TableView>\r\n         <Label fx:id=\"mostraErrori\" layoutX=\"508.0\" layoutY=\"15.0\" textFill=\"RED\">\r\n            <font>\r\n               <Font size=\"15.0\" />\r\n            </font>\r\n         </Label>\r\n         <Button layoutX=\"882.0\" layoutY=\"259.0\" mnemonicParsing=\"false\" onAction=\"#ricarica\" prefHeight=\"50.0\" prefWidth=\"100.0\" style=\"-fx-background-color: #b8eab3\" text=\"Ricarica\" AnchorPane.topAnchor=\"259.0\">\r\n            <font>\r\n               <Font size=\"15.0\" />\r\n            </font></Button>\r\n        </AnchorPane>\r\n    </center>\r\n</BorderPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/viste/visualizzazioneRichieste.fxml b/src/main/resources/viste/visualizzazioneRichieste.fxml
+--- a/src/main/resources/viste/visualizzazioneRichieste.fxml	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/resources/viste/visualizzazioneRichieste.fxml	(date 1738835611019)
+@@ -10,7 +10,7 @@
+ <?import javafx.scene.layout.BorderPane?>
+ <?import javafx.scene.text.Font?>
+ 
+-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.VisualizzaRichiesteCtrlGrafico">
++<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.GestisciRichiesteCtrlGrafico">
+ 
+     <top>
+         <!-- Barra del titolo TopPage -->
+Index: src/main/resources/viste/creazioneAllenamento.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.image.Image?>\r\n<?import javafx.scene.image.ImageView?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.text.Font?>\r\n\r\n<AnchorPane prefHeight=\"640.0\" prefWidth=\"1024.0\" style=\"-fx-background-color: #1ccb5c;\" xmlns=\"http://javafx.com/javafx/21\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"viste.first.CreazioneAllenamentoCtrlGrafico\">\r\n\r\n   <fx:include source=\"baseColori.fxml\" />\r\n\r\n   <TextField fx:id=\"giornoAllenamento\" layoutX=\"220.0\" layoutY=\"87.0\" prefHeight=\"50.0\" prefWidth=\"220.0\" promptText=\"Giorno Allenamento\">\r\n      <font>\r\n         <Font size=\"16.0\" />\r\n      </font></TextField>\r\n   <TextField fx:id=\"meseAllenamento\" layoutX=\"220.0\" layoutY=\"144.0\" prefHeight=\"50.0\" prefWidth=\"220.0\" promptText=\"Mese Allenamento\">\r\n      <font>\r\n         <Font size=\"16.0\" />\r\n      </font></TextField>\r\n   <TextField fx:id=\"annoAllenamento\" layoutX=\"220.0\" layoutY=\"205.0\" prefHeight=\"50.0\" prefWidth=\"220.0\" promptText=\"Anno Allenamento\">\r\n      <font>\r\n         <Font size=\"16.0\" />\r\n      </font></TextField>\r\n   <TextField fx:id=\"oraInizio\" layoutX=\"220.0\" layoutY=\"265.0\" prefHeight=\"50.0\" prefWidth=\"150.0\" promptText=\"Ora Inizio\">\r\n      <font>\r\n         <Font size=\"16.0\" />\r\n      </font></TextField>\r\n   <TextField fx:id=\"minutoInizio\" layoutX=\"446.0\" layoutY=\"265.0\" prefHeight=\"50.0\" prefWidth=\"150.0\" promptText=\"Minuto Inizio\">\r\n      <font>\r\n         <Font size=\"16.0\" />\r\n      </font></TextField>\r\n   <TextField fx:id=\"oraFine\" layoutX=\"220.0\" layoutY=\"320.0\" prefHeight=\"50.0\" prefWidth=\"150.0\" promptText=\"Ora Fine\">\r\n      <font>\r\n         <Font size=\"16.0\" />\r\n      </font></TextField>\r\n   <TextField fx:id=\"minutoFine\" layoutX=\"446.0\" layoutY=\"320.0\" prefHeight=\"50.0\" prefWidth=\"150.0\" promptText=\"Minuto Fine\">\r\n      <font>\r\n         <Font size=\"16.0\" />\r\n      </font></TextField>\r\n   <TextField fx:id=\"descrizioneAllenamento\" layoutX=\"220.0\" layoutY=\"385.0\" prefHeight=\"70.0\" prefWidth=\"300.0\" promptText=\"Descrizione\">\r\n      <font>\r\n         <Font size=\"16.0\" />\r\n      </font></TextField>\r\n   <Button fx:id=\"creaAllenamento\" layoutX=\"220.0\" layoutY=\"532.0\" mnemonicParsing=\"false\" onAction=\"#creaAllenamento\" prefHeight=\"60.0\" prefWidth=\"150.0\" style=\"-fx-background-color: #078d53;\" text=\"Crea Allenamento\" textFill=\"WHITE\">\r\n      <font>\r\n         <Font size=\"15.0\" />\r\n      </font></Button>\r\n   <Label fx:id=\"labelErrori\" layoutX=\"220.0\" layoutY=\"470.0\" textFill=\"RED\" />\r\n   <Button layoutX=\"738.0\" layoutY=\"532.0\" mnemonicParsing=\"false\" onAction=\"#tornaIndietro\" prefHeight=\"60.0\" prefWidth=\"150.0\" style=\"-fx-background-color: B8EAB3FF;\" text=\"Torna Indietro\">\r\n      <font>\r\n         <Font size=\"15.0\" />\r\n      </font></Button>\r\n   <Label layoutX=\"424.0\" layoutY=\"25.0\" text=\"Crea allenamento\" textFill=\"WHITE\">\r\n      <font>\r\n         <Font name=\"MS Outlook\" size=\"27.0\" />\r\n      </font>\r\n   </Label>\r\n   <ImageView fitHeight=\"60.0\" fitWidth=\"60.0\" layoutX=\"800.0\" layoutY=\"10.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n      <image>\r\n         <Image url=\"@../foto/program.png\" />\r\n      </image>\r\n   </ImageView>\r\n</AnchorPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/viste/creazioneAllenamento.fxml b/src/main/resources/viste/creazioneAllenamento.fxml
+--- a/src/main/resources/viste/creazioneAllenamento.fxml	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/resources/viste/creazioneAllenamento.fxml	(date 1738836534907)
+@@ -8,43 +8,43 @@
+ <?import javafx.scene.layout.AnchorPane?>
+ <?import javafx.scene.text.Font?>
+ 
+-<AnchorPane prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: #1ccb5c;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.CreazioneAllenamentoCtrlGrafico">
++<AnchorPane prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: #1ccb5c;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.CreazioneAllenamentoCtrlGrafico">
+ 
+    <fx:include source="baseColori.fxml" />
+ 
+-   <TextField fx:id="giornoAllenamento" layoutX="220.0" layoutY="87.0" prefHeight="50.0" prefWidth="220.0" promptText="Giorno Allenamento">
++   <TextField fx:id="giornoAllenamento" layoutX="110.0" layoutY="150.0" prefHeight="50.0" prefWidth="220.0" promptText="Giorno Allenamento">
+       <font>
+          <Font size="16.0" />
+       </font></TextField>
+-   <TextField fx:id="meseAllenamento" layoutX="220.0" layoutY="144.0" prefHeight="50.0" prefWidth="220.0" promptText="Mese Allenamento">
++   <TextField fx:id="meseAllenamento" layoutX="424.0" layoutY="150.0" prefHeight="50.0" prefWidth="220.0" promptText="Mese Allenamento">
+       <font>
+          <Font size="16.0" />
+       </font></TextField>
+-   <TextField fx:id="annoAllenamento" layoutX="220.0" layoutY="205.0" prefHeight="50.0" prefWidth="220.0" promptText="Anno Allenamento">
++   <TextField fx:id="annoAllenamento" layoutX="720.0" layoutY="150.0" prefHeight="50.0" prefWidth="220.0" promptText="Anno Allenamento">
+       <font>
+          <Font size="16.0" />
+       </font></TextField>
+-   <TextField fx:id="oraInizio" layoutX="220.0" layoutY="265.0" prefHeight="50.0" prefWidth="150.0" promptText="Ora Inizio">
++   <TextField fx:id="oraInizio" layoutX="145.0" layoutY="240.0" prefHeight="50.0" prefWidth="150.0" promptText="Ora Inizio">
+       <font>
+          <Font size="16.0" />
+       </font></TextField>
+-   <TextField fx:id="minutoInizio" layoutX="446.0" layoutY="265.0" prefHeight="50.0" prefWidth="150.0" promptText="Minuto Inizio">
++   <TextField fx:id="minutoInizio" layoutX="448.0" layoutY="240.0" prefHeight="50.0" prefWidth="150.0" promptText="Minuto Inizio">
+       <font>
+          <Font size="16.0" />
+       </font></TextField>
+-   <TextField fx:id="oraFine" layoutX="220.0" layoutY="320.0" prefHeight="50.0" prefWidth="150.0" promptText="Ora Fine">
++   <TextField fx:id="oraFine" layoutX="145.0" layoutY="336.0" prefHeight="50.0" prefWidth="150.0" promptText="Ora Fine">
+       <font>
+          <Font size="16.0" />
+       </font></TextField>
+-   <TextField fx:id="minutoFine" layoutX="446.0" layoutY="320.0" prefHeight="50.0" prefWidth="150.0" promptText="Minuto Fine">
++   <TextField fx:id="minutoFine" layoutX="448.0" layoutY="336.0" prefHeight="50.0" prefWidth="150.0" promptText="Minuto Fine">
+       <font>
+          <Font size="16.0" />
+       </font></TextField>
+-   <TextField fx:id="descrizioneAllenamento" layoutX="220.0" layoutY="385.0" prefHeight="70.0" prefWidth="300.0" promptText="Descrizione">
++   <TextField fx:id="descrizioneAllenamento" layoutX="145.0" layoutY="424.0" prefHeight="70.0" prefWidth="453.0" promptText="Descrizione">
+       <font>
+          <Font size="16.0" />
+       </font></TextField>
+-   <Button fx:id="creaAllenamento" layoutX="220.0" layoutY="532.0" mnemonicParsing="false" onAction="#creaAllenamento" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #078d53;" text="Crea Allenamento" textFill="WHITE">
++   <Button fx:id="creaAllenamento" layoutX="287.0" layoutY="532.0" mnemonicParsing="false" onAction="#creaAllenamento" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #078d53;" text="Crea Allenamento" textFill="WHITE">
+       <font>
+          <Font size="15.0" />
+       </font></Button>
+Index: src/main/resources/viste/entraInSquadra.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.image.Image?>\r\n<?import javafx.scene.image.ImageView?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.text.Font?>\r\n<?import javafx.scene.text.Text?>\r\n\r\n<AnchorPane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"640.0\" prefWidth=\"1024.0\" style=\"-fx-background-color: #1CCB5CFF;\" xmlns=\"http://javafx.com/javafx/21\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"viste.first.EntraInSquadraCtrlGrafico\">\r\n\r\n    <fx:include source=\"baseColori.fxml\" />\r\n   <ImageView fitHeight=\"60.0\" fitWidth=\"60.0\" layoutX=\"800.0\" layoutY=\"10.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n      <image>\r\n         <Image url=\"@../foto/club.png\" />\r\n      </image>\r\n   </ImageView>\r\n\r\n   <Text fx:id=\"scriviSquadraText\" layoutX=\"323.0\" layoutY=\"122.0\" strokeType=\"OUTSIDE\" strokeWidth=\"0.0\" text=\"Scrivi il nome della squadra in cui vuoi entrare\">\r\n      <font>\r\n         <Font size=\"18.0\" />\r\n      </font></Text>\r\n   <Label layoutX=\"396.0\" layoutY=\"25.0\" text=\"Entra in una squadra\" textFill=\"WHITE\">\r\n      <font>\r\n         <Font name=\"MS Outlook\" size=\"27.0\" />\r\n      </font>\r\n   </Label>\r\n   <TextField fx:id=\"scriviSquadraTextField\" layoutX=\"410.0\" layoutY=\"165.0\" prefHeight=\"60.0\" prefWidth=\"200.0\" promptText=\"Nome squadra\">\r\n      <font>\r\n         <Font size=\"17.0\" />\r\n      </font></TextField>\r\n   <Button layoutX=\"434.0\" layoutY=\"275.0\" mnemonicParsing=\"false\" onAction=\"#richiediIngresso\" prefHeight=\"60.0\" prefWidth=\"150.0\" style=\"-fx-background-color: #078d53;\" text=\"Richiedi ingresso\" textFill=\"WHITE\">\r\n      <font>\r\n         <Font size=\"15.0\" />\r\n      </font></Button>\r\n   <Label fx:id=\"mostraErrore\" layoutX=\"286.0\" layoutY=\"400.0\" textFill=\"RED\" />\r\n   <Button layoutX=\"738.0\" layoutY=\"532.0\" mnemonicParsing=\"false\" onAction=\"#tornaIndietro\" prefHeight=\"60.0\" prefWidth=\"150.0\" style=\"-fx-background-color: B8EAB3FF;\" text=\"Torna Indietro\">\r\n      <font>\r\n         <Font size=\"15.0\" />\r\n      </font></Button>\r\n</AnchorPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/viste/entraInSquadra.fxml b/src/main/resources/viste/entraInSquadra.fxml
+--- a/src/main/resources/viste/entraInSquadra.fxml	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/resources/viste/entraInSquadra.fxml	(date 1738837561878)
+@@ -9,7 +9,7 @@
+ <?import javafx.scene.text.Font?>
+ <?import javafx.scene.text.Text?>
+ 
+-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: #1CCB5CFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.EntraInSquadraCtrlGrafico">
++<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: #1CCB5CFF;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.EntraInSquadraCtrlGrafico">
+ 
+     <fx:include source="baseColori.fxml" />
+    <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="800.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+@@ -18,7 +18,7 @@
+       </image>
+    </ImageView>
+ 
+-   <Text fx:id="scriviSquadraText" layoutX="323.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scrivi il nome della squadra in cui vuoi entrare">
++   <Text fx:id="scriviSquadraText" layoutX="331.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scrivi il nome della squadra in cui vuoi entrare">
+       <font>
+          <Font size="18.0" />
+       </font></Text>
+@@ -27,14 +27,14 @@
+          <Font name="MS Outlook" size="27.0" />
+       </font>
+    </Label>
+-   <TextField fx:id="scriviSquadraTextField" layoutX="410.0" layoutY="165.0" prefHeight="60.0" prefWidth="200.0" promptText="Nome squadra">
+-      <font>
+-         <Font size="17.0" />
+-      </font></TextField>
+-   <Button layoutX="434.0" layoutY="275.0" mnemonicParsing="false" onAction="#richiediIngresso" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #078d53;" text="Richiedi ingresso" textFill="WHITE">
++   <Button layoutX="437.0" layoutY="417.0" mnemonicParsing="false" onAction="#richiediIngresso" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #078d53;" text="Richiedi ingresso" textFill="WHITE">
+       <font>
+          <Font size="15.0" />
+       </font></Button>
++   <TextField fx:id="scriviSquadraTextField" layoutX="413.0" layoutY="276.0" prefHeight="60.0" prefWidth="200.0" promptText="Nome squadra">
++      <font>
++         <Font size="17.0" />
++      </font></TextField>
+    <Label fx:id="mostraErrore" layoutX="286.0" layoutY="400.0" textFill="RED" />
+    <Button layoutX="738.0" layoutY="532.0" mnemonicParsing="false" onAction="#tornaIndietro" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: B8EAB3FF;" text="Torna Indietro">
+       <font>
+Index: src/main/java/viste/second/LoginCLI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package viste.second;\r\n\r\nimport ctrl_applicativo.LoginCtrlApplicativo;\r\nimport engineering.bean.LoginBean;\r\nimport engineering.bean.UtenteBean;\r\nimport engineering.eccezioni.EccezioneCambioScena;\r\nimport engineering.eccezioni.EccezionePasswordErrata;\r\n\r\npublic class LoginCLI extends GenericaCLI {\r\n\r\n    public LoginCLI () {\r\n        this.pagina = \"Login\";\r\n    }\r\n\r\n    @Override\r\n    public void start() {\r\n\r\n        stampaPagina();\r\n\r\n\r\n        while (continua) {\r\n\r\n            try {\r\n                System.out.println(\"Cosa vuoi fare?\");\r\n                System.out.println(\"Per registrarsi premere 1\");\r\n                System.out.println(\"Per fare il login con Google premere 2\");\r\n                System.out.println(\"Per fare il login con Facebook premere 3\");\r\n                System.out.println(\"Per continuare con il login premere un tasto qualsiasi\");\r\n\r\n                String scelta = scanner.nextLine();\r\n\r\n                switch(scelta) {\r\n                    case \"1\":\r\n                        prossimaPagina = RegistrazioneCLI.class.getName();\r\n                        break;\r\n                    case \"2\":\r\n                    case \"3\":\r\n                        System.out.println(\"Funzionalità non implementata\");\r\n                        break;\r\n                    default:\r\n                        System.out.print(\"Inserisci email: \");\r\n                        String email = scanner.nextLine();\r\n\r\n                        System.out.print(\"Inserisci password: \");\r\n                        String password = scanner.nextLine();\r\n\r\n                        LoginBean loginbean = new LoginBean(email, password);\r\n\r\n                        boh(loginbean);\r\n                        break;\r\n                        }\r\n                }\r\n\r\n                catch (Exception e) {\r\n                System.err.println(\"Errore durante il login: \" + e.getMessage());\r\n                }\r\n            }\r\n        spostamento(this.prossimaPagina);\r\n    }\r\n\r\n    private void boh(LoginBean loginbean) {\r\n        try {\r\n\r\n            LoginCtrlApplicativo loginCtrl = new LoginCtrlApplicativo();\r\n\r\n            // Verifica credenziali\r\n            if (loginCtrl.verificaCredenziali(loginbean)) {\r\n                System.out.println(\"Login effettuato con successo!\");\r\n\r\n                // Recupero utente\r\n                UtenteBean utenteBean = loginCtrl.recuperoUtente(loginbean);\r\n                assegnazionePagina(utenteBean);\r\n\r\n                // Interrompi il loop di login\r\n                this.continua = false;\r\n            } else {\r\n                System.out.println(\"Credenziali errate.\");\r\n            }\r\n\r\n        } catch (EccezioneCambioScena | EccezionePasswordErrata e) {\r\n            System.err.println(e.getMessage());\r\n        }\r\n    }\r\n\r\n    private void assegnazionePagina(UtenteBean utenteBean) {\r\n        if (utenteBean.getAllenatore()) {\r\n            this.prossimaPagina = HomepageAllenatoreCLI.class.getName();\r\n        } else {\r\n            this.prossimaPagina = HomepageGiocatoreCLI.class.getName();\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/viste/second/LoginCLI.java b/src/main/java/viste/second/LoginCLI.java
+--- a/src/main/java/viste/second/LoginCLI.java	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/java/viste/second/LoginCLI.java	(date 1738835668566)
+@@ -33,8 +33,7 @@
+                     case "1":
+                         prossimaPagina = RegistrazioneCLI.class.getName();
+                         break;
+-                    case "2":
+-                    case "3":
++                    case "2", "3":
+                         System.out.println("Funzionalità non implementata");
+                         break;
+                     default:
+Index: src/main/java/ctrl_applicativo/VisualizzaRichiesteCtrlApplicativo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ctrl_applicativo/VisualizzaRichiesteCtrlApplicativo.java b/src/main/java/ctrl_applicativo/GestisciRichiesteCtrlApplicativo.java
+rename from src/main/java/ctrl_applicativo/VisualizzaRichiesteCtrlApplicativo.java
+rename to src/main/java/ctrl_applicativo/GestisciRichiesteCtrlApplicativo.java
+--- a/src/main/java/ctrl_applicativo/VisualizzaRichiesteCtrlApplicativo.java	(revision a12d5cc2a141ac45589038c6ddf362d1da40a426)
++++ b/src/main/java/ctrl_applicativo/GestisciRichiesteCtrlApplicativo.java	(date 1738835611127)
+@@ -15,7 +15,7 @@
+ import modelli.Squadra;
+ import modelli.Utente;
+ 
+-public class VisualizzaRichiesteCtrlApplicativo {
++public class GestisciRichiesteCtrlApplicativo {
+ 
+     //devo recuperare la squadra dell'utente (allenatore) che sta accettando la richiesta
+     Memoria istanza = Memoria.getInstance();

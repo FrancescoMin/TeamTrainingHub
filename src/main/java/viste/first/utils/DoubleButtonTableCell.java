@@ -5,7 +5,7 @@ import engineering.bean.UtenteBean;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import viste.first.VisualizzaRichiesteCtrlGrafico;
+import viste.first.GestisciRichiesteCtrlGrafico;
 
 
 // Classe TableCell personalizzata per aggiungere due bottoni nella cella
@@ -14,13 +14,13 @@ public class DoubleButtonTableCell extends TableCell<UtenteBean, Boolean> {
     private final Button approveButton = new Button("Accetta");
     private final Button rejectButton = new Button("Rifiuta");
 
-    public DoubleButtonTableCell(VisualizzaRichiesteCtrlGrafico visualizzaRichiesteCtrlGrafico) {
+    public DoubleButtonTableCell(GestisciRichiesteCtrlGrafico gestisciRichiesteCtrlGrafico) {
 
         approveButton.setOnAction(e -> {
             TableRow<UtenteBean> tableRow = getTableRow();
             if (tableRow != null) {
                 UtenteBean utenteBean = tableRow.getItem();
-                handlePendingButton(visualizzaRichiesteCtrlGrafico, utenteBean, true);
+                handlePendingButton(gestisciRichiesteCtrlGrafico, utenteBean, true);
             }
         });
 
@@ -28,7 +28,7 @@ public class DoubleButtonTableCell extends TableCell<UtenteBean, Boolean> {
             TableRow<UtenteBean> tableRow = getTableRow();
             if (tableRow != null) {
                 UtenteBean utenteBean = tableRow.getItem();
-                handlePendingButton(visualizzaRichiesteCtrlGrafico, utenteBean, false);
+                handlePendingButton(gestisciRichiesteCtrlGrafico, utenteBean, false);
             }
         });
 
@@ -40,8 +40,8 @@ public class DoubleButtonTableCell extends TableCell<UtenteBean, Boolean> {
                 "-fx-min-width: 80px; -fx-min-height: 25px; -fx-background-radius: 5px; -fx-stroke: 0; -fx-border-radius: 5px;");
     }
 
-    public void handlePendingButton(VisualizzaRichiesteCtrlGrafico visualizzaRichiesteCtrlGrafico, UtenteBean utenteBean, boolean approve) {
-        visualizzaRichiesteCtrlGrafico.handlerButton(utenteBean,approve);
+    public void handlePendingButton(GestisciRichiesteCtrlGrafico gestisciRichiesteCtrlGrafico, UtenteBean utenteBean, boolean approve) {
+        gestisciRichiesteCtrlGrafico.handlerButton(utenteBean,approve);
     }
 
     @Override

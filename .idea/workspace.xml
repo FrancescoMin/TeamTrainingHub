@@ -7,8 +7,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="modifica colore label">
-      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/CreazioneAllenamentoCtrlGrafico.java" afterDir="false" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="ultimi codesmell">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/VisualizzaRichiesteCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/GestisciRichiesteCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/observer/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/observer/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/VisualizzaRichiesteCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/GestisciRichiesteCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/DoubleButtonTableCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/DoubleButtonTableCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/HomepageAllenatoreCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/HomepageAllenatoreCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/LoginCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/second/VisualizzaRichiesteCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/second/GestisciRichiesteCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneAllenamento.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/entraInSquadra.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/entraInSquadra.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/registrazione.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/visualizzazioneRichieste.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/visualizzazioneRichieste.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,6 +239,7 @@
       <workItem from="1738588027032" duration="3979000" />
       <workItem from="1738747594067" duration="131000" />
       <workItem from="1738748321868" duration="2889000" />
+      <workItem from="1738832768239" duration="2191000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -514,7 +529,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738792835167</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="ultimi codesmell">
+      <option name="closed" value="true" />
+      <created>1738793345541</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1738793345541</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -532,7 +555,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit fix versione locale, poche modifiche, non significative" />
     <MESSAGE value="parziale implementazione entraInSquadra" />
     <MESSAGE value="fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori" />
     <MESSAGE value="Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti" />
@@ -557,6 +579,7 @@
     <MESSAGE value="correzioni grafiche e aggiunta icone" />
     <MESSAGE value="tasto ricarica visibile" />
     <MESSAGE value="modifica colore label" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifica colore label" />
+    <MESSAGE value="ultimi codesmell" />
+    <option name="LAST_COMMIT_MESSAGE" value="ultimi codesmell" />
   </component>
 </project>

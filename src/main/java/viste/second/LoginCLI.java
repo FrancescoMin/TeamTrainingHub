@@ -33,8 +33,7 @@ public class LoginCLI extends GenericaCLI {
                     case "1":
                         prossimaPagina = RegistrazioneCLI.class.getName();
                         break;
-                    case "2":
-                    case "3":
+                    case "2", "3":
                         System.out.println("Funzionalità non implementata");
                         break;
                     default:

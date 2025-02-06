@@ -1,15 +1,15 @@
 package viste.second;
 
-import ctrl_applicativo.VisualizzaRichiesteCtrlApplicativo;
+import ctrl_applicativo.GestisciRichiesteCtrlApplicativo;
 import engineering.bean.UtenteBean;
 import engineering.eccezioni.EccezioneSquadraInvalida;
 import engineering.eccezioni.EccezioneUtenteInvalido;
 
 import java.util.List;
 
-public class VisualizzaRichiesteCLI extends GenericaCLI{
+public class GestisciRichiesteCLI extends GenericaCLI{
 
-    public VisualizzaRichiesteCLI() {
+    public GestisciRichiesteCLI() {
         this.pagina = "Visualizza Richieste";
     }
 
@@ -20,7 +20,7 @@ public class VisualizzaRichiesteCLI extends GenericaCLI{
 
         List<UtenteBean> utenti;
 
-        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
+        GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
 
         while(continua) {
             try {
@@ -57,7 +57,7 @@ public class VisualizzaRichiesteCLI extends GenericaCLI{
     }
 
     private void controlloScelta(List<UtenteBean> utenti, int scelta) throws EccezioneSquadraInvalida, EccezioneUtenteInvalido {
-        VisualizzaRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new VisualizzaRichiesteCtrlApplicativo();
+        GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
 
         if (scelta < 1 || scelta > utenti.size()) {
             System.out.println("Scelta non valida, se si desidera uscire premere 0 se no premere un numero qualsiasi");

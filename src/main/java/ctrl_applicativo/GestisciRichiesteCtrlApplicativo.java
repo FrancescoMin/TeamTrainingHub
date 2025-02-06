@@ -15,7 +15,7 @@ import java.util.List;
 import modelli.Squadra;
 import modelli.Utente;
 
-public class VisualizzaRichiesteCtrlApplicativo {
+public class GestisciRichiesteCtrlApplicativo {
 
     //devo recuperare la squadra dell'utente (allenatore) che sta accettando la richiesta
     Memoria istanza = Memoria.getInstance();

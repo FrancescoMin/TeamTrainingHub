@@ -72,7 +72,7 @@ public class HomepageAllenatoreCLI extends GenericaCLI {
             return true;
         }
         else {
-            prossimaPagina = VisualizzaRichiesteCLI.class.getName();
+            prossimaPagina = GestisciRichiesteCLI.class.getName();
             return false;
         }
     }
