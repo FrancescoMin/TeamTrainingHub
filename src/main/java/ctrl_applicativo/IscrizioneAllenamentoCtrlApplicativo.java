@@ -10,7 +10,6 @@ import engineering.pattern.observer.Observer;
 import modelli.Allenamento;
 import modelli.Squadra;
 import modelli.Utente;
-import viste.first.IscrizioneAllenamentoCtrlGrafico;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,7 @@ public class IscrizioneAllenamentoCtrlApplicativo implements Observer {
     private AllenamentoDAO allenamentoDAO; // DAO per interagire con la persistenza
 
     public IscrizioneAllenamentoCtrlApplicativo() {
+        //Costruttore vuoto di default
     }
 
     @Override
@@ -79,11 +79,6 @@ public class IscrizioneAllenamentoCtrlApplicativo implements Observer {
             allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
             allenamentoDAO.iscriviUtenteAdAllenamento(allenamento, utente); // Approva l'allenamento nel DAO
 
-            //collezioneAllenamenti.removeAllenamento(allenamentoBean); // Rimuovi l'allenamento dalla collezione
-
-
-            //CollezioneAllenamenti collezioneAllenamenti = CollezioneAllenamenti.getInstance();
-            //collezioneAllenamenti.addAllenamento(allenamentoBean);
         }
         catch (EccezioneAllenamentoInvalido e) {
             throw new EccezioneAllenamentoInvalido(e.getMessage());
