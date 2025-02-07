@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="640.0" maxWidth="1024.0" minHeight="640.0" minWidth="1024.0" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.HomepageAllenatoreCtrlGrafico">
+<AnchorPane maxHeight="640.0" maxWidth="1024.0" minHeight="640.0" minWidth="1024.0" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.HomepageAllenatoreCtrlGrafico">
 
    <fx:include source="baseColori.fxml" />
    <fx:include source="baseHomePage.fxml" />
 
-   <VBox layoutX="285.0" layoutY="108.0" prefHeight="423.0" prefWidth="500.0">
+   <VBox layoutX="260.0" layoutY="108.0" prefHeight="423.0" prefWidth="500.0">
       <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#visualizzaRichiestePartecipazione" prefHeight="60.0" prefWidth="400.0" style="-fx-background-color: #b8eab3" text="Visualizza Le Richieste di Partecipazione alle Squadra">
          <font>
             <Font size="15.0" />

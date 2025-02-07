@@ -1,0 +1,10 @@
+{
+  "username": "francescominotti",
+  "email": "francesco@gmail.com",
+  "password": "12345678",
+  "allenatore": false,
+  "allenamenti": [
+    "10-02-2025-13-00-15-00"
+  ],
+  "squadra": "torvergata"
+}

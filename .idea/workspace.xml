@@ -7,9 +7,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="ultimi problemi">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="ultimi ritocchi visuale">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/77b9377d-7f76-49e7-98de-b479fd83680a.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_23_06__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_23_06__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_02_2025_11_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_02_2025_11_26__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/IscrizioneAllenamentoCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/IscrizioneAllenamentoCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/01-01-111111-01-01-12-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-22222-02-02-12-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-22222-02-02-22-22.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-222222-02-02-12-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/03-03-333333-03-03-13-13.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/04-04-4444-04-04-14-14.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/04-04-444444-04-04-14-14.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/05-05-555555-05-05-15-15.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/11-11-11111-01-01-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/11-11-111111-01-01-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/creazioneSquadra.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/creazioneSquadra.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageAllenatore.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/homepageGiocatore.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/viste/paginaLogin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/viste/paginaLogin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,8 +246,7 @@
       <workItem from="1738832768239" duration="2191000" />
       <workItem from="1738839417564" duration="582000" />
       <workItem from="1738840687197" duration="2362000" />
-      <workItem from="1738847408754" duration="3310000" />
-      <workItem from="1738852067134" duration="13809000" />
+      <workItem from="1738934163720" duration="1843000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -536,23 +552,7 @@
       <option name="project" value="LOCAL" />
       <updated>1738838332417</updated>
     </task>
-    <task id="LOCAL-00039" summary="refractor">
-      <option name="closed" value="true" />
-      <created>1738847608477</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1738847608477</updated>
-    </task>
-    <task id="LOCAL-00040" summary="ultimi problemi">
-      <option name="closed" value="true" />
-      <created>1738897293584</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1738897293584</updated>
-    </task>
-    <option name="localTasksCounter" value="41" />
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,6 +570,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori" />
+    <MESSAGE value="Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti" />
     <MESSAGE value="risolti errori a runtime per consultare allenamenti" />
     <MESSAGE value="caricamento e visualizzazione allenamenti JSON in tabella" />
     <MESSAGE value="spostamento codice EntraInSquadra per renderlo corretto. Funzione di riconoscimento esistenza squadra in persistenza, finta notifica per l'allenatore. Implementazione parziale di iscrizione all'allenamento" />
@@ -593,8 +595,6 @@
     <MESSAGE value="modifica colore label" />
     <MESSAGE value="ultimi codesmell" />
     <MESSAGE value="ultimi ritocchi visuale" />
-    <MESSAGE value="refractor" />
-    <MESSAGE value="ultimi problemi" />
-    <option name="LAST_COMMIT_MESSAGE" value="ultimi problemi" />
+    <option name="LAST_COMMIT_MESSAGE" value="ultimi ritocchi visuale" />
   </component>
 </project>
