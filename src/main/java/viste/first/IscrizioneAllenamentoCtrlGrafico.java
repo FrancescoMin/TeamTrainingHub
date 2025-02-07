@@ -4,12 +4,13 @@ import ctrl_applicativo.IscrizioneAllenamentoCtrlApplicativo;
 import engineering.bean.AllenamentoBean;
 import engineering.pattern.observer.CollezioneAllenamenti;
 import engineering.pattern.observer.Observer;
-import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.control.*;
+import modelli.Allenamento;
 import viste.first.basi.BaseTabelleCtrlGrafico;
 import viste.first.utils.ConsultaAllenamentiTabella;
 import viste.first.utils.BottoneSingolo;
+import viste.first.utils.GestoreTabella;
 
 import java.net.URL;
 import java.util.*;
@@ -31,7 +32,9 @@ public class IscrizioneAllenamentoCtrlGrafico implements Initializable, Observer
     @FXML
     private TableColumn<AllenamentoBean, String> colAccetta;
 
-    ObservableList<AllenamentoBean> observableList;
+    private CollezioneAllenamenti collezioneAllenamenti;
+    private List<Allenamento> allenamenti = new ArrayList<>();
+    private List<AllenamentoBean> allenamentiBean = new ArrayList<>();
     IscrizioneAllenamentoCtrlApplicativo iscrizioneAllenamentoCtrlApplicativo = new IscrizioneAllenamentoCtrlApplicativo();
     ConsultaAllenamentiTabella tabellaAllenamenti = new ConsultaAllenamentiTabella();
 
@@ -47,17 +50,19 @@ public class IscrizioneAllenamentoCtrlGrafico implements Initializable, Observer
         try{
             setupCambio();
 
-            // Recupera tutte le playlist pending, metodo pull
-            List<AllenamentoBean> allenamenti = iscrizioneAllenamentoCtrlApplicativo.caricaAllenamenti(); // Vengono recuperate tutte le playlist pending
-
-            // Popola la Tabella con i dati
-            tabellaAllenamenti.populateTable(tableViewAllenamenti);
-
-            // Imposta i dati nella tabella
-            tableViewAllenamenti.getItems().setAll(allenamenti);
-
-            // Aggiungi la colonna con un pulsante "Accetta"
+            List<TableColumn<AllenamentoBean, ?>> columns = Arrays.asList(colData, colOrarioInizio, colOrarioFine, colDescrizione);
+            List<String> nameColumns = Arrays.asList("data", "orarioInizio", "orarioFine", "descrizione");
             colAccetta.setCellFactory(button -> new BottoneSingolo(this));
+
+            /* BYPASSIAMO MVC PER PATTERN OBSERVER */
+            collezioneAllenamenti = CollezioneAllenamenti.getInstance();
+            collezioneAllenamenti.attach(this);
+
+            /* Metodo pull per ricevere i dati dal dao */
+            allenamentiBean = iscrizioneAllenamentoCtrlApplicativo.caricaAllenamenti(); // Recupera le playlist approvate
+
+            GestoreTabella.setColumnsTableView(columns, nameColumns);   // Aggiorna i parametri della tabella
+            GestoreTabella.updateTable(tableViewAllenamenti, allenamentiBean);
 
         }
         catch (Exception e) {
@@ -106,5 +111,10 @@ public class IscrizioneAllenamentoCtrlGrafico implements Initializable, Observer
     @Override
     public void update() {
         // Ricarica la tabella
+        allenamenti = collezioneAllenamenti.getAllenamenti();
+
+        allenamentiBean = iscrizioneAllenamentoCtrlApplicativo.trasformazioneAllenamenti(allenamenti);
+        GestoreTabella.addInTable(tableViewAllenamenti, allenamentiBean);
+
     }
 }

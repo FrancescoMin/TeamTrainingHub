@@ -7,10 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="ultimi ritocchi visuale">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="codesmell">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/IscrizioneAllenamentoCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/IscrizioneAllenamentoCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/observer/CollezioneAllenamenti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/observer/CollezioneAllenamenti.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/IscrizioneAllenamentoCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/IscrizioneAllenamentoCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/utils/GestoreTabella.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/p2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/p2.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -536,7 +539,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738838332417</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="modifiche entità">
+      <option name="closed" value="true" />
+      <created>1738964261225</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1738964261225</updated>
+    </task>
+    <task id="LOCAL-00040" summary="codesmell">
+      <option name="closed" value="true" />
+      <created>1738964397089</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1738964397089</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -554,7 +573,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix cambio scena HomepageGiocatoreCtrlGrafico &amp; fix minori" />
     <MESSAGE value="Corrispondenza e recupero squadra funzionante, inizializzazione schermata e controller per consultare allenamenti" />
     <MESSAGE value="risolti errori a runtime per consultare allenamenti" />
     <MESSAGE value="caricamento e visualizzazione allenamenti JSON in tabella" />
@@ -573,12 +591,13 @@
     <MESSAGE value="Torna Indietro Button in creazioneAllenamento" />
     <MESSAGE value="Risoluzione alcuni codesmell" />
     <MESSAGE value="Risoluzione problema creazione allenamenti" />
-    <MESSAGE value="codesmell" />
     <MESSAGE value="correzioni grafiche e aggiunta icone" />
     <MESSAGE value="tasto ricarica visibile" />
     <MESSAGE value="modifica colore label" />
     <MESSAGE value="ultimi codesmell" />
     <MESSAGE value="ultimi ritocchi visuale" />
-    <option name="LAST_COMMIT_MESSAGE" value="ultimi ritocchi visuale" />
+    <MESSAGE value="modifiche entità" />
+    <MESSAGE value="codesmell" />
+    <option name="LAST_COMMIT_MESSAGE" value="codesmell" />
   </component>
 </project>

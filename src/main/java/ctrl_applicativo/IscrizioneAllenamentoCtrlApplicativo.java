@@ -46,18 +46,13 @@ public class IscrizioneAllenamentoCtrlApplicativo{
             List<Allenamento> allenamentiFinale = new ArrayList<>();
             allenamentiFinale=eliminaAllenamenti(allenamentiAllenatore, allenamentiGiocatore);
 
-            return trasformazione(allenamentiFinale);
+            return trasformazioneAllenamenti(allenamentiFinale);
         }
         catch (EccezioneAllenamentoInvalido e) {
             throw new EccezioneAllenamentoInvalido(e.getMessage());
         }
     }
 
-    public void popola() {
-        List<AllenamentoBean> allenamentiFinali = caricaAllenamenti();
-
-        collezioneAllenamenti.popolaTabella(allenamentiFinali);
-    }
 
 
     // Accetta un allenamento
@@ -79,7 +74,7 @@ public class IscrizioneAllenamentoCtrlApplicativo{
         }
     }
 
-    private List<AllenamentoBean> trasformazione(List<Allenamento> allenamenti){
+    public List<AllenamentoBean> trasformazioneAllenamenti(List<Allenamento> allenamenti){
         List<AllenamentoBean> allenamentiTrasformati = new ArrayList<>();
         for(Allenamento allenamento : allenamenti){
             allenamentiTrasformati.add(new AllenamentoBean(allenamento.getData(), allenamento.getOrarioInizio(), allenamento.getOrarioFine(), allenamento.getDescrizione()));

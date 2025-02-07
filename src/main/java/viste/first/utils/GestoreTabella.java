@@ -15,6 +15,7 @@ public class GestoreTabella {
      * @param nameColumns   è una lista di stringhe, che viene utilizzata per recuperare i dati dai metodi get del AllenamentoBean
      */
 
+
     public static void setColumnsTableView(List<TableColumn<AllenamentoBean, ?>> columns, List<String> nameColumns) {
 
         // Collega i dati alle colonne della TableView
@@ -23,6 +24,33 @@ public class GestoreTabella {
             column.setCellValueFactory(new PropertyValueFactory<>(nameColumns.get(index)));
             index++;
         }
+    }
+
+    public static void addInTable(TableView<AllenamentoBean> playlistTable, List<AllenamentoBean> allenamenti) {
+        List<AllenamentoBean> currentAllenamenti = playlistTable.getItems(); // Ottenere la lista attuale di playlist dalla TableView
+
+        allenamenti.removeIf(allenamento ->
+                currentAllenamenti.stream().anyMatch(currentAllenamento ->
+                        currentAllenamento.getData().equals(allenamento.getData()) &&
+                                currentAllenamento.getOrarioInizio().equals(allenamento.getOrarioInizio()) &&
+                                currentAllenamento.getOrarioFine().equals(allenamento.getOrarioFine())
+                )
+        );
+        currentAllenamenti.addAll(allenamenti);
+
+        ObservableList<AllenamentoBean> playlistData = FXCollections.observableArrayList(currentAllenamenti);
+        playlistTable.setItems(playlistData); // Aggiornare la TableView con la lista aggiornata di playlist
+    }
+
+
+    public static void updateTable(TableView<AllenamentoBean> playlistTable, List<AllenamentoBean> playlists) {
+
+        List<AllenamentoBean> currentPlaylists = playlistTable.getItems();     // Ottenere la lista attuale di playlist dalla TableView
+
+        playlists.removeAll(currentPlaylists);                              // Rimuove le playlist già caricate, cosi da avere una lista di playlist nuove
+
+        ObservableList<AllenamentoBean> playlistData = FXCollections.observableArrayList(playlists);
+        playlistTable.setItems(playlistData);                               // Aggiornare la TableView con la lista aggiornata di playlist
     }
 
     /**
