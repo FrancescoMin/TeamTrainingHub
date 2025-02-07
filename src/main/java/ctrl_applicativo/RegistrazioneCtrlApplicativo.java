@@ -14,7 +14,7 @@ public class RegistrazioneCtrlApplicativo {
     }
 
     public void inserisciUtente(RegistrazioneBean registrazionebean) throws EccezioneUtenteInvalido {
-        Registrazione registrazione = getRegistrazione(registrazionebean);
+        Registrazione registrazione = ottieniRegistrazione(registrazionebean);
 
 
         //controllo che l'utente esisti già nel singleton
@@ -41,7 +41,7 @@ public class RegistrazioneCtrlApplicativo {
         }
     }
 
-    private Registrazione getRegistrazione(RegistrazioneBean registrazionebean) {
+    private Registrazione ottieniRegistrazione(RegistrazioneBean registrazionebean) {
         String username = registrazionebean.getUsername();
         String email = registrazionebean.getEmail();
         String password = registrazionebean.getPassword();

@@ -9,12 +9,12 @@ import viste.first.GestisciRichiesteCtrlGrafico;
 
 
 // Classe TableCell personalizzata per aggiungere due bottoni nella cella
-public class DoubleButtonTableCell extends TableCell<UtenteBean, Boolean> {
+public class BottoneDoppio extends TableCell<UtenteBean, Boolean> {
 
     private final Button approveButton = new Button("Accetta");
     private final Button rejectButton = new Button("Rifiuta");
 
-    public DoubleButtonTableCell(GestisciRichiesteCtrlGrafico gestisciRichiesteCtrlGrafico) {
+    public BottoneDoppio(GestisciRichiesteCtrlGrafico gestisciRichiesteCtrlGrafico) {
 
         approveButton.setOnAction(e -> {
             TableRow<UtenteBean> tableRow = getTableRow();
@@ -41,7 +41,7 @@ public class DoubleButtonTableCell extends TableCell<UtenteBean, Boolean> {
     }
 
     public void handlePendingButton(GestisciRichiesteCtrlGrafico gestisciRichiesteCtrlGrafico, UtenteBean utenteBean, boolean approve) {
-        gestisciRichiesteCtrlGrafico.handlerButton(utenteBean,approve);
+        gestisciRichiesteCtrlGrafico.gestioneBottone(utenteBean,approve);
     }
 
     @Override

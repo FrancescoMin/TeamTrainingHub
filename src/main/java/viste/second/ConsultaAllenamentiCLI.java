@@ -32,7 +32,7 @@ public class ConsultaAllenamentiCLI extends GenericaCLI {
         while(ciclo) {
             try {
                 //ottengo dal controller applicativo la lista delle richieste in attesa aggiornata
-                allenamenti = consultaallenamentictrlapplicativo.getAllAllenamenti();
+                allenamenti = consultaallenamentictrlapplicativo.ottieniAllenamenti();
 
                 if (allenamenti.isEmpty()) {
                     System.out.println("Non ci sono allenamenti disponibili");

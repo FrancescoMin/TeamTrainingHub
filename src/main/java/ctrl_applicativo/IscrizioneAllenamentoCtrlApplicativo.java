@@ -10,17 +10,16 @@ import engineering.pattern.observer.Observer;
 import modelli.Allenamento;
 import modelli.Squadra;
 import modelli.Utente;
+import viste.first.IscrizioneAllenamentoCtrlGrafico;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
+public class IscrizioneAllenamentoCtrlApplicativo implements Observer {
 
-    private CollezioneAllenamenti collezioneAllenamenti ;
     private AllenamentoDAO allenamentoDAO; // DAO per interagire con la persistenza
 
-    public IscrivitiAllenamentoCtrlApplicativo() {
-        collezioneAllenamenti = new CollezioneAllenamenti();
+    public IscrizioneAllenamentoCtrlApplicativo() {
     }
 
     @Override
@@ -38,7 +37,7 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
             Utente utente = singleton.getUtenteCorrente();
 
             //carico gli allenamenti per l'utente corrente così da sapere a quali è già iscritto
-            List<Allenamento> allenamentiGiocatore = allenamentoDAO.getAllenamentiPerUtente(utente);
+            List<Allenamento> allenamentiGiocatore = allenamentoDAO.ottieniAllenamentiPerUtente(utente);
 
             //carico gli allenamenti per la squadra dell'utente corrente partendo dall'ottenere la squadra
             Squadra squadra = utente.getSquadra();
@@ -46,7 +45,7 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
             //a partire dalla squadra ottengo l'allenatore
             String nomeAllenatore = squadra.getAllenatore();
 
-            List<Allenamento> allenamentiAllenatore = allenamentoDAO.getAllenamentiPerEmail(nomeAllenatore);
+            List<Allenamento> allenamentiAllenatore = allenamentoDAO.ottieniAllenamentiPerEmail(nomeAllenatore);
 
             //eliminiamo dalla lista degli allenamenti dell'allenatore quelli che sono già presenti nella lista degli allenamenti del giocatore
             List<Allenamento> allenamentiFinale = new ArrayList<>();
@@ -59,9 +58,10 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
         }
     }
 
-    public void popola(){
+    public void popola() {
         List<AllenamentoBean> allenamentiFinali = caricaAllenamenti();
 
+        CollezioneAllenamenti collezioneAllenamenti = CollezioneAllenamenti.getInstance();
         collezioneAllenamenti.popolaTabella(allenamentiFinali);
     }
 
@@ -79,9 +79,11 @@ public class IscrivitiAllenamentoCtrlApplicativo implements Observer {
             allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
             allenamentoDAO.iscriviUtenteAdAllenamento(allenamento, utente); // Approva l'allenamento nel DAO
 
-            collezioneAllenamenti.removeAllenamento(allenamentoBean); // Rimuovi l'allenamento dalla collezione
+            //collezioneAllenamenti.removeAllenamento(allenamentoBean); // Rimuovi l'allenamento dalla collezione
 
-            collezioneAllenamenti.addAllenamento(allenamentoBean);
+
+            //CollezioneAllenamenti collezioneAllenamenti = CollezioneAllenamenti.getInstance();
+            //collezioneAllenamenti.addAllenamento(allenamentoBean);
         }
         catch (EccezioneAllenamentoInvalido e) {
             throw new EccezioneAllenamentoInvalido(e.getMessage());

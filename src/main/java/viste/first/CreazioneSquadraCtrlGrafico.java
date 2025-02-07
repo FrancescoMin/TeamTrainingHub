@@ -19,9 +19,6 @@ public class CreazioneSquadraCtrlGrafico {
     private TextField nomeSquadra;
 
     @FXML
-    private Button creaSquadra;
-
-    @FXML
     private Label messaggioErrore;
 
     @FXML

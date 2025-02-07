@@ -71,7 +71,7 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
         throw new EccezioneAllenamentoInvalido("Connessione con il DB per il recupero degli allenamenti non riuscita");
     }
 
-    public List<Allenamento> getAllenamentiPerEmail(String email) throws EccezioneAllenamentoInvalido {
+    public List<Allenamento> ottieniAllenamentiPerEmail(String email) throws EccezioneAllenamentoInvalido {
         Connection conn=null;
         List<Allenamento> allenamenti = new ArrayList<>();
         //apriamo la connessione con il DB
@@ -94,7 +94,7 @@ public class AllenamentoDAOMySQL implements AllenamentoDAO {
         throw new EccezioneAllenamentoInvalido("Connessione con il DB non riuscita nel recupero degli allenamenti per l'utente " + email);
     }
 
-    public List<Allenamento> getAllenamentiPerUtente(Utente utente) throws EccezioneAllenamentoInvalido {
+    public List<Allenamento> ottieniAllenamentiPerUtente(Utente utente) throws EccezioneAllenamentoInvalido {
         try{
             return recuperaAllenamentiPerEmail(utente.getEmail());
         } catch (EccezioneAllenamentoInvalido e) {

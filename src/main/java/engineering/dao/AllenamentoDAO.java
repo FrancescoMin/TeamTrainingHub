@@ -12,8 +12,8 @@ public interface AllenamentoDAO {
 
     public void iscriviUtenteAdAllenamento(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido;
 
-    public List<Allenamento> getAllenamentiPerUtente(Utente utente) throws EccezioneAllenamentoInvalido;
+    public List<Allenamento> ottieniAllenamentiPerUtente(Utente utente) throws EccezioneAllenamentoInvalido;
     
-    public List<Allenamento> getAllenamentiPerEmail(String email) throws EccezioneAllenamentoInvalido;
+    public List<Allenamento> ottieniAllenamentiPerEmail(String email) throws EccezioneAllenamentoInvalido;
 
 }

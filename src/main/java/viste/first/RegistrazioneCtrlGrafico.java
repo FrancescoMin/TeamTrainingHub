@@ -40,14 +40,10 @@ public class RegistrazioneCtrlGrafico implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        registratiButton.setOnAction(event -> handleRegistratiButton());
+        registratiButton.setOnAction(event -> gestisciBottoneRegistrazione());
     }
 
-    public void initialize() {
-        //inizializzazione di default del controller grafico
-    }
-
-    private void handleRegistratiButton() {
+    private void gestisciBottoneRegistrazione() {
         String username = usernameTextField.getText();
         String email = emailTextField.getText();
         String password = passwordTextField.getText();

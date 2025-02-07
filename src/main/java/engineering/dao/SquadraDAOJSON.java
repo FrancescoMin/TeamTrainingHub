@@ -148,7 +148,7 @@ public class SquadraDAOJSON implements SquadraDAO {
         }
     }
 
-    public Squadra getSquadraDaNome(String nomeSquadra) throws EccezioneSquadraInvalida{
+    public Squadra ottieniSquadraDaNome(String nomeSquadra) throws EccezioneSquadraInvalida{
         try {
             //Serializziamo l'oggetto in JSON
             Gson gson = new GsonBuilder().setPrettyPrinting().create();

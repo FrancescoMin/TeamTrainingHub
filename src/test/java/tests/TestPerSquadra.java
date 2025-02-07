@@ -33,7 +33,7 @@ public class TestPerSquadra {
         try{
             squadraDAOJSON.creaSquadraPerAllenatore(allenatore, squadra);
 
-            if( (!squadraDAOJSON.getSquadraDaNome(squadra.getNome()).getNome().isEmpty()) ){
+            if( (!squadraDAOJSON.ottieniSquadraDaNome(squadra.getNome()).getNome().isEmpty()) ){
                 res = 1;
             }
 
@@ -62,7 +62,7 @@ public class TestPerSquadra {
             e.fillInStackTrace(); // Ignoro
         }
         try {
-            if (squadraDAOJSON.getSquadraDaNome(squadraTest) != null) {
+            if (squadraDAOJSON.ottieniSquadraDaNome(squadraTest) != null) {
                 res = 1;
             }
         } catch (Exception e) {

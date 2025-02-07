@@ -23,14 +23,14 @@ public class HomepageGiocatoreCtrlGrafico {
 
     public void initialize() {
         String username;
-        username= homepagegiocatorectrlapplicativo.getMessaggioBenvenuto();
+        username= homepagegiocatorectrlapplicativo.ottieniMessaggioBenvenuto();
         welcomeLabel.setText("Ciao " + username);
     }
 
     @FXML
     protected void entraSquadra(){
         try {
-            if (homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
+            if (homepagegiocatorectrlapplicativo.utenteHaSquadra()) {
                 throw new EccezioneUtenteInvalido("Sei già in una squadra");
             }
             cambio(PAGINA_ENTRAINSQUADRA);
@@ -42,7 +42,7 @@ public class HomepageGiocatoreCtrlGrafico {
 
     @FXML
     protected void iscrizioneAllenamento(){
-        if (homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
+        if (homepagegiocatorectrlapplicativo.utenteHaSquadra()) {
             try {
                 cambio(PAGINA_ISCRIZIONE_ALLENAMENTO);
             }
@@ -59,7 +59,7 @@ public class HomepageGiocatoreCtrlGrafico {
     @FXML
     private void consultaAllenamenti() {
         // Logica per il pulsante "Consulta allenamenti"
-        if(homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
+        if(homepagegiocatorectrlapplicativo.utenteHaSquadra()) {
             try {
                 ConsultaAllenamentiCtrlGrafico.setPaginaHome(PAGINA_HOME_GIOCATORE);
                 cambio(PAGINA_CONSULTA_ALLENAMENTI);

@@ -7,7 +7,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 
-public class TableManager {
+public class GestoreTabella {
     private boolean isUpdatingTableView = true;
 
     /** Associa a ciascuna colonna i relativi metodi get di AllenamentoBean
@@ -37,10 +37,12 @@ public class TableManager {
         // Aggiunta di un listener di modifica al ObservableList
         observableList.addListener((ListChangeListener<AllenamentoBean>) change -> {
             while (change.next()) {
+
                 if (change.wasAdded() && isUpdatingTableView) { ///// non accade mai #########
                     isUpdatingTableView = false;
                     tableViewAllenamenti.getItems().addAll(change.getAddedSubList());
                     isUpdatingTableView = true;
+
                 } else if (change.wasRemoved() && isUpdatingTableView) {
                     isUpdatingTableView = false;
                     tableViewAllenamenti.getItems().removeAll(change.getRemoved());

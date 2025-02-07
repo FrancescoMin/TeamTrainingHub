@@ -115,7 +115,7 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
         }
     }
 
-    public List<Allenamento> getAllenamentiPerEmail(String email) throws EccezioneAllenamentoInvalido {
+    public List<Allenamento> ottieniAllenamentiPerEmail(String email) throws EccezioneAllenamentoInvalido {
         try {
             //Serializziamo l'oggetto in JSON
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -135,9 +135,9 @@ public class AllenamentoDAOJSON implements AllenamentoDAO {
         }
     }
 
-    public List<Allenamento> getAllenamentiPerUtente(Utente utente) throws EccezioneAllenamentoInvalido {
+    public List<Allenamento> ottieniAllenamentiPerUtente(Utente utente) throws EccezioneAllenamentoInvalido {
         try{
-            return getAllenamentiPerEmail(utente.getEmail());
+            return ottieniAllenamentiPerEmail(utente.getEmail());
         }
         catch (EccezioneAllenamentoInvalido e) {
             throw new EccezioneAllenamentoInvalido(e.getMessage());

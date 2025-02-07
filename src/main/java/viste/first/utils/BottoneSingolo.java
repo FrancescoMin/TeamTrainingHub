@@ -4,34 +4,31 @@ import engineering.bean.AllenamentoBean;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.control.TableRow;
 import javafx.scene.layout.HBox;
+import viste.first.IscrizioneAllenamentoCtrlGrafico;
 
 // Classe TableCell personalizzata per aggiungere due bottoni nella cella
-public class SingleButtonTableCell extends TableCell<AllenamentoBean, String> {
+public class BottoneSingolo extends TableCell<AllenamentoBean, String> {
 
     private final Button linkButton = new Button("Iscriviti");
 
-    public SingleButtonTableCell() {
+    public BottoneSingolo(IscrizioneAllenamentoCtrlGrafico iscrizioneAllenamentoCtrlGrafico) {
 
         linkButton.setOnAction(event -> {
-            AllenamentoBean playlist = getTableView().getItems().get(getIndex());
-            // Ottieni l'oggetto Clipboard
-            Clipboard clipboard = Clipboard.getSystemClipboard();
-
-            // Crea un oggetto ClipboardContent
-            ClipboardContent content = new ClipboardContent();
-
-            // Aggiungi il testo alla clipboard
-            content.putString(playlist.getData());
-
-            // Imposta il contenuto della clipboard
-            clipboard.setContent(content);
+            TableRow<AllenamentoBean> tableRow = getTableRow();
+            if (tableRow != null) {
+                AllenamentoBean allenamentoBean = tableRow.getItem();
+                handlerSingolButton(iscrizioneAllenamentoCtrlGrafico,allenamentoBean);
+            }
         });
 
         linkButton.setStyle("-fx-background-color: #1DB954; -fx-text-fill: white; -fx-pref-height: 25px; -fx-pref-width: 75px; " +
                 "-fx-min-width: -1; -fx-min-height: -1; -fx-background-radius: 20; -fx-border-radius: 20; -fx-font-size: 12px");
+    }
+
+    private void handlerSingolButton(IscrizioneAllenamentoCtrlGrafico iscrizioneAllenamentoCtrlGrafico, AllenamentoBean allenamentoBean) {
+        iscrizioneAllenamentoCtrlGrafico.gestoreBottone(allenamentoBean);
     }
 
     @Override
@@ -43,6 +40,7 @@ public class SingleButtonTableCell extends TableCell<AllenamentoBean, String> {
             setGraphic(createButtonBox(linkButton));
         }
     }
+
 
     private HBox createButtonBox(Button... buttons) {
         HBox buttonBox = new HBox(5); // 5 è lo spazio tra i bottoni

@@ -96,7 +96,7 @@ public class RichiediIngressoSquadraCtrlApplicativo {
 
         //ottengo dalla persistenza la squadra da modificare se non l'ho trovata nel singleton
         else {
-            squadra = squadraDAO.getSquadraDaNome(nomeSquadra);
+            squadra = squadraDAO.ottieniSquadraDaNome(nomeSquadra);
             for (Utente u : squadra.getRichiesteIngresso()) {
                 if (u.getEmail().equals(utente.getEmail())) {
                     throw new EccezioneSquadraInvalida("Hai già inviato una richiesta a questa squadra, attendi la risposta");

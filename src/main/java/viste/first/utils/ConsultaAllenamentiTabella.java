@@ -41,7 +41,7 @@ public class ConsultaAllenamentiTabella {
         List<AllenamentoBean> allenamentiBean = new ArrayList<>();
         // Recupera gli allenamenti tramite il controller applicativo
         ConsultaAllenamentiCtrlApplicativo ctrlApplicativo = new ConsultaAllenamentiCtrlApplicativo();
-        List<AllenamentoBean> allenamenti = ctrlApplicativo.getAllAllenamenti();
+        List<AllenamentoBean> allenamenti = ctrlApplicativo.ottieniAllenamenti();
         allenamentiBean.addAll(allenamenti);
         return allenamentiBean;
     }

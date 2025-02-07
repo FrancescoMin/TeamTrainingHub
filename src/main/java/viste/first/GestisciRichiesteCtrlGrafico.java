@@ -5,7 +5,7 @@ import engineering.bean.UtenteBean;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import viste.first.basi.BaseTabelleCtrlGrafico;
-import viste.first.utils.DoubleButtonTableCell;
+import viste.first.utils.BottoneDoppio;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_ALLENATORE;
 
@@ -42,7 +42,7 @@ public class GestisciRichiesteCtrlGrafico {
         giocatoreColonna.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEmail()));
 
         // Set the cell factory for the action column (buttons)
-        approveColumn.setCellFactory(col -> new DoubleButtonTableCell(this));
+        approveColumn.setCellFactory(col -> new BottoneDoppio(this));
 
         GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
         visualizzarichiestectrlapplicativo.recuperaUtentiBean();
@@ -52,7 +52,7 @@ public class GestisciRichiesteCtrlGrafico {
     }
 
 
-    public void handlerButton(UtenteBean utenteBean, boolean approved) {
+    public void gestioneBottone(UtenteBean utenteBean, boolean approved) {
         try {
             GestisciRichiesteCtrlApplicativo visualizzarichiestectrlapplicativo = new GestisciRichiesteCtrlApplicativo();
 

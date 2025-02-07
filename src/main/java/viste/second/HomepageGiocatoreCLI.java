@@ -30,7 +30,7 @@ public class HomepageGiocatoreCLI extends GenericaCLI {
 
             switch(scelta) {
                 case 1:
-                    if(homepagegiocatorectrlapplicativo.isUtenteInSquadra()){
+                    if(homepagegiocatorectrlapplicativo.utenteHaSquadra()){
                         System.out.println("Sei già iscritto ad una squadra\n");
                     } else {
                         prossimaPagina = RichiediIngressoSquadraCLI.class.getName();
@@ -38,15 +38,15 @@ public class HomepageGiocatoreCLI extends GenericaCLI {
                     }
                     break;
                 case 2:
-                    if (homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
-                        prossimaPagina = IscrivitiAllenamentoCLI.class.getName();
+                    if (homepagegiocatorectrlapplicativo.utenteHaSquadra()) {
+                        prossimaPagina = IscrizioneAllenamentoCLI.class.getName();
                         continua = false;
                     } else {
                         System.out.println("Devi essere iscritto ad una squadra per iscriverti ad un allenamento\n");
                     }
                     break;
                 case 3:
-                    if (homepagegiocatorectrlapplicativo.isUtenteInSquadra()) {
+                    if (homepagegiocatorectrlapplicativo.utenteHaSquadra()) {
                         prossimaPagina = ConsultaAllenamentiCLI.class.getName();
                         ConsultaAllenamentiCLI.setPaginaHome(HomepageGiocatoreCLI.class.getName());
                         continua = false;

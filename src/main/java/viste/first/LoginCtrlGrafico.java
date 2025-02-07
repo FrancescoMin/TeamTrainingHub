@@ -19,16 +19,10 @@ import static viste.first.utils.FxmlFileName.*;
 public class LoginCtrlGrafico {
 
     @FXML
-    private Button login;
-
-    @FXML
     private TextField email;
 
     @FXML
     private PasswordField password;
-
-    @FXML
-    private Button registr;
 
     @FXML
     private Label erroreInserimento;

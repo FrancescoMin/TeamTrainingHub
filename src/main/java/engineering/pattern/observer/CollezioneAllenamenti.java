@@ -33,6 +33,7 @@ public class CollezioneAllenamenti extends Subject {
     public void popolaTabella(List<AllenamentoBean> allenamenti) {
         this.allenamenti.clear();
         this.allenamenti.addAll(allenamenti);
+
         notifyObservers(); // Notifica gli osservatori
     }
 }

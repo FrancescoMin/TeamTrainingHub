@@ -17,7 +17,7 @@ public class SquadraDAOMySQL implements SquadraDAO {
         //costruttore vuoto di default
     }
 
-    public Squadra getSquadraDaNome(String nomeSquadra) throws EccezioneSquadraInvalida {
+    public Squadra ottieniSquadraDaNome(String nomeSquadra) throws EccezioneSquadraInvalida {
 
         Connection conn;
         Squadra squadra;
@@ -32,7 +32,9 @@ public class SquadraDAOMySQL implements SquadraDAO {
                     squadra = new Squadra(rs.getString("codice"), rs.getString("allenatore"));
                     return squadra;
                 }
-                return new Squadra();
+                else {
+                    return new Squadra();
+                }
             }
             catch(EccezioneSquadraInvalida | SQLException e) {
                 throw new EccezioneSquadraInvalida("Problema con la sessione nella ricerca della squadra");
@@ -154,18 +156,16 @@ public class SquadraDAOMySQL implements SquadraDAO {
 
         conn = Connessione.getInstance().getDBConnection();
         if (conn != null) {
-            try {
-                for (Utente utente : squadra.getRichiesteIngresso()) {
-                    ResultSet rs = null;
-                    rs = QuerySquadra.getrichiestaiscrizionersperemail(conn, squadra ,utente.getEmail());
-                    if(!rs.next()) {
+            for (Utente utente : squadra.getRichiesteIngresso()) {
+                try (ResultSet rs = QuerySquadra.getrichiestaiscrizionersperemail(conn, squadra ,utente.getEmail())) {
+
+                    if (!rs.next()) {
                         aggiungiRichiestaASquadra(squadra, utente);
                     }
-                    rs.close();
                 }
-            }
-            catch (SQLException e) {
-                throw new EccezioneSquadraInvalida("Errore nell'aggiornamento della squadra nell'aggiornamento della squadra");
+                catch (SQLException e) {
+                    throw new EccezioneSquadraInvalida("Errore nell'aggiornamento della squadra nell'aggiornamento della squadra");
+                }
             }
         }
         else {
@@ -245,7 +245,7 @@ public class SquadraDAOMySQL implements SquadraDAO {
         try
         {
             //utilizzo il metodo già implementato per verificare l'esistenza della squadra
-            return getSquadraDaNome(nomeSquadra).getNome().isEmpty();
+            return !ottieniSquadraDaNome(nomeSquadra).getNome().isEmpty();
 
         }
         catch (EccezioneSquadraInvalida e)

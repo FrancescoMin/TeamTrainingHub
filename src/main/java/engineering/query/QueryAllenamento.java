@@ -25,6 +25,7 @@ public class QueryAllenamento {
             int i=0;
 
             i=statement.executeUpdate();
+
             return  i;
 
 

@@ -199,7 +199,7 @@ public class UtenteDAOJSON implements UtenteDAO {
             if(!nomeSquadra.isEmpty()){
                 //mi faccio recuperare dal DAO responsabile l'oggetto squadra
                 SquadraDAOJSON squadraDAOJSON = new SquadraDAOJSON();
-                squad = squadraDAOJSON.getSquadraDaNome(nomeSquadra);
+                squad = squadraDAOJSON.ottieniSquadraDaNome(nomeSquadra);
             }
 
             //faccio il controllo che l'utente sia un allenatore o un giocatore

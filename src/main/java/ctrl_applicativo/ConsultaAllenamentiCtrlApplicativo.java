@@ -14,13 +14,13 @@ import java.util.List;
 public class ConsultaAllenamentiCtrlApplicativo {
 
     // Metodo per recuperare allenamenti dal sistema
-    public List<AllenamentoBean> getAllAllenamenti() throws EccezioneAllenamentoInvalido {
+    public List<AllenamentoBean> ottieniAllenamenti() throws EccezioneAllenamentoInvalido {
         try {
 
             Utente utente = Memoria.getInstance().getUtenteCorrente();
 
             AllenamentoDAO allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
-            List<Allenamento> allenamentiModel = allenamentoDAO.getAllenamentiPerUtente(utente);
+            List<Allenamento> allenamentiModel = allenamentoDAO.ottieniAllenamentiPerUtente(utente);
 
             return trasformazione(allenamentiModel);
         }

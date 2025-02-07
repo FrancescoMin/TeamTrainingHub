@@ -1,0 +1,12 @@
+{
+  "username": "prova1",
+  "email": "prova1",
+  "password": "prova1",
+  "allenatore": true,
+  "allenamenti": [
+    "11-11-11111-01-01-11-11",
+    "11-11-111111-01-01-11-11",
+    "02-02-22222-02-02-12-12"
+  ],
+  "squadra": "ppp1"
+}

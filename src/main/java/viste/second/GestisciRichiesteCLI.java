@@ -25,7 +25,7 @@ public class GestisciRichiesteCLI extends GenericaCLI{
         while(continua) {
             try {
                 //ottengo dal controller applicativo la lista delle richieste in attesa aggiornata
-                utenti = visualizzarichiestectrlapplicativo.getRichiesteIngresso();
+                utenti = visualizzarichiestectrlapplicativo.ottieniRichiesteIngresso();
 
                 controlloUtenti(utenti);
 

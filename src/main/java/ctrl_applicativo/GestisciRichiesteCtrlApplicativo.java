@@ -114,11 +114,12 @@ public class GestisciRichiesteCtrlApplicativo {
         }
     }
 
-    public List<UtenteBean> getRichiesteIngresso() {
+
+    public List<UtenteBean> ottieniRichiesteIngresso() {
 
         List<UtenteBean> richiesteIngresso = new ArrayList<>();
         for (Utente utente : squadra.getRichiesteIngresso()) {
-            UtenteBean utenteBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword(), utente.getAllenamenti());
+            UtenteBean utenteBean = new GiocatoreBean(utente.getUsername(), utente.getEmail(), utente.getPassword());
             richiesteIngresso.add(utenteBean);
         }
         return richiesteIngresso;

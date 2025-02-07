@@ -10,7 +10,7 @@ public class HomepageGiocatoreCtrlApplicativo {
         // Costruttore vuoto di default
     }
 
-    public String getMessaggioBenvenuto() throws EccezioneUtenteInvalido {
+    public String ottieniMessaggioBenvenuto() throws EccezioneUtenteInvalido {
         // Recupera l'utente corrente dalla sessione
         Memoria istanza = Memoria.getInstance();
         Utente utenteCorrente = istanza.getUtenteCorrente();
@@ -21,7 +21,7 @@ public class HomepageGiocatoreCtrlApplicativo {
         return utenteCorrente.getUsername() + "!";
     }
 
-    public boolean isUtenteInSquadra() {
+    public boolean utenteHaSquadra() {
         // Recupera l'utente corrente dalla sessione
         Memoria istanza = Memoria.getInstance();
         Utente utenteCorrente = istanza.getUtenteCorrente();
