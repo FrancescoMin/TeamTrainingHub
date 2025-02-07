@@ -68,25 +68,29 @@ public class TestPerUtente {
      * Testo che l'inserimento restituisca l'eccezione "UsernameAlreadyInUseException" se provo a registrare un utente con un
      * nome utente già in uso, in questo caso admin(Un supervisore già presente nel file system).
      * La mail invece viene generata random
+     * testUtenteHaSquadraDaUtenteSenzaSquadra
      */
     @Test
-
-    public void testEsisteUtenteDaEmailConUtenteEsistente() {
+    public void testUtenteHaSquadraDaUtenteSenzaSquadra() {
         UtenteDAOJSON utenteDAOJSON = new UtenteDAOJSON();
         int res;
         try {
             Utente utente;
             utente = assegnaUtente(testUser, email, allenatore);
             utenteDAOJSON.inserisciUtente(utente);
+
         } catch (Exception e) {
             e.fillInStackTrace(); // Ignoro
         }
 
-
-        if(utenteDAOJSON.esisteUtenteDaEmail(email)){
-            res = 1;
-        }
-        else{
+        try {
+            Utente utenteValido = utenteDAOJSON.recuperaUtenteDaEmail(email);
+            if (utenteValido.getSquadra().getNome().isEmpty()) {
+                res = 1;
+            } else {
+                res = 0;
+            }
+        } catch (Exception e) {
             res = 0;
         }
         Assert.assertEquals(1, res);

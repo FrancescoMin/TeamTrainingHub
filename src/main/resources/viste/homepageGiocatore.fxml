@@ -38,7 +38,7 @@
       <font>
          <Font size="15.0" />
       </font></Button>
-   <Label fx:id="mostraErrori" layoutX="286.0" layoutY="480.0">
+   <Label fx:id="mostraErrori" contentDisplay="CENTER" alignment="CENTER" textAlignment="CENTER" layoutY="483.0" prefHeight="17.0" prefWidth="1024.0">
       <padding>
          <Insets left="10.0" />
       </padding></Label>

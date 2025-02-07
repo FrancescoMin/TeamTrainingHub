@@ -33,12 +33,7 @@
       <font>
          <Font size="15.0" />
       </font></Text>
-   <Label fx:id="erroreInserimento" alignment="CENTER" layoutX="41.0" layoutY="451.0" prefHeight="18.0" prefWidth="600.0" textAlignment="CENTER" textFill="RED">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Label>
-   <Label fx:id="registrazioneAvvenuta" alignment="CENTER" layoutX="41.0" layoutY="419.0" prefHeight="18.0" prefWidth="600.0" textAlignment="CENTER" textFill="RED">
+   <Label fx:id="erroreInserimento" alignment="CENTER" contentDisplay="CENTER" layoutY="451.0" prefHeight="25.0" prefWidth="1024.0" textAlignment="CENTER" textFill="RED">
       <font>
          <Font size="16.0" />
       </font>

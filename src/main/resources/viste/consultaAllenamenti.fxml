@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: #1ccb5c;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.ConsultaAllenamentiCtrlGrafico">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" style="-fx-background-color: #1ccb5c;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viste.first.ConsultaAllenamentiCtrlGrafico">
 
     <top>
         <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
@@ -31,11 +31,6 @@
 
     <center>
         <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <Label fx:id="mostraErrori" layoutX="498.0" layoutY="5.0" textFill="RED">
-            <font>
-               <Font size="15.0" />
-            </font>
-         </Label>
             <TableView fx:id="tabellaAllenamenti" fixedCellSize="0.0" layoutX="51.2" layoutY="54.4" prefHeight="461.0" prefWidth="923.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="54.0">
                 <columns>
                     <TableColumn fx:id="dataColonna" prefWidth="150.0" text="Data" />
@@ -47,6 +42,11 @@
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
+         <Label fx:id="mostraErrori" contentDisplay="CENTER" layoutY="5.0" prefHeight="21.0" prefWidth="1024.0" textFill="RED">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Label>
         </AnchorPane>
     </center>
 

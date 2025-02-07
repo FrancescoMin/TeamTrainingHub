@@ -8,15 +8,15 @@ public class Giocatore extends Utente{
 
     public Giocatore(String username, String email, String password) {
         super(username, email, password);
-        this.allenatore=false;
+        setGiocatore();
     }
 
     public Giocatore(String username, String email, String password , List<Allenamento> allenamenti, Squadra squadra) {
         super(username, email, password , allenamenti, squadra);
-        this.allenatore = false;
+        setGiocatore();
     }
 
-    public String getMessaggioBenvenuto() {
-        return "Benvenuto " + this.getUsername();
+    private void setGiocatore() {
+        this.allenatore = false;
     }
 }

@@ -56,11 +56,6 @@
             <Insets bottom="20.0" left="150.0" />
          </VBox.margin>
       </Button>
-      <Label fx:id="mostraErrori" textFill="RED">
-         <VBox.margin>
-            <Insets left="130.0" />
-         </VBox.margin>
-      </Label>
    </VBox>
    <Label layoutX="420.0" layoutY="25.0" text="Menu Allenatore" textFill="WHITE">
       <font>
@@ -72,6 +67,7 @@
          <Image url="@../foto/whistle.png" />
       </image>
    </ImageView>
+   <Label fx:id="mostraErrori" layoutY="502.0" alignment="CENTER" textAlignment="CENTER" prefHeight="17.0" prefWidth="1024.0" textFill="RED" />
    <rotationAxis>
       <Point3D />
    </rotationAxis>

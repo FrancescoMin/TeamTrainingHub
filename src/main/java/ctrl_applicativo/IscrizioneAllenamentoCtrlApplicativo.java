@@ -16,6 +16,7 @@ import java.util.List;
 
 public class IscrizioneAllenamentoCtrlApplicativo implements Observer {
 
+    CollezioneAllenamenti collezioneAllenamenti = CollezioneAllenamenti.getInstance();
     private AllenamentoDAO allenamentoDAO; // DAO per interagire con la persistenza
 
     public IscrizioneAllenamentoCtrlApplicativo() {
