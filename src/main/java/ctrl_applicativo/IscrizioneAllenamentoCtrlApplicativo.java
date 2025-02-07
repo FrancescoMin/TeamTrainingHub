@@ -5,7 +5,6 @@ import engineering.dao.AllenamentoDAO;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
-import engineering.pattern.observer.CollezioneAllenamenti;
 import modelli.Allenamento;
 import modelli.Squadra;
 import modelli.Utente;
