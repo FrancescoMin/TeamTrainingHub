@@ -15,7 +15,6 @@ import java.util.List;
 
 public class IscrizioneAllenamentoCtrlApplicativo{
 
-    CollezioneAllenamenti collezioneAllenamenti = CollezioneAllenamenti.getInstance();
     private AllenamentoDAO allenamentoDAO; // DAO per interagire con la persistenza
 
     public IscrizioneAllenamentoCtrlApplicativo() {
@@ -52,8 +51,6 @@ public class IscrizioneAllenamentoCtrlApplicativo{
             throw new EccezioneAllenamentoInvalido(e.getMessage());
         }
     }
-
-
 
     // Accetta un allenamento
     public void accettaAllenamento(AllenamentoBean allenamentoBean) throws EccezioneAllenamentoInvalido {
