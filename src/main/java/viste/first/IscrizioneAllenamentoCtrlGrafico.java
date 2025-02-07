@@ -72,7 +72,7 @@ public class IscrizioneAllenamentoCtrlGrafico implements Initializable, Observer
 
     // Metodo per ricaricare i dati nella tabella
     public void ricaricaTabella() {
-        List<AllenamentoBean> allenamentiBean = iscrizioneAllenamentoCtrlApplicativo.caricaAllenamenti(); // Vengono recuperati gli allenamenti
+        allenamentiBean = iscrizioneAllenamentoCtrlApplicativo.caricaAllenamenti(); // Vengono recuperati gli allenamenti
 
         try {
             tabellaAllenamenti.populateTable(tableViewAllenamenti);
