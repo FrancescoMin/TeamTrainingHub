@@ -2,6 +2,8 @@ package viste.first;
 
 import ctrl_applicativo.IscrizioneAllenamentoCtrlApplicativo;
 import engineering.bean.AllenamentoBean;
+import engineering.pattern.observer.CollezioneAllenamenti;
+import engineering.pattern.observer.Observer;
 import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.control.*;
@@ -14,7 +16,7 @@ import java.util.*;
 
 import static viste.first.utils.FxmlFileName.PAGINA_HOME_GIOCATORE;
 
-public class IscrizioneAllenamentoCtrlGrafico implements Initializable {
+public class IscrizioneAllenamentoCtrlGrafico implements Initializable, Observer {
 
     @FXML
     private TableView<AllenamentoBean> tableViewAllenamenti;
@@ -101,4 +103,7 @@ public class IscrizioneAllenamentoCtrlGrafico implements Initializable {
 
     }
 
+    @Override
+    public void update() {
+    }
 }

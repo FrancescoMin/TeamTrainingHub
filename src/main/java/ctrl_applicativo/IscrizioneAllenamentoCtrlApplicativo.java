@@ -6,7 +6,6 @@ import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
 import engineering.pattern.observer.CollezioneAllenamenti;
-import engineering.pattern.observer.Observer;
 import modelli.Allenamento;
 import modelli.Squadra;
 import modelli.Utente;
@@ -14,18 +13,13 @@ import modelli.Utente;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IscrizioneAllenamentoCtrlApplicativo implements Observer {
+public class IscrizioneAllenamentoCtrlApplicativo{
 
     CollezioneAllenamenti collezioneAllenamenti = CollezioneAllenamenti.getInstance();
     private AllenamentoDAO allenamentoDAO; // DAO per interagire con la persistenza
 
     public IscrizioneAllenamentoCtrlApplicativo() {
         //Costruttore vuoto di default
-    }
-
-    @Override
-    public void update() {
-        popola();
     }
 
     // Carica gli allenamenti dalla persistenza
@@ -62,7 +56,6 @@ public class IscrizioneAllenamentoCtrlApplicativo implements Observer {
     public void popola() {
         List<AllenamentoBean> allenamentiFinali = caricaAllenamenti();
 
-        CollezioneAllenamenti collezioneAllenamenti = CollezioneAllenamenti.getInstance();
         collezioneAllenamenti.popolaTabella(allenamentiFinali);
     }
 
