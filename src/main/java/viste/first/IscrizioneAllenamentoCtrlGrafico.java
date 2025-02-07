@@ -105,5 +105,6 @@ public class IscrizioneAllenamentoCtrlGrafico implements Initializable, Observer
 
     @Override
     public void update() {
+        // Ricarica la tabella
     }
 }
