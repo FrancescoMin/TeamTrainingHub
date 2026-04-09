@@ -14,6 +14,6 @@ public interface UtenteDAO
     public Utente recuperaUtenteDaEmail(String string) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida;
     public Utente recuperaUtenteDaLogin(Login login) throws EccezioneUtenteInvalido, EccezioneSquadraInvalida, EccezionePasswordErrata;
     public void aggiornaUtente(Utente utente) throws EccezioneUtenteInvalido;
-    public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido;
+    public boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido;
 }
 

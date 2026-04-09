@@ -27,7 +27,7 @@ public class UtenteDAOJSON implements UtenteDAO {
     public static final String ALLENATORE = "allenatore";
 
 
-    public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido {
+    public boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido {
         try {
             //creazione del path
             String filePath = PATH_UTENTI + email + JSON;

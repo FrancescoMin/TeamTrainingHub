@@ -75,7 +75,7 @@ public class UtenteDAOInMemory implements UtenteDAO {
     }
 
     @Override
-    public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido {
+    public boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido {
         for (Utente u : utenti) {
             if (u.getEmail().equals(email)) {
                 return true;

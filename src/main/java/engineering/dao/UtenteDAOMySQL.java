@@ -120,7 +120,7 @@ public class UtenteDAOMySQL implements UtenteDAO {
         }
     }
 
-    public Boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido{
+    public boolean esisteUtenteDaEmail(String email) throws EccezioneUtenteInvalido{
         try{
             return recuperaUtenteDaEmail(email) != null;
         }
