@@ -66,7 +66,7 @@ public class GestoreTabella {
         observableList.addListener((ListChangeListener<AllenamentoBean>) change -> {
             while (change.next()) {
 
-                if (change.wasAdded() && isUpdatingTableView) { ///// non accade mai #########
+                if (change.wasAdded() && isUpdatingTableView) { // non accade mai #########
                     isUpdatingTableView = false;
                     tableViewAllenamenti.getItems().addAll(change.getAddedSubList());
                     isUpdatingTableView = true;
