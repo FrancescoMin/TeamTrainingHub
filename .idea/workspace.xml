@@ -7,7 +7,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="finale" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="observer">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_02_2025_15_14_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_02_2025_15_14__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_02_2025_16_09_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_02_2025_16_09__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_11_59_[Changes]/club.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_11_59_[Changes]/program.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_11_59_[Changes]/strategy (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_11_59_[Changes]/strategy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_11_59_[Changes]/tshirt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_11_59_[Changes]/whistle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_14_17_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_14_17__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_23_06_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_02_2025_23_06__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_02_2025_11_26_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_02_2025_11_26__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_02_2025_14_57_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_02_2025_14_57__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/abstract_factory/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/abstract_factory/DAOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/abstract_factory/FactorySettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/abstract_factory/FactorySettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/inizio/LoginApplicazione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/01-01-111111-01-01-12-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-22222-02-02-12-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-22222-02-02-22-22.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-222222-02-02-12-12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/03-03-333333-03-03-13-13.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/04-04-4444-04-04-14-14.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/04-04-444444-04-04-14-14.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/05-05-555555-05-05-15-15.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/11-11-11111-01-01-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/11-11-111111-01-01-11-11.json" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,18 +69,17 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub.git&quot;,
-    &quot;accountId&quot;: &quot;64b32a3e-6402-44ac-8316-64089203d618&quot;
+    &quot;url&quot;: &quot;https://github.com/FrancescoMin/TeamTrainingHub&quot;,
+    &quot;accountId&quot;: &quot;85e127ae-09ee-4152-ace3-c561331c7528&quot;
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="Security Analysis" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2nIPzptCElr3Z2cbKRrMzjtrfIO" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -64,6 +98,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/max/IdeaProjects/FinalTeamTrainingHub/src/main/resources/foto&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -75,6 +110,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.48505747&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -82,6 +118,10 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\max\IdeaProjects\FinalTeamTrainingHub\src\main\resources\foto" />
       <recent name="C:\Users\max\IdeaProjects\TeamTrainingHub\src\main\resources\persistenza\utenti" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\max\IdeaProjects\FinalTeamTrainingHub\src\main\java\engineering\pattern\abstract_factory" />
+      <recent name="C:\Users\max\IdeaProjects\FinalTeamTrainingHub\src\main\java\engineering\dao" />
     </key>
   </component>
   <component name="RunManager" selected="Application.LoginApplicazione">
@@ -143,8 +183,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
       </set>
     </attachedChunks>
   </component>
@@ -227,6 +267,9 @@
       <workItem from="1738839417564" duration="582000" />
       <workItem from="1738840687197" duration="2362000" />
       <workItem from="1738934163720" duration="1843000" />
+      <workItem from="1766144035348" duration="4657000" />
+      <workItem from="1771695275348" duration="27000" />
+      <workItem from="1774456736154" duration="431000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -556,23 +599,7 @@
       <option name="project" value="LOCAL" />
       <updated>1738966469624</updated>
     </task>
-    <task id="LOCAL-00042" summary="observer">
-      <option name="closed" value="true" />
-      <created>1738966625390</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1738966625390</updated>
-    </task>
-    <task id="LOCAL-00043" summary="finale">
-      <option name="closed" value="true" />
-      <created>1738969099852</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1738969099852</updated>
-    </task>
-    <option name="localTasksCounter" value="44" />
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,6 +617,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="risolti errori a runtime per consultare allenamenti" />
     <MESSAGE value="caricamento e visualizzazione allenamenti JSON in tabella" />
     <MESSAGE value="spostamento codice EntraInSquadra per renderlo corretto. Funzione di riconoscimento esistenza squadra in persistenza, finta notifica per l'allenatore. Implementazione parziale di iscrizione all'allenamento" />
     <MESSAGE value="Inizializzazione alcune classi CLI, ulteriori modifiche iscrizione allenamento" />
@@ -614,7 +642,6 @@
     <MESSAGE value="modifiche entità" />
     <MESSAGE value="codesmell" />
     <MESSAGE value="observer" />
-    <MESSAGE value="finale" />
-    <option name="LAST_COMMIT_MESSAGE" value="finale" />
+    <option name="LAST_COMMIT_MESSAGE" value="observer" />
   </component>
 </project>

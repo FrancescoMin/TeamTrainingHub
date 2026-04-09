@@ -21,7 +21,7 @@ LoginApplicazione extends Application {
         Properties properties = loadConfigurationProperties();
 
         // Ottieni il tipo di interfaccia dalle proprietà
-        int interfaceType = Integer.parseInt(properties.getProperty("interface.type","1"));
+        int interfaceType = Integer.parseInt(properties.getProperty("interface.type","2"));
 
         switch (interfaceType) {
             case 1: {
