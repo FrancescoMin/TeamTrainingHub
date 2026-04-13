@@ -44,6 +44,6 @@ public class AllenamentoDAOInMemory implements AllenamentoDAO {
         return associazioni.stream()
                 .filter(a -> a.emailUtente.equals(email))
                 .map(a -> a.allenamento)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

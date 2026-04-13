@@ -7,7 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="fix code smell commento">
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="fix code smell 2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOInMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/AllenamentoDAOInMemory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/01-01-111111-01-01-12-12.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-22222-02-02-12-12.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-22222-02-02-22-22.json" beforeDir="false" />
@@ -247,6 +249,7 @@
       <workItem from="1771695275348" duration="27000" />
       <workItem from="1774456736154" duration="431000" />
       <workItem from="1775748861243" duration="1120000" />
+      <workItem from="1776084075261" duration="1101000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -608,7 +611,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775749987142</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="fix code smell 2">
+      <option name="closed" value="true" />
+      <created>1776084338788</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1776084338788</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +637,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="correzioni varie e codesmell" />
     <MESSAGE value="Implementazione caso d'uso Iscrizione allenamento" />
     <MESSAGE value="Sistemazione Consulta Allenamenti" />
     <MESSAGE value="Sistemazione Viste e controller grafici" />
@@ -651,6 +661,7 @@
     <MESSAGE value="Eliminazione dati superflui" />
     <MESSAGE value="aggiornamento boolean" />
     <MESSAGE value="fix code smell commento" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix code smell commento" />
+    <MESSAGE value="fix code smell 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix code smell 2" />
   </component>
 </project>
