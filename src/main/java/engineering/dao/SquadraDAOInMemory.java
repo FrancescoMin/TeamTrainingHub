@@ -16,12 +16,8 @@ public class SquadraDAOInMemory implements SquadraDAO {
         if (verificaEsistenzaSquadra(squadra.getNome())) {
             throw new EccezioneSquadraInvalida("Squadra già esistente: " + squadra.getNome());
         }
-        // Associa la squadra all'allenatore (nel DB si farebbe update dell'utente o insert squadra con fk)
-        // Aggiorniamo l'oggetto Utente passato se necessario, ma qui persistiamo la squadra
         squadra.setAllenatore(utente.getUsername());
-        // NOTA: Utente ha getUsername, Squadra ha getAllenatore (String).
-        // Bisognerebbe capire cosa si aspetta la business logic.
-        // Assumiamo che setAllenatore prenda una stringa identificativa.
+        // Utente ha getUsername, Squadra ha getAllenatore (String).
         
         squadre.add(squadra);
     }
@@ -30,9 +26,7 @@ public class SquadraDAOInMemory implements SquadraDAO {
     public void iscrizioneUtenteASquadra(Utente utente, Squadra squadra) throws EccezioneSquadraInvalida {
         // Cerca la squadra persistita
         Squadra squadraEsistente = ottieniSquadraDaNome(squadra.getNome());
-        
-        // Aggiungi l'utente alle richieste (o direttamente alla squadra se la logica lo prevede così)
-        // Guardando Squadra.java: private List<Utente> richiesteIngresso;
+
         if (squadraEsistente.getRichiesteIngresso() == null) {
             squadraEsistente.setRichiesteIngresso(new ArrayList<>());
         }

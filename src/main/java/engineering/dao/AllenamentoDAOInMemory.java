@@ -11,15 +11,7 @@ import java.util.stream.Collectors;
 public class AllenamentoDAOInMemory implements AllenamentoDAO {
 
     private static final List<AllenamentoUtente> associazioni = new ArrayList<>();
-    
-    // Classe interna per mappare allenamenti a utenti (relazione molti-a-molti simulata o uno-a-molti)
-    // Guardando l'interfaccia, sembra che si debba recuperare gli allenamenti per utente o email.
-    // In questo caso, memorizziamo semplicemente l'associazione.
-    // Tuttavia, Allenamento non ha un ID univoco esplicito, quindi ci basiamo sugli oggetti o sui campi.
-    // L'implementazione più semplice è aggiungere l'allenamento alla lista dell'utente (che è già nell'oggetto Utente)
-    // E magari mantenere una lista globale se serve per altre query.
-    // Ma le firme dei metodi suggeriscono persistenza dell'associazione.
-    
+
     private static class AllenamentoUtente {
         Allenamento allenamento;
         String emailUtente; // Usiamo l'email come chiave
@@ -32,8 +24,7 @@ public class AllenamentoDAOInMemory implements AllenamentoDAO {
 
     @Override
     public void creaAllenamentoAdUtente(Allenamento allenamento, Utente utente) throws EccezioneAllenamentoInvalido {
-        // In un DB relazionale salveremmo l'allenamento e l'associazione.
-        // Qui aggiungiamo l'associazione.
+        // Aggiungiamo l'associazione.
         associazioni.add(new AllenamentoUtente(allenamento, utente.getEmail()));
     }
 

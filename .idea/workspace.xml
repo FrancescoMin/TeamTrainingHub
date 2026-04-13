@@ -7,11 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="Eliminazione dati superflui">
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOInMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOInMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOJSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/dao/UtenteDAOMySQL.java" afterDir="false" />
+    <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="fix code smell commento">
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/01-01-111111-01-01-12-12.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-22222-02-02-12-12.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-22222-02-02-22-22.json" beforeDir="false" />
@@ -250,7 +246,7 @@
       <workItem from="1766144035348" duration="4657000" />
       <workItem from="1771695275348" duration="27000" />
       <workItem from="1774456736154" duration="431000" />
-      <workItem from="1775748861243" duration="873000" />
+      <workItem from="1775748861243" duration="1120000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />
@@ -596,7 +592,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775749147568</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="aggiornamento boolean">
+      <option name="closed" value="true" />
+      <created>1775749853538</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1775749853538</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix code smell commento">
+      <option name="closed" value="true" />
+      <created>1775749987142</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1775749987142</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,8 +626,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="spostamento codice EntraInSquadra per renderlo corretto. Funzione di riconoscimento esistenza squadra in persistenza, finta notifica per l'allenatore. Implementazione parziale di iscrizione all'allenamento" />
-    <MESSAGE value="Inizializzazione alcune classi CLI, ulteriori modifiche iscrizione allenamento" />
     <MESSAGE value="correzioni varie e codesmell" />
     <MESSAGE value="Implementazione caso d'uso Iscrizione allenamento" />
     <MESSAGE value="Sistemazione Consulta Allenamenti" />
@@ -639,6 +649,8 @@
     <MESSAGE value="observer" />
     <MESSAGE value="Ulteriore implementazione Demo" />
     <MESSAGE value="Eliminazione dati superflui" />
-    <option name="LAST_COMMIT_MESSAGE" value="Eliminazione dati superflui" />
+    <MESSAGE value="aggiornamento boolean" />
+    <MESSAGE value="fix code smell commento" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix code smell commento" />
   </component>
 </project>
