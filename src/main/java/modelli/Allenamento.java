@@ -1,5 +1,7 @@
 package modelli;
 
+import java.util.Objects;
+
 public class Allenamento{
 
     private String data;
@@ -37,4 +39,19 @@ public class Allenamento{
     public void setOrarioFine(String orarioFine) {this.orarioFine = orarioFine;}
     public String getOrarioFine() {return this.orarioFine;}
 
+    // Aggiungere in fondo a Allenamento.java:
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Allenamento that = (Allenamento) o;
+        return Objects.equals(data, that.data) &&
+                Objects.equals(orarioInizio, that.orarioInizio) &&
+                Objects.equals(orarioFine, that.orarioFine);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data, orarioInizio, orarioFine);
+    }
 }

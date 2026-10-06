@@ -4,6 +4,7 @@ import ctrl_applicativo.IscrizioneAllenamentoCtrlApplicativo;
 import engineering.bean.AllenamentoBean;
 import engineering.pattern.observer.CollezioneAllenamenti;
 import engineering.pattern.observer.Observer;
+import javafx.application.Platform;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import modelli.Allenamento;
@@ -35,8 +36,8 @@ public class IscrizioneAllenamentoCtrlGrafico implements Initializable, Observer
     private CollezioneAllenamenti collezioneAllenamenti;
     private List<Allenamento> allenamenti = new ArrayList<>();
     private List<AllenamentoBean> allenamentiBean = new ArrayList<>();
-    IscrizioneAllenamentoCtrlApplicativo iscrizioneAllenamentoCtrlApplicativo = new IscrizioneAllenamentoCtrlApplicativo();
-    ConsultaAllenamentiTabella tabellaAllenamenti = new ConsultaAllenamentiTabella();
+    private final IscrizioneAllenamentoCtrlApplicativo iscrizioneAllenamentoCtrlApplicativo = new IscrizioneAllenamentoCtrlApplicativo();
+    private final ConsultaAllenamentiTabella tabellaAllenamenti = new ConsultaAllenamentiTabella();
 
     @FXML
     private Label mostraErrori;
@@ -47,74 +48,76 @@ public class IscrizioneAllenamentoCtrlGrafico implements Initializable, Observer
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try{
+        try {
             setupCambio();
 
             List<TableColumn<AllenamentoBean, ?>> columns = Arrays.asList(colData, colOrarioInizio, colOrarioFine, colDescrizione);
             List<String> nameColumns = Arrays.asList("data", "orarioInizio", "orarioFine", "descrizione");
             colAccetta.setCellFactory(button -> new BottoneSingolo(this));
 
-            /* BYPASSIAMO MVC PER PATTERN OBSERVER */
+            // Registrazione dell'Observer sul Subject
             collezioneAllenamenti = CollezioneAllenamenti.getInstance();
             collezioneAllenamenti.attach(this);
 
-            /* Metodo pull per ricevere i dati dal dao */
-            allenamentiBean = iscrizioneAllenamentoCtrlApplicativo.caricaAllenamenti(); // Recupera le playlist approvate
+            GestoreTabella.setColumnsTableView(columns, nameColumns);
 
-            GestoreTabella.setColumnsTableView(columns, nameColumns);   // Aggiorna i parametri della tabella
+            // Caricamento iniziale dei dati
+            allenamentiBean = iscrizioneAllenamentoCtrlApplicativo.caricaAllenamenti();
             GestoreTabella.updateTable(tableViewAllenamenti, allenamentiBean);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             mostra(e.getMessage());
         }
     }
 
-    // Metodo per ricaricare i dati nella tabella
+    // Metodo per ricaricare manualmente se necessario
     public void ricaricaTabella() {
-        allenamentiBean = iscrizioneAllenamentoCtrlApplicativo.caricaAllenamenti(); // Vengono recuperati gli allenamenti
+        allenamentiBean = iscrizioneAllenamentoCtrlApplicativo.caricaAllenamenti();
 
         try {
             tabellaAllenamenti.populateTable(tableViewAllenamenti);
-
             tableViewAllenamenti.getItems().setAll(allenamentiBean);
         } catch (Exception e) {
             mostra(e.getMessage());
         }
-
     }
 
-    /** Public perché deve essere chiamata da BottoneDoppio, è l'azione che viene compiuta al click del bottone Accept o Reject */
+    /** Chiamata dal bottone della riga della tabella */
     public void gestoreBottone(AllenamentoBean allenamento) {
-            try{
+        try {
+            // Esegue l'azione di business (aggiorna la persistenza e notifica il Subject)
+            iscrizioneAllenamentoCtrlApplicativo.accettaAllenamento(allenamento);
 
-                // Approva Allenamento
-                iscrizioneAllenamentoCtrlApplicativo.accettaAllenamento(allenamento);
-
-                ricaricaTabella();
-        }
-        catch (Exception e) {
+            // No chiamate a ricaricaTabella()!
+            // Tabella aggiornata in modo reattivo dal metodo update() dell'Observer.
+        } catch (Exception e) {
             mostra(e.getMessage());
         }
     }
 
     private void mostra(String message) {
-        // Imposta il testo della Label
         mostraErrori.setText(message);
-
-        // Cambia il colore del testo della Label in un colore che contrasta bene con il verde (#1DB954)
-        mostraErrori.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;"); // Bianco, ma puoi usare un altro colore che ti piace
+        mostraErrori.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;");
         mostraErrori.setVisible(true);
-
     }
 
     @Override
     public void update() {
-        // Ricarica la tabella
+        System.out.println("--> [Observer - IscrizioneAllenamentoCtrlGrafico] Ricevuto update()! Aggiorno la tabella...");
+
         allenamenti = collezioneAllenamenti.getAllenamenti();
-
         allenamentiBean = iscrizioneAllenamentoCtrlApplicativo.trasformazioneAllenamenti(allenamenti);
-        GestoreTabella.addInTable(tableViewAllenamenti, allenamentiBean);
 
+        // Aggiornamento reattivo sul thread grafico JavaFX
+        Platform.runLater(() -> {
+            tableViewAllenamenti.getItems().setAll(allenamentiBean);
+        });
+    }
+
+    // Permette di staccare l'observer quando si cambia pagina
+    public void detachObserver() {
+        if (collezioneAllenamenti != null) {
+            collezioneAllenamenti.detach(this);
+        }
     }
 }

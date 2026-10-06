@@ -5,6 +5,7 @@ import engineering.dao.AllenamentoDAO;
 import engineering.eccezioni.EccezioneAllenamentoInvalido;
 import engineering.pattern.Memoria;
 import engineering.pattern.abstract_factory.DAOFactory;
+import engineering.pattern.observer.CollezioneAllenamenti;
 import modelli.Allenamento;
 import modelli.Squadra;
 import modelli.Utente;
@@ -41,8 +42,10 @@ public class IscrizioneAllenamentoCtrlApplicativo{
             List<Allenamento> allenamentiAllenatore = allenamentoDAO.ottieniAllenamentiPerEmail(nomeAllenatore);
 
             //eliminiamo dalla lista degli allenamenti dell'allenatore quelli che sono già presenti nella lista degli allenamenti del giocatore
-            List<Allenamento> allenamentiFinale = new ArrayList<>();
-            allenamentiFinale=eliminaAllenamenti(allenamentiAllenatore, allenamentiGiocatore);
+            List<Allenamento> allenamentiFinale = eliminaAllenamenti(allenamentiAllenatore, allenamentiGiocatore);
+
+            // AGGIUNTA: Popola il Subject con gli allenamenti disponibili
+            CollezioneAllenamenti.getInstance().popolaTabella(allenamentiFinale);
 
             return trasformazioneAllenamenti(allenamentiFinale);
         }
@@ -62,7 +65,10 @@ public class IscrizioneAllenamentoCtrlApplicativo{
 
             // Logica per accettare l'allenamento
             allenamentoDAO = DAOFactory.getDAOFactory().createAllenamentoDAO();
-            allenamentoDAO.iscriviUtenteAdAllenamento(allenamento, utente); // Approva l'allenamento nel DAO
+            allenamentoDAO.iscriviUtenteAdAllenamento(allenamento, utente);
+
+            // AGGIUNTA: Rimuove l'allenamento accettato dal Subject
+            CollezioneAllenamenti.getInstance().removeAllenamento(allenamento);
 
         }
         catch (EccezioneAllenamentoInvalido e) {

@@ -8,16 +8,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d48fabd9-9d0c-4832-9762-f7ff2f4fd62e" name="Changes" comment="fix code smell java 16">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/01-01-111111-01-01-12-12.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-22222-02-02-12-12.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-22222-02-02-22-22.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/02-02-222222-02-02-12-12.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/03-03-333333-03-03-13-13.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/04-04-4444-04-04-14-14.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/04-04-444444-04-04-14-14.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/05-05-555555-05-05-15-15.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/11-11-11111-01-01-11-11.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/allenamenti/11-11-111111-01-01-11-11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/CreazioneAllenamentoCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/CreazioneAllenamentoCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/CreazioneSquadraCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/CreazioneSquadraCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/GestisciRichiesteCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/GestisciRichiesteCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/IscrizioneAllenamentoCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/IscrizioneAllenamentoCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/LoginCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/LoginCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/RegistrazioneCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/RegistrazioneCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/RichiediIngressoSquadraCtrlApplicativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ctrl_applicativo/RichiediIngressoSquadraCtrlApplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/altro/Connessione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/altro/Connessione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/Memoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/Memoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/pattern/observer/CollezioneAllenamenti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/pattern/observer/CollezioneAllenamenti.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engineering/query/QuerySquadra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/modelli/Allenamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/modelli/Allenamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/viste/first/IscrizioneAllenamentoCtrlGrafico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/viste/first/IscrizioneAllenamentoCtrlGrafico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/connection.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/connection.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/demo.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/testUser@gmail.com.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistenza/utenti/testUser@gmail.com.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,6 +256,8 @@
       <workItem from="1774456736154" duration="431000" />
       <workItem from="1775748861243" duration="1120000" />
       <workItem from="1776084075261" duration="1711000" />
+      <workItem from="1791281298485" duration="3356000" />
+      <workItem from="1791289767743" duration="2947000" />
     </task>
     <task id="LOCAL-00001" summary="Inizio settaggio database">
       <option name="closed" value="true" />

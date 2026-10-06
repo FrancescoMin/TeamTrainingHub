@@ -115,7 +115,7 @@ public class QuerySquadra {
     public static ResultSet getrichiestaiscrizionersperemail(Connection connection, Squadra squadra, String utenteEmail) throws EccezioneSquadraInvalida {
         try {
             //creazione della query parametrica
-            String query = "SELECT codice,utenti_email,allenatore FROM richiesteiscrizione where Squadra_codice = ? AND utenti_email = ?";
+            String query = "SELECT Squadra_codice, utenti_email, Squadra_utenti_email FROM richiesteiscrizione WHERE Squadra_codice = ? AND utenti_email = ?";
 
             //preparazione dello statement
             PreparedStatement statement = connection.prepareStatement(query);

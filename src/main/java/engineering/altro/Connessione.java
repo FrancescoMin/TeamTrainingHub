@@ -1,8 +1,11 @@
 package engineering.altro;
 
-import java.io.*;
-import java.sql.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 public class Connessione {
 
@@ -11,12 +14,11 @@ public class Connessione {
     private String password;
     private static Connessione instance = null;
     private Connection conn = null;
-    private static final String PATH = "src/main/resources/connection.properties";
 
     private Connessione() {
+        // Costruttore privato singleton
     }
 
-    /*Memoria*/
     public static synchronized Connessione getInstance() {
         if (instance == null) {
             instance = new Connessione();
@@ -25,37 +27,35 @@ public class Connessione {
     }
 
     public synchronized Connection getDBConnection() {
-        if (this.conn == null) {
-            getInfo();
-
-            try{
+        try {
+            // Controlla se la connessione è null o se è stata precedentemente chiusa
+            if (this.conn == null || this.conn.isClosed()) {
+                getInfo();
                 this.conn = DriverManager.getConnection(jdbc, user, password);
-
-
-            //MODIFICARE LA GESTIONE DELL'ECCEZIONE IN MODO CORRETTO
-            } catch (SQLException e){
-                System.out.println(e.getMessage());
             }
-
+        } catch (SQLException e) {
+            System.err.println("Errore durante la connessione al database: " + e.getMessage());
         }
         return this.conn;
     }
 
     private void getInfo() {
-        try(FileInputStream fileInputStream = new FileInputStream(PATH)) {
+        // Caricamento portabile dal classpath (come in DAOFactory)
+        try (InputStream input = Connessione.class.getClassLoader().getResourceAsStream("connection.properties")) {
+            if (input == null) {
+                System.err.println("File connection.properties non trovato nel classpath!");
+                return;
+            }
 
-            // Load DB Connection info from Properties file
-            Properties prop = new Properties() ;
-            prop.load(fileInputStream);
+            Properties prop = new Properties();
+            prop.load(input);
 
-            jdbc = prop.getProperty("JDBC_URL") ;
-            user = prop.getProperty("USER") ;
-            password = prop.getProperty("PASSWORD") ;
+            this.jdbc = prop.getProperty("JDBC_URL");
+            this.user = prop.getProperty("USER");
+            this.password = prop.getProperty("PASSWORD");
 
-
-        //MODIFICARE LA GESTIONE DELL'ECCEZIONE IN MODO CORRETTO
-        } catch (IOException e){
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Errore durante la lettura di connection.properties: " + e.getMessage());
         }
     }
 }

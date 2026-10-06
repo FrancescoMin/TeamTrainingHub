@@ -1,8 +1,8 @@
 {
   "username": "testUser",
   "email": "testUser@gmail.com",
-  "password": "testUser",
+  "password": "testUser@gmail.com",
   "allenatore": false,
   "allenamenti": [],
-  "squadra": ""
+  "squadra": "squadraTest1791293482039"
 }
